@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { time, hrefProfessor, professoresPendentes } from "@/data/professores";
+import { time, hrefProfessor } from "@/data/professores";
 import { iniciaisDe } from "./Professores";
 import Revela from "./Revela";
 import { Ondas } from "./motivos";
@@ -35,11 +35,7 @@ export default function ResumoProfessores() {
             Com quem você vai treinar
           </h2>
           <p className="resumo-time__intro">
-            A estrutura da aula é a mesma com todos. O que muda é o perfil — quem
-            trabalha melhor com criança, quem puxa a parte tática, quem prefere alto
-            rendimento. Veja com quem o seu caso combina.
-            {professoresPendentes > 0 &&
-              ` Mais ${professoresPendentes} chegando.`}
+            Mesma estrutura de aula com todos. O que muda é o perfil.
           </p>
         </Revela>
 

@@ -40,7 +40,7 @@ export const frentes: Frente[] = [
     numero: "01",
     titulo: "Treinar",
     texto:
-      "Aula do infantil ao competitivo, em turma ou particular, na sede em Porto Alegre e no Porto Sports, em Palmares do Sul. O método define um ponto de entrada diferente para cada estágio — não existe turma única.",
+      "Do infantil ao competitivo, em turma ou particular. O método define um ponto de entrada para cada estágio — não existe turma única.",
     href: "/metodo",
     chamada: "Ver como funciona o treino",
   },
@@ -48,7 +48,7 @@ export const frentes: Frente[] = [
     numero: "02",
     titulo: "Formar",
     texto:
-      "O Conexão BT capacita professores de Beach Tennis a aplicar a metodologia na própria aula, com o próprio aluno. Os quatro professores do time passaram por ele antes de dar a primeira aula com o nome do CT.",
+      "O Conexão BT capacita professores a aplicar a metodologia na própria aula. Os quatro do time passaram por ele.",
     href: "/conexao-bt",
     chamada: "Conhecer o Conexão BT",
   },
@@ -56,7 +56,7 @@ export const frentes: Frente[] = [
     numero: "03",
     titulo: "Acompanhar",
     texto:
-      "Quem se forma não é solto no mercado. Segue com mentoria para levar caso real, formação continuada e reciclagens periódicas para revisar o método e corrigir vícios.",
+      "Quem se forma não é solto no mercado: segue com mentoria, formação continuada e reciclagens.",
     href: "/o-ct",
     chamada: "Conhecer o CT",
   },

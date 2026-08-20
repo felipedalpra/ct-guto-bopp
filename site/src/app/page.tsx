@@ -6,6 +6,7 @@ import ResumoGuto from "@/components/ResumoGuto";
 import ResumoCt from "@/components/ResumoCt";
 import ResumoMetodo from "@/components/ResumoMetodo";
 import ResumoProfessores from "@/components/ResumoProfessores";
+import Aulas from "@/components/Aulas";
 import ChamadaContato from "@/components/ChamadaContato";
 
 /**
@@ -22,6 +23,7 @@ import ChamadaContato from "@/components/ChamadaContato";
  *   Fatos       — atende meu nível? fica onde? que horas abre?
  *   Guto        — por que eu confiaria neste método
  *   Método      — o que cada pilar muda para mim
+ *   Aulas       — como isso parece na quadra (o texto afirma, o vídeo mostra)
  *   CT          — como o centro se organiza
  *   Professores — com quem eu vou treinar
  *   Contato     — o próximo passo
@@ -44,6 +46,7 @@ export default function Home() {
       <Fatos />
       <ResumoGuto />
       <ResumoMetodo />
+      <Aulas />
       <ResumoCt />
       <ResumoProfessores />
       <ChamadaContato />

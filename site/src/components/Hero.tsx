@@ -68,10 +68,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero__texto">
-          Centro de Treinamento de Beach Tennis que trabalha em três frentes:
-          treina alunos do infantil ao competitivo, forma professores pelo curso
-          Conexão BT e acompanha quem já formou. As três correm sobre o mesmo
-          método — o Método dos 5 Pilares.
+          Treina do infantil ao competitivo e forma professores pelo Conexão BT
+          — tudo sobre o mesmo Método dos 5 Pilares.
         </p>
 
         <div className="hero__acoes">

@@ -26,8 +26,7 @@ export default function ResumoMetodo() {
             O Método dos <span className="metodo__cinco">5</span> Pilares
           </h2>
           <p className="resumo-metodo__intro">
-            Os cinco pilares são a ordem em que o CT ensina, e cada um resolve um
-            problema específico do aluno. É o que cada um entrega:
+            A ordem em que o CT ensina. O que cada pilar entrega:
           </p>
           <Link className="btn btn--linha" href="/metodo">
             Ver como cada pilar funciona na aula
@@ -39,7 +38,7 @@ export default function ResumoMetodo() {
             <li key={pilar.numero}>
               <span className="resumo-metodo__numero">{pilar.numero}</span>
               <span className="resumo-metodo__nome">{pilar.nome}</span>
-              <span className="resumo-metodo__resumo">{pilar.oQueMuda}</span>
+              <span className="resumo-metodo__resumo">{pilar.ganho}</span>
             </li>
           ))}
         </Revela>

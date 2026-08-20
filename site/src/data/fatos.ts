@@ -31,26 +31,26 @@ export const fatos: Fato[] = [
     unidade: "+",
     rotulo: "anos de quadra",
     detalhe:
-      "O tempo de Guto Bopp no Beach Tennis como atleta, professor e treinador — a matéria-prima do método.",
+      "Guto Bopp como atleta, professor e treinador.",
   },
   {
     valor: String(pilares.length),
     rotulo: "pilares",
     detalhe:
-      "Organização, correção, técnica, tática e qualidade da aula. Cada um depende do anterior.",
+      "Organização, correção, técnica, tática e qualidade da aula.",
   },
   {
     valor: String(time.length),
     rotulo: "professores no time",
     detalhe:
       professoresPendentes > 0
-        ? `Guto Bopp mais ${time.length - 1} professores, todos certificados pelo Conexão BT. Outros ${professoresPendentes} entram em breve.`
-        : `Guto Bopp mais ${time.length - 1} professores, todos certificados pelo Conexão BT.`,
+        ? `Todos certificados pelo Conexão BT. Mais ${professoresPendentes} em breve.`
+        : "Todos certificados pelo Conexão BT.",
   },
   {
     valor: "07–20h",
     rotulo: "todos os dias",
-    detalhe: `Funcionamento da ${site.endereco.local}, em ${site.endereco.cidade}. O CT também dá aula em Palmares do Sul.`,
+    detalhe: `${site.endereco.cidade}, e também em Palmares do Sul.`,
   },
 ];
 

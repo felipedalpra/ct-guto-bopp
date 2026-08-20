@@ -130,7 +130,9 @@ body {
 }
 
 .secao {
-  padding-block: clamp(4.5rem, 11vw, 9rem);
+  /* Encurtado a pedido: a home ficava alta demais e cada seção parecia uma
+     página inteira. O respiro continua, mas cabe mais coisa numa tela. */
+  padding-block: clamp(3rem, 6.5vw, 5.25rem);
   position: relative;
 }
 
@@ -3631,7 +3633,7 @@ body {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding-block: clamp(4rem, 12vw, 8rem);
+  padding-block: clamp(3rem, 7vw, 5.5rem);
   background: var(--color-navy-900);
 }
 
@@ -3898,4 +3900,149 @@ body {
   .trajetoria__bola {
     display: none;
   }
+}
+
+/* ================================================= vídeos de aula (home) ======
+   Os vídeos do cliente são verticais, filmados no celular. Em vez de recortar
+   para paisagem — o que corta a cabeça de quem está em quadra —, a seção assume
+   o 9:16 e coloca as três peças lado a lado.
+   ============================================================================ */
+
+.aulas__cabecalho {
+  max-inline-size: 42rem;
+  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.aulas__titulo {
+  font-size: clamp(1.75rem, 4.4vw, 2.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-block-start: 0.625rem;
+}
+
+.aulas__grade {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  /* Teto na largura: sem isso, três peças 9:16 numa tela larga passam de 700px
+     de altura cada e a seção sozinha vira uma página. */
+  grid-template-columns: repeat(3, minmax(0, 17rem));
+  justify-content: start;
+}
+
+/* Abaixo de ~48rem vira uma fileira que corre de lado, com encaixe. Empilhar
+   três vídeos verticais faria o visitante rolar three telas para passar por eles. */
+@media (max-width: 48rem) {
+  .aulas__grade {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* O respiro lateral acompanha a margem do shell. */
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    padding-block-end: 0.75rem;
+    scrollbar-width: thin;
+  }
+
+  .aulas__grade > li {
+    flex: 0 0 min(68vw, 15rem);
+    scroll-snap-align: start;
+  }
+}
+
+.aula {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.aula__quadro {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-navy-800);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
+}
+
+.aula__video,
+.aula__poster {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* O botão cobre o quadro inteiro: no celular, alvo de toque generoso. */
+.aula__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-navy-900) 72%, transparent) 0%,
+    color-mix(in oklab, var(--color-navy-900) 12%, transparent) 55%
+  );
+  transition: background 0.3s;
+}
+
+.aula__play:hover {
+  background: color-mix(in oklab, var(--color-navy-900) 45%, transparent);
+}
+
+.aula__play-icone {
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  border-radius: 50%;
+  background: var(--color-lime-ct);
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* O triângulo do play, desenhado em borda — sem imagem, sem fonte de ícone. */
+.aula__play-icone::after {
+  content: "";
+  inline-size: 0;
+  block-size: 0;
+  margin-inline-start: 0.25rem;
+  border-block: 0.55rem solid transparent;
+  border-inline-start: 0.9rem solid var(--color-navy-900);
+}
+
+.aula__play:hover .aula__play-icone,
+.aula__play:focus-visible .aula__play-icone {
+  transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aula__play:hover .aula__play-icone,
+  .aula__play:focus-visible .aula__play-icone {
+    transform: none;
+  }
+}
+
+.aula__legenda {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+}
+
+.aula__titulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.aula__texto {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-sand) 68%, transparent);
 }

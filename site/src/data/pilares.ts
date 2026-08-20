@@ -8,7 +8,8 @@
  * redigidos a partir do briefing e precisam do aval do cliente antes de publicar.
  *
  * Cada pilar tem quatro camadas de texto, na ordem em que o leitor as encontra:
- *   resumo     — uma linha, para a lista da home
+ *   resumo     — uma linha, subtítulo do pilar em /metodo
+ *   ganho      — o resultado em poucas palavras, para a lista da home
  *   descricao  — o parágrafo do pilar
  *   naAula     — como ele aparece na prática, em quadra
  *   oQueMuda   — o que o aluno ganha quando o pilar está sendo cumprido
@@ -23,6 +24,7 @@ export type Pilar = {
   numero: string;
   nome: string;
   resumo: string;
+  ganho: string;
   descricao: string;
   naAula: string[];
   oQueMuda: string;
@@ -34,6 +36,8 @@ export const pilares: Pilar[] = [
     numero: "01",
     nome: "Organização",
     resumo: "Toda aula tem começo, meio e objetivo.",
+    ganho:
+      "Cada aula continua a anterior, em vez de recomeçar do zero.",
     descricao:
       "Aula planejada antes de a bola entrar em quadra: objetivo definido, sequência de exercícios encadeada e tempo aproveitado do aquecimento ao último ponto. É o pilar que separa treino de bate-bola.",
     naAula: [
@@ -50,6 +54,8 @@ export const pilares: Pilar[] = [
     numero: "02",
     nome: "Correção",
     resumo: "Apontar o erro certo, na hora certa, com a palavra certa.",
+    ganho:
+      "O erro para de voltar com outro nome.",
     descricao:
       "Enxergar a causa do erro em vez do sintoma e devolver a correção de forma que o aluno consiga aplicar no próximo ponto. Feedback curto, específico e no tempo do jogo.",
     naAula: [
@@ -66,6 +72,8 @@ export const pilares: Pilar[] = [
     numero: "03",
     nome: "Desenvolvimento técnico",
     resumo: "O gesto construído na base, repetido até virar padrão.",
+    ganho:
+      "O golpe deixa de depender do dia.",
     descricao:
       "Empunhadura, posição de espera, deslocamento e finalização trabalhados na ordem certa. A técnica é construída por camadas, cada uma consolidada antes da seguinte.",
     naAula: [
@@ -82,6 +90,8 @@ export const pilares: Pilar[] = [
     numero: "04",
     nome: "Desenvolvimento tático",
     resumo: "Saber o que fazer com a bola antes de ela chegar.",
+    ganho:
+      "O aluno joga com intenção, não no reflexo.",
     descricao:
       "Leitura de jogo, posicionamento de dupla, escolha do golpe e construção do ponto. É onde o aluno para de reagir à bola e passa a decidir o jogo.",
     naAula: [
@@ -98,6 +108,8 @@ export const pilares: Pilar[] = [
     numero: "05",
     nome: "Qualidade da aula",
     resumo: "O aluno sai da quadra sabendo o que evoluiu.",
+    ganho:
+      "A evolução vira algo que o aluno consegue nomear.",
     descricao:
       "Intensidade, clima e clareza do que foi trabalhado. Uma aula de qualidade entrega evolução percebida — e é o que faz o aluno voltar na semana seguinte.",
     naAula: [

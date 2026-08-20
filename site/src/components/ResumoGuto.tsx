@@ -48,11 +48,8 @@ export default function ResumoGuto() {
             passou por <span className="retrato-fundo__n">4</span> funções antes
           </h2>
           <p className="retrato-fundo__texto">
-            Guto Bopp criou a Metodologia Guto Bopp e o curso Conexão BT, treina os
-            atletas do CT e conduz a formação dos professores do time. Cada uma das
-            quatro funções abaixo resolveu um problema que a anterior tinha deixado
-            aberto — e é essa ordem que explica por que o método é organizado em
-            pilares que dependem um do outro.
+            Cada função resolveu um problema que a anterior deixou aberto. É essa
+            ordem que explica por que o método tem a cara que tem.
           </p>
         </Revela>
 
