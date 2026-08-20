@@ -111,6 +111,10 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
   Não terá página/site separado.
 - **2026-08-19 — Stack:** Next.js (App Router) + TypeScript + Tailwind CSS.
 - **2026-08-19 — Hospedagem:** Vercel. Mesmo padrão das outras landing pages da Zentri.
+- **2026-08-19 — Repositório:** repo próprio e **privado** `felipedalpra/ct-guto-bopp`,
+  fora do monorepo Zentri.tech (é material de cliente, com telefones e fotos).
+  Pasta movida de `Downloads/Zentri.tech/projetos + base/landing-pages/Lp-Gutobop`
+  para `~/Documents/GitHub/ct-guto-bopp`.
 - **Domínio:** ainda a definir.
 - **Nada foi construído ainda** — decisão do cliente: só definir a stack, sem gerar código
   até o material (logo, fotos, fichas dos professores, 5 pilares, Conexão BT) chegar.

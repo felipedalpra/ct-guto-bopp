@@ -1,6 +1,9 @@
 # CLAUDE.md
 
-Project Name: Lp-Gutobop
+Project Name: ct-guto-bopp
+
+Repositório: <https://github.com/felipedalpra/ct-guto-bopp> (privado)
+Local: `~/Documents/GitHub/ct-guto-bopp` — projeto próprio, **fora** do monorepo Zentri.tech.
 
 ## Sobre o projeto
 
@@ -61,3 +64,4 @@ Decisões, contexto e dados do cliente vão em [memory.md](memory.md) — não n
 - [memory.md](memory.md) — decisões, contexto e informações do cliente
 - [changelog.md](changelog.md) — histórico de mudanças do projeto
 - [copy-site.md](copy-site.md) — rascunho dos textos do site, seção a seção
+- [README.md](README.md) — visão geral do repositório
