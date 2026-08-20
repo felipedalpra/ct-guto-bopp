@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Word / Office temporários
+~$*
+
+# Node / Next.js (quando o projeto for inicializado)
+node_modules/
+.next/
+out/
+build/
+.vercel/
+
+# Env
+.env
+.env*.local
