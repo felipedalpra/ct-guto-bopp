@@ -1,5 +1,6 @@
 import { atendimento, fatos } from "@/data/fatos";
 import Revela from "./Revela";
+import { Bola } from "./motivos";
 
 /**
  * A faixa de dados da home.
@@ -11,8 +12,12 @@ import Revela from "./Revela";
  */
 export default function Fatos() {
   return (
-    <section className="secao fatos" aria-label="O CT Guto Bopp em números">
+    <section
+      className="secao fatos superficie-clara grao"
+      aria-label="O CT Guto Bopp em números"
+    >
       <div className="quadra-linhas" aria-hidden="true" />
+      <Bola className="fatos__bola" />
 
       <div className="shell">
         <Revela como="ul" className="fatos__grade">

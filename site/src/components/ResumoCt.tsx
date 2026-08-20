@@ -16,7 +16,10 @@ import Revela from "./Revela";
  */
 export default function ResumoCt() {
   return (
-    <section className="secao bloco resumo-ct" aria-labelledby="resumo-ct-titulo">
+    <section
+      className="secao bloco resumo-ct acento-ouro"
+      aria-labelledby="resumo-ct-titulo"
+    >
       <div className="quadra-linhas" aria-hidden="true" />
 
       <div className="shell">

@@ -44,7 +44,7 @@ export default function Hero() {
           loop
           playsInline
           preload="metadata"
-          poster="/img/guto-bopp.jpg"
+          poster="/img/capa-poster.jpg"
         >
           <source src="/video/hero.webm" type="video/webm" />
           <source src="/video/hero.mp4" type="video/mp4" />

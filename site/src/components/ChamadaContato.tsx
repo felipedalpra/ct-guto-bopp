@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, whatsappMensagens } from "@/data/site";
 import Revela from "./Revela";
+import { Trajetoria } from "./motivos";
 
 /**
  * Fechamento da home: o CTA de WhatsApp com o endereço em uma linha.
@@ -11,6 +12,7 @@ export default function ChamadaContato() {
   return (
     <section className="secao chamada grao" aria-labelledby="chamada-titulo">
       <div className="quadra-linhas" aria-hidden="true" />
+      <Trajetoria className="chamada__trajetoria" />
 
       <Revela className="shell chamada__conteudo">
         <p className="eyebrow">Primeiro passo</p>

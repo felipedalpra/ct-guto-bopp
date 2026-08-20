@@ -3,6 +3,7 @@ import Link from "next/link";
 import { time, hrefProfessor, professoresPendentes } from "@/data/professores";
 import { iniciaisDe } from "./Professores";
 import Revela from "./Revela";
+import { Ondas } from "./motivos";
 
 /**
  * O time em faixa — o teaser de /professores na home.
@@ -14,7 +15,17 @@ import Revela from "./Revela";
  */
 export default function ResumoProfessores() {
   return (
-    <section className="secao resumo-time" aria-labelledby="resumo-time-titulo">
+    <section
+      className="secao resumo-time areia-fundo"
+      aria-labelledby="resumo-time-titulo"
+    >
+      {/*
+        Fundo: a areia da própria quadra do CT, tirada em 4K de um vídeo de aula
+        (ver public/img/textura/). Não é banco de imagem — é o chão onde o aluno
+        vai treinar, e é o que dá a esta seção uma textura que nenhuma outra tem.
+      */}
+      <div className="areia-fundo__camada" aria-hidden="true" />
+      <Ondas className="areia-fundo__ondas" />
       <div className="quadra-linhas" aria-hidden="true" />
 
       <div className="shell">

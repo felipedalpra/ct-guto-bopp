@@ -3537,3 +3537,365 @@ body {
   color: color-mix(in oklab, var(--color-lime-ct) 72%, transparent);
   font-size: 0.6875rem;
 }
+
+/* ==================================================================== MOTIVOS ===
+   Desenhos do Beach Tennis (ver src/components/motivos.tsx). Todos decorativos.
+   ============================================================================ */
+
+/* Raquete: marca d'água grande, atrás do conteúdo, cortada pela borda da seção. */
+.retrato-fundo__raquete {
+  position: absolute;
+  inset-block-start: 8%;
+  inset-inline-end: -3rem;
+  inline-size: clamp(9rem, 22vw, 20rem);
+  color: var(--color-lime-ct);
+  opacity: 0.12;
+  transform: rotate(14deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 60rem) {
+  .retrato-fundo__raquete {
+    inset-block-start: auto;
+    inset-block-end: -2rem;
+    opacity: 0.08;
+  }
+}
+
+/* Bolinha solta na faixa de dados, como as que ficam espalhadas na areia. */
+.fatos__bola {
+  position: absolute;
+  inset-block-start: 1.75rem;
+  inset-inline-end: clamp(1rem, 6vw, 5rem);
+  inline-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  color: var(--color-navy-900);
+  opacity: 0.9;
+  pointer-events: none;
+  animation: bola-quica 4.5s ease-in-out infinite;
+}
+
+@keyframes bola-quica {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-0.5rem) rotate(18deg);
+  }
+}
+
+/* Ondas de areia: divisor no topo da seção do time. */
+.areia-fundo__ondas {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  inline-size: 100%;
+  block-size: 2.5rem;
+  color: var(--color-sand);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Trajetória da bola por cima da rede, no fecho da home. */
+.chamada__trajetoria {
+  position: absolute;
+  /* Fica na faixa de baixo da seção, abaixo da linha do último texto: o arco
+     precisa de espaço próprio, senão a rede corta o endereço ao meio. */
+  inset-block-end: 0;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  inline-size: min(52rem, 96%);
+  block-size: clamp(5rem, 12vw, 8rem);
+  color: var(--color-sand);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* O conteúdo abre espaço para o arco e fica por cima dele. */
+.chamada__conteudo {
+  position: relative;
+  z-index: 1;
+  padding-block-end: clamp(5rem, 12vw, 8rem);
+}
+
+/* ======================================================= retrato como fundo ===
+   A seção do Guto: a foto dele sangra de borda a borda e o texto vai por cima.
+   O retrato original é claro demais para receber texto branco, então é tratado
+   em duotone navy — dessaturado, escurecido e coberto por um gradiente que abre
+   espaço legível do lado do texto.
+   ============================================================================ */
+
+.retrato-fundo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(4rem, 12vw, 8rem);
+  background: var(--color-navy-900);
+}
+
+.retrato-fundo__camada {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.retrato-fundo__foto {
+  object-fit: cover;
+  /* No desktop o rosto fica à direita, longe da coluna de texto. */
+  object-position: 78% 22%;
+  filter: grayscale(0.65) contrast(1.12) brightness(0.72);
+}
+
+@media (max-width: 60rem) {
+  .retrato-fundo__foto {
+    object-position: 62% 18%;
+  }
+}
+
+/* O véu: escuro e opaco onde o texto começa, translúcido do lado do retrato. */
+.retrato-fundo__veu {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      100deg,
+      var(--color-navy-900) 8%,
+      color-mix(in oklab, var(--color-navy-900) 88%, transparent) 42%,
+      color-mix(in oklab, var(--color-navy-900) 45%, transparent) 78%,
+      color-mix(in oklab, var(--color-navy-900) 62%, transparent) 100%
+    ),
+    linear-gradient(
+      to top,
+      var(--color-navy-900) 2%,
+      transparent 30%
+    );
+}
+
+@media (max-width: 60rem) {
+  .retrato-fundo__veu {
+    background:
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--color-navy-900) 55%, transparent) 0%,
+        color-mix(in oklab, var(--color-navy-900) 92%, transparent) 45%,
+        var(--color-navy-900) 72%
+      );
+  }
+}
+
+.retrato-fundo__conteudo {
+  position: relative;
+  z-index: 2;
+  max-inline-size: 38rem;
+}
+
+@media (max-width: 60rem) {
+  .retrato-fundo__conteudo {
+    /* No celular o texto desce, para o rosto ficar visível no topo. */
+    padding-block-start: clamp(9rem, 42vw, 16rem);
+  }
+}
+
+.retrato-fundo__titulo {
+  font-size: clamp(1.875rem, 5.2vw, 3.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-sand);
+  margin-block: 0.75rem 1.25rem;
+}
+
+.retrato-fundo__n {
+  color: var(--color-lime-ct);
+}
+
+.retrato-fundo__texto {
+  font-size: clamp(0.9375rem, 1.6vw, 1.0625rem);
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-sand) 84%, transparent);
+}
+
+/* As quatro funções, em sequência cronológica. */
+.fases {
+  display: grid;
+  gap: 0;
+  margin-block: clamp(2rem, 4.5vw, 2.75rem);
+  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 22%, transparent);
+}
+
+.fases li {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-block: 0.875rem;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 16%, transparent);
+}
+
+@media (max-width: 30rem) {
+  .fases li {
+    grid-template-columns: 1fr;
+    gap: 0.125rem;
+  }
+}
+
+.fases__papel {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.fases__titulo {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--color-sand) 88%, transparent);
+}
+
+/* ========================================================= areia como fundo ===
+   A seção do time sobre a areia da quadra do CT.
+   ============================================================================ */
+
+.areia-fundo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.areia-fundo__camada {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      to bottom,
+      var(--color-navy-900) 0%,
+      color-mix(in oklab, var(--color-navy-900) 62%, transparent) 22%,
+      color-mix(in oklab, var(--color-navy-900) 55%, transparent) 60%,
+      color-mix(in oklab, var(--color-navy-900) 80%, transparent) 100%
+    ),
+    url("/img/textura/areia.jpg");
+  background-size: cover;
+  background-position: center 60%;
+  /* A areia é clara demais crua: dessaturada e escurecida, vira textura em vez
+     de virar uma mancha branca que apaga o texto por cima. */
+  filter: saturate(0.4) brightness(0.62);
+}
+
+.areia-fundo > .shell,
+.areia-fundo > .quadra-linhas {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================== variação de acento: ouro ===
+   O dourado da logo aparece uma vez na home, na seção do CT, no lugar do limão.
+   Não é decoração: separa "o que o CT é" (institucional, ouro) de "como se
+   treina" (quadra, limão), e quebra a sequência de seções idênticas em navy.
+   ============================================================================ */
+
+.acento-ouro {
+  --acento: var(--color-gold-ct);
+}
+
+.acento-ouro .bloco__rotulo,
+.acento-ouro .frente__numero,
+.acento-ouro .frente__chamada {
+  color: var(--color-gold-ct);
+}
+
+.acento-ouro .bloco__risco {
+  background: var(--color-gold-ct);
+}
+
+.acento-ouro .frente {
+  border-color: color-mix(in oklab, var(--color-gold-ct) 20%, transparent);
+}
+
+.acento-ouro .frente:hover,
+.acento-ouro .frente:focus-within {
+  border-color: color-mix(in oklab, var(--color-gold-ct) 62%, transparent);
+}
+
+.acento-ouro .frente__titulo a:hover {
+  color: var(--color-gold-ct);
+}
+
+.acento-ouro .btn--linha {
+  border-color: color-mix(in oklab, var(--color-gold-ct) 45%, transparent);
+  color: var(--color-gold-ct);
+}
+
+.acento-ouro .btn--linha:hover {
+  background: var(--color-gold-ct);
+  color: var(--color-navy-900);
+  border-color: var(--color-gold-ct);
+}
+
+/* ================================================= faixa de dados, na areia ===
+   A régua de fatos passou para superfície clara: é a primeira quebra do navy na
+   home e marca a fronteira entre "o que é isto" e "quem está por trás".
+   ============================================================================ */
+
+.fatos.superficie-clara {
+  border-block: 0;
+}
+
+.fatos.superficie-clara .fatos__valor {
+  color: var(--color-navy-900);
+}
+
+.fatos.superficie-clara .fatos__rotulo {
+  color: color-mix(in oklab, var(--color-navy-700) 92%, transparent);
+}
+
+.fatos.superficie-clara .fatos__detalhe {
+  color: color-mix(in oklab, var(--color-navy-700) 78%, transparent);
+}
+
+.fatos.superficie-clara .fatos__grade > li {
+  border-inline-start-color: color-mix(
+    in oklab,
+    var(--color-navy-900) 30%,
+    transparent
+  );
+}
+
+.fatos.superficie-clara .fatos__unidade {
+  color: color-mix(in oklab, var(--color-navy-700) 70%, transparent);
+}
+
+.fatos.superficie-clara .fatos__listas {
+  border-block-start-color: color-mix(
+    in oklab,
+    var(--color-navy-900) 18%,
+    transparent
+  );
+}
+
+.fatos.superficie-clara .fatos__lista-titulo {
+  color: color-mix(in oklab, var(--color-navy-700) 65%, transparent);
+}
+
+.fatos.superficie-clara .fatos__lista li {
+  border-color: color-mix(in oklab, var(--color-navy-900) 22%, transparent);
+  color: color-mix(in oklab, var(--color-navy-900) 85%, transparent);
+}
+
+/* ============================================================ menos movimento ===
+   Tudo que se move aqui é ambiente, nada é informação: com movimento reduzido,
+   some sem deixar buraco.
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .fatos__bola {
+    animation: none;
+  }
+
+  .trajetoria__bola {
+    display: none;
+  }
+}
