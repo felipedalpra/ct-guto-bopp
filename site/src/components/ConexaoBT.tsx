@@ -9,6 +9,10 @@ import Revela from "./Revela";
  * do professor de Beach Tennis ao que a metodologia coloca no lugar.
  *
  * Fala com outro público (professor, não aluno) e por isso muda de superfície.
+ *
+ * O que vem DEPOIS do curso não é dito aqui: tem seção própria na mesma página
+ * ("Quatro apoios que continuam depois da formatura"), e repetir no fecho deste
+ * bloco era dizer a mesma coisa duas vezes com duas rolagens de distância.
  */
 export default function ConexaoBT() {
   return (
@@ -22,7 +26,7 @@ export default function ConexaoBT() {
             <span className="bloco__risco" aria-hidden="true" />
             O que muda
           </p>
-          <h2 className="display bloco__titulo">Da sua aula de hoje para a próxima</h2>
+          <h2 className="display bloco__titulo">Cinco trocas na sua aula</h2>
           <p className="bloco__intro">
             Cinco trocas concretas. Se você reconhecer a coluna da esquerda na sua
             aula, é exatamente esse o trabalho.
@@ -39,12 +43,6 @@ export default function ConexaoBT() {
           ))}
         </Revela>
 
-        <Revela className="conexao__acao" atraso={160}>
-          <p className="conexao__continua">
-            A formação não termina no curso: quem passa pelo Conexão BT segue com
-            acompanhamento, mentoria e reciclagens dentro do CT.
-          </p>
-        </Revela>
       </div>
     </section>
   );

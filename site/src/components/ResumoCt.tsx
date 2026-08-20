@@ -1,13 +1,18 @@
 import Link from "next/link";
-import { entregas, missao } from "@/data/ct";
+import { frentes, missao } from "@/data/ct";
 import Revela from "./Revela";
 
 /**
- * O CT na home — o teaser de /o-ct.
+ * O CT na home — as três frentes.
  *
- * Não repete a história do Guto (que já veio na seção anterior): mostra o que o
- * centro de treinamento entrega, que é a informação que falta a quem está
- * decidindo se vale a pena atravessar a cidade para treinar aqui.
+ * Antes esta seção listava os sete títulos das entregas, sem o texto de nenhuma:
+ * sete rótulos soltos que não informavam nada e ainda repetiam o que as outras
+ * seções da home já diziam. Agora mostra a estrutura do CT — treinar, formar,
+ * acompanhar — com o parágrafo de cada uma, e as sete entregas detalhadas ficam
+ * inteiras em /o-ct.
+ *
+ * Cada frente leva à página que a desenvolve, então este bloco também funciona
+ * como o índice real do site.
  */
 export default function ResumoCt() {
   return (
@@ -20,25 +25,30 @@ export default function ResumoCt() {
             <span className="bloco__risco" aria-hidden="true" />O centro de treinamento
           </p>
           <h2 id="resumo-ct-titulo" className="display bloco__titulo">
-            Mais do que aula marcada
+            O CT trabalha em três frentes
           </h2>
           <p className="bloco__intro">{missao}</p>
         </Revela>
 
-        <ul className="resumo-ct__entregas">
-          {entregas.map((item, i) => (
-            <Revela como="li" key={item.titulo} atraso={i * 50}>
-              <span className="resumo-ct__marca" aria-hidden="true" />
-              {item.titulo}
+        <ul className="frentes">
+          {frentes.map((frente, i) => (
+            <Revela como="li" key={frente.numero} atraso={i * 80}>
+              <article className="frente">
+                <span className="frente__numero" aria-hidden="true">
+                  {frente.numero}
+                </span>
+                <h3 className="frente__titulo">
+                  {/* O link cobre o cartão inteiro (ver .frente__titulo a::after). */}
+                  <Link href={frente.href}>{frente.titulo}</Link>
+                </h3>
+                <p className="frente__texto">{frente.texto}</p>
+                <p className="frente__chamada" aria-hidden="true">
+                  {frente.chamada}
+                </p>
+              </article>
             </Revela>
           ))}
         </ul>
-
-        <Revela className="resumo-ct__acao" atraso={120}>
-          <Link className="btn btn--linha" href="/o-ct">
-            Conhecer o CT
-          </Link>
-        </Revela>
       </div>
     </section>
   );

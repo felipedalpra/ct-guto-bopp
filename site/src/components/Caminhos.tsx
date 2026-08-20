@@ -8,24 +8,29 @@ import Revela from "./Revela";
  * quem dá aula. A maior parte do tráfego vem do Instagram e chega sem contexto;
  * esta é a primeira decisão que a home pede, logo abaixo da capa, para que cada
  * um siga por uma trilha própria em vez de rolar a página inteira do outro.
+ *
+ * Este bloco é NAVEGAÇÃO, não argumento: cada cartão descreve a situação de quem
+ * lê ("você já joga e travou"), e não o produto. O que o método é e o que o CT
+ * entrega vem mais abaixo, nas seções próprias — antes os textos daqui repetiam
+ * palavra por palavra o que o ResumoMetodo e o Conexão BT diziam na sequência.
  */
 const caminhos = [
   {
     href: "/metodo",
     numero: "01",
     publico: "Quero treinar",
-    titulo: "O Método dos 5 Pilares",
+    titulo: "Nunca joguei, ou joguei e travei",
     texto:
-      "Do iniciante ao avançado, em turma ou particular. Cinco frentes que definem por onde você começa e como evolui sem pular etapa.",
+      "Você quer começar do zero, ou já joga há um tempo e sente que parou de evoluir.",
     chamada: "Ver o método",
   },
   {
     href: "/conexao-bt",
     numero: "02",
     publico: "Dou aula de Beach Tennis",
-    titulo: "Conexão BT",
+    titulo: "Jogo bem, mas quero ensinar melhor",
     texto:
-      "A capacitação do CT para professores: estruturar a aula, corrigir com clareza e seguir com acompanhamento, mentoria e reciclagens.",
+      "Você já está em quadra dando aula e quer estruturar o que hoje sai por instinto.",
     chamada: "Conhecer o Conexão BT",
   },
 ];
@@ -39,7 +44,7 @@ export default function Caminhos() {
         <Revela como="header" className="caminhos__cabecalho">
           <p className="eyebrow">Por onde você entra</p>
           <h2 id="caminhos-titulo" className="display caminhos__titulo">
-            Dois lados da mesma quadra
+            Você chegou por qual dos dois lados?
           </h2>
         </Revela>
 

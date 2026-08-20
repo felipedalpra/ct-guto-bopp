@@ -32,7 +32,7 @@ export default function Metodo() {
             Os cinco pilares
           </p>
           <h2 className="display bloco__titulo">
-            Um de cada vez, e nessa ordem
+            Cada pilar depende do anterior
           </h2>
           <p className="bloco__intro">
             Toque em um pilar para abrir. Cada um traz o que é, como aparece na aula e

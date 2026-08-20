@@ -3346,3 +3346,194 @@ body {
 .publico__chamada::after {
   content: " →";
 }
+
+/* ==================================================== faixa de fatos (home) ===
+   Régua de dados, não bloco de discurso: tipografia grande no número, mono nos
+   rótulos e nenhuma moldura de cartão — a informação é que segura o bloco.
+   ============================================================================ */
+
+.fatos {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  border-block: 1px solid var(--linha);
+}
+
+.fatos__grade {
+  display: grid;
+  gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.fatos__grade > li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding-inline-start: 1rem;
+  border-inline-start: 2px solid
+    color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
+}
+
+.fatos__valor {
+  display: flex;
+  align-items: baseline;
+  gap: 0.125rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-sand);
+  /* O número não pode quebrar em telas estreitas ("07–20h"). */
+  overflow-wrap: normal;
+}
+
+.fatos__unidade {
+  font-size: 0.4em;
+  color: var(--color-lime-ct);
+}
+
+.fatos__rotulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.fatos__detalhe {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--color-sand) 68%, transparent);
+}
+
+.fatos__listas {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  margin-block-start: clamp(2rem, 4.5vw, 3rem);
+  padding-block-start: clamp(1.5rem, 3.5vw, 2rem);
+  border-block-start: 1px solid var(--linha);
+}
+
+.fatos__lista-titulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 50%, transparent);
+  margin-block-end: 0.75rem;
+}
+
+.fatos__lista ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fatos__lista li {
+  padding: 0.3125rem 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 22%, transparent);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+}
+
+/* ================================================ três frentes do CT (home) ===
+   Mesma anatomia dos cartões de .caminho, em três colunas. Fica sobre superfície
+   escura, então herda a mesma paleta.
+   ============================================================================ */
+
+.frentes {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  margin-block-start: clamp(2rem, 4.5vw, 3rem);
+}
+
+.frente {
+  position: relative;
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  background: var(--color-navy-800);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
+  border-radius: 2px;
+  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frente:hover,
+.frente:focus-within {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frente:hover,
+  .frente:focus-within {
+    transform: none;
+  }
+}
+
+.frente__numero {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  color: color-mix(in oklab, var(--color-lime-ct) 70%, transparent);
+}
+
+.frente__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* O link do título cobre o cartão inteiro. */
+.frente__titulo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.frente__titulo a:hover {
+  color: var(--color-lime-ct);
+}
+
+.frente__texto {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+}
+
+.frente__chamada {
+  margin-block-start: auto;
+  padding-block-start: 0.75rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.frente__chamada::after {
+  content: " →";
+}
+
+/* ======================================= dados extras no cartão de professor === */
+
+.rosto__local,
+.rosto__atende {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--color-sand) 55%, transparent);
+}
+
+.rosto__atende {
+  color: color-mix(in oklab, var(--color-lime-ct) 72%, transparent);
+  font-size: 0.6875rem;
+}

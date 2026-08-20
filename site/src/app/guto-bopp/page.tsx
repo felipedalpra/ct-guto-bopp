@@ -31,7 +31,7 @@ export default function PaginaGuto() {
         trilha={trilha}
       />
 
-      <Secao numero="01" rotulo="Quem é" titulo="Um método construído em quadra">
+      <Secao numero="01" rotulo="Quem é" titulo="Atleta, professor, treinador e formador">
         <div className="perfil">
           <Revela className="perfil__retrato">
             <div className="autoridade__moldura">
@@ -62,7 +62,7 @@ export default function PaginaGuto() {
       <Secao
         numero="02"
         rotulo="Trajetória"
-        titulo="Quatro funções, uma atrás da outra"
+        titulo="Como cada função virou uma parte do método"
         intro="Cada fase resolveu um problema que a anterior tinha deixado aberto — e é essa ordem que explica por que o método tem a cara que tem."
         clara
       >
@@ -79,7 +79,7 @@ export default function PaginaGuto() {
       <Secao
         numero="03"
         rotulo="Filosofia de ensino"
-        titulo="O que ele não abre mão"
+        titulo="Cinco princípios que o CT cobra de todo professor"
         intro="Cinco princípios que estão por trás de decisões concretas do método — e que o CT cobra de todo professor do time."
       >
         <Blocos itens={principios} />
@@ -88,7 +88,7 @@ export default function PaginaGuto() {
       <Secao
         numero="04"
         rotulo="No dia a dia"
-        titulo="O que ele faz hoje no CT"
+        titulo="A rotina dele no CT hoje"
         clara
       >
         <Blocos itens={atuacao} />

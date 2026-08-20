@@ -60,7 +60,7 @@ export default function PaginaConexaoBt() {
         />
       </Secao>
 
-      <Secao numero="04" rotulo="Para quem é" titulo="Se você se encaixa aqui">
+      <Secao numero="04" rotulo="Para quem é" titulo="Para quem o curso serve — e para quem não serve">
         <div className="serve">
           <Revela className="serve__coluna" >
             <h3 className="serve__titulo serve__titulo--sim">O curso é para</h3>
@@ -85,7 +85,7 @@ export default function PaginaConexaoBt() {
       <Secao
         numero="05"
         rotulo="Depois da formação"
-        titulo="O curso acaba, o acompanhamento não"
+        titulo="Quatro apoios que continuam depois da formatura"
         intro="É o que distingue a capacitação do CT de um workshop de fim de semana: quem se forma continua dentro da estrutura."
         clara
       >

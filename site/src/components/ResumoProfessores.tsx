@@ -6,8 +6,11 @@ import Revela from "./Revela";
 
 /**
  * O time em faixa — o teaser de /professores na home.
- * Cada rosto leva direto à ficha da pessoa; a grade com as fichas resumidas
- * fica em /professores.
+ *
+ * Cada rosto leva direto à ficha da pessoa. Além do nome e do papel, o cartão
+ * traz onde a pessoa dá aula e o que ela atende: é a informação que decide se
+ * vale clicar, e vem direto das fichas de cadastro. A ficha completa —
+ * formação, tempo de casa, frase e contato — fica em /professores.
  */
 export default function ResumoProfessores() {
   return (
@@ -18,11 +21,12 @@ export default function ResumoProfessores() {
         <Revela como="header" className="resumo-time__cabecalho">
           <p className="eyebrow">Nosso time</p>
           <h2 id="resumo-time-titulo" className="display resumo-time__titulo">
-            Quem está na areia com você
+            Com quem você vai treinar
           </h2>
           <p className="resumo-time__intro">
-            Professores formados dentro da Metodologia Guto Bopp, atuando em Porto
-            Alegre e em Palmares do Sul.
+            A estrutura da aula é a mesma com todos. O que muda é o perfil — quem
+            trabalha melhor com criança, quem puxa a parte tática, quem prefere alto
+            rendimento. Veja com quem o seu caso combina.
             {professoresPendentes > 0 &&
               ` Mais ${professoresPendentes} chegando.`}
           </p>
@@ -49,6 +53,8 @@ export default function ResumoProfessores() {
                 </span>
                 <span className="rosto__nome">{pessoa.nome}</span>
                 <span className="rosto__papel">{pessoa.papel}</span>
+                <span className="rosto__local">{pessoa.local}</span>
+                <span className="rosto__atende">{pessoa.atende.join(" · ")}</span>
               </Link>
             </li>
           ))}

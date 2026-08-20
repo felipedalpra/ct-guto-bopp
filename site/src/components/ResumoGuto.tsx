@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { trajetoria } from "@/data/guto";
-import { site } from "@/data/site";
 import Revela from "./Revela";
 
 /**
@@ -41,14 +40,15 @@ export default function ResumoGuto() {
               Quem está por trás
             </p>
             <h2 id="resumo-guto-titulo" className="display resumo-guto__titulo">
-              {site.anosDeExperiencia}
-              <span className="autoridade__mais">+</span> anos de areia viraram
-              um método
+              Quem escreveu o método passou por{" "}
+              <span className="autoridade__mais">4</span> funções antes
             </h2>
             <p className="resumo-guto__texto-corrido">
-              Guto Bopp jogou, deu aula, treinou atleta e hoje forma professores. A
-              Metodologia Guto Bopp não veio de um curso nem de um livro: veio de mais
-              de uma década corrigindo gente na areia e reparando no que funcionava.
+              Guto Bopp criou a Metodologia Guto Bopp e o curso Conexão BT, treina os
+              atletas do CT e conduz a formação dos professores do time. Cada uma das
+              quatro funções abaixo resolveu um problema que a anterior tinha deixado
+              aberto — e é essa ordem que explica por que o método é organizado em
+              pilares que dependem um do outro.
             </p>
           </Revela>
 

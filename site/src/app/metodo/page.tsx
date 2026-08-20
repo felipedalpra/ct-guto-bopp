@@ -59,7 +59,7 @@ export default function PaginaMetodo() {
       <Secao
         numero="04"
         rotulo="Por nível"
-        titulo="O mesmo método, entrada diferente"
+        titulo="Quatro níveis, quatro pontos de entrada"
         intro="Não existe turma única. O método define por onde cada aluno começa e o que se cobra dele em cada estágio."
         clara
       >
@@ -75,7 +75,7 @@ export default function PaginaMetodo() {
         <Blocos itens={formatos.map((f) => ({ titulo: f.nome, texto: f.texto }))} />
       </Secao>
 
-      <Secao numero="06" rotulo="Adiante" titulo="O método em quadra" estreita>
+      <Secao numero="06" rotulo="Adiante" titulo="Quem aplica esse método" estreita>
         <Revela className="prosa">
           <p>
             É esse método que os professores do CT aplicam na aula — todos formados

@@ -68,10 +68,10 @@ export default function Hero() {
         </h1>
 
         <p className="hero__texto">
-          Guto Bopp está há mais de {site.anosDeExperiencia} anos dentro do Beach
-          Tennis como atleta, professor e treinador. Dessa vivência nasceu a
-          Metodologia Guto Bopp — o método que forma os atletas e os professores
-          do CT.
+          Centro de Treinamento de Beach Tennis que trabalha em três frentes:
+          treina alunos do infantil ao competitivo, forma professores pelo curso
+          Conexão BT e acompanha quem já formou. As três correm sobre o mesmo
+          método — o Método dos 5 Pilares.
         </p>
 
         <div className="hero__acoes">

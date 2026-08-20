@@ -17,7 +17,7 @@ export const RASCUNHO = true;
 /** Abertura da página: quem ele é, em três parágrafos. */
 export const apresentacao = [
   "Guto Bopp está há mais de 13 anos dentro do Beach Tennis. Não em uma função só: jogou, deu aula, treinou atleta e hoje forma professores. É essa soma que sustenta o resto — a Metodologia Guto Bopp não veio de um curso nem de um livro, veio de mais de uma década corrigindo gente na areia e reparando no que funcionava.",
-  "O CT Guto Bopp é o lugar onde esse trabalho virou estrutura. Ali ele treina alunos do iniciante ao competitivo, conduz o Conexão BT — a capacitação para professores — e acompanha quem já formou, com mentoria e reciclagem.",
+  "O que separa Guto de muita gente que joga bem é ter passado pelas quatro funções na ordem, e não apenas em uma delas: competir ensinou o que cobrar de um treino, dar aula todos os dias ensinou a enxergar o erro do outro, treinar atleta obrigou a pensar em meses e não em uma hora de quadra, e formar professor obrigou a escrever o que até ali era intuição. Cada passagem deixou uma marca no método — e é por isso que ele é organizado em pilares encadeados, não numa lista de exercícios.",
   "A ideia por trás de tudo é simples e exigente ao mesmo tempo: aula boa não é a que cansa, é a que leva a algum lugar. Para isso ela precisa de objetivo, de correção que chegue na causa do erro e de uma ordem que o aluno consiga sentir de uma semana para a outra.",
 ];
 
@@ -42,7 +42,7 @@ export const trajetoria: Fase[] = [
     papel: "Professor",
     titulo: "Depois, aprender a ensinar",
     texto:
-      "Dar aula é outro esporte. Saber executar o golpe não faz ninguém saber explicar o golpe, nem enxergar por que o aluno erra. Foi dando aula, todos os dias, que Guto foi montando o repertório de correção que hoje está no segundo pilar do método: apontar a causa do erro, não o sintoma, e devolver isso numa frase que o aluno consiga usar no ponto seguinte.",
+      "Aqui entra o volume: milhares de horas olhando outra pessoa errar. É desse acúmulo que sai a parte mais difícil de transmitir do método — o repertório de correção. Saber que a bola foi na rede é fácil; saber que ela foi na rede por causa do pé de trás, e não da raquete, exige ter visto o mesmo erro centenas de vezes em gente diferente. Esse banco de padrões é o que vira o segundo pilar.",
   },
   {
     chave: "treinador",
@@ -91,27 +91,30 @@ export const principios: Principio[] = [
   },
 ];
 
-/** O que ele faz hoje, no dia a dia do CT. */
+/**
+ * A rotina dele hoje. Não repete a lista de serviços do CT (isso é /o-ct):
+ * descreve o que ocupa o dia DELE, que é outra informação.
+ */
 export const atuacao = [
   {
-    titulo: "Treina atletas",
+    titulo: "Está em quadra todo dia",
     texto:
-      "Trabalho técnico e tático com quem compete ou quer competir, do desenvolvimento do golpe à construção do ponto.",
+      "Guto continua dando aula, e não só coordenando quem dá. É uma decisão de método: quem escreve a metodologia precisa continuar exposto ao aluno real, senão o material vira teoria e para de acompanhar como o jogo mudou.",
   },
   {
-    titulo: "Dá aula do iniciante ao avançado",
+    titulo: "Treina quem compete",
     texto:
-      "Turmas e particulares na sede, incluindo infantil — a mesma metodologia, ajustada ao nível de cada um.",
+      "Trabalho continuado com atletas ao longo da temporada — planejamento por ciclo, preparação para torneio e ajuste fino de decisão sob pressão, que é onde o nível se define entre jogadores tecnicamente parecidos.",
   },
   {
-    titulo: "Forma professores",
+    titulo: "Conduz o Conexão BT",
     texto:
-      "Conduz o Conexão BT, a capacitação do CT para quem já dá aula de Beach Tennis ou está começando a dar.",
+      "Ele mesmo dá a capacitação, com Guilherme Basso como auxiliar certificado. O curso não foi delegado a terceiros porque boa parte do que se ensina ali é leitura de aula ao vivo, difícil de passar por apostila.",
   },
   {
-    titulo: "Acompanha quem já formou",
+    titulo: "Mantém o padrão do time",
     texto:
-      "Mentoria, formação continuada e reciclagens para os professores do time e para quem passou pela capacitação.",
+      "Acompanha os professores formados, revisa aula e conduz as reciclagens. É a função menos visível e a que sustenta a promessa do CT: que a aula seja a mesma independentemente de com quem o aluno treina.",
   },
 ];
 

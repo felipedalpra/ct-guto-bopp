@@ -3,9 +3,13 @@ import { pilares } from "@/data/pilares";
 import Revela from "./Revela";
 
 /**
- * Os cinco pilares em lista seca — o teaser de /metodo na home.
- * O diagrama de quadra e a descrição de cada pilar ficam na página do método;
- * aqui a lista só mostra que o método existe e tem nome.
+ * Os cinco pilares na home.
+ *
+ * Divisão de conteúdo com /metodo, para nada ser dito duas vezes: aqui cada pilar
+ * aparece pelo que ele MUDA para o aluno (o resultado), e a página do método
+ * explica o que ele é e como aparece na aula (o funcionamento). Antes a home
+ * trazia só o resumo de uma linha, que dizia o nome do pilar com outras palavras
+ * e não informava nada.
  */
 export default function ResumoMetodo() {
   return (
@@ -22,12 +26,11 @@ export default function ResumoMetodo() {
             O Método dos <span className="metodo__cinco">5</span> Pilares
           </h2>
           <p className="resumo-metodo__intro">
-            Cinco frentes que sustentam cada aula do CT. Não são temas soltos: uma
-            depende da anterior, e é essa ordem que faz o aluno evoluir sem pular
-            etapa.
+            Os cinco pilares são a ordem em que o CT ensina, e cada um resolve um
+            problema específico do aluno. É o que cada um entrega:
           </p>
           <Link className="btn btn--linha" href="/metodo">
-            Ver o método completo
+            Ver como cada pilar funciona na aula
           </Link>
         </Revela>
 
@@ -36,7 +39,7 @@ export default function ResumoMetodo() {
             <li key={pilar.numero}>
               <span className="resumo-metodo__numero">{pilar.numero}</span>
               <span className="resumo-metodo__nome">{pilar.nome}</span>
-              <span className="resumo-metodo__resumo">{pilar.resumo}</span>
+              <span className="resumo-metodo__resumo">{pilar.oQueMuda}</span>
             </li>
           ))}
         </Revela>

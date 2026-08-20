@@ -9,10 +9,13 @@ export default function Contato() {
 
       <div className="shell contato__grade">
         <Revela className="contato__chamada">
-          <h2 className="display contato__titulo">Vamos treinar?</h2>
+          <h2 className="display contato__titulo">Como falar com o CT</h2>
           <p className="contato__texto">
-            A primeira conversa é direta no WhatsApp: você diz em que nível está
-            e a gente combina horário e formato de treino.
+            O atendimento é direto no WhatsApp, sem formulário e sem intermediário.
+            Para a primeira resposta já vir útil, diga três coisas: há quanto tempo
+            você joga (ou se nunca jogou), que dias e horários funcionam para você, e
+            se prefere turma ou aula particular. Se for professor procurando o
+            Conexão BT, diga há quanto tempo dá aula e onde.
           </p>
           <a
             className="btn btn--primario contato__cta"
