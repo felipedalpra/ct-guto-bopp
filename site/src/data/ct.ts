@@ -15,9 +15,8 @@ export const missao =
 
 /** Quem somos — os parágrafos de abertura da página. */
 export const quemSomos = [
-  "O CT Guto Bopp é um Centro de Treinamento de Beach Tennis com sede na Prainha Beach Tennis, em Porto Alegre, e atuação também no Porto Sports, em Palmares do Sul. Atende do infantil ao competitivo, em turma, aula particular e treino de atleta, e capacita professores pelo curso Conexão BT.",
-  "A diferença entre um CT e um professor com horário livre na quadra está em o que acontece quando o professor não é o mesmo. Aqui o time não é um grupo de profissionais independentes dividindo o espaço: os quatro professores passaram pela mesma capacitação, aplicam os mesmos cinco pilares e seguem sendo acompanhados depois de formados. Na prática, a aula de segunda com um professor tem a mesma estrutura da aula de quinta com outro — mesmo objetivo declarado no começo, mesma lógica de correção, mesmo fechamento.",
-  "Isso importa mais do que parece para quem treina. Significa que a evolução do aluno não depende de conseguir horário com uma pessoa específica, que trocar de turma não recomeça o trabalho do zero, e que a criança que entra no infantil vai encontrar a mesma base técnica quando subir de nível.",
+  "O CT Guto Bopp é um Centro de Treinamento de Beach Tennis na Prainha Beach Tennis, em Porto Alegre, com atuação também no Porto Sports, em Palmares do Sul. Atende do infantil ao competitivo e capacita professores pelo Conexão BT.",
+  "O time não é um grupo de profissionais independentes dividindo o espaço: os quatro professores passaram pela mesma capacitação e aplicam os mesmos cinco pilares. Na prática, a aula de segunda com um professor tem a mesma estrutura da aula de quinta com outro.",
 ];
 
 /**
@@ -69,37 +68,37 @@ export const entregas: Entrega[] = [
   {
     titulo: "Metodologia própria de ensino",
     texto:
-      "O Método dos 5 Pilares não é uma lista de boas intenções: define a ordem em que se ensina, o que precisa estar consolidado antes de avançar e o que se cobra do aluno em cada estágio. Está escrito, e por isso pode ser aplicado igual por qualquer professor do time — e auditado quando não está sendo.",
+      "O Método dos 5 Pilares define a ordem em que se ensina e o que se cobra em cada estágio. Está escrito, então qualquer professor do time aplica igual.",
   },
   {
     titulo: "Treinamento técnico e tático",
     texto:
-      "As duas metades do jogo, na ordem: primeiro o gesto (empunhadura, posição de espera, deslocamento na areia, finalização) e só depois a decisão (posicionamento de dupla, construção de ponto, leitura de adversário). Quem inverte essa ordem joga bem contra quem é pior, e trava contra quem não é.",
+      "Primeiro o gesto, depois a decisão. Quem inverte essa ordem joga bem contra quem é pior, e trava contra quem não é.",
   },
   {
     titulo: "Capacitação de professores",
     texto:
-      "O Conexão BT, para quem já dá aula ou está começando a dar. Não é um extra do CT: metade do trabalho daqui é formar quem ensina, e é por isso que a capacitação tem página, curso e turma próprios em vez de virar um workshop ocasional.",
+      "O Conexão BT, para quem já dá aula ou está começando. Metade do trabalho do CT é formar quem ensina.",
   },
   {
     titulo: "Acompanhamento e mentoria",
     texto:
-      "Depois do curso, o professor leva caso real — o aluno que travou num golpe, a turma que não engatou, o pai que questiona o método no infantil — e resolve junto com o CT. É a parte que um curso fechado em si mesmo não entrega, porque os problemas difíceis só aparecem meses depois, com aluno de verdade.",
+      "Depois do curso, o professor leva caso real e resolve junto com o CT — os problemas difíceis só aparecem meses depois, com aluno de verdade.",
   },
   {
     titulo: "Formação continuada",
     texto:
-      "Conteúdo novo depois da formatura, enquanto o professor dá aula. O Beach Tennis muda rápido: material, padrão de jogo e o nível médio do adversário não são os mesmos de cinco anos atrás. Professor que parou de estudar entrega ao aluno o repertório que tinha quando parou.",
+      "Conteúdo novo enquanto o professor dá aula. Quem parou de estudar entrega o repertório que tinha quando parou.",
   },
   {
-    titulo: "Reciclagens e atualização profissional",
+    titulo: "Reciclagens e atualização",
     texto:
-      "Encontros periódicos com o time inteiro para revisar o método e corrigir vício — que todo professor cria, sozinho e sem perceber. É o mecanismo que mantém a aula igual entre professores diferentes ao longo do tempo, e não só no dia da formatura.",
+      "Encontros periódicos com o time para revisar o método e corrigir vício — que todo professor cria sozinho, sem perceber.",
   },
   {
-    titulo: "Ambiente voltado ao desenvolvimento do Beach Tennis",
+    titulo: "Ambiente de desenvolvimento",
     texto:
-      "O CT trata aluno, atleta e professor como parte da mesma estrutura, e não como três serviços separados: o método que o aluno recebe é o mesmo que o professor aprende a aplicar, e a capacitação existe justamente para que ele não pare no autor. A ambição declarada é uma comunidade que compartilha a mesma visão de ensino, não uma agenda de quadra cheia.",
+      "Aluno, atleta e professor fazem parte da mesma estrutura, não de três serviços separados.",
   },
 ];
 

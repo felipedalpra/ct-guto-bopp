@@ -32,7 +32,7 @@ export default function PaginaConexaoBt() {
             Conexão <span className="display-italic">BT</span>
           </>
         }
-        intro="A capacitação do CT Guto Bopp para professores de Beach Tennis. Para quem já está em quadra e quer estruturar a própria aula, corrigir com clareza e evoluir como profissional dentro da Metodologia Guto Bopp."
+        intro="A capacitação do CT para quem já dá aula e quer estruturar o que hoje sai por instinto."
         trilha={trilha}
       />
 
@@ -46,7 +46,7 @@ export default function PaginaConexaoBt() {
         numero="03"
         rotulo="Conteúdo"
         titulo="Os cinco módulos"
-        intro="Um módulo por pilar da metodologia, na mesma ordem em que eles se sustentam — porque é assim que o professor vai aplicar depois."
+        intro="Um módulo por pilar, na ordem em que eles se sustentam."
         clara
       >
         <Passos
@@ -86,7 +86,7 @@ export default function PaginaConexaoBt() {
         numero="05"
         rotulo="Depois da formação"
         titulo="Quatro apoios que continuam depois da formatura"
-        intro="É o que distingue a capacitação do CT de um workshop de fim de semana: quem se forma continua dentro da estrutura."
+        intro="O que distingue isto de um workshop de fim de semana."
         clara
       >
         <Blocos itens={depoisDoCurso} />

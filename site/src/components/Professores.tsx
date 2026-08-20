@@ -34,8 +34,7 @@ export default function Professores() {
           </p>
           <h2 className="display bloco__titulo">Escolha por quem combina com você</h2>
           <p className="bloco__intro">
-            Toque em um nome para abrir a ficha completa — formação, experiência, com
-            quem trabalha — e falar direto com a pessoa.
+            Toque em um nome para abrir a ficha e falar direto com a pessoa.
           </p>
         </Revela>
 

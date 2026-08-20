@@ -19,9 +19,8 @@ export const RASCUNHO = true;
 export const porQueExiste = {
   titulo: "Saber jogar não ensina a dar aula",
   paragrafos: [
-    "Quase todo professor de Beach Tennis entrou na profissão pelo mesmo caminho: jogava bem, alguém pediu uma aula, e a coisa cresceu. É um começo legítimo — e é também o motivo de tanta aula boa de energia e pobre de estrutura.",
-    "Executar um golpe e ensinar um golpe são habilidades diferentes. Enxergar por que o aluno erra, escolher a palavra que ele consegue usar no ponto seguinte, montar uma sequência de exercícios que leve a algum lugar, saber o que cobrar em cada nível: nada disso vem junto com o talento de jogador.",
-    "O Conexão BT é a capacitação do CT Guto Bopp para preencher exatamente essa lacuna. Ele pega os cinco pilares que sustentam a metodologia e ensina o professor a aplicá-los na própria aula, com o próprio aluno, no próprio point.",
+    "Quase todo professor de Beach Tennis entrou na profissão pelo mesmo caminho: jogava bem, alguém pediu uma aula, e a coisa cresceu. É um começo legítimo — e é o motivo de tanta aula boa de energia e pobre de estrutura.",
+    "Enxergar por que o aluno erra, escolher a palavra que ele consegue usar e montar uma sequência que leve a algum lugar: nada disso vem junto com o talento de jogador. O Conexão BT ensina o professor a aplicar os cinco pilares na própria aula, com o próprio aluno.",
   ],
 };
 
@@ -65,8 +64,7 @@ export const modulos: Modulo[] = [
       "Como sair do improviso: definir o objetivo, montar a sequência e encaixar a aula de hoje num plano maior.",
     itens: [
       "Objetivo de aula e objetivo de ciclo",
-      "Montagem de sequência de exercícios encadeada",
-      "Distribuição do tempo de quadra",
+      "Sequência de exercícios encadeada",
       "Como planejar turma com níveis diferentes",
     ],
   },
@@ -78,8 +76,7 @@ export const modulos: Modulo[] = [
     itens: [
       "Cadeia de causas: da bola que saiu até a empunhadura",
       "Uma correção por vez, e como escolher qual",
-      "Vocabulário de correção — a frase que o aluno consegue usar",
-      "Quando corrigir e quando deixar o aluno errar",
+      "A frase que o aluno consegue usar no ponto seguinte",
     ],
   },
   {
@@ -89,9 +86,8 @@ export const modulos: Modulo[] = [
       "Em que ordem se ensina, quanto volume cada camada exige e como saber que uma camada está pronta.",
     itens: [
       "Progressão por camadas: base, deslocamento, golpe, finalização",
-      "Volume e intenção na repetição",
       "Critérios para avançar de camada",
-      "Adaptações para infantil e para quem chega de outro esporte",
+      "Adaptações para infantil e para quem vem de outro esporte",
     ],
   },
   {
@@ -102,7 +98,6 @@ export const modulos: Modulo[] = [
     itens: [
       "Exercícios com mais de uma resposta possível",
       "Posicionamento e função dentro da dupla",
-      "Construção de ponto e leitura de adversário",
       "Como treinar decisão sem virar só jogo solto",
     ],
   },
@@ -115,7 +110,6 @@ export const modulos: Modulo[] = [
       "Calibrar intensidade por nível",
       "Conduzir o clima da turma",
       "Fechar a aula deixando a evolução explícita",
-      "Como medir se a aula rendeu",
     ],
   },
 ];
@@ -124,23 +118,19 @@ export const modulos: Modulo[] = [
 export const depoisDoCurso = [
   {
     titulo: "Acompanhamento",
-    texto:
-      "O professor formado segue acompanhado pelo CT na aplicação do método com os próprios alunos.",
+    texto: "O professor formado segue acompanhado na aplicação do método com os próprios alunos.",
   },
   {
     titulo: "Mentoria",
-    texto:
-      "Espaço para levar caso real — o aluno que travou, a turma que não engatou — e resolver junto.",
+    texto: "Espaço para levar caso real — o aluno que travou, a turma que não engatou.",
   },
   {
     titulo: "Formação continuada",
-    texto:
-      "Conteúdo novo depois da capacitação, para o repertório não parar no dia da formatura.",
+    texto: "Conteúdo novo depois da capacitação, para o repertório não parar na formatura.",
   },
   {
-    titulo: "Reciclagem e atualização",
-    texto:
-      "Encontros periódicos para revisar o método, corrigir vícios e alinhar quem já está em quadra.",
+    titulo: "Reciclagem",
+    texto: "Encontros periódicos para revisar o método e corrigir vícios.",
   },
 ];
 

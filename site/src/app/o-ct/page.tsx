@@ -41,7 +41,7 @@ export default function PaginaCt() {
         numero="02"
         rotulo="O que o CT entrega"
         titulo="O que está incluído em treinar aqui"
-        intro="É o que separa um centro de treinamento de um professor com horário livre na quadra."
+        intro="O que separa um CT de um professor com horário livre na quadra."
       >
         <Blocos itens={entregas} />
       </Secao>

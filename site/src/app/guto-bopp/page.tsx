@@ -16,7 +16,7 @@ const trilha = [{ titulo: "Guto Bopp", href: "/guto-bopp" }];
 export const metadata: Metadata = {
   title: "Guto Bopp — atleta, professor e treinador",
   description:
-    "Quem é Guto Bopp: mais de 13 anos dentro do Beach Tennis como atleta, professor e treinador, criador da Metodologia Guto Bopp — o Método dos 5 Pilares — e do curso Conexão BT.",
+    "Quem é Guto Bopp: mais de 13 anos dentro do Beach Tennis como atleta, professor e treinador, criador da Metodologia Guto Bopp e do curso Conexão BT.",
   alternates: { canonical: "/guto-bopp" },
   openGraph: { images: ["/img/guto-bopp.jpg"] },
 };
@@ -27,7 +27,7 @@ export default function PaginaGuto() {
       <CapaPagina
         sobretitulo="Fundador e head coach do CT"
         titulo="Guto Bopp"
-        intro="Atleta, professor e treinador de Beach Tennis há mais de 13 anos. Criador da Metodologia Guto Bopp e do curso Conexão BT."
+        intro="Atleta, professor e treinador há mais de 13 anos. Criador do método e do Conexão BT."
         trilha={trilha}
       />
 
@@ -63,7 +63,7 @@ export default function PaginaGuto() {
         numero="02"
         rotulo="Trajetória"
         titulo="Como cada função virou uma parte do método"
-        intro="Cada fase resolveu um problema que a anterior tinha deixado aberto — e é essa ordem que explica por que o método tem a cara que tem."
+        intro="Cada fase resolveu um problema que a anterior deixou aberto."
         clara
       >
         <Passos
@@ -80,7 +80,7 @@ export default function PaginaGuto() {
         numero="03"
         rotulo="Filosofia de ensino"
         titulo="Cinco princípios que o CT cobra de todo professor"
-        intro="Cinco princípios que estão por trás de decisões concretas do método — e que o CT cobra de todo professor do time."
+        intro="Por trás de decisões concretas do método."
       >
         <Blocos itens={principios} />
       </Secao>

@@ -1957,7 +1957,13 @@ body {
 
 .capa-pagina__conteudo {
   position: relative;
-  max-inline-size: 52rem;
+  /*
+    NÃO limitar a largura aqui. O `.shell` já centraliza o container, então um
+    `max-inline-size` neste elemento encolhia a caixa e a centralizava de novo —
+    o texto descolava da linha de quadra à esquerda e sobrava um vazio à direita.
+    A medida de leitura é limitada em cada filho, e o bloco começa na mesma
+    coluna de todo o resto do site.
+  */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1967,6 +1973,7 @@ body {
 .capa-pagina__titulo {
   font-size: clamp(2.25rem, 7vw, 4.25rem);
   line-height: 0.95;
+  max-inline-size: 18ch;
 }
 
 .capa-pagina__titulo .metodo__cinco {
@@ -2689,9 +2696,22 @@ body {
   margin-block-end: clamp(2rem, 5vw, 3.25rem);
 }
 
+/*
+  Coluna estreita para prosa. Alinhada à ESQUERDA do shell, não centralizada:
+  centralizar uma caixa mais estreita que o container descola o texto da linha
+  de quadra e abre um vazio do lado direito que parece defeito.
+*/
 .bloco__estreito {
+  /*
+    Esta classe divide o elemento com `.shell`, então NÃO se mexe na largura nem
+    na margem dele: encolher aqui centraliza uma caixa menor e descola o texto da
+    linha de quadra; zerar a margem joga a seção para a borda da tela.
+    O shell continua intacto e a medida de leitura é limitada nos filhos.
+  */
+}
+
+.bloco__estreito > * {
   max-inline-size: 52rem;
-  margin-inline: auto;
 }
 
 .bloco__rotulo {

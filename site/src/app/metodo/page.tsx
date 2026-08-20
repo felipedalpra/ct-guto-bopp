@@ -30,7 +30,7 @@ export default function PaginaMetodo() {
             O Método dos <span className="metodo__cinco">5</span> Pilares
           </>
         }
-        intro="Cinco frentes que sustentam cada aula do CT. Não são temas soltos: uma depende da anterior, e é essa ordem que faz o aluno evoluir sem pular etapa."
+        intro="Cinco frentes que sustentam cada aula. Uma depende da anterior."
         trilha={trilha}
       />
 
@@ -44,7 +44,7 @@ export default function PaginaMetodo() {
         numero="03"
         rotulo="Na prática"
         titulo="Como é uma aula, do começo ao fim"
-        intro="A organização — o primeiro pilar — não é uma ideia abstrata. É esta sequência, repetida em toda aula do CT."
+        intro="A organização não é abstrata: é esta sequência, repetida em toda aula."
       >
         <Passos
           itens={anatomiaDaAula.map((etapa) => ({
@@ -60,7 +60,7 @@ export default function PaginaMetodo() {
         numero="04"
         rotulo="Por nível"
         titulo="Quatro níveis, quatro pontos de entrada"
-        intro="Não existe turma única. O método define por onde cada aluno começa e o que se cobra dele em cada estágio."
+        intro="Não existe turma única."
         clara
       >
         <Niveis />
@@ -70,7 +70,7 @@ export default function PaginaMetodo() {
         numero="05"
         rotulo="Formatos"
         titulo="Em que formatos se treina"
-        intro="Todos seguem a mesma metodologia; o que muda é a densidade de correção por hora de quadra e o tipo de trabalho que cabe em cada um."
+        intro="Mesma metodologia; o que muda é a densidade de correção por hora de quadra."
       >
         <Blocos itens={formatos.map((f) => ({ titulo: f.nome, texto: f.texto }))} />
       </Secao>
