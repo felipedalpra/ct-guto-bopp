@@ -26,7 +26,7 @@ Fonte principal: `Briefing_Site_CT_Guto_Bopp_Itens_1_a_7 (1).docx` (respondido p
 
 | Item | Valor |
 |------|-------|
-| Endereço | Sede Prainha Beach Tennis — Av. Saturnino de Brito, 738, Porto Alegre/RS |
+| Endereço | Sede Prainha Beach Tennis — Av. Saturnino de Brito, 738, Vila Jardim, Porto Alegre/RS — CEP 91320-000 |
 | Abrangência | Atua/atuará em várias cidades |
 | WhatsApp | (51) 99808-6780 |
 | Instagram | [@ctgutobopp](https://instagram.com/ctgutobopp) |
@@ -118,8 +118,18 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
 - **Domínio:** ainda a definir.
 - **Nada foi construído ainda** — decisão do cliente: só definir a stack, sem gerar código
   até o material (logo, fotos, fichas dos professores, 5 pilares, Conexão BT) chegar.
+- **2026-08-20 — O site é institucional, não landing page.** Decisão do cliente ao ver a
+  primeira versão: cada seção relevante tem página própria (`/metodo`, `/o-ct`,
+  `/conexao-bt`, `/professores`, `/professores/[slug]`, `/contato`) e a home só mostra
+  resumos que levam a elas. Duas seções ficaram deliberadamente **sem** página: o FAQ
+  (dividido entre `/o-ct` e `/conexao-bt`, porque um FAQ solto rende pouco e some do
+  Google) e os depoimentos (funcionam como prova social dentro das outras páginas).
+  O Conexão BT, que o cliente havia definido como seção, virou página dentro do site do
+  CT — segue sem site separado, como ele pediu.
 
 ## Pendências
+
+- [ ] Confirmar as coordenadas exatas da quadra (as do `site.ts` são aproximadas, tiradas do endereço)
 
 - [ ] Aprovar com o cliente a copy rascunhada em `copy-site.md`
 - [ ] Receber o nome e a descrição oficial de cada um dos **5 pilares** do método

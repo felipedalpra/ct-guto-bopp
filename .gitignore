@@ -14,3 +14,10 @@ build/
 # Env
 .env
 .env*.local
+
+# Build info do TypeScript
+*.tsbuildinfo
+
+# Vídeos brutos do cliente — arquivos de 140MB+ cada, acima do limite de 100MB
+# do GitHub. Ficam só na máquina; o que for pro site entra otimizado em site/public/
+Videos/

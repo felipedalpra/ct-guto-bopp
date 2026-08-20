@@ -1,0 +1,3348 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   CT Guto Bopp — sistema visual
+   Conceito: "levantamento de quadra". A quadra de Beach Tennis (8 × 16 m) é o
+   sistema de coordenadas do site: linhas de marcação em hairline organizam as
+   seções, e a régua da metodologia é desenhada como uma quadra vista de cima.
+   Paleta extraída da logo G3: navy, verde-limão, dourado das estrelas.
+   ========================================================================== */
+
+@theme {
+  --color-navy-900: #0a1524;
+  --color-navy-800: #101f35;
+  --color-navy-700: #162945;
+  --color-navy-600: #23405f;
+  --color-navy-500: #3a5b7d;
+
+  --color-lime-ct: #7fcc28;
+  --color-lime-bright: #96e23c;
+  --color-gold-ct: #e1cc57;
+
+  --color-sand: #ede7db;
+  --color-sand-deep: #ddd4c3;
+  --color-ink: #100f0d;
+
+  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-body: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+  --font-mono-ct: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+
+  --breakpoint-xs: 30rem;
+}
+
+:root {
+  --linha: color-mix(in oklab, var(--color-lime-ct) 26%, transparent);
+  --linha-clara: color-mix(in oklab, var(--color-navy-700) 16%, transparent);
+  --gutter: 1.25rem;
+  --shell: 78rem;
+  color-scheme: dark;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 2.5rem;
+  }
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-navy-900);
+  color: var(--color-sand);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-lime-ct);
+  color: var(--color-navy-900);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lime-bright);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------- tipografia */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 118%;
+  line-height: 0.92;
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+}
+
+.display-italic {
+  font-style: italic;
+  font-stretch: 108%;
+}
+
+/* Chapéu de seção: mono, caixa alta, tratado como etiqueta de medição. */
+.eyebrow {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-lime-ct);
+}
+
+.eyebrow::before {
+  content: "";
+  inline-size: 2.25rem;
+  block-size: 1px;
+  background: currentColor;
+  flex: none;
+}
+
+.eyebrow--escuro {
+  color: var(--color-navy-600);
+}
+
+/* -------------------------------------------------------------- estruturais */
+
+.shell {
+  inline-size: min(100% - var(--gutter) * 2, var(--shell));
+  margin-inline: auto;
+}
+
+.secao {
+  padding-block: clamp(4.5rem, 11vw, 9rem);
+  position: relative;
+}
+
+/* Linhas de marcação de quadra: duas verticais que atravessam a seção,
+   na mesma proporção das linhas de saque de uma quadra de Beach Tennis. */
+.quadra-linhas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.quadra-linhas::before,
+.quadra-linhas::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inline-size: 1px;
+  background: var(--linha);
+  opacity: 0.5;
+}
+
+.quadra-linhas::before {
+  left: max(var(--gutter), calc(50% - var(--shell) / 2));
+}
+
+.quadra-linhas::after {
+  right: max(var(--gutter), calc(50% - var(--shell) / 2));
+}
+
+.superficie-clara {
+  background: var(--color-sand);
+  color: var(--color-navy-900);
+}
+
+.superficie-clara .quadra-linhas::before,
+.superficie-clara .quadra-linhas::after {
+  background: var(--linha-clara);
+}
+
+/* Grão de areia: textura sutil, aplicada só em superfícies grandes. */
+.grao::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------ botões */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.9375rem 1.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s,
+    transform 0.25s;
+  text-align: center;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primario {
+  background: var(--color-lime-ct);
+  color: var(--color-navy-900);
+}
+
+.btn--primario:hover {
+  background: var(--color-lime-bright);
+}
+
+.btn--linha {
+  border-color: color-mix(in oklab, currentColor 40%, transparent);
+  color: inherit;
+}
+
+.btn--linha:hover {
+  border-color: var(--color-lime-ct);
+  color: var(--color-lime-ct);
+}
+
+.superficie-clara .btn--linha:hover {
+  color: var(--color-navy-900);
+  background: var(--color-lime-ct);
+  border-color: var(--color-lime-ct);
+}
+
+/* ----------------------------------------------------- revelação no scroll */
+
+.revela {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--atraso, 0ms);
+}
+
+.revela[data-visivel="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revela {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ================================================================ utilidades */
+
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-para-conteudo {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  transform: translateY(-200%);
+  background: var(--color-lime-ct);
+  color: var(--color-navy-900);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+
+.pular-para-conteudo:focus-visible {
+  transform: none;
+}
+
+.aviso-rascunho {
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border: 1px dashed color-mix(in oklab, var(--color-navy-900) 40%, transparent);
+  background: color-mix(in oklab, var(--color-gold-ct) 30%, transparent);
+  color: var(--color-navy-900);
+  padding: 0.75rem 1rem;
+  margin-block-end: 2.5rem;
+  border-radius: 2px;
+}
+
+/* ================================================================= cabeçalho */
+
+.cabecalho {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 100;
+  transition: background-color 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+  border-block-end: 1px solid transparent;
+}
+
+.cabecalho--solido {
+  background: color-mix(in oklab, var(--color-navy-900) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-block-end-color: color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.cabecalho__linha {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 0.875rem;
+}
+
+.cabecalho__logo {
+  display: block;
+  flex: none;
+  line-height: 0;
+}
+
+.cabecalho__logo img {
+  inline-size: auto;
+  block-size: clamp(2.1rem, 4.6vw, 2.9rem);
+}
+
+.cabecalho__nav {
+  display: none;
+  margin-inline-start: auto;
+  gap: 2rem;
+}
+
+.cabecalho__nav a {
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+  position: relative;
+  padding-block: 0.25rem;
+  transition: color 0.25s;
+}
+
+.cabecalho__nav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1px;
+  background: var(--color-lime-ct);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cabecalho__nav a:hover {
+  color: var(--color-sand);
+}
+
+.cabecalho__nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.cabecalho__cta {
+  display: none;
+  padding: 0.6875rem 1.25rem;
+  font-size: 0.75rem;
+}
+
+.cabecalho__menu {
+  margin-inline-start: auto;
+  background: none;
+  border: 0;
+  padding: 0.625rem;
+  color: inherit;
+  cursor: pointer;
+}
+
+.hamburguer {
+  display: block;
+  inline-size: 1.5rem;
+  block-size: 0.75rem;
+  position: relative;
+}
+
+.hamburguer i {
+  position: absolute;
+  inset-inline: 0;
+  block-size: 2px;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), top 0.3s;
+}
+
+.hamburguer i:first-child {
+  top: 0;
+}
+
+.hamburguer i:last-child {
+  top: 0.6875rem;
+}
+
+.hamburguer--x i:first-child {
+  top: 0.34rem;
+  transform: rotate(45deg);
+}
+
+.hamburguer--x i:last-child {
+  top: 0.34rem;
+  transform: rotate(-45deg);
+}
+
+/* Acima do cabeçalho (z-index 100), nunca dentro dele — ver Cabecalho.tsx. */
+.menu-celular {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--color-navy-900);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 6rem var(--gutter) 3rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu-celular[hidden] {
+  display: none;
+}
+
+.menu-celular__fechar {
+  position: absolute;
+  inset-block-start: 1.25rem;
+  inset-inline-end: var(--gutter);
+  background: none;
+  border: 0;
+  padding: 0.625rem;
+  color: var(--color-sand);
+  cursor: pointer;
+}
+
+.menu-celular nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-celular nav a {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 115%;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 9vw, 2.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 0.5rem;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 15%, transparent);
+  opacity: 0;
+  animation: entra-menu 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i) * 60ms + 80ms);
+}
+
+.menu-celular__num {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-lime-ct);
+}
+
+@keyframes entra-menu {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-celular nav a {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@media (min-width: 62rem) {
+  .cabecalho__nav,
+  .cabecalho__cta {
+    display: flex;
+  }
+  .cabecalho__menu,
+  .menu-celular {
+    display: none;
+  }
+}
+
+/* ====================================================================== capa */
+
+.hero {
+  position: relative;
+  min-block-size: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-block: 8rem 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 80% at 20% 0%, #1b3554 0%, transparent 60%),
+    linear-gradient(180deg, #0d1b2d 0%, #0a1524 55%, #070f1b 100%);
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.hero__video[data-tocando="true"] {
+  opacity: 0.55;
+}
+
+.hero__veu {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 21, 36, 0.82) 0%, rgba(10, 21, 36, 0.42) 38%, rgba(7, 15, 27, 0.94) 100%),
+    linear-gradient(90deg, rgba(10, 21, 36, 0.75) 0%, transparent 65%);
+}
+
+/* Marcação da quadra, desenhada uma vez no carregamento. */
+.hero__marcacao {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  opacity: 0.5;
+}
+
+.hero__marcacao .traco {
+  stroke: var(--color-lime-ct);
+  stroke-width: 1.5;
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+  animation: desenha 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  opacity: 0.5;
+}
+
+.hero__marcacao .traco--rede {
+  stroke-dasharray: 6 10;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  animation: aparece 1.2s ease 1.8s forwards;
+}
+
+.hero__marcacao .traco--eixo {
+  stroke: var(--color-gold-ct);
+  opacity: 0;
+  stroke-dasharray: 2 14;
+  stroke-dashoffset: 0;
+  animation: aparece 1.2s ease 2.2s forwards;
+}
+
+@keyframes desenha {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes aparece {
+  to {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__marcacao .traco {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+  }
+  .hero__video {
+    display: none;
+  }
+}
+
+.hero__conteudo {
+  padding-block-end: clamp(3rem, 7vw, 5.5rem);
+}
+
+.hero__local {
+  margin-block-end: 1.75rem;
+  animation: sobe 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero__titulo {
+  /* O mínimo é ditado por "Resultado." — a palavra mais longa, mais o ponto,
+     que precisa caber inteiro na largura de tela mais estreita que atendemos. */
+  font-size: clamp(2.3rem, 11.2vw, 8.5rem);
+  margin-block-end: 1.75rem;
+  max-inline-size: 16ch;
+}
+
+.hero__titulo span {
+  display: block;
+  animation: sobe 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.35s + var(--i) * 0.13s);
+}
+
+.hero__titulo b {
+  color: var(--color-lime-ct);
+  font-weight: inherit;
+}
+
+.hero__texto {
+  max-inline-size: 46ch;
+  font-size: clamp(1rem, 2.2vw, 1.1875rem);
+  color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+  margin-block-end: 2.25rem;
+  animation: sobe 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  animation: sobe 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1s both;
+}
+
+@keyframes sobe {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__local,
+  .hero__titulo span,
+  .hero__texto,
+  .hero__acoes {
+    animation: none;
+  }
+}
+
+.hero__regua {
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 22%, transparent);
+  background: color-mix(in oklab, var(--color-navy-900) 55%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.hero__regua-linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding-block: 0.9375rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 62%, transparent);
+}
+
+.hero__regua-linha span:first-child {
+  color: var(--color-lime-ct);
+}
+
+/* ================================================================ autoridade */
+
+.autoridade__grade {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+@media (min-width: 60rem) {
+  .autoridade__grade {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: start;
+  }
+  .autoridade__retrato {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.autoridade__moldura {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-navy-800);
+}
+
+.autoridade__moldura img {
+  inline-size: 100%;
+  block-size: auto;
+  display: block;
+  filter: saturate(1.04) contrast(1.04);
+}
+
+/* Canto marcado com o ângulo da linha de fundo da quadra. */
+.autoridade__moldura::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inline-size: 4.5rem;
+  block-size: 4.5rem;
+  border-inline-start: 2px solid var(--color-lime-ct);
+  border-block-end: 2px solid var(--color-lime-ct);
+}
+
+.autoridade__credito {
+  margin-block-start: 1rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 55%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.autoridade__credito span {
+  color: var(--color-lime-ct);
+}
+
+.autoridade__titulo {
+  font-size: clamp(2.1rem, 6.2vw, 4.25rem);
+  margin-block: 1.5rem 2rem;
+  max-inline-size: 16ch;
+}
+
+.autoridade__mais {
+  color: var(--color-lime-ct);
+}
+
+.autoridade__texto p {
+  color: color-mix(in oklab, var(--color-sand) 80%, transparent);
+  max-inline-size: 62ch;
+}
+
+.autoridade__texto p + p {
+  margin-block-start: 1.125rem;
+}
+
+.autoridade__missao {
+  margin-block: 2.5rem;
+  padding-inline-start: 1.5rem;
+  border-inline-start: 2px solid var(--color-gold-ct);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-stretch: 105%;
+  font-size: clamp(1.125rem, 2.6vw, 1.5rem);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--color-sand);
+  max-inline-size: 38ch;
+}
+
+.autoridade__lista {
+  display: grid;
+  gap: 0;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+@media (min-width: 40rem) {
+  .autoridade__lista {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
+
+.autoridade__lista li {
+  padding-block: 0.875rem;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.autoridade__lista li::before {
+  content: "";
+  flex: none;
+  inline-size: 0.4375rem;
+  block-size: 0.4375rem;
+  background: var(--color-lime-ct);
+  transform: rotate(45deg);
+  translate: 0 -0.05rem;
+}
+
+/* ==================================================================== método */
+
+.metodo__cinco {
+  color: var(--color-lime-ct);
+}
+
+.metodo__grade {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .metodo__grade {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  }
+  .metodo__quadra {
+    position: sticky;
+    top: 6.5rem;
+  }
+}
+
+.quadra {
+  inline-size: 100%;
+  max-inline-size: 22rem;
+  block-size: auto;
+  margin-inline: auto;
+  display: block;
+}
+
+.quadra__areia {
+  fill: color-mix(in oklab, var(--color-sand-deep) 70%, var(--color-sand));
+}
+
+.quadra__linha {
+  fill: none;
+  stroke: color-mix(in oklab, var(--color-navy-900) 45%, transparent);
+  stroke-width: 2.5;
+}
+
+.quadra__rede {
+  stroke: var(--color-navy-900);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 5;
+}
+
+.quadra__poste {
+  fill: var(--color-navy-900);
+}
+
+.quadra__no {
+  cursor: pointer;
+}
+
+.quadra__halo {
+  fill: var(--color-lime-ct);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.4s, scale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  scale: 0.6;
+}
+
+.quadra__no[data-ativo="true"] .quadra__halo {
+  opacity: 0.28;
+  scale: 1;
+}
+
+.quadra__disco {
+  fill: var(--color-sand);
+  stroke: var(--color-navy-900);
+  stroke-width: 2;
+  transition: fill 0.3s, stroke 0.3s;
+}
+
+.quadra__no[data-ativo="true"] .quadra__disco {
+  fill: var(--color-navy-900);
+  stroke: var(--color-navy-900);
+}
+
+.quadra__no:hover .quadra__disco {
+  fill: var(--color-lime-ct);
+}
+
+.quadra__num {
+  font-family: var(--font-mono-ct);
+  font-size: 13px;
+  font-weight: 500;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--color-navy-900);
+  transition: fill 0.3s;
+  pointer-events: none;
+}
+
+.quadra__no[data-ativo="true"] .quadra__num {
+  fill: var(--color-lime-ct);
+}
+
+.metodo__legenda {
+  margin-block-start: 1.125rem;
+  text-align: center;
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-900) 45%, transparent);
+}
+
+.metodo__lista {
+  border-block-start: 1px solid color-mix(in oklab, var(--color-navy-900) 18%, transparent);
+}
+
+.pilar {
+  border-block-end: 1px solid color-mix(in oklab, var(--color-navy-900) 18%, transparent);
+}
+
+.pilar__botao {
+  inline-size: 100%;
+  background: none;
+  border: 0;
+  padding: 1.375rem 0;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.25rem;
+  align-items: baseline;
+}
+
+.pilar__numero {
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--color-navy-900) 40%, transparent);
+  transition: color 0.3s;
+}
+
+.pilar[data-aberto="true"] .pilar__numero {
+  color: var(--color-lime-ct);
+}
+
+.pilar__nome {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: clamp(1.25rem, 3.4vw, 1.875rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
+}
+
+.pilar__botao:hover .pilar__nome {
+  color: color-mix(in oklab, var(--color-navy-900) 65%, var(--color-lime-ct));
+}
+
+.pilar__resumo {
+  grid-column: 2;
+  margin-block-start: 0.375rem;
+  font-size: 0.9375rem;
+  color: color-mix(in oklab, var(--color-navy-900) 62%, transparent);
+}
+
+.pilar__corpo {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pilar[data-aberto="true"] .pilar__corpo {
+  grid-template-rows: 1fr;
+}
+
+/* O miolo é o filho único do corpo em grade: é ele que o `grid-template-rows`
+   comprime e solta. Tudo que abre com o pilar precisa estar aqui dentro. */
+.pilar__miolo {
+  overflow: hidden;
+  padding-inline-start: calc(0.75rem + 1.25rem + 1ch);
+  max-inline-size: 60ch;
+  opacity: 0;
+  transition: opacity 0.4s 0.1s, padding-block 0.4s;
+}
+
+.pilar[data-aberto="true"] .pilar__miolo {
+  opacity: 1;
+  padding-block-end: 1.75rem;
+}
+
+.pilar__descricao {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-navy-900) 78%, transparent);
+}
+
+.pilar__pratica {
+  margin-block-start: 1.25rem;
+}
+
+.pilar__legenda {
+  display: block;
+  font-family: var(--font-mono-ct);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-600) 95%, transparent);
+  margin-block-end: 0.5rem;
+}
+
+.pilar__itens {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-navy-900) 72%, transparent);
+}
+
+.pilar__itens li {
+  padding-inline-start: 1.125rem;
+  position: relative;
+}
+
+.pilar__itens li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.5em;
+  inline-size: 0.375rem;
+  block-size: 0.375rem;
+  background: var(--color-lime-ct);
+  border-radius: 50%;
+}
+
+.pilar__ganho {
+  margin-block-start: 1.25rem;
+  padding: 0.875rem 1rem;
+  background: color-mix(in oklab, var(--color-navy-900) 6%, transparent);
+  border-inline-start: 2px solid var(--color-lime-ct);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-navy-900) 82%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pilar__corpo,
+  .pilar__miolo {
+    transition: none;
+  }
+}
+
+.metodo__rodape {
+  margin-block-start: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* ================================================================ conexão bt */
+
+.conexao {
+  background:
+    radial-gradient(90% 60% at 85% 0%, #16334f 0%, transparent 60%),
+    var(--color-navy-800);
+  overflow: hidden;
+}
+
+.conexao__mudanca {
+  margin-block: clamp(2.5rem, 6vw, 4rem);
+  display: grid;
+  gap: 1px;
+  background: color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
+}
+
+@media (min-width: 56rem) {
+  .conexao__mudanca {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.conexao__mudanca li {
+  background: var(--color-navy-800);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.conexao__antes {
+  font-family: var(--font-mono-ct);
+  font-size: 0.8125rem;
+  color: color-mix(in oklab, var(--color-sand) 45%, transparent);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, var(--color-sand) 30%, transparent);
+}
+
+.conexao__seta {
+  inline-size: 1.5rem;
+  block-size: 1px;
+  background: var(--color-lime-ct);
+  position: relative;
+}
+
+.conexao__seta::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0;
+  top: -3px;
+  inline-size: 7px;
+  block-size: 7px;
+  border-top: 1px solid var(--color-lime-ct);
+  border-right: 1px solid var(--color-lime-ct);
+  transform: rotate(45deg);
+}
+
+.conexao__depois {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-sand);
+}
+
+.conexao__acao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+}
+
+.conexao__continua {
+  flex: 1 1 22rem;
+  font-size: 0.9375rem;
+  color: color-mix(in oklab, var(--color-sand) 70%, transparent);
+  max-inline-size: 46ch;
+}
+
+/* =============================================================== professores */
+
+.professores__grade {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.card {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-navy-800);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
+}
+
+.card__foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-navy-700);
+}
+
+/* As fotos ficam sempre em cor. Como cada uma tem fundo e luz diferentes, o que
+   uniformiza a grade é um ajuste leve e igual para todas (contraste e saturação)
+   mais uma sombra só no pé do card, que assenta a foto na moldura sem apagá-la. */
+.card__foto img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: saturate(1.04) contrast(1.04);
+  transition: scale 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card__foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    color-mix(in oklab, var(--color-navy-800) 82%, transparent) 100%
+  );
+}
+
+.card:hover .card__foto img,
+.card:focus-within .card__foto img {
+  scale: 1.035;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__foto img {
+    transition: none;
+  }
+  .card:hover .card__foto img,
+  .card:focus-within .card__foto img {
+    scale: 1;
+  }
+}
+
+.card__sem-foto {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 10px,
+      color-mix(in oklab, var(--color-lime-ct) 7%, transparent) 10px 11px
+    ),
+    var(--color-navy-700);
+}
+
+.card__sem-foto span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 118%;
+  font-size: 3rem;
+  color: color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
+}
+
+.card__papel {
+  position: absolute;
+  inset-block-end: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 1;
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--color-lime-ct);
+  color: var(--color-navy-900);
+  padding: 0.3125rem 0.5625rem;
+  border-radius: 2px;
+}
+
+.card[data-destaque] .card__papel {
+  background: var(--color-gold-ct);
+}
+
+.card__corpo {
+  padding: 1.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.card__nome {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.card__local {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 50%, transparent);
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.card__tags li {
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 18%, transparent);
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+}
+
+.card__diferencial {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+}
+
+.card-vaga {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  padding: 1.75rem;
+  border: 1px dashed color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
+  border-radius: 2px;
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--color-sand) 62%, transparent);
+  min-block-size: 16rem;
+}
+
+.card-vaga__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1.0625rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--color-sand);
+}
+
+.card-vaga__link {
+  margin-block-start: 0.25rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  align-self: flex-start;
+  border-block-end: 1px solid currentColor;
+}
+
+.professores__rodape {
+  margin-block-start: clamp(2.5rem, 6vw, 3.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+.professores__ajuda {
+  flex: 1 1 20rem;
+  font-size: 0.9375rem;
+  color: color-mix(in oklab, var(--color-sand) 70%, transparent);
+  max-inline-size: 44ch;
+}
+
+/* ================================================================ depoimentos */
+
+.depoimentos__cabecalho {
+  max-inline-size: 42rem;
+  margin-block-end: clamp(2.5rem, 6vw, 4rem);
+}
+
+.depoimentos__titulo {
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin-block-start: 1.5rem;
+}
+
+.depoimentos__grade {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.depoimento {
+  block-size: 100%;
+  margin: 0;
+  padding: 2rem 1.75rem 1.75rem;
+  background: color-mix(in oklab, var(--color-sand-deep) 40%, var(--color-sand));
+  border-block-start: 2px solid var(--color-navy-700);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.depoimento[data-perfil="professor"] {
+  border-block-start-color: var(--color-lime-ct);
+}
+
+.depoimento__aspas {
+  position: absolute;
+  top: 0.35rem;
+  right: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 1;
+  color: color-mix(in oklab, var(--color-navy-900) 12%, transparent);
+}
+
+.depoimento blockquote {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-navy-900) 85%, transparent);
+}
+
+.depoimento figcaption {
+  margin-block-start: auto;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-navy-900) 15%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+}
+
+.depoimento__autor {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 110%;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: -0.005em;
+}
+
+.depoimento__contexto {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-900) 50%, transparent);
+}
+
+/* ======================================================================= faq */
+
+.faq__grade {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 58rem) {
+  .faq__grade {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  }
+  .faq__cabecalho {
+    position: sticky;
+    top: 6.5rem;
+  }
+}
+
+.faq__titulo {
+  font-size: clamp(1.875rem, 5vw, 3.25rem);
+  margin-block-start: 1.5rem;
+}
+
+.faq__lista {
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.faq__item {
+  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  padding-block: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 108%;
+  font-size: clamp(1rem, 2.3vw, 1.1875rem);
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  transition: color 0.25s;
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__item summary:hover {
+  color: var(--color-lime-ct);
+}
+
+.faq__sinal {
+  flex: none;
+  position: relative;
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  margin-block-start: 0.3rem;
+}
+
+.faq__sinal::before,
+.faq__sinal::after {
+  content: "";
+  position: absolute;
+  background: var(--color-lime-ct);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq__sinal::before {
+  inset-block-start: 50%;
+  inset-inline: 0;
+  block-size: 1px;
+  translate: 0 -50%;
+}
+
+.faq__sinal::after {
+  inset-inline-start: 50%;
+  inset-block: 0;
+  inline-size: 1px;
+  translate: -50% 0;
+}
+
+.faq__item[open] .faq__sinal::after {
+  transform: scaleY(0);
+}
+
+.faq__item p {
+  margin: 0;
+  padding-block-end: 1.5rem;
+  padding-inline-end: 2.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+  max-inline-size: 62ch;
+  animation: abre-faq 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes abre-faq {
+  from {
+    opacity: 0;
+    transform: translateY(-0.375rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__item p {
+    animation: none;
+  }
+}
+
+/* =================================================================== contato */
+
+.contato {
+  background:
+    radial-gradient(80% 70% at 15% 100%, #16334f 0%, transparent 62%),
+    var(--color-navy-900);
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.contato__grade {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+
+@media (min-width: 58rem) {
+  .contato__grade {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+}
+
+.contato__titulo {
+  font-size: clamp(2.75rem, 10vw, 6.5rem);
+  margin-block: 1.5rem 1.5rem;
+}
+
+.contato__texto {
+  font-size: 1.0625rem;
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+  max-inline-size: 42ch;
+  margin-block-end: 2rem;
+}
+
+.contato__cta {
+  font-size: 1rem;
+  padding: 1.125rem 2.25rem;
+}
+
+.contato__dados {
+  display: grid;
+  gap: 0;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.contato__dados > div {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, auto) 1fr;
+  gap: 1.5rem;
+  padding-block: 1.125rem;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.contato__dados dt {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  padding-block-start: 0.2rem;
+}
+
+.contato__dados dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-sand) 88%, transparent);
+}
+
+.contato__dados a {
+  border-block-end: 1px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.contato__dados a:hover {
+  color: var(--color-lime-ct);
+  border-block-end-color: currentColor;
+}
+
+/* ==================================================================== rodapé */
+
+.rodape {
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
+  background: #070f1b;
+  padding-block: clamp(2.5rem, 6vw, 4rem) 0;
+}
+
+.rodape__mapa {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 56rem) {
+  .rodape__mapa {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: 3rem;
+  }
+}
+
+.rodape__marca {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.rodape__sobre {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  max-inline-size: 40ch;
+  color: color-mix(in oklab, var(--color-sand) 52%, transparent);
+}
+
+.rodape__colunas {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.rodape__titulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  margin-block-end: 0.875rem;
+}
+
+.rodape__coluna ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.rodape__coluna a {
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+  transition: color 0.2s;
+}
+
+.rodape__coluna a:hover {
+  color: var(--color-lime-ct);
+}
+
+.rodape__nota {
+  color: color-mix(in oklab, var(--color-sand) 48%, transparent);
+}
+
+.rodape__logo {
+  inline-size: auto;
+  block-size: 2.25rem;
+  opacity: 0.9;
+}
+
+.rodape__lema {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.rodape__creditos {
+  margin-block-start: clamp(2rem, 5vw, 3rem);
+  padding-block: 1.25rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 10%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 2rem;
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--color-sand) 42%, transparent);
+}
+
+.rodape__creditos p:last-child {
+  margin-inline-start: auto;
+}
+
+/* ================================================================= whatsapp */
+
+.zap {
+  position: fixed;
+  z-index: 90;
+  inset-block-end: 1.25rem;
+  inset-inline-end: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--color-lime-ct);
+  color: var(--color-navy-900);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem) scale(0.94);
+  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.35s, background-color 0.25s;
+}
+
+.zap[data-visivel="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.zap:hover {
+  background: var(--color-lime-bright);
+}
+
+.zap svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  flex: none;
+}
+
+@media (max-width: 30rem) {
+  .zap span {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .zap {
+    padding: 0.9375rem;
+  }
+  .zap svg {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zap {
+    transition: opacity 0.2s, visibility 0.2s;
+    transform: none;
+  }
+}
+
+/* ====================================================================== mapa */
+
+.mapa {
+  margin-block-start: clamp(2.5rem, 6vw, 4rem);
+}
+
+.mapa__moldura {
+  position: relative;
+  /* `inline-size` explícito é obrigatório aqui: com largura automática, o
+     `max-block-size` faria a caixa encolher nos DOIS eixos para manter a
+     proporção, e a moldura ficaria mais estreita que a coluna. */
+  inline-size: 100%;
+  aspect-ratio: 21 / 9;
+  max-block-size: 26rem;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 22%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--color-navy-800);
+  isolation: isolate;
+}
+
+@media (max-width: 48rem) {
+  .mapa__moldura {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.mapa__moldura iframe {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+  /* O embed do Google só existe no tema claro e abriria um bloco branco no meio
+     da seção navy. Inverter escurece o mapa, mas sozinho deixa o asfalto marrom —
+     por isso a camada `.mapa__tinta` logo abaixo devolve tudo para o azul da marca. */
+  filter: invert(0.92) hue-rotate(185deg) saturate(0.55) contrast(0.9)
+    brightness(0.96);
+}
+
+/* Reescreve só o matiz do mapa (mistura em `color`), preservando o contraste
+   entre rua, quadra e área verde. */
+.mapa__tinta {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--color-navy-700);
+  mix-blend-mode: color;
+  opacity: 0.62;
+}
+
+/* Marca de canto, no mesmo ângulo usado no retrato do Guto. */
+.mapa__moldura::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-block-start: 2px solid var(--color-lime-ct);
+  border-inline-end: 2px solid var(--color-lime-ct);
+  pointer-events: none;
+}
+
+.mapa__rodape {
+  margin-block-start: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+}
+
+.mapa__endereco {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 55%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+}
+
+.mapa__endereco span {
+  color: var(--color-lime-ct);
+}
+
+.mapa__link {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-sand);
+  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 60%, transparent);
+  padding-block-end: 0.125rem;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.mapa__link:hover {
+  color: var(--color-lime-ct);
+  border-block-end-color: currentColor;
+}
+
+/* ==========================================================================
+   Navegação entre páginas
+   O site é institucional e multipágina: cada seção tem rota própria. O que
+   segue existe por causa disso — marcar a rota atual no menu, abrir as páginas
+   internas abaixo do cabeçalho fixo e dar o caminho de volta.
+   ========================================================================== */
+
+/* A rota atual fica marcada de forma permanente, com o mesmo traço do hover. */
+.cabecalho__nav a[data-atual] {
+  color: var(--color-sand);
+}
+
+.cabecalho__nav a[data-atual]::after {
+  transform: scaleX(1);
+}
+
+.menu-celular nav a[aria-current="page"] {
+  color: var(--color-lime-ct);
+}
+
+/* ====================================================== capa de página interna */
+
+/* A home abre com o vídeo; as páginas internas abrem por aqui. O padding-block
+   inicial reserva a altura do cabeçalho fixo, que não ocupa espaço no fluxo. */
+.capa-pagina {
+  position: relative;
+  padding-block: clamp(7.5rem, 16vw, 10.5rem) clamp(2.5rem, 6vw, 4rem);
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--color-navy-800) 0%, transparent 65%),
+    var(--color-navy-900);
+  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 12%, transparent);
+  overflow: hidden;
+}
+
+.capa-pagina__conteudo {
+  position: relative;
+  max-inline-size: 52rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.capa-pagina__titulo {
+  font-size: clamp(2.25rem, 7vw, 4.25rem);
+  line-height: 0.95;
+}
+
+.capa-pagina__titulo .metodo__cinco {
+  color: var(--color-lime-ct);
+}
+
+.capa-pagina__titulo .display-italic {
+  color: var(--color-lime-ct);
+}
+
+.capa-pagina__intro {
+  font-size: clamp(1rem, 2.1vw, 1.1875rem);
+  line-height: 1.6;
+  max-inline-size: 46ch;
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+}
+
+/* ============================================================ trilha (breadcrumb) */
+
+.trilha {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.trilha ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  color: color-mix(in oklab, var(--color-sand) 45%, transparent);
+}
+
+/* A barra separadora é decorativa: entra pelo CSS para não ser lida em voz alta. */
+.trilha li + li::before {
+  content: "/";
+  margin-inline-end: 0.5rem;
+  color: color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
+}
+
+.trilha a {
+  color: color-mix(in oklab, var(--color-sand) 62%, transparent);
+  transition: color 0.2s;
+}
+
+.trilha a:hover {
+  color: var(--color-lime-ct);
+}
+
+.trilha [aria-current="page"] {
+  color: var(--color-sand);
+}
+
+/* ==========================================================================
+   Home — resumos
+   A home não repete o conteúdo das páginas: cada bloco abaixo é um resumo que
+   leva para a página onde o assunto está inteiro.
+   ========================================================================== */
+
+/* ================================================================== caminhos */
+
+.caminhos__cabecalho {
+  max-inline-size: 42rem;
+  margin-block-end: clamp(2rem, 5vw, 3rem);
+}
+
+.caminhos__titulo {
+  margin-block-start: 0.75rem;
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+}
+
+.caminhos__grade {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+}
+
+.caminho {
+  position: relative;
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  background: var(--color-navy-800);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
+  border-radius: 2px;
+  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.caminho:hover,
+.caminho:focus-within {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caminho:hover,
+  .caminho:focus-within {
+    transform: none;
+  }
+}
+
+.caminho__numero {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  color: color-mix(in oklab, var(--color-lime-ct) 70%, transparent);
+}
+
+.caminho__publico {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 55%, transparent);
+}
+
+.caminho__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* O link do título cobre o cartão: área de clique inteira, um só link no DOM. */
+.caminho__titulo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.caminho__titulo a:hover {
+  color: var(--color-lime-ct);
+}
+
+.caminho__texto {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+}
+
+.caminho__chamada {
+  margin-block-start: auto;
+  padding-block-start: 0.75rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.caminho__chamada::after {
+  content: " →";
+}
+
+/* ================================================================ resumo do CT */
+
+.resumo-ct__grade {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .resumo-ct__grade {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  }
+}
+
+.resumo-ct__titulo {
+  margin-block: 0.75rem 1.25rem;
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  line-height: 0.98;
+}
+
+.resumo-ct__texto p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: color-mix(in oklab, var(--color-sand) 80%, transparent);
+  max-inline-size: 52ch;
+}
+
+.resumo-ct__texto p + p {
+  margin-block-start: 0.875rem;
+}
+
+.resumo-ct__texto .btn {
+  margin-block-start: 1.75rem;
+}
+
+/* =========================================================== resumo do método */
+
+.resumo-metodo__grade {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 60rem) {
+  .resumo-metodo__grade {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.resumo-metodo__titulo {
+  margin-block: 0.75rem 1rem;
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+}
+
+.resumo-metodo__intro {
+  font-size: 1rem;
+  line-height: 1.65;
+  max-inline-size: 44ch;
+  color: color-mix(in oklab, var(--color-navy-700) 82%, transparent);
+}
+
+.resumo-metodo__cabecalho .btn {
+  margin-block-start: 1.75rem;
+}
+
+/* Lista seca: número, nome e uma linha. A descrição inteira fica em /metodo. */
+.resumo-metodo__lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.resumo-metodo__lista li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 0.75rem;
+  padding-block: 1rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+}
+
+.resumo-metodo__lista li:last-child {
+  border-block-end: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+}
+
+.resumo-metodo__numero {
+  grid-row: span 2;
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklab, var(--color-navy-600) 90%, transparent);
+}
+
+.resumo-metodo__nome {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1.0625rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--color-navy-900);
+}
+
+.resumo-metodo__resumo {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-navy-700) 78%, transparent);
+}
+
+/* ============================================================== resumo do time */
+
+.resumo-time__cabecalho {
+  max-inline-size: 42rem;
+  margin-block-end: clamp(2rem, 5vw, 3rem);
+}
+
+.resumo-time__titulo {
+  margin-block: 0.75rem 0.875rem;
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+}
+
+.resumo-time__intro {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+}
+
+/* Fila de rostos: rolagem horizontal no celular, grade a partir do tablet. */
+.resumo-time__fila {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 9rem;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-block-end: 0.75rem;
+  /* Sangra até a borda da tela para o último rosto não parecer cortado à toa. */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+@media (min-width: 48rem) {
+  .resumo-time__fila {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    overflow-x: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.resumo-time__fila li {
+  scroll-snap-align: start;
+}
+
+.rosto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rosto__foto {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
+  background: var(--color-navy-800);
+  transition: border-color 0.3s;
+}
+
+.rosto:hover .rosto__foto {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 60%, transparent);
+}
+
+.rosto__foto img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: contrast(1.04) saturate(0.96);
+}
+
+.rosto__iniciais {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+}
+
+.rosto__nome {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: var(--color-sand);
+}
+
+.rosto__papel {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 45%, transparent);
+}
+
+.resumo-time__rodape {
+  margin-block-start: clamp(2rem, 5vw, 3rem);
+}
+
+/* =========================================================== chamada de contato */
+
+.chamada {
+  background:
+    radial-gradient(80% 60% at 20% 0%, #16334f 0%, transparent 60%),
+    var(--color-navy-800);
+  overflow: hidden;
+}
+
+.chamada__conteudo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-inline-size: 46rem;
+}
+
+.chamada__titulo {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.chamada__texto {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-inline-size: 46ch;
+  color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+}
+
+.chamada__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block-start: 0.5rem;
+}
+
+.chamada__endereco {
+  margin-block-start: 0.75rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: color-mix(in oklab, var(--color-sand) 52%, transparent);
+}
+
+/* ==========================================================================
+   Ficha de professor — /professores/[slug]
+   ========================================================================== */
+
+.ficha__grade {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+@media (min-width: 60rem) {
+  .ficha__grade {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  }
+}
+
+.ficha__retrato {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ficha__moldura {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 20%, transparent);
+  background: var(--color-navy-800);
+}
+
+.ficha__moldura img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  /* Mesmo ajuste da grade: costura fotos de origens diferentes. */
+  filter: contrast(1.04) saturate(0.96);
+}
+
+.ficha__sem-foto {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.ficha__sem-foto span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: color-mix(in oklab, var(--color-lime-ct) 40%, transparent);
+}
+
+.ficha__acoes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+/* Diz a ação em palavras, não só pelo ícone. */
+.ficha__acoes-titulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.ficha__zap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ficha__zap svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex: none;
+}
+
+.ficha__insta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--color-sand) 70%, transparent);
+  transition: color 0.2s;
+}
+
+.ficha__insta:hover {
+  color: var(--color-lime-ct);
+}
+
+.ficha__insta svg {
+  inline-size: 0.9375rem;
+  block-size: 0.9375rem;
+  flex: none;
+}
+
+.ficha__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-block-end: 1.25rem;
+}
+
+.ficha__tags li {
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 18%, transparent);
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+}
+
+.ficha__diferencial {
+  font-size: clamp(1.0625rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+  max-inline-size: 54ch;
+  color: color-mix(in oklab, var(--color-sand) 88%, transparent);
+}
+
+.ficha__frase {
+  margin-block-start: 1.75rem;
+  padding-inline-start: 1rem;
+  border-inline-start: 2px solid color-mix(in oklab, var(--color-gold-ct) 60%, transparent);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-inline-size: 50ch;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+}
+
+.ficha__dados {
+  margin-block-start: 2rem;
+  display: grid;
+  gap: 1.25rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  padding-block-start: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .ficha__dados {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+}
+
+.ficha__dados dt {
+  font-family: var(--font-mono-ct);
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  margin-block-end: 0.5rem;
+}
+
+.ficha__dados dd {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+}
+
+.ficha__dados dd ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ficha__navegar {
+  margin-block-start: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+
+.ficha__metodo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  border-block-end: 1px solid currentColor;
+}
+
+/* ============================================== cartão do time → ficha da pessoa */
+
+/* O link do nome cobre o cartão inteiro: a área de clique fica do tamanho do
+   cartão sem aninhar links dentro do link. */
+.card__nome a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card {
+  position: relative;
+}
+
+.card__nome a:hover {
+  color: var(--color-lime-ct);
+}
+
+.card__perfil {
+  margin-block-start: auto;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.card__perfil::after {
+  content: " →";
+}
+
+/* ==================================================== continuação e página 404 */
+
+/* Fecho de página interna: para onde ir depois de ler esta. */
+.adiante__conteudo {
+  position: relative;
+  max-inline-size: 46rem;
+}
+
+.adiante__titulo {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin-block-end: 0.875rem;
+}
+
+.adiante__conteudo p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+  max-inline-size: 52ch;
+}
+
+.adiante__links {
+  margin-block-start: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.erro__lista {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.erro__lista a {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
+  border-radius: 2px;
+  background: var(--color-navy-800);
+  transition: border-color 0.3s;
+}
+
+.erro__lista a:hover {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+}
+
+.erro__rotulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1.0625rem;
+  letter-spacing: -0.015em;
+  color: var(--color-sand);
+}
+
+.erro__resumo {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-sand) 66%, transparent);
+}
+
+.erro__voltar {
+  margin-block-start: 2rem;
+}
+
+/* ==========================================================================
+   Blocos de conteúdo
+   Num site institucional a página é longa e o leitor precisa saber onde está.
+   Toda seção abre igual — número, régua, rótulo, título — e as superfícies
+   alternam, para a fronteira entre uma seção e a outra ser visível de relance.
+   ========================================================================== */
+
+.bloco__cabecalho {
+  max-inline-size: 44rem;
+  margin-block-end: clamp(2rem, 5vw, 3.25rem);
+}
+
+.bloco__estreito {
+  max-inline-size: 52rem;
+  margin-inline: auto;
+}
+
+.bloco__rotulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  margin-block-end: 0.875rem;
+}
+
+.bloco__rotulo--escuro {
+  color: color-mix(in oklab, var(--color-navy-700) 90%, transparent);
+}
+
+.bloco__numero {
+  font-size: 0.75rem;
+  color: color-mix(in oklab, currentColor 55%, transparent);
+}
+
+.bloco__risco {
+  inline-size: 2.25rem;
+  block-size: 1px;
+  background: currentColor;
+  flex: none;
+}
+
+.bloco__titulo {
+  font-size: clamp(1.75rem, 4.5vw, 2.875rem);
+  line-height: 0.98;
+}
+
+.bloco__intro {
+  margin-block-start: 1rem;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.65;
+  max-inline-size: 52ch;
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+}
+
+.superficie-clara .bloco__intro {
+  color: color-mix(in oklab, var(--color-navy-700) 82%, transparent);
+}
+
+/* ================================================================ prosa */
+
+.prosa {
+  max-inline-size: 60ch;
+}
+
+.prosa p {
+  font-size: clamp(1rem, 2vw, 1.0625rem);
+  line-height: 1.75;
+  color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+}
+
+.prosa p + p {
+  margin-block-start: 1.125rem;
+}
+
+.superficie-clara .prosa p {
+  color: color-mix(in oklab, var(--color-navy-900) 80%, transparent);
+}
+
+/* ======================================================= grade de blocos */
+
+.blocos {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  /* O fundo aparece pelo gap de 1px: as divisórias saem da grade, sem borda
+     dupla nem canto sobrando entre um bloco e o vizinho. */
+  background: color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.blocos[data-colunas="duas"] {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+}
+
+.blocos > li {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background: var(--color-navy-900);
+}
+
+.superficie-clara .blocos {
+  background: color-mix(in oklab, var(--color-navy-700) 18%, transparent);
+  border-color: color-mix(in oklab, var(--color-navy-700) 18%, transparent);
+}
+
+.superficie-clara .blocos > li {
+  background: var(--color-sand);
+}
+
+.blocos__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--color-sand);
+  margin-block-end: 0.625rem;
+}
+
+.superficie-clara .blocos__titulo {
+  color: var(--color-navy-900);
+}
+
+.blocos__texto {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+}
+
+.superficie-clara .blocos__texto {
+  color: color-mix(in oklab, var(--color-navy-900) 72%, transparent);
+}
+
+/* ============================================================ passos */
+
+.passos {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.passo {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 8rem) minmax(0, 1fr);
+  gap: 1rem 1.5rem;
+  padding-block: clamp(1.5rem, 3.5vw, 2.25rem);
+  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+}
+
+.passo:last-child {
+  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+}
+
+.superficie-clara .passo {
+  border-block-start-color: color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+}
+
+.superficie-clara .passo:last-child {
+  border-block-end-color: color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+}
+
+@media (max-width: 40rem) {
+  .passo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.625rem;
+  }
+}
+
+.passo__marcador {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  padding-block-start: 0.25rem;
+}
+
+.superficie-clara .passo__marcador {
+  color: color-mix(in oklab, var(--color-navy-600) 95%, transparent);
+}
+
+.passo__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-sand);
+  margin-block-end: 0.625rem;
+}
+
+.superficie-clara .passo__titulo {
+  color: var(--color-navy-900);
+}
+
+.passo__texto {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  max-inline-size: 60ch;
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+}
+
+.superficie-clara .passo__texto {
+  color: color-mix(in oklab, var(--color-navy-900) 76%, transparent);
+}
+
+.passo__lista {
+  margin-block-start: 1rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-sand) 66%, transparent);
+}
+
+.superficie-clara .passo__lista {
+  color: color-mix(in oklab, var(--color-navy-900) 68%, transparent);
+}
+
+.passo__lista li {
+  position: relative;
+  padding-inline-start: 1.125rem;
+}
+
+.passo__lista li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.5em;
+  inline-size: 0.375rem;
+  block-size: 0.375rem;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--color-lime-ct) 70%, transparent);
+}
+
+/* ========================================================== perfil do Guto */
+
+.perfil {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+@media (min-width: 60rem) {
+  .perfil {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  }
+}
+
+.resumo-guto {
+  background:
+    radial-gradient(100% 70% at 15% 0%, var(--color-navy-800) 0%, transparent 60%),
+    var(--color-navy-900);
+  overflow: hidden;
+}
+
+.resumo-guto__grade {
+  position: relative;
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .resumo-guto__grade {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  }
+}
+
+.resumo-guto__titulo {
+  margin-block: 0.5rem 1.25rem;
+  font-size: clamp(1.875rem, 5vw, 3.25rem);
+  line-height: 0.95;
+}
+
+.resumo-guto__texto-corrido {
+  font-size: clamp(1rem, 2vw, 1.0625rem);
+  line-height: 1.7;
+  max-inline-size: 52ch;
+  color: color-mix(in oklab, var(--color-sand) 80%, transparent);
+}
+
+/* As quatro funções: atleta → professor → treinador → formador. */
+.resumo-guto__fases {
+  margin-block: 1.75rem;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.resumo-guto__fases li {
+  padding-block-start: 0.75rem;
+  border-block-start: 2px solid color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
+}
+
+.resumo-guto__papel {
+  display: block;
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  margin-block-end: 0.375rem;
+}
+
+.resumo-guto__fase {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: color-mix(in oklab, var(--color-sand) 74%, transparent);
+}
+
+/* ==================================================== o que o CT entrega */
+
+.resumo-ct__entregas {
+  display: grid;
+  gap: 0.75rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.resumo-ct__entregas li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.005em;
+  color: color-mix(in oklab, var(--color-sand) 90%, transparent);
+}
+
+.resumo-ct__marca {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  flex: none;
+  background: var(--color-lime-ct);
+  transform: rotate(45deg);
+}
+
+.resumo-ct__acao {
+  margin-block-start: clamp(2rem, 5vw, 2.75rem);
+}
+
+/* ================================================================= níveis */
+
+.niveis__abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-end: 2rem;
+}
+
+.niveis__aba {
+  padding: 0.625rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--color-navy-700) 25%, transparent);
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-900) 70%, transparent);
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.niveis__aba:hover {
+  border-color: var(--color-navy-700);
+}
+
+.niveis__aba[data-ativo="true"] {
+  background: var(--color-navy-900);
+  border-color: var(--color-navy-900);
+  color: var(--color-sand);
+}
+
+.niveis__ficha {
+  display: grid;
+  gap: 1.25rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  padding-block-end: 1.5rem;
+  margin-block-end: 1.5rem;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+}
+
+.niveis__legenda {
+  font-family: var(--font-mono-ct);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-600) 95%, transparent);
+  margin-block-end: 0.5rem;
+}
+
+.niveis__ficha p {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  color: var(--color-navy-900);
+}
+
+.niveis__itens {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--color-navy-900) 76%, transparent);
+}
+
+.niveis__itens li {
+  position: relative;
+  padding-inline-start: 1.25rem;
+}
+
+.niveis__itens li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.5em;
+  inline-size: 0.4375rem;
+  block-size: 0.4375rem;
+  background: var(--color-lime-ct);
+  transform: rotate(45deg);
+}
+
+/* ============================================== para quem serve / não serve */
+
+.serve {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 52rem) {
+  .serve {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+.serve__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1.0625rem;
+  letter-spacing: -0.015em;
+  margin-block-end: 1rem;
+  padding-block-end: 0.75rem;
+  border-block-end: 2px solid currentColor;
+}
+
+.serve__titulo--sim {
+  color: var(--color-lime-ct);
+}
+
+.serve__titulo--nao {
+  color: color-mix(in oklab, var(--color-sand) 45%, transparent);
+}
+
+.serve__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--color-sand) 80%, transparent);
+}
+
+.serve__lista li {
+  position: relative;
+  padding-inline-start: 1.75rem;
+}
+
+/* Sinais desenhados no CSS: são decorativos e não devem ser lidos em voz alta. */
+.serve__lista--sim li::before,
+.serve__lista--nao li::before {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: -0.05em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.serve__lista--sim li::before {
+  content: "+";
+  color: var(--color-lime-ct);
+}
+
+.serve__lista--nao li::before {
+  content: "–";
+  color: color-mix(in oklab, var(--color-sand) 40%, transparent);
+}
+
+.serve__lista--nao {
+  color: color-mix(in oklab, var(--color-sand) 58%, transparent);
+}
+
+/* =========================================== formados pelo CT (prova social) */
+
+.formados {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  background: color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.formado {
+  block-size: 100%;
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--color-navy-900);
+}
+
+.formado__foto {
+  position: relative;
+  flex: none;
+  inline-size: 4.5rem;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-navy-800);
+}
+
+.formado__foto img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: contrast(1.04) saturate(0.96);
+}
+
+.formado__iniciais {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+}
+
+.formado__nome {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 0.9375rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--color-sand);
+}
+
+.formado__nome a:hover {
+  color: var(--color-lime-ct);
+}
+
+.formado__local {
+  margin-block: 0.25rem 0.625rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 48%, transparent);
+}
+
+.formado__formacao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--color-sand) 68%, transparent);
+}
+
+/* ============================================================ públicos do CT */
+
+.publicos {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.publico {
+  position: relative;
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background: var(--color-sand);
+  border: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+  border-radius: 2px;
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.publico:hover,
+.publico:focus-within {
+  border-color: var(--color-navy-700);
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publico:hover,
+  .publico:focus-within {
+    transform: none;
+  }
+}
+
+.publico__rotulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-600) 95%, transparent);
+}
+
+.publico__titulo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-navy-900);
+}
+
+/* O link do título cobre o cartão inteiro. */
+.publico__titulo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.publico__texto {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-navy-900) 74%, transparent);
+}
+
+.publico__chamada {
+  margin-block-start: auto;
+  padding-block-start: 0.75rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-navy-700) 95%, transparent);
+}
+
+.publico__chamada::after {
+  content: " →";
+}
