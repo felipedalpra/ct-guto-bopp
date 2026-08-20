@@ -2701,17 +2701,35 @@ body {
   centralizar uma caixa mais estreita que o container descola o texto da linha
   de quadra e abre um vazio do lado direito que parece defeito.
 */
-.bloco__estreito {
-  /*
-    Esta classe divide o elemento com `.shell`, então NÃO se mexe na largura nem
-    na margem dele: encolher aqui centraliza uma caixa menor e descola o texto da
-    linha de quadra; zerar a margem joga a seção para a borda da tela.
-    O shell continua intacto e a medida de leitura é limitada nos filhos.
-  */
+/*
+  Seção de prosa em duas colunas: cabeçalho à esquerda, texto à direita.
+  Substituiu a coluna estreita única, que deixava ~380px de vazio à direita em
+  toda seção de texto do site.
+*/
+.bloco__duas-colunas {
+  display: grid;
+  gap: clamp(1rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  align-items: start;
 }
 
-.bloco__estreito > * {
-  max-inline-size: 52rem;
+/* O cabeçalho da coluna esquerda não precisa da margem de baixo do empilhado. */
+.bloco__duas-colunas .bloco__cabecalho {
+  margin-block-end: 0;
+}
+
+.bloco__coluna-texto > * {
+  max-inline-size: 42rem;
+}
+
+@media (max-width: 62rem) {
+  .bloco__duas-colunas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bloco__duas-colunas .bloco__cabecalho {
+    margin-block-end: clamp(0.5rem, 2vw, 1rem);
+  }
 }
 
 .bloco__rotulo {
@@ -3928,9 +3946,29 @@ body {
    o 9:16 e coloca as três peças lado a lado.
    ============================================================================ */
 
+/* Cabeçalho na coluna da esquerda, vídeos na da direita. */
+.aulas__miolo {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 2.4fr);
+  align-items: start;
+}
+
+@media (max-width: 62rem) {
+  .aulas__miolo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .aulas__cabecalho {
   max-inline-size: 42rem;
-  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.aulas__intro {
+  margin-block-start: 0.875rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--color-sand) 62%, transparent);
 }
 
 .aulas__titulo {
@@ -3946,8 +3984,7 @@ body {
   gap: clamp(1rem, 2.5vw, 1.75rem);
   /* Teto na largura: sem isso, três peças 9:16 numa tela larga passam de 700px
      de altura cada e a seção sozinha vira uma página. */
-  grid-template-columns: repeat(3, minmax(0, 17rem));
-  justify-content: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 /* Abaixo de ~48rem vira uma fileira que corre de lado, com encaixe. Empilhar

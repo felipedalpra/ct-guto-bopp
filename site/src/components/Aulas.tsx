@@ -36,12 +36,20 @@ export default function Aulas() {
     <section className="secao aulas" aria-labelledby="aulas-titulo">
       <div className="quadra-linhas" aria-hidden="true" />
 
-      <div className="shell">
+      <div className="shell aulas__miolo">
+        {/*
+          O cabeçalho fica AO LADO dos vídeos, não acima. Três peças 9:16 não
+          preenchem uma linha de 1248px: sobravam ~376px de vazio à direita.
+          Pôr o título nessa faixa resolve o buraco e ainda encurta a seção.
+        */}
         <Revela como="header" className="aulas__cabecalho">
           <p className="eyebrow">Dentro da quadra</p>
           <h2 id="aulas-titulo" className="display aulas__titulo">
             Como é uma aula aqui
           </h2>
+          <p className="aulas__intro">
+            Gravado na quadra do CT, numa sessão do Conexão BT.
+          </p>
         </Revela>
 
         <Revela como="ul" className="aulas__grade" atraso={100}>

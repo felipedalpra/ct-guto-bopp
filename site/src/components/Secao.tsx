@@ -12,6 +12,11 @@ import Revela from "./Revela";
  * `clara` inverte a superfície. `numero` é o índice da seção dentro da página.
  * `solto` entrega o miolo fora do container de largura — para conteúdo que já
  * traz o próprio `.shell`, como o mapa.
+ *
+ * `estreita` é para prosa. Antes limitava a largura e empilhava cabeçalho e texto,
+ * o que deixava uns 380px de vazio à direita em toda seção de texto do site. Agora
+ * vira DUAS COLUNAS no desktop: cabeçalho à esquerda, prosa à direita, na medida
+ * de leitura. O vazio some, a seção encurta e a hierarquia fica mais clara.
  */
 export default function Secao({
   numero,
@@ -36,6 +41,35 @@ export default function Secao({
 }) {
   const temCabecalho = Boolean(rotulo || titulo || intro);
 
+  const cabecalho = temCabecalho && (
+    <Revela como="header" className="bloco__cabecalho">
+      {rotulo && (
+        <p className={`bloco__rotulo ${clara ? "bloco__rotulo--escuro" : ""}`}>
+          {numero && <span className="bloco__numero">{numero}</span>}
+          <span className="bloco__risco" aria-hidden="true" />
+          {rotulo}
+        </p>
+      )}
+      {titulo && <h2 className="display bloco__titulo">{titulo}</h2>}
+      {intro && <p className="bloco__intro">{intro}</p>}
+    </Revela>
+  );
+
+  // Prosa: cabeçalho e conteúdo dividem a mesma linha, em duas colunas.
+  if (estreita) {
+    return (
+      <section
+        className={`secao bloco ${clara ? "superficie-clara grao" : ""} ${className}`}
+      >
+        <div className="quadra-linhas" aria-hidden="true" />
+        <div className="shell bloco__duas-colunas">
+          {cabecalho}
+          <div className="bloco__coluna-texto">{children}</div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       className={`secao bloco ${clara ? "superficie-clara grao" : ""} ${className}`}
@@ -43,7 +77,7 @@ export default function Secao({
       <div className="quadra-linhas" aria-hidden="true" />
 
       {temCabecalho && (
-        <div className={`shell ${estreita ? "bloco__estreito" : ""}`}>
+        <div className="shell">
           <Revela como="header" className="bloco__cabecalho">
             {rotulo && (
               <p className={`bloco__rotulo ${clara ? "bloco__rotulo--escuro" : ""}`}>
@@ -58,11 +92,7 @@ export default function Secao({
         </div>
       )}
 
-      {solto ? (
-        children
-      ) : (
-        <div className={`shell ${estreita ? "bloco__estreito" : ""}`}>{children}</div>
-      )}
+      {solto ? children : <div className="shell">{children}</div>}
     </section>
   );
 }
