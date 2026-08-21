@@ -60,7 +60,7 @@ export default function PaginaConexaoBt() {
         />
       </Secao>
 
-      <Secao numero="04" rotulo="Para quem é" titulo="Para quem o curso serve — e para quem não serve">
+      <Secao numero="04" rotulo="Para quem é" titulo="Para quem serve, e para quem não">
         <div className="serve">
           <Revela className="serve__coluna" >
             <h3 className="serve__titulo serve__titulo--sim">O curso é para</h3>
@@ -85,11 +85,11 @@ export default function PaginaConexaoBt() {
       <Secao
         numero="05"
         rotulo="Depois da formação"
-        titulo="Quatro apoios que continuam depois da formatura"
+        titulo="Depois da formatura"
         intro="O que distingue isto de um workshop de fim de semana."
         clara
       >
-        <Blocos itens={depoisDoCurso} />
+        <Blocos itens={depoisDoCurso} forma="linhas" />
       </Secao>
 
       <FormadosPeloCt numero="06" />
@@ -97,7 +97,7 @@ export default function PaginaConexaoBt() {
       <Secao
         numero="07"
         rotulo="Próxima turma"
-        titulo="Formato, valor e datas"
+        titulo="Formato e valor"
         estreita
       >
         <Revela className="prosa">
@@ -130,7 +130,7 @@ export default function PaginaConexaoBt() {
         itens={faqProfessores}
         nome="faq-professores"
         sobretitulo="Dúvidas de quem dá aula"
-        titulo="Sobre a capacitação"
+        titulo="Dúvidas do curso"
       />
 
       <JsonLd

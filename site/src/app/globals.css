@@ -35,6 +35,8 @@
   --linha-clara: color-mix(in oklab, var(--color-navy-700) 16%, transparent);
   --gutter: 1.25rem;
   --shell: 78rem;
+  /* Distância entre a linha de quadra e a borda do conteúdo (ver .quadra-linhas). */
+  --recuo-linha: 0.75rem;
   color-scheme: dark;
 }
 
@@ -130,9 +132,9 @@ body {
 }
 
 .secao {
-  /* Encurtado a pedido: a home ficava alta demais e cada seção parecia uma
-     página inteira. O respiro continua, mas cabe mais coisa numa tela. */
-  padding-block: clamp(3rem, 6.5vw, 5.25rem);
+  /* Encurtado duas vezes a pedido: entre uma seção e outra sobrava quase meia
+     tela vazia. O respiro continua marcando a fronteira, mas sem o buraco. */
+  padding-block: clamp(2.25rem, 4.6vw, 3.5rem);
   position: relative;
 }
 
@@ -155,12 +157,20 @@ body {
   opacity: 0.5;
 }
 
+/*
+  As linhas ficam FORA da caixa de conteúdo, não em cima dela.
+  Antes elas caíam exatamente na borda do `.shell` — a mesma coluna onde o texto
+  começa —, então rótulos como "PROFESSOR" e "FORMADOR" nasciam colados na linha,
+  parecendo defeito. O recuo abaixo é o respiro entre a marcação e o conteúdo.
+*/
 .quadra-linhas::before {
-  left: max(var(--gutter), calc(50% - var(--shell) / 2));
+  left: max(0.375rem, calc(var(--gutter) - var(--recuo-linha)),
+    calc(50% - var(--shell) / 2 - var(--recuo-linha)));
 }
 
 .quadra-linhas::after {
-  right: max(var(--gutter), calc(50% - var(--shell) / 2));
+  right: max(0.375rem, calc(var(--gutter) - var(--recuo-linha)),
+    calc(50% - var(--shell) / 2 - var(--recuo-linha)));
 }
 
 .superficie-clara {
@@ -326,7 +336,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding-block: 0.875rem;
+  padding-block: 1.3125rem;
 }
 
 .cabecalho__logo {
@@ -337,7 +347,8 @@ body {
 
 .cabecalho__logo img {
   inline-size: auto;
-  block-size: clamp(2.1rem, 4.6vw, 2.9rem);
+  /* A logo manda na altura da barra: a barra é a logo mais o respiro dela. */
+  block-size: clamp(2.6rem, 5.6vw, 3.75rem);
 }
 
 .cabecalho__nav {
@@ -523,7 +534,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-block: 8rem 0;
+  padding-block: 9rem 0;
   overflow: hidden;
   isolation: isolate;
 }
@@ -1473,7 +1484,7 @@ body {
 }
 
 .faq__titulo {
-  font-size: clamp(1.875rem, 5vw, 3.25rem);
+  font-size: clamp(2.125rem, 6vw, 4rem);
   margin-block-start: 1.5rem;
 }
 
@@ -1947,7 +1958,7 @@ body {
    inicial reserva a altura do cabeçalho fixo, que não ocupa espaço no fluxo. */
 .capa-pagina {
   position: relative;
-  padding-block: clamp(7.5rem, 16vw, 10.5rem) clamp(2.5rem, 6vw, 4rem);
+  padding-block: clamp(7.5rem, 13vw, 9.25rem) clamp(2rem, 4vw, 2.75rem);
   background:
     radial-gradient(120% 80% at 50% 0%, var(--color-navy-800) 0%, transparent 65%),
     var(--color-navy-900);
@@ -1971,9 +1982,11 @@ body {
 }
 
 .capa-pagina__titulo {
-  font-size: clamp(2.25rem, 7vw, 4.25rem);
-  line-height: 0.95;
-  max-inline-size: 18ch;
+  /* Maior e mais largo: no tamanho anterior o título ocupava metade da tela e
+     deixava o resto vazio, em vez de mandar na página. */
+  font-size: clamp(2.4rem, 8.4vw, 5.5rem);
+  line-height: 0.94;
+  max-inline-size: 20ch;
 }
 
 .capa-pagina__titulo .metodo__cinco {
@@ -1985,9 +1998,9 @@ body {
 }
 
 .capa-pagina__intro {
-  font-size: clamp(1rem, 2.1vw, 1.1875rem);
-  line-height: 1.6;
-  max-inline-size: 46ch;
+  font-size: clamp(1.0625rem, 2.3vw, 1.3125rem);
+  line-height: 1.55;
+  max-inline-size: 54ch;
   color: color-mix(in oklab, var(--color-sand) 78%, transparent);
 }
 
@@ -2043,7 +2056,7 @@ body {
 
 .caminhos__titulo {
   margin-block-start: 0.75rem;
-  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
 }
 
 .caminhos__grade {
@@ -2150,7 +2163,7 @@ body {
 
 .resumo-ct__titulo {
   margin-block: 0.75rem 1.25rem;
-  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
   line-height: 0.98;
 }
 
@@ -2185,7 +2198,7 @@ body {
 
 .resumo-metodo__titulo {
   margin-block: 0.75rem 1rem;
-  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
 }
 
 .resumo-metodo__intro {
@@ -2252,7 +2265,7 @@ body {
 
 .resumo-time__titulo {
   margin-block: 0.75rem 0.875rem;
-  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
 }
 
 .resumo-time__intro {
@@ -2368,7 +2381,7 @@ body {
 }
 
 .chamada__titulo {
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2.25rem, 6.6vw, 4.25rem);
 }
 
 .chamada__texto {
@@ -2692,8 +2705,8 @@ body {
    ========================================================================== */
 
 .bloco__cabecalho {
-  max-inline-size: 44rem;
-  margin-block-end: clamp(2rem, 5vw, 3.25rem);
+  max-inline-size: 50rem;
+  margin-block-end: clamp(1.5rem, 3.6vw, 2.5rem);
 }
 
 /*
@@ -2709,8 +2722,18 @@ body {
 .bloco__duas-colunas {
   display: grid;
   gap: clamp(1rem, 3vw, 3rem);
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
   align-items: start;
+}
+
+/*
+  Aqui o título divide a linha com o texto, então ele é menor que o título de
+  uma seção que ocupa a largura toda. No tamanho cheio ele quebrava em cinco
+  linhas e a coluna da esquerda ficava muito mais alta que a da direita, abrindo
+  exatamente o vazio que a diagramação em duas colunas existe para fechar.
+*/
+.bloco__duas-colunas .bloco__titulo {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
 }
 
 /* O cabeçalho da coluna esquerda não precisa da margem de baixo do empilhado. */
@@ -2719,7 +2742,7 @@ body {
 }
 
 .bloco__coluna-texto > * {
-  max-inline-size: 42rem;
+  max-inline-size: 50rem;
 }
 
 @media (max-width: 62rem) {
@@ -2761,15 +2784,15 @@ body {
 }
 
 .bloco__titulo {
-  font-size: clamp(1.75rem, 4.5vw, 2.875rem);
+  font-size: clamp(2.125rem, 6vw, 4.25rem);
   line-height: 0.98;
 }
 
 .bloco__intro {
   margin-block-start: 1rem;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.65;
-  max-inline-size: 52ch;
+  font-size: clamp(1.0625rem, 2.1vw, 1.25rem);
+  line-height: 1.6;
+  max-inline-size: 60ch;
   color: color-mix(in oklab, var(--color-sand) 76%, transparent);
 }
 
@@ -2780,12 +2803,12 @@ body {
 /* ================================================================ prosa */
 
 .prosa {
-  max-inline-size: 60ch;
+  max-inline-size: 70ch;
 }
 
 .prosa p {
-  font-size: clamp(1rem, 2vw, 1.0625rem);
-  line-height: 1.75;
+  font-size: clamp(1.0625rem, 2.1vw, 1.1875rem);
+  line-height: 1.7;
   color: color-mix(in oklab, var(--color-sand) 82%, transparent);
 }
 
@@ -2996,7 +3019,7 @@ body {
 
 .resumo-guto__titulo {
   margin-block: 0.5rem 1.25rem;
-  font-size: clamp(1.875rem, 5vw, 3.25rem);
+  font-size: clamp(2.125rem, 6vw, 4rem);
   line-height: 0.95;
 }
 
@@ -3227,84 +3250,177 @@ body {
   color: color-mix(in oklab, var(--color-sand) 58%, transparent);
 }
 
-/* =========================================== formados pelo CT (prova social) */
+/* ======================================================= blocos em linhas */
 
-.formados {
+/*
+  A alternativa à grade de cartões (ver components/Secao.tsx). Índice grande na
+  esquerda, título e texto na direita, régua fina separando: lê como tabela de
+  levantamento, que é o vocabulário do site, e não como mais uma fileira de
+  caixas iguais.
+*/
+.linhas {
+  border-block-start: 1px solid var(--linha);
+}
+
+.linhas > li {
   display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  background: color-mix(in oklab, var(--color-sand) 14%, transparent);
-  border: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
-  border-radius: 2px;
-  overflow: hidden;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.375rem clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(1.125rem, 2.6vw, 1.75rem);
+  border-block-end: 1px solid var(--linha);
 }
 
-.formado {
-  block-size: 100%;
-  display: flex;
-  gap: 1rem;
-  padding: 1.25rem;
-  background: var(--color-navy-900);
+.superficie-clara .linhas,
+.superficie-clara .linhas > li {
+  border-color: var(--linha-clara);
 }
 
-.formado__foto {
-  position: relative;
-  flex: none;
-  inline-size: 4.5rem;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 2px;
-  background: var(--color-navy-800);
-}
-
-.formado__foto img {
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  filter: contrast(1.04) saturate(0.96);
-}
-
-.formado__iniciais {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
+.linhas__indice {
+  grid-row: span 2;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+  line-height: 0.9;
   color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
 }
 
-.formado__nome {
+.superficie-clara .linhas__indice {
+  color: color-mix(in oklab, var(--color-navy-600) 70%, transparent);
+}
+
+.linhas__titulo {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 112%;
+  font-size: clamp(1.0625rem, 2.2vw, 1.375rem);
   text-transform: uppercase;
-  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
   line-height: 1.15;
-  letter-spacing: -0.015em;
+}
+
+.linhas__texto {
+  font-size: clamp(0.9375rem, 1.9vw, 1.0625rem);
+  line-height: 1.6;
+  max-inline-size: 62ch;
+  color: color-mix(in oklab, var(--color-sand) 74%, transparent);
+}
+
+.superficie-clara .linhas__texto {
+  color: color-mix(in oklab, var(--color-navy-900) 78%, transparent);
+}
+
+@media (min-width: 48rem) {
+  .linhas__titulo {
+    grid-column: 2;
+  }
+  .linhas__texto {
+    grid-column: 2;
+  }
+}
+
+/*
+  Nota de rodapé de seção: uma linha que remete a outra página, no lugar de
+  repetir o conteúdo dela aqui. Discreta de propósito — é atalho, não seção.
+*/
+.secao__nota {
+  margin-block-start: clamp(1.25rem, 3vw, 2rem);
+  padding-block-start: 1rem;
+  border-block-start: 1px solid var(--linha);
+  font-size: 0.9375rem;
+  color: color-mix(in oklab, var(--color-sand) 66%, transparent);
+}
+
+.superficie-clara .secao__nota {
+  border-block-start-color: var(--linha-clara);
+  color: color-mix(in oklab, var(--color-navy-700) 78%, transparent);
+}
+
+.secao__nota a {
+  color: var(--color-lime-ct);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+
+/* ================================== rostos do time (prova social do curso) */
+
+/*
+  Fileira de rostos, não grade de fichas: aqui a informação é "foram todos
+  estes", e um rosto com nome diz isso mais rápido que um cartão com currículo.
+  O currículo de cada um está a um clique, na ficha.
+*/
+.rostos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.rosto {
+  display: grid;
+  justify-items: center;
+  gap: 0.625rem;
+  inline-size: clamp(5.5rem, 15vw, 7.5rem);
+  text-align: center;
+  color: inherit;
+}
+
+.rosto__foto {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--color-navy-700) 70%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.rosto__foto img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 0.4s;
+}
+
+.rosto:hover .rosto__foto,
+.rosto:focus-visible .rosto__foto {
+  border-color: var(--color-lime-ct);
+  transform: translateY(-3px);
+}
+
+.rosto:hover .rosto__foto img,
+.rosto:focus-visible .rosto__foto img {
+  filter: none;
+}
+
+.rosto__iniciais {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: color-mix(in oklab, var(--color-lime-ct) 70%, transparent);
+}
+
+.rosto__nome {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+}
+
+.rosto:hover .rosto__nome,
+.rosto:focus-visible .rosto__nome {
   color: var(--color-sand);
 }
 
-.formado__nome a:hover {
-  color: var(--color-lime-ct);
-}
-
-.formado__local {
-  margin-block: 0.25rem 0.625rem;
-  font-family: var(--font-mono-ct);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--color-sand) 48%, transparent);
-}
-
-.formado__formacao {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.8125rem;
-  line-height: 1.45;
-  color: color-mix(in oklab, var(--color-sand) 68%, transparent);
+@media (prefers-reduced-motion: reduce) {
+  .rosto__foto,
+  .rosto__foto img {
+    transition: none;
+  }
+  .rosto:hover .rosto__foto {
+    transform: none;
+  }
 }
 
 /* ============================================================ públicos do CT */
@@ -3739,7 +3855,9 @@ body {
 }
 
 .retrato-fundo__titulo {
-  font-size: clamp(1.875rem, 5.2vw, 3.25rem);
+  /* Menor que os outros títulos de seção de propósito: aqui ele divide a tela
+     com o retrato, e no tamanho cheio tapava o rosto do Guto. */
+  font-size: clamp(1.875rem, 4.6vw, 3.125rem);
   line-height: 1.02;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -3758,41 +3876,52 @@ body {
 }
 
 /* As quatro funções, em sequência cronológica. */
+/*
+  As quatro funções, na ordem: quatro colunas sob uma régua, numeradas. A ordem é
+  o argumento da seção, então ela é desenhada (régua, número, sequência) em vez
+  de escrita. Antes cada função vinha com a frase que a explica — as mesmas
+  frases, palavra por palavra, que a página do Guto usa logo adiante.
+*/
 .fases {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
   margin-block: clamp(2rem, 4.5vw, 2.75rem);
-  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 22%, transparent);
+  background: color-mix(in oklab, var(--color-sand) 18%, transparent);
+  border-block: 1px solid color-mix(in oklab, var(--color-sand) 18%, transparent);
+  counter-reset: fase;
 }
 
-.fases li {
-  display: grid;
-  grid-template-columns: 7rem minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0.75rem;
-  padding-block: 0.875rem;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 16%, transparent);
-}
-
-@media (max-width: 30rem) {
-  .fases li {
-    grid-template-columns: 1fr;
-    gap: 0.125rem;
+@media (min-width: 42rem) {
+  .fases {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-.fases__papel {
-  font-family: var(--font-mono-ct);
-  font-size: 0.6875rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-lime-ct);
+.fases li {
+  counter-increment: fase;
+  display: grid;
+  gap: 0.375rem;
+  padding: clamp(0.875rem, 2vw, 1.25rem) clamp(0.75rem, 2vw, 1.25rem);
+  background: color-mix(in oklab, var(--color-navy-900) 62%, transparent);
 }
 
-.fases__titulo {
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  color: color-mix(in oklab, var(--color-sand) 88%, transparent);
+/* O número é a linha do tempo: 01 → 04, na ordem em que aconteceram. */
+.fases li::before {
+  content: counter(fase, decimal-leading-zero);
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: color-mix(in oklab, var(--color-lime-ct) 70%, transparent);
+}
+
+.fases__papel {
+  font-family: var(--font-display);
+  font-size: clamp(0.9375rem, 2vw, 1.25rem);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--color-sand);
 }
 
 /* ========================================================= areia como fundo ===
@@ -3972,7 +4101,7 @@ body {
 }
 
 .aulas__titulo {
-  font-size: clamp(1.75rem, 4.4vw, 2.75rem);
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
   line-height: 1.04;
   letter-spacing: -0.03em;
   text-transform: uppercase;

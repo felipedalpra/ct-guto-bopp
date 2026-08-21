@@ -32,9 +32,9 @@ export default function Professores() {
             <span className="bloco__risco" aria-hidden="true" />
             O time
           </p>
-          <h2 className="display bloco__titulo">Escolha por quem combina com você</h2>
+          <h2 className="display bloco__titulo">Conheça os professores do CT</h2>
           <p className="bloco__intro">
-            Toque em um nome para abrir a ficha e falar direto com a pessoa.
+            Toque em um nome para ver a ficha e falar direto com a pessoa.
           </p>
         </Revela>
 
@@ -49,7 +49,9 @@ export default function Professores() {
             <Revela como="li" atraso={time.length * 70}>
               <div className="card-vaga">
                 <p className="card-vaga__titulo">
-                  Mais {professoresPendentes} professores chegando
+                  {professoresPendentes === 1
+                    ? "Mais um professor chegando"
+                    : `Mais ${professoresPendentes} professores chegando`}
                 </p>
                 <p>
                   O time do CT está em formação. Quer fazer parte? Comece pelo

@@ -6,6 +6,9 @@
  * professor e treinador"). Todo o texto abaixo foi escrito a partir dessa linha e do
  * resto do briefing, e precisa do aval dele antes de publicar.
  *
+ * Os "cinco princípios de ensino" que existiam aqui saíram: eram os cinco pilares
+ * do método reescritos com outro nome, e o método tem uma página só dele.
+ *
  * Regra que guiou a escrita: nenhuma data, número, título, resultado de torneio ou
  * conquista foi inventado — só existe aqui o que o briefing sustenta. As fases da
  * trajetória são qualitativas de propósito, porque não temos os anos.
@@ -56,37 +59,6 @@ export const trajetoria: Fase[] = [
     titulo: "Hoje, formar quem ensina",
     texto:
       "Um método que só o autor aplica não é método, é jeito de dar aula. Torná-lo transmissível é o que o Conexão BT faz.",
-  },
-];
-
-/** Princípios de ensino. Cada um está atrás de uma decisão concreta do método. */
-export type Principio = { titulo: string; texto: string };
-
-export const principios: Principio[] = [
-  {
-    titulo: "Aula não se improvisa",
-    texto:
-      "Objetivo definido e sequência montada antes de a bola entrar em quadra. Chegar e ver o que sai é o oposto do que o CT faz.",
-  },
-  {
-    titulo: "Erro tem causa",
-    texto:
-      "Corrigir o sintoma faz o aluno repetir o erro com outro nome. O trabalho é achar a causa e atacar ela.",
-  },
-  {
-    titulo: "Nada de pular etapa",
-    texto:
-      "Cada camada técnica precisa estar consolidada antes da seguinte. Tática sem base trava contra quem é bom.",
-  },
-  {
-    titulo: "O aluno tem que perceber a evolução",
-    texto:
-      "Se sai da quadra sem saber o que melhorou, a aula não fechou. Isso é parte do treino, não gentileza.",
-  },
-  {
-    titulo: "O professor também evolui",
-    texto:
-      "Quem ensina precisa de acompanhamento e reciclagem. Professor que parou de estudar entrega repertório vencido.",
   },
 ];
 

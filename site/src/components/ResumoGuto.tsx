@@ -45,7 +45,7 @@ export default function ResumoGuto() {
           <h2 id="resumo-guto-titulo" className="display retrato-fundo__titulo">
             Quem escreveu o método
             <br />
-            passou por <span className="retrato-fundo__n">4</span> funções antes
+            passou por <span className="retrato-fundo__n">4</span> funções
           </h2>
           <p className="retrato-fundo__texto">
             Cada função resolveu um problema que a anterior deixou aberto. É essa
@@ -54,14 +54,16 @@ export default function ResumoGuto() {
         </Revela>
 
         {/*
-          A numeração aqui carrega informação de verdade: é uma sequência
-          cronológica, e a ordem é o argumento da seção.
+          Só os quatro papéis, em fila, na ordem em que aconteceram. Antes cada
+          um vinha com a frase que explica a fase — as mesmas frases, palavra por
+          palavra, que a página do Guto usa logo adiante. Aqui a informação é a
+          SEQUÊNCIA, e uma sequência se mostra melhor como linha do tempo do que
+          como quatro parágrafos repetidos.
         */}
         <Revela como="ol" className="fases" atraso={100}>
           {trajetoria.map((fase, i) => (
             <li key={fase.chave} style={{ "--i": i } as React.CSSProperties}>
               <span className="fases__papel">{fase.papel}</span>
-              <span className="fases__titulo">{fase.titulo}</span>
             </li>
           ))}
         </Revela>

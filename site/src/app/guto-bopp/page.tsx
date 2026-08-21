@@ -6,8 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import Passos from "@/components/Passos";
 import Revela from "@/components/Revela";
 import Secao, { Blocos, Prosa } from "@/components/Secao";
-import { apresentacao, atuacao, principios, trajetoria } from "@/data/guto";
-import { missao } from "@/data/ct";
+import { apresentacao, atuacao, trajetoria } from "@/data/guto";
 import { idPessoa, nodoTrilha, urlDe } from "@/data/schema";
 import { site } from "@/data/site";
 
@@ -31,7 +30,7 @@ export default function PaginaGuto() {
         trilha={trilha}
       />
 
-      <Secao numero="01" rotulo="Quem é" titulo="Atleta, professor, treinador e formador">
+      <Secao numero="01" rotulo="Quem é" titulo="Quatro funções, um método">
         <div className="perfil">
           <Revela className="perfil__retrato">
             <div className="autoridade__moldura">
@@ -51,10 +50,9 @@ export default function PaginaGuto() {
           </Revela>
 
           <div className="perfil__texto">
+            {/* A missão do CT ficava aqui também. É uma frase institucional só,
+                e agora aparece uma vez, na página do CT. */}
             <Prosa paragrafos={[...apresentacao]} />
-            <Revela como="blockquote" className="autoridade__missao" atraso={120}>
-              {missao}
-            </Revela>
           </div>
         </div>
       </Secao>
@@ -62,7 +60,7 @@ export default function PaginaGuto() {
       <Secao
         numero="02"
         rotulo="Trajetória"
-        titulo="Como cada função virou uma parte do método"
+        titulo="Cada função virou uma parte"
         intro="Cada fase resolveu um problema que a anterior deixou aberto."
         clara
       >
@@ -76,25 +74,17 @@ export default function PaginaGuto() {
         />
       </Secao>
 
+
       <Secao
         numero="03"
-        rotulo="Filosofia de ensino"
-        titulo="Cinco princípios que o CT cobra de todo professor"
-        intro="Por trás de decisões concretas do método."
-      >
-        <Blocos itens={principios} />
-      </Secao>
-
-      <Secao
-        numero="04"
         rotulo="No dia a dia"
-        titulo="A rotina dele no CT hoje"
+        titulo="A rotina dele hoje"
         clara
       >
-        <Blocos itens={atuacao} />
+        <Blocos itens={atuacao} forma="linhas" />
       </Secao>
 
-      <Secao numero="05" rotulo="Adiante" titulo="Por onde continuar" estreita>
+      <Secao numero="04" rotulo="Adiante" titulo="Por onde continuar" estreita>
         <Revela className="adiante__links">
           <Link className="btn btn--linha" href="/metodo">
             Ver o Método dos 5 Pilares

@@ -28,7 +28,7 @@ export default function PaginaProfessores() {
       <Secao
         numero="01"
         rotulo="Como o time se forma"
-        titulo="Ninguém entra sem passar pela metodologia"
+        titulo="Ninguém entra sem a metodologia"
         estreita
       >
         <Prosa

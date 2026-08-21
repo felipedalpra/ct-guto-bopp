@@ -2,8 +2,8 @@
  * Time de professores do CT Guto Bopp.
  * Fonte: fichas de cadastro em `Cadastro professores/` (ver ../../../memory.md).
  *
- * Previsão do cliente: 7 professores. Recebidos até agora: 4 fichas.
- * Pendências: 3 fichas + a foto do Mateus Kunzler.
+ * Previsão do cliente: 7 professores. Recebidos até agora: 6 fichas.
+ * Pendências: 1 ficha + a foto do Mateus Kunzler.
  */
 
 export type Professor = {
@@ -56,6 +56,25 @@ export const professores: Professor[] = [
     instagram: "Gui_NiedersbergBT",
     whatsappE164: "+5551992921014",
     foto: "/img/professores/guilherme.jpg",
+  },
+  {
+    slug: "lucas-constant",
+    nome: "Lucas Constant da Silva",
+    papel: "Professor",
+    local: "Prainha, Maccabi · Porto Alegre · Arena Brisa (Canoas) e Aloha (Novo Hamburgo)",
+    desde: "5 anos como professor",
+    atende: ["Iniciante", "Intermediário", "Avançado", "Turmas e particular"],
+    formacao: [
+      "Bacharel em Educação Física",
+      "Capacitação CBT nível azul",
+    ],
+    diferencial:
+      "Ex-atleta profissional de badminton, com mais de 20 anos em esportes de raquete. Hoje joga a categoria Pro no Beach Tennis.",
+    frase:
+      "A nossa evolução no Beach Tennis depende da nossa ambição, constância e repetição no treino.",
+    instagram: "lucasconstantbt",
+    whatsappE164: "+5551982150313",
+    foto: "/img/professores/lucas.jpg",
   },
   {
     slug: "mariana-widholzer",
@@ -115,10 +134,33 @@ export const professores: Professor[] = [
     whatsappE164: "+5551980441255",
     foto: "/img/professores/rafael.jpg",
   },
+  {
+    slug: "raphael-santanna",
+    nome: "Raphael Doernte de Sant'Anna",
+    papel: "Professor",
+    local: "Curta Beach Sports (Gramado) · Arena Cinco e Complex (Igrejinha) · Arena Yes Play (Taquara)",
+    desde: "4 anos como professor",
+    atende: [
+      "Iniciante",
+      "Intermediário até categoria B",
+      "Particular",
+      "Turmas de até 4",
+    ],
+    formacao: [
+      "Graduação em Fisioterapia e Educação Física",
+      "CBT verde e amarelo",
+      "Curso de formação com Guto Bopp",
+    ],
+    diferencial:
+      "Ajustes técnicos precisos e criação de pensamento lógico para entender o jogo de forma objetiva.",
+    instagram: "raphaelds",
+    whatsappE164: "+5551997293371",
+    foto: "/img/professores/raphael.jpg",
+  },
 ];
 
-/** Vagas ainda não preenchidas (7 previstos − 4 fichas recebidas). */
-export const professoresPendentes = 3;
+/** Vagas ainda não preenchidas (7 previstos − 6 fichas recebidas). */
+export const professoresPendentes = 1;
 
 /** O time inteiro na ordem em que aparece no site: fundador primeiro. */
 export const time: Professor[] = [fundador, ...professores];

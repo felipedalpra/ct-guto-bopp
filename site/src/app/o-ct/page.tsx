@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CapaPagina from "@/components/CapaPagina";
 import Depoimentos from "@/components/Depoimentos";
 import Faq from "@/components/Faq";
@@ -30,7 +31,7 @@ export default function PaginaCt() {
         trilha={trilha}
       />
 
-      <Secao numero="01" rotulo="Quem somos" titulo="Um time, uma formação, a mesma aula" estreita>
+      <Secao numero="01" rotulo="Quem somos" titulo="Um time, a mesma aula" estreita>
         <Prosa paragrafos={quemSomos} />
         <Revela como="blockquote" className="autoridade__missao" atraso={120}>
           {missao}
@@ -40,10 +41,20 @@ export default function PaginaCt() {
       <Secao
         numero="02"
         rotulo="O que o CT entrega"
-        titulo="O que está incluído em treinar aqui"
+        titulo="Mais que uma hora de quadra"
         intro="O que separa um CT de um professor com horário livre na quadra."
       >
         <Blocos itens={entregas} />
+
+        {/* O que vem depois do curso (acompanhamento, mentoria, formação
+            continuada, reciclagem) era mais quatro cards iguais aqui dentro,
+            contando de novo o que a página do Conexão BT conta inteiro. */}
+        <Revela className="secao__nota">
+          <p>
+            Quem se forma aqui não é solto no mercado depois da formatura.{" "}
+            <Link href="/conexao-bt">Ver o que continua depois do curso</Link>
+          </p>
+        </Revela>
       </Secao>
 
       <Depoimentos numero="03" />

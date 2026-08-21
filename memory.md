@@ -46,7 +46,7 @@ Fonte principal: `Briefing_Site_CT_Guto_Bopp_Itens_1_a_7 (1).docx` (respondido p
 
 ## Professores
 
-Previsão: **7 professores**. Fichas recebidas até agora: **4** (pasta `Cadastro professores/`).
+Previsão: **7 professores**. Fichas recebidas até agora: **6** (pasta `Cadastro professores/`).
 
 ### 1. Guilherme Basso Niedersberg
 - WhatsApp (51) 99292-1014 · Instagram `@Gui_NiedersbergBT`
@@ -93,7 +93,32 @@ Previsão: **7 professores**. Fichas recebidas até agora: **4** (pasta `Cadastr
   aluno entender o jogo, evoluir dentro da quadra e gostar cada vez mais do esporte."
 - Foto: `foto-rafael.jpeg` (762×1280)
 
-**Faltam 3 fichas** (7 previstos − 4 recebidos).
+### 5. Lucas Constant da Silva
+- WhatsApp (51) 98215-0313 · Instagram `@lucasconstantbt`
+- Dá aula na Prainha, no Maccabi, na Arena Brisa (Canoas) e no Aloha (Novo Hamburgo)
+- Aula para todos os níveis
+- 5 anos como professor
+- Bacharel em Educação Física; capacitação CBT nível azul
+- Diferencial: ex-atleta profissional de badminton, +20 anos em esportes de raquete;
+  hoje joga categoria Pro no Beach Tennis
+- Frase: "A nossa evolução no beach tennis depende da nossa ambição, constância e
+  repetição no treino."
+- Foto: `WhatsApp Image 2026-08-20 at 17.34.40.jpeg` (fundo preto, raquete em punho)
+
+### 6. Raphael Doernte de Sant'Anna
+- WhatsApp (51) 99729-3371 · Instagram `@raphaelds`
+- Dá aula na Curta Beach Sports (Gramado), Arena Cinco e Complex (Igrejinha) e
+  Arena Yes Play (Taquara) — segundo professor fora de Porto Alegre
+- Iniciante e intermediário até categoria B; particular e turmas de até 4
+- 4 anos como professor
+- Graduação em Fisioterapia e Educação Física; CBT verde e amarelo; curso de formação
+  com Guto Bopp
+- Diferencial: ajustes técnicos precisos e criação de pensamento lógico para entender o
+  jogo de forma objetiva
+- Sem frase pessoal — a ficha veio com esse campo em branco
+- Foto: `WhatsApp Image 2026-08-20 at 18.40.57.jpeg` (quadra coberta, fundo cinza)
+
+**Falta 1 ficha** (7 previstos − 6 recebidos).
 
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
@@ -136,7 +161,7 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
 - [ ] Receber detalhes do Conexão BT (formato, duração, o que inclui, preço, próxima turma)
 - [ ] Confirmar a paleta com o cliente (logo já recebida)
 - [ ] Receber foto de capa (horizontal), fotos do espaço e fotos gerais
-- [ ] Receber as 3 fichas de professores que faltam
+- [ ] Receber a ficha de professor que falta (1 de 7)
 - [ ] Receber a foto do Mateus Kunzler (ficha veio sem foto)
 - [ ] Briefing diz "itens 1 a 7" mas o documento entregue só traz 1 a 5 —
       **faltam os itens 6 e 7** (pedir ao cliente)

@@ -8,6 +8,8 @@
  * ainda não recebemos fotos nem descrição do espaço.
  */
 
+import { time } from "./professores";
+
 export const RASCUNHO = true;
 
 export const missao =
@@ -16,7 +18,8 @@ export const missao =
 /** Quem somos — os parágrafos de abertura da página. */
 export const quemSomos = [
   "O CT Guto Bopp é um Centro de Treinamento de Beach Tennis na Prainha Beach Tennis, em Porto Alegre, com atuação também no Porto Sports, em Palmares do Sul. Atende do infantil ao competitivo e capacita professores pelo Conexão BT.",
-  "O time não é um grupo de profissionais independentes dividindo o espaço: os quatro professores passaram pela mesma capacitação e aplicam os mesmos cinco pilares. Na prática, a aula de segunda com um professor tem a mesma estrutura da aula de quinta com outro.",
+  // O número sai do time de verdade: escrito à mão, envelhecia a cada ficha nova.
+  `O time não é um grupo de profissionais independentes dividindo o espaço: os ${time.length} professores passaram pela mesma capacitação. Na prática, a aula de segunda com um tem a mesma estrutura da aula de quinta com outro.`,
 ];
 
 /**
@@ -47,7 +50,7 @@ export const frentes: Frente[] = [
     numero: "02",
     titulo: "Formar",
     texto:
-      "O Conexão BT capacita professores a aplicar a metodologia na própria aula. Os quatro do time passaram por ele.",
+      `O Conexão BT capacita professores a aplicar a metodologia na própria aula. Os ${time.length} do time passaram por ele.`,
     href: "/conexao-bt",
     chamada: "Conhecer o Conexão BT",
   },
@@ -55,13 +58,21 @@ export const frentes: Frente[] = [
     numero: "03",
     titulo: "Acompanhar",
     texto:
-      "Quem se forma não é solto no mercado: segue com mentoria, formação continuada e reciclagens.",
+      "Quem se forma não é solto no mercado: mentoria, formação continuada e reciclagem seguem depois do curso.",
     href: "/o-ct",
     chamada: "Conhecer o CT",
   },
 ];
 
-/** O que o CT entrega. Os seis primeiros itens são do briefing, palavra por palavra. */
+/**
+ * O que o CT entrega, na página /o-ct.
+ *
+ * Eram sete itens em fila, e quatro deles (acompanhamento, mentoria, formação
+ * continuada, reciclagem) descreviam o pós-curso do Conexão BT — assunto de uma
+ * página inteira, contado ali com mais detalhe. Aqui ficou só o que é do CT, e o
+ * pós-curso virou uma linha com link. O briefing continua coberto: nada sumiu do
+ * site, só parou de ser dito duas vezes.
+ */
 export type Entrega = { titulo: string; texto: string };
 
 export const entregas: Entrega[] = [
@@ -78,22 +89,7 @@ export const entregas: Entrega[] = [
   {
     titulo: "Capacitação de professores",
     texto:
-      "O Conexão BT, para quem já dá aula ou está começando. Metade do trabalho do CT é formar quem ensina.",
-  },
-  {
-    titulo: "Acompanhamento e mentoria",
-    texto:
-      "Depois do curso, o professor leva caso real e resolve junto com o CT — os problemas difíceis só aparecem meses depois, com aluno de verdade.",
-  },
-  {
-    titulo: "Formação continuada",
-    texto:
-      "Conteúdo novo enquanto o professor dá aula. Quem parou de estudar entrega o repertório que tinha quando parou.",
-  },
-  {
-    titulo: "Reciclagens e atualização",
-    texto:
-      "Encontros periódicos com o time para revisar o método e corrigir vício — que todo professor cria sozinho, sem perceber.",
+      "O Conexão BT, para quem já dá aula ou está começando. Metade do trabalho do CT é formar quem ensina — e o acompanhamento continua depois da formatura.",
   },
   {
     titulo: "Ambiente de desenvolvimento",

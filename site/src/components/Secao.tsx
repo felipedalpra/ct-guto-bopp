@@ -108,14 +108,41 @@ export function Prosa({ paragrafos }: { paragrafos: string[] }) {
   );
 }
 
-/** Grade de blocos curtos: título e um parágrafo. */
+/**
+ * Blocos curtos: título e um parágrafo.
+ *
+ * Duas formas, e o motivo de existirem duas: o site inteiro caía na mesma grade
+ * de cartões, seção após seção, e o visitante passava a ler tudo como "mais uma
+ * lista". A forma `linhas` conta a mesma coisa como uma tabela de levantamento —
+ * índice grande, régua entre um item e outro, sem caixa em volta. Usar formas
+ * alternadas entre seções vizinhas é o que faz uma página parecer diagramada em
+ * vez de gerada.
+ */
 export function Blocos({
   itens,
   colunas = "auto",
+  forma = "cartoes",
 }: {
   itens: { titulo: string; texto: string }[];
   colunas?: "auto" | "duas";
+  forma?: "cartoes" | "linhas";
 }) {
+  if (forma === "linhas") {
+    return (
+      <ol className="linhas">
+        {itens.map((item, i) => (
+          <Revela como="li" key={item.titulo} atraso={i * 60}>
+            <span className="linhas__indice" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="linhas__titulo">{item.titulo}</h3>
+            <p className="linhas__texto">{item.texto}</p>
+          </Revela>
+        ))}
+      </ol>
+    );
+  }
+
   return (
     <ul className="blocos" data-colunas={colunas}>
       {itens.map((item, i) => (

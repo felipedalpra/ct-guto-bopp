@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { frentes, missao } from "@/data/ct";
+import { frentes } from "@/data/ct";
 import Revela from "./Revela";
 
 /**
@@ -8,8 +8,7 @@ import Revela from "./Revela";
  * Antes esta seção listava os sete títulos das entregas, sem o texto de nenhuma:
  * sete rótulos soltos que não informavam nada e ainda repetiam o que as outras
  * seções da home já diziam. Agora mostra a estrutura do CT — treinar, formar,
- * acompanhar — com o parágrafo de cada uma, e as sete entregas detalhadas ficam
- * inteiras em /o-ct.
+ * acompanhar — com o parágrafo de cada uma, e o detalhe fica em /o-ct.
  *
  * Cada frente leva à página que a desenvolve, então este bloco também funciona
  * como o índice real do site.
@@ -30,7 +29,6 @@ export default function ResumoCt() {
           <h2 id="resumo-ct-titulo" className="display bloco__titulo">
             O CT trabalha em três frentes
           </h2>
-          <p className="bloco__intro">{missao}</p>
         </Revela>
 
         <ul className="frentes">

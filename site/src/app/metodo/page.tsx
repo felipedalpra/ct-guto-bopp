@@ -43,7 +43,7 @@ export default function PaginaMetodo() {
       <Secao
         numero="03"
         rotulo="Na prática"
-        titulo="Como é uma aula, do começo ao fim"
+        titulo="Uma aula, do começo ao fim"
         intro="A organização não é abstrata: é esta sequência, repetida em toda aula."
       >
         <Passos
@@ -59,7 +59,7 @@ export default function PaginaMetodo() {
       <Secao
         numero="04"
         rotulo="Por nível"
-        titulo="Quatro níveis, quatro pontos de entrada"
+        titulo="Quatro pontos de entrada"
         intro="Não existe turma única."
         clara
       >
@@ -69,7 +69,7 @@ export default function PaginaMetodo() {
       <Secao
         numero="05"
         rotulo="Formatos"
-        titulo="Em que formatos se treina"
+        titulo="Os formatos de treino"
         intro="Mesma metodologia; o que muda é a densidade de correção por hora de quadra."
       >
         <Blocos itens={formatos.map((f) => ({ titulo: f.nome, texto: f.texto }))} />
