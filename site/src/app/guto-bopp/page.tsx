@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Assinatura from "@/components/Assinatura";
 import CapaPagina from "@/components/CapaPagina";
 import JsonLd from "@/components/JsonLd";
 import Passos from "@/components/Passos";
 import Revela from "@/components/Revela";
-import Secao, { Blocos, Prosa } from "@/components/Secao";
-import { apresentacao, atuacao, trajetoria } from "@/data/guto";
+import Secao, { Prosa } from "@/components/Secao";
+import { apresentacao, trajetoria } from "@/data/guto";
 import { idPessoa, nodoTrilha, urlDe } from "@/data/schema";
 import { site } from "@/data/site";
 
@@ -74,17 +75,9 @@ export default function PaginaGuto() {
         />
       </Secao>
 
+      <Assinatura />
 
-      <Secao
-        numero="03"
-        rotulo="No dia a dia"
-        titulo="A rotina dele hoje"
-        clara
-      >
-        <Blocos itens={atuacao} forma="linhas" />
-      </Secao>
-
-      <Secao numero="04" rotulo="Adiante" titulo="Por onde continuar" estreita>
+      <Secao numero="03" rotulo="Adiante" titulo="Por onde continuar" estreita>
         <Revela className="adiante__links">
           <Link className="btn btn--linha" href="/metodo">
             Ver o Método dos 5 Pilares

@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CapaPagina from "@/components/CapaPagina";
+import Cena from "@/components/Cena";
 import Depoimentos from "@/components/Depoimentos";
 import Faq from "@/components/Faq";
 import JsonLd from "@/components/JsonLd";
 import Mapa from "@/components/Mapa";
 import Revela from "@/components/Revela";
 import Secao, { Blocos, Prosa } from "@/components/Secao";
+import { chegadaPrainha } from "@/data/cenas";
 import { entregas, missao, quemSomos } from "@/data/ct";
 import { faqAlunos } from "@/data/faq";
 import { nodoFaq, nodoTrilha } from "@/data/schema";
@@ -66,7 +68,15 @@ export default function PaginaCt() {
         titulo="A sede"
         intro={`${site.endereco.local} — ${site.endereco.rua}, ${site.endereco.bairro}, ${site.endereco.cidade}/${site.endereco.estado}. ${site.horario.texto}. O CT também atua em outras cidades: um dos professores do time dá aula no Porto Sports, em Palmares do Sul.`}
       >
-        <Mapa />
+        {/* A chegada do CT à Prainha fica exatamente aqui: é a seção que fala de
+            onde o CT funciona, e é a única com um companheiro de altura livre —
+            o mapa estica para a altura do vídeo e as duas colunas terminam
+            juntas, sem sobrar vazio embaixo de nenhuma. */}
+        <div className="shell">
+          <Cena cena={chegadaPrainha} encaixe="estica">
+            <Mapa />
+          </Cena>
+        </div>
       </Secao>
 
       <Faq itens={faqAlunos} nome="faq-alunos" />

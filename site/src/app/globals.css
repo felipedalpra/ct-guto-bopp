@@ -1473,6 +1473,11 @@ body {
   align-items: start;
 }
 
+.faq__cabecalho,
+.faq__lista {
+  min-inline-size: 0;
+}
+
 @media (min-width: 58rem) {
   .faq__grade {
     grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
@@ -1484,7 +1489,7 @@ body {
 }
 
 .faq__titulo {
-  font-size: clamp(2.125rem, 6vw, 4rem);
+  font-size: clamp(2.125rem, 4.5vw, 3.25rem);
   margin-block-start: 1.5rem;
 }
 
@@ -4231,4 +4236,235 @@ body {
   font-size: 0.8125rem;
   line-height: 1.5;
   color: color-mix(in oklab, var(--color-sand) 68%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   Cena — um vídeo vertical ao lado do conteúdo de uma seção.
+
+   Existe porque /o-ct, /metodo, /professores e /conexao-bt desciam em prosa
+   corrida do topo ao rodapé, sem nada para o olho descansar. Em vez de criar
+   mais uma seção só de vídeo (que empurraria a página para baixo), a peça entra
+   NA seção que já existe.
+
+   O problema todo é altura: 9:16 legível passa dos 450px e um bloco de dois
+   parágrafos tem menos de 300px, então qualquer arranjo ao lado de texto curto
+   deixa um buraco embaixo da coluna mais curta. Daí os dois modos — `estica`,
+   em que o companheiro passa a valer a altura da peça, e `acompanha`, em que a
+   peça gruda no topo e segue a rolagem de um companheiro bem mais alto.
+
+   O quadro, o poster e o botão de play reusam as classes `.aula__*`.
+--------------------------------------------------------------------------- */
+
+.cena {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
+  align-items: stretch;
+}
+
+/* O vídeo à esquerda: só a ordem visual muda, o DOM continua conteúdo-primeiro
+   para quem lê por leitor de tela. */
+.cena[data-lado="esquerda"] {
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+}
+
+.cena[data-lado="esquerda"] .cena__companheiro {
+  order: 2;
+}
+
+.cena[data-lado="esquerda"] .cena__peca {
+  order: 1;
+}
+
+.cena__companheiro {
+  min-inline-size: 0;
+}
+
+/* O companheiro pode trazer o próprio `.shell` (o mapa traz, porque também é
+   usado solto numa seção). Dentro da cena ele já está numa coluna, e o shell
+   aninhado só roubaria a margem lateral de novo. */
+.cena__companheiro .shell {
+  inline-size: 100%;
+}
+
+.cena__peca {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/*
+  `estica`: o companheiro é elástico (o mapa), então ele assume a altura da peça
+  e as duas colunas terminam na mesma linha. A moldura perde a proporção fixa de
+  propósito — aqui quem manda na altura é o vídeo.
+*/
+.cena[data-encaixe="estica"] .cena__companheiro {
+  display: flex;
+  flex-direction: column;
+}
+
+.cena[data-encaixe="estica"] .cena__companheiro > * {
+  margin-block-start: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cena[data-encaixe="estica"] .mapa__moldura {
+  aspect-ratio: auto;
+  max-block-size: none;
+  flex: 1;
+  min-block-size: 18rem;
+}
+
+/*
+  `acompanha`: o companheiro é uma lista longa, bem mais alta que a peça. Parada,
+  a peça deixaria um vazio embaixo dela até o fim da lista; grudada, ela segue a
+  rolagem e fica visível enquanto o visitante percorre os passos.
+*/
+.cena[data-encaixe="acompanha"] .cena__peca {
+  position: sticky;
+  /* Abaixo do cabeçalho fixo. */
+  inset-block-start: 6.5rem;
+  align-self: start;
+}
+
+/* Sem sticky para quem pediu menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+  .cena[data-encaixe="acompanha"] .cena__peca {
+    position: static;
+  }
+}
+
+/* Em pé vira uma coluna só, e a peça vai para baixo do conteúdo — ler primeiro,
+   assistir depois. Ela encolhe porque 9:16 na largura toda de um celular ocupa
+   uma tela inteira sozinho. */
+@media (max-width: 48rem) {
+  .cena,
+  .cena[data-lado="esquerda"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cena[data-lado="esquerda"] .cena__companheiro {
+    order: initial;
+  }
+
+  .cena__peca,
+  .cena[data-lado="esquerda"] .cena__peca {
+    order: initial;
+    position: static;
+    inline-size: min(17rem, 72vw);
+  }
+
+  .cena[data-encaixe="estica"] .mapa__moldura {
+    aspect-ratio: 21 / 9;
+    min-block-size: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Assinatura — a faixa do Guto em quadra, na página dele.
+
+   Ocupa o lugar da antiga lista "A rotina dele hoje", que vinha logo depois dos
+   quatro passos da trajetória: duas listas seguidas, mesma forma, mesma
+   superfície clara. Aqui a página respira uma vez — imagem em movimento na
+   largura toda, uma frase por cima, e nada para ler em fila.
+
+   É a única peça horizontal do site. As gravações do cliente são verticais em
+   4K, e um recorte 16:9 na altura certa guarda cabeça, raquete e a turma sentada
+   assistindo ao fundo. Roda mudo e em loop: é fundo, não conteúdo.
+--------------------------------------------------------------------------- */
+
+.assinatura {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+  min-block-size: clamp(24rem, 62vh, 36rem);
+  /* Full-bleed: a faixa rompe o shell e encosta nas duas bordas da tela. */
+  padding-block: clamp(3rem, 7vw, 5rem);
+  background: var(--color-navy-900);
+}
+
+.assinatura__fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.assinatura__video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  /* O enquadramento útil está no terço superior do recorte: é onde ele e a
+     raquete ficam. Ancorar no centro cortaria a cabeça em telas largas. */
+  object-position: center 32%;
+}
+
+/*
+  A tinta é o que torna o texto legível sem apagar a imagem: escurece forte na
+  base, onde a frase mora, e quase nada no topo, onde só há quadra.
+*/
+.assinatura__tinta {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      var(--color-navy-900) 0%,
+      color-mix(in oklab, var(--color-navy-900) 82%, transparent) 32%,
+      color-mix(in oklab, var(--color-navy-900) 30%, transparent) 72%,
+      color-mix(in oklab, var(--color-navy-900) 55%, transparent) 100%
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-navy-900) 55%, transparent) 0%,
+      transparent 55%
+    );
+}
+
+/* O motivo da parábola atravessa a faixa por cima do vídeo, bem apagado — a
+   mesma marca gráfica que o resto do site usa, aqui como assinatura. */
+.assinatura__trajetoria {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 8%;
+  inset-inline-end: -4%;
+  inline-size: min(46rem, 62%);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.assinatura__miolo {
+  position: relative;
+}
+
+.assinatura__titulo {
+  font-size: clamp(2.25rem, 6.5vw, 4.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-block-start: 0.75rem;
+  max-inline-size: 16ch;
+}
+
+.assinatura__texto {
+  margin-block-start: 1.125rem;
+  max-inline-size: 44ch;
+  font-size: clamp(0.9375rem, 1.6vw, 1.0625rem);
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+}
+
+@media (max-width: 48rem) {
+  .assinatura {
+    min-block-size: clamp(22rem, 72vh, 30rem);
+  }
+
+  .assinatura__trajetoria {
+    inline-size: 90%;
+    opacity: 0.2;
+  }
 }

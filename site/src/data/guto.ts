@@ -63,31 +63,21 @@ export const trajetoria: Fase[] = [
 ];
 
 /**
- * A rotina dele hoje. Não repete a lista de serviços do CT (isso é /o-ct):
- * descreve o que ocupa o dia DELE, que é outra informação.
+ * A faixa do Guto em quadra, que ocupa o lugar da antiga lista "A rotina dele
+ * hoje".
+ *
+ * A lista tinha quatro itens de texto logo depois dos quatro da trajetória —
+ * duas listas seguidas, mesma forma, mesma superfície clara — e três deles
+ * repetiam o que /o-ct e /conexao-bt já contam (conduz o curso, acompanha o
+ * time, treina quem compete). Sobrou o único ponto que era só dele, e ele virou
+ * imagem em vez de item.
  */
-export const atuacao = [
-  {
-    titulo: "Está em quadra todo dia",
-    texto:
-      "Continua dando aula, e não só coordenando. Quem escreve o método precisa seguir exposto ao aluno real.",
-  },
-  {
-    titulo: "Treina quem compete",
-    texto:
-      "Planejamento por temporada, preparação para torneio e decisão sob pressão.",
-  },
-  {
-    titulo: "Conduz o Conexão BT",
-    texto:
-      "Ele mesmo dá a capacitação, com Guilherme Basso como auxiliar certificado.",
-  },
-  {
-    titulo: "Mantém o padrão do time",
-    texto:
-      "Acompanha os professores formados, revisa aula e conduz as reciclagens.",
-  },
-];
+export const assinatura = {
+  rotulo: "No dia a dia",
+  titulo: "Ainda dá aula todo dia",
+  texto:
+    "Não virou coordenador de prancheta: quem escreve o método continua na areia, exposto ao aluno real. É de lá que o método sai — e é lá que ele é corrigido.",
+};
 
 /**
  * ⚠️ Pedir ao Guto para esta página sair do rascunho:

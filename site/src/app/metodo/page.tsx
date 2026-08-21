@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CapaPagina from "@/components/CapaPagina";
+import Cena from "@/components/Cena";
 import JsonLd from "@/components/JsonLd";
 import Metodo from "@/components/Metodo";
 import Niveis from "@/components/Niveis";
 import Passos from "@/components/Passos";
 import Revela from "@/components/Revela";
 import Secao, { Blocos, Prosa } from "@/components/Secao";
+import { aulaGuto } from "@/data/cenas";
 import { anatomiaDaAula, formatos, oProblema } from "@/data/metodo";
 import { nodoTrilha } from "@/data/schema";
 import { site, whatsappMensagens } from "@/data/site";
@@ -46,14 +48,21 @@ export default function PaginaMetodo() {
         titulo="Uma aula, do começo ao fim"
         intro="A organização não é abstrata: é esta sequência, repetida em toda aula."
       >
-        <Passos
-          itens={anatomiaDaAula.map((etapa) => ({
-            chave: etapa.fase,
-            marcador: etapa.fase,
-            titulo: etapa.titulo,
-            texto: etapa.texto,
-          }))}
-        />
+        {/* O vídeo entra ao lado da sequência da aula, e não na abertura da
+            página: a abertura tem dois parágrafos, e um 9:16 ao lado deles abria
+            um buraco de 300px. Aqui a lista é bem mais alta que a peça, então ela
+            acompanha a rolagem em vez de ficar parada — e o assunto casa, porque
+            é essa a aula que o vídeo mostra acontecendo. */}
+        <Cena cena={aulaGuto} lado="esquerda" encaixe="acompanha">
+          <Passos
+            itens={anatomiaDaAula.map((etapa) => ({
+              chave: etapa.fase,
+              marcador: etapa.fase,
+              titulo: etapa.titulo,
+              texto: etapa.texto,
+            }))}
+          />
+        </Cena>
       </Secao>
 
       <Secao
