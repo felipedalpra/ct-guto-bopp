@@ -87,10 +87,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Régua da capa: dados da quadra, tratados como legenda de levantamento. */}
+      {/* Régua da capa: onde e quando, tratados como legenda de levantamento. */}
       <div className="hero__regua">
         <div className="shell hero__regua-linha">
-          <span>Quadra 8 × 16 m</span>
           <span>{site.endereco.local}</span>
           <span>{site.horario.texto}</span>
         </div>
