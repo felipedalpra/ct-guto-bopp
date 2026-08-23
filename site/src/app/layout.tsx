@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/data/site";
+import AvisoTurma from "@/components/AvisoTurma";
 import BotaoWhatsApp from "@/components/BotaoWhatsApp";
 import Cabecalho from "@/components/Cabecalho";
 import JsonLd from "@/components/JsonLd";
@@ -111,6 +112,7 @@ export default function RootLayout({
         <main id="conteudo">{children}</main>
         <Rodape />
         <BotaoWhatsApp />
+        <AvisoTurma />
         {/* Nós do grafo que valem para o site inteiro; cada página soma os seus. */}
         <JsonLd base />
       </body>

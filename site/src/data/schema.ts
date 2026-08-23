@@ -16,6 +16,7 @@
  */
 
 import { site } from "./site";
+import { proximaTurma, turmaAberta } from "./turma";
 import { pilares } from "./pilares";
 import { time, type Professor } from "./professores";
 import type { Pergunta } from "./faq";
@@ -157,7 +158,30 @@ export const nodoCurso = {
     "@type": "EducationalAudience",
     educationalRole: "Professor de Beach Tennis",
   },
+  // A turma com data marcada. Sai do ar junto com a seção, pelo mesmo `turmaAberta()`.
+  ...(turmaAberta()
+    ? {
+        hasCourseInstance: [
+          {
+            "@type": "CourseInstance",
+            courseMode: "onsite",
+            name: `Conexão BT — turma de ${proximaTurma.dias} ${proximaTurma.mes}`,
+            startDate: iso(proximaTurma.inicio),
+            endDate: iso(proximaTurma.fim),
+            location: { "@id": idNegocio },
+            inLanguage: "pt-BR",
+          },
+        ],
+      }
+    : {}),
 };
+
+/** AAAA-MM-DD em horário local — o Date.toISOString() converteria para UTC e,
+    de madrugada no fuso do Brasil, entregaria o dia anterior. */
+function iso(d: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
 
 /** As perguntas de uma página. O `@id` fica preso à rota em que elas aparecem. */
 export const nodoFaq = (caminho: string, itens: Pergunta[]) => ({

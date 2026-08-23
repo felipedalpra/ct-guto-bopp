@@ -577,6 +577,11 @@ body {
   inline-size: 100%;
   block-size: 100%;
   opacity: 0.5;
+  /* A linha de fundo da quadra caía justo na altura dos botões e cortava
+     "Começar a treinar" ao meio — duas linhas horizontais disputando o mesmo
+     lugar. A marcação agora se dissolve antes de chegar lá; o quadro fica
+     aberto embaixo, o que combina com a quadra sumindo na areia. */
+  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 80%);
 }
 
 .hero__marcacao .traco {
@@ -1130,7 +1135,6 @@ body {
   margin-block: clamp(2.5rem, 6vw, 4rem);
   display: grid;
   gap: 1px;
-  background: color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
   border: 1px solid color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
 }
 
@@ -1140,8 +1144,12 @@ body {
   }
 }
 
+/* São cinco itens numa grade de três colunas, então a última célula fica vazia.
+   As linhas divisórias vêm de um contorno em cada item, não de um fundo atrás
+   da grade — senão a sexta célula, sem item, acendia como um bloco verde. */
 .conexao__mudanca li {
   background: var(--color-navy-800);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
@@ -2133,6 +2141,17 @@ body {
   .zap {
     transition: opacity 0.2s, visibility 0.2s;
     transform: none;
+  }
+}
+
+/* No celular o aviso da turma ocupa a base inteira da tela, bem onde mora o
+   botão flutuante. Enquanto ele estiver aberto o botão se recolhe — o aviso já
+   leva o próprio "quero minha vaga" para o mesmo WhatsApp. No desktop os dois
+   ficam em cantos opostos e convivem. */
+@media (max-width: 47.9375rem) {
+  body:has(.aviso:not([data-saindo="true"])) .zap {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -4384,7 +4403,7 @@ body {
 .aulas__miolo {
   display: grid;
   gap: clamp(1.5rem, 3vw, 2.25rem);
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 2.4fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 2.4fr);
   align-items: start;
 }
 
@@ -4398,18 +4417,29 @@ body {
   max-inline-size: 42rem;
 }
 
+/* Na coluna estreita do desktop o título quebrava em quatro linhas curtas,
+   todas de larguras diferentes. `balance` distribui as palavras entre as
+   linhas; o teto menor de fonte mantém no máximo três. */
+@media (min-width: 62.0625rem) {
+  .aulas__cabecalho {
+    max-inline-size: 24rem;
+  }
+}
+
 .aulas__intro {
   margin-block-start: 0.875rem;
+  text-wrap: pretty;
   font-size: 0.875rem;
   line-height: 1.55;
   color: color-mix(in oklab, var(--color-sand) 62%, transparent);
 }
 
 .aulas__titulo {
-  font-size: clamp(2rem, 5.4vw, 3.5rem);
-  line-height: 1.04;
+  font-size: clamp(2rem, 4.4vw, 2.875rem);
+  line-height: 1.06;
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  text-wrap: balance;
   margin-block-start: 0.625rem;
 }
 
@@ -4752,4 +4782,404 @@ body {
     min-block-size: clamp(22rem, 72vh, 30rem);
   }
 
+}
+
+/* ================================================== turma do Conexão BT =======
+   O único conteúdo do site com data de validade: a turma marcada. Ganha peso
+   visual de anúncio — cartaz à direita, dados e chamada à esquerda — e some
+   sozinha depois da data (ver data/turma.ts).
+   ============================================================================ */
+
+.turma {
+  background:
+    radial-gradient(
+      120% 90% at 88% 0%,
+      color-mix(in oklab, var(--color-lime-ct) 12%, transparent),
+      transparent 62%
+    ),
+    var(--color-navy-800);
+}
+
+.turma__miolo {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .turma__miolo {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  }
+}
+
+/* No celular o cartaz vem primeiro: é a peça que a pessoa reconhece do anúncio
+   do Instagram, e chegar antes da ficha de dados evita abrir com uma parede de
+   campos. No desktop os dois convivem lado a lado e a ordem é a natural. */
+@media (max-width: 55.9375rem) {
+  .turma__cartaz {
+    order: -1;
+  }
+}
+
+.turma__titulo {
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin-block-start: 0.75rem;
+}
+
+/* A contagem regressiva. O ponto pisca devagar — é o único movimento da peça,
+   e some para quem pediu menos movimento. */
+.turma__contagem,
+.aviso__urgencia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-block-start: 1rem;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 35%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.turma__pulso {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-lime-ct);
+  animation: pulso-turma 2.4s ease-in-out infinite;
+}
+
+@keyframes pulso-turma {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 0.375rem transparent;
+  }
+}
+
+.turma__intro {
+  margin-block-start: 1.25rem;
+  max-inline-size: 34rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+  color: color-mix(in oklab, var(--color-sand) 80%, transparent);
+}
+
+.turma__ficha {
+  margin-block-start: 1.75rem;
+  display: grid;
+  gap: 0.875rem;
+}
+
+.turma__ficha div {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block-end: 0.875rem;
+  border-block-end: 1px solid var(--linha);
+}
+
+.turma__ficha dt {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 50%, transparent);
+  padding-block-start: 0.2em;
+}
+
+.turma__ficha dd {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-sand);
+}
+
+.turma__acoes {
+  margin-block-start: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ cartaz ---
+   A arte do anúncio, desenhada em código: no celular, um JPEG de texto vira
+   borrão, e para busca e leitor de tela ele simplesmente não existe.
+   --------------------------------------------------------------------------- */
+
+.cartaz {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in oklab, var(--color-lime-ct) 10%, transparent),
+      transparent 45%
+    ),
+    var(--color-navy-900);
+  isolation: isolate;
+}
+
+.cartaz__foto {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  opacity: 0.28;
+  z-index: -1;
+}
+
+.cartaz__miolo {
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+.cartaz__curso {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 60%, transparent);
+}
+
+.cartaz__titulo {
+  margin-block-start: 0.5rem;
+  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.cartaz__titulo .display-italic {
+  color: var(--color-lime-ct);
+}
+
+.cartaz__nivel {
+  margin-block-start: 0.875rem;
+  display: inline-block;
+  padding: 0.3125rem 0.75rem;
+  background: var(--color-lime-ct);
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cartaz__dados {
+  margin-block-start: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 25%, transparent);
+}
+
+.cartaz__dados li + li {
+  padding-inline-start: 1rem;
+  border-inline-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+}
+
+.cartaz__dado-valor {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-sand);
+}
+
+.cartaz__dado-rotulo {
+  display: block;
+  margin-block-start: 0.25rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 52%, transparent);
+}
+
+.cartaz__lema {
+  margin-block-start: 1.75rem;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 25%, transparent);
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 55%, transparent);
+}
+
+.cartaz__lema span {
+  color: var(--color-lime-ct);
+}
+
+.cartaz__dados--linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.875rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 70%, transparent);
+}
+
+.cartaz__dados--linha li + li {
+  padding-inline-start: 0.875rem;
+  border-inline-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
+}
+
+/* Versão do aviso flutuante: mesma peça, sem o lema e com tudo mais apertado. */
+.cartaz[data-compacto="true"] .cartaz__miolo {
+  padding: 1.125rem 1.25rem 1.25rem;
+}
+
+.cartaz[data-compacto="true"] .cartaz__titulo {
+  font-size: 1.75rem;
+}
+
+.cartaz[data-compacto="true"] .cartaz__dados {
+  margin-block-start: 1.125rem;
+  padding-block-start: 0.875rem;
+}
+
+/* ================================================ aviso flutuante da turma ====
+   Não bloqueia a página, não trava a rolagem, aparece uma vez só e nunca depois
+   da data. As regras estão no componente (AvisoTurma.tsx).
+   ============================================================================ */
+
+.aviso {
+  position: fixed;
+  z-index: 60;
+  inset-block-end: 1rem;
+  inset-inline: 1rem;
+  max-inline-size: 22.5rem;
+  margin-inline: auto;
+  padding: 1.25rem;
+  background: color-mix(in oklab, var(--color-navy-800) 96%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 28%, transparent);
+  border-radius: 4px;
+  box-shadow: 0 1.5rem 3rem color-mix(in oklab, var(--color-ink) 55%, transparent);
+  backdrop-filter: blur(6px);
+  animation: aviso-entra 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+/* No desktop encosta no canto, longe do botão de WhatsApp (que fica à direita). */
+@media (min-width: 48rem) {
+  .aviso {
+    inset-inline: auto auto;
+    inset-inline-start: 1.5rem;
+    inset-block-end: 1.5rem;
+    margin-inline: 0;
+  }
+}
+
+.aviso[data-saindo="true"] {
+  animation: aviso-sai 0.3s ease-in both;
+}
+
+@keyframes aviso-entra {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes aviso-sai {
+  to {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+}
+
+.aviso__fechar {
+  position: absolute;
+  inset-block-start: 0.375rem;
+  inset-inline-end: 0.375rem;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.375rem;
+  line-height: 1;
+  color: color-mix(in oklab, var(--color-sand) 60%, transparent);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.aviso__fechar:hover {
+  color: var(--color-sand);
+}
+
+.aviso__urgencia {
+  margin-block-start: 0;
+}
+
+.aviso__titulo {
+  margin-block: 0.75rem 1rem;
+  padding-inline-end: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--color-sand);
+}
+
+.aviso__titulo strong {
+  color: var(--color-lime-ct);
+}
+
+.aviso__acoes {
+  margin-block-start: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.aviso__btn {
+  padding-block: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.aviso__link {
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 65%, transparent);
+  border-block-end: 1px solid transparent;
+}
+
+.aviso__link:hover {
+  color: var(--color-sand);
+  border-block-end-color: var(--color-lime-ct);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .turma__pulso {
+    animation: none;
+  }
+
+  .aviso,
+  .aviso[data-saindo="true"] {
+    animation: none;
+  }
 }

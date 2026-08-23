@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import Passos from "@/components/Passos";
 import Revela from "@/components/Revela";
 import Secao, { Blocos, Prosa } from "@/components/Secao";
+import TurmaConexao from "@/components/TurmaConexao";
 import { depoisDoCurso, modulos, paraQuem, porQueExiste } from "@/data/conexao";
 import { faqProfessores } from "@/data/faq";
 import { nodoCurso, nodoFaq, nodoTrilha } from "@/data/schema";
@@ -35,6 +36,10 @@ export default function PaginaConexaoBt() {
         intro="A capacitação do CT para quem já dá aula e quer estruturar o que hoje sai por instinto."
         trilha={trilha}
       />
+
+      {/* Fica ANTES do "por que existe": quem chega pelo anúncio da turma vem
+          atrás da data, não de argumentação. */}
+      <TurmaConexao />
 
       <Secao numero="01" rotulo="Por que existe" titulo={porQueExiste.titulo} estreita>
         <Prosa paragrafos={porQueExiste.paragrafos} />
@@ -102,9 +107,9 @@ export default function PaginaConexaoBt() {
       >
         <Revela className="prosa">
           <p>
-            Formato, carga horária, investimento e data da próxima turma são combinados
-            direto com o CT — inclusive porque parte da capacitação é ajustada ao ponto
-            em que cada professor está.
+            A próxima turma é presencial, na Prainha, em 25, 26 e 27 de setembro:
+            três dias, mais de 20 horas de quadra, nível iniciante/intermediário.
+            O investimento é combinado direto com o CT.
           </p>
           <p>
             Chame no WhatsApp dizendo há quanto tempo você dá aula e onde: a resposta

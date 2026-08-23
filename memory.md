@@ -158,7 +158,13 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
 
 - [ ] Aprovar com o cliente a copy rascunhada em `copy-site.md`
 - [ ] Receber o nome e a descrição oficial de cada um dos **5 pilares** do método
-- [ ] Receber detalhes do Conexão BT (formato, duração, o que inclui, preço, próxima turma)
+- [ ] Receber detalhes do Conexão BT (o que inclui e **preço**) — formato, duração e data da
+      próxima turma vieram no post de 23/08/2026: **25, 26 e 27 de setembro de 2026**, na
+      Prainha Beach Tennis, **+20 horas presenciais**, nível iniciante/intermediário. Estão em
+      `site/src/data/turma.ts`; passada a data, seção e aviso somem sozinhos
+- [ ] Pegar com o cliente a arte do cartaz da turma (o post do Instagram não permite baixar
+      sem login). Se ela vier, é só salvar em `site/public/img/` e apontar `foto` em
+      `turma.ts` — ela entra como fundo do cartaz, sem substituir o texto
 - [ ] Confirmar a paleta com o cliente (logo já recebida)
 - [ ] Receber foto de capa (horizontal), fotos do espaço e fotos gerais
 - [ ] Receber a ficha de professor que falta (1 de 7)
