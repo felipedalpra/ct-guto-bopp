@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { assinatura } from "@/data/guto";
-import { Trajetoria } from "./motivos";
 import Revela from "./Revela";
 
 /**
@@ -65,8 +64,6 @@ export default function Assinatura() {
         />
         <span className="assinatura__tinta" aria-hidden="true" />
       </div>
-
-      <Trajetoria className="assinatura__trajetoria" />
 
       <div className="shell assinatura__miolo">
         <Revela>

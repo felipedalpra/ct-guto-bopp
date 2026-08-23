@@ -42,7 +42,7 @@ export default function Metodo() {
 
     const ciclo = window.setInterval(() => {
       setAtivo((atual) => (atual + 1) % pilares.length);
-    }, 4500);
+    }, 3000);
 
     return () => window.clearInterval(ciclo);
   }, [pausado, visivel]);
@@ -85,9 +85,6 @@ export default function Metodo() {
         <div className="metodo__grade">
           <Revela className="metodo__quadra">
             <Quadra ativo={ativo} aoEscolher={escolher} />
-            <p className="metodo__legenda">
-              Quadra oficial de Beach Tennis · 8 × 16 m
-            </p>
           </Revela>
 
           <Revela como="ol" className="metodo__lista" atraso={120}>

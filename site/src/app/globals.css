@@ -4726,18 +4726,6 @@ body {
     );
 }
 
-/* O motivo da parábola atravessa a faixa por cima do vídeo, bem apagado — a
-   mesma marca gráfica que o resto do site usa, aqui como assinatura. */
-.assinatura__trajetoria {
-  position: absolute;
-  z-index: -1;
-  inset-block-start: 8%;
-  inset-inline-end: -4%;
-  inline-size: min(46rem, 62%);
-  opacity: 0.28;
-  pointer-events: none;
-}
-
 .assinatura__miolo {
   position: relative;
 }
@@ -4764,8 +4752,4 @@ body {
     min-block-size: clamp(22rem, 72vh, 30rem);
   }
 
-  .assinatura__trajetoria {
-    inline-size: 90%;
-    opacity: 0.2;
-  }
 }
