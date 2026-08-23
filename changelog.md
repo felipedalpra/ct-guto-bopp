@@ -25,7 +25,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - 2026-08-19 — Rascunho da copy do site em `copy-site.md` (hero, apresentação, método, quem somos, Conexão BT, professores, rodapé)
 
 ### Corrigido
-- 2026-08-21 — Deploy na Vercel corrigido para o repositório com o app Next.js dentro de `site/`: a configuração da raiz agora instala dependências, executa o build e aponta para o output correto, evitando o 404 na página inicial
+- 2026-08-21 — `vercel.json` da raiz removido: o projeto na Vercel já tem o Root Directory apontado para `site/`, então os comandos `cd site && ...` do arquivo rodavam dentro de `site/` e falhavam com `cd: site: No such file or directory` — todo deploy desde que o arquivo foi criado deu ERROR. Sem ele, a detecção automática do Next.js volta a funcionar
 - 2026-08-21 — O ajuste anterior do FAQ permitia quebrar "PERGUNTAS" no meio da palavra; a escala foi reduzida e a quebra interna removida, preservando palavras inteiras
 - 2026-08-21 — Título "Perguntas frequentes" invadia a coluna do acordeão em telas menores: a grade do FAQ agora permite que as colunas encolham e limita a escala do título para manter o texto dentro da própria coluna
 - 2026-08-20 — As linhas de quadra verticais caíam exatamente na borda da caixa de conteúdo, então rótulos como "PROFESSOR" e "FORMADOR" nasciam colados nelas. Agora a marcação fica um pouco fora do conteúdo, com recuo próprio (`--recuo-linha`), e nada mais encosta
