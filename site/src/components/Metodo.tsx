@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pilares } from "@/data/pilares";
 import { site, whatsappMensagens } from "@/data/site";
 import Revela from "./Revela";
@@ -19,9 +19,51 @@ import Revela from "./Revela";
  */
 export default function Metodo() {
   const [ativo, setAtivo] = useState(0);
+  const [visivel, setVisivel] = useState(false);
+  const [pausado, setPausado] = useState(false);
+  const secaoRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const secao = secaoRef.current;
+    if (!secao) return;
+
+    const observador = new IntersectionObserver(
+      ([entrada]) => setVisivel(entrada.isIntersecting),
+      { threshold: 0.35 }
+    );
+    observador.observe(secao);
+
+    return () => observador.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visivel || pausado) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ciclo = window.setInterval(() => {
+      setAtivo((atual) => (atual + 1) % pilares.length);
+    }, 4500);
+
+    return () => window.clearInterval(ciclo);
+  }, [pausado, visivel]);
+
+  const escolher = (i: number) => {
+    setAtivo(i);
+  };
 
   return (
-    <section className="secao bloco superficie-clara grao metodo">
+    <section
+      ref={secaoRef}
+      className="secao bloco superficie-clara grao metodo"
+      onMouseEnter={() => setPausado(true)}
+      onMouseLeave={() => setPausado(false)}
+      onFocus={() => setPausado(true)}
+      onBlur={(evento) => {
+        if (!(evento.relatedTarget instanceof Node) || !evento.currentTarget.contains(evento.relatedTarget)) {
+          setPausado(false);
+        }
+      }}
+    >
       <div className="quadra-linhas" aria-hidden="true" />
 
       <div className="shell">
@@ -42,7 +84,7 @@ export default function Metodo() {
 
         <div className="metodo__grade">
           <Revela className="metodo__quadra">
-            <Quadra ativo={ativo} aoEscolher={setAtivo} />
+            <Quadra ativo={ativo} aoEscolher={escolher} />
             <p className="metodo__legenda">
               Quadra oficial de Beach Tennis · 8 × 16 m
             </p>
@@ -119,6 +161,11 @@ function Quadra({
 
   const px = (x: number) => margem + x * (L - margem * 2);
   const py = (y: number) => margem + y * (A - margem * 2);
+  const pontos = pilares.map((pilar) => [px(pilar.zona.x), py(pilar.zona.y)]);
+  const rastro = pontos
+    .slice(0, ativo + 1)
+    .map(([x, y], i) => `${i === 0 ? "M" : "L"}${x} ${y}`)
+    .join(" ");
 
   return (
     <svg
@@ -147,6 +194,15 @@ function Quadra({
       />
       <circle cx={margem - 22} cy={A / 2} r="4" className="quadra__poste" />
       <circle cx={L - margem + 22} cy={A / 2} r="4" className="quadra__poste" />
+
+      {ativo > 0 && (
+        <path
+          key={ativo}
+          d={rastro}
+          className="quadra__rastro"
+          aria-hidden="true"
+        />
+      )}
 
       {/* pilares */}
       {pilares.map((pilar, i) => {

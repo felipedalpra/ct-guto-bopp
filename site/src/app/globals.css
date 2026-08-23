@@ -886,6 +886,24 @@ body {
   fill: var(--color-navy-900);
 }
 
+.quadra__rastro {
+  fill: none;
+  stroke: var(--color-lime-ct);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: quadra-rastro 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes quadra-rastro {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .quadra__no {
   cursor: pointer;
 }
@@ -1084,6 +1102,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .quadra__rastro {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
   .pilar__corpo,
   .pilar__miolo {
     transition: none;
