@@ -1,26 +1,27 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { site, formulario } from "@/data/site";
 
 /**
- * Formulário de contato desenhado como um rali.
+ * Formulário de contato com o placar do jogo como indicador de progresso.
  *
- * A animação não é enfeite: cada campo preenchido é uma bola devolvida. A bolinha
- * sobe o arco por cima da rede a cada resposta, o traçado vai sendo desenhado
- * atrás dela, e o envio é o ponto — a bola cai na areia e levanta o pó. É o único
- * gesto do esporte na página, pelo mesmo motivo que a Trajetória aparece uma vez
- * só: usado uma vez, é o jogo; repetido, vira decoração.
+ * A contagem do tênis — 0, 15, 30, 40, game — é a coisa mais reconhecível do
+ * esporte depois da bola, e cai exatamente sobre a forma do formulário: quatro
+ * campos, quatro pontos, e o envio fecha o game. Cada resposta faz o número
+ * saltar como quem marca ponto.
  *
- * O ponto exato da bolinha vem de getPointAtLength no próprio path do arco, então
- * ela segue a curva de verdade em vez de uma aproximação — e o CSS interpola entre
- * uma posição e a seguinte, dando o salto.
+ * A trajetória da bola por cima da rede não serve aqui: ela já é o gesto do
+ * fecho da home e da faixa do Guto (ver motivos.tsx). Repetida uma terceira vez
+ * viraria papel de parede — o placar diz a mesma coisa numa gramática que ainda
+ * não foi usada.
  *
  * Sem endpoint configurado (ver formulario.endpoint em data/site.ts) nada é
  * enviado: a interface completa funciona, mas os dados não saem do navegador.
  */
 
-const CAMPOS_DO_RALI = ["nome", "whatsapp", "perfil", "horario"] as const;
+const CAMPOS_DO_PLACAR = ["nome", "whatsapp", "perfil", "horario"] as const;
+const PLACAR = ["0", "15", "30", "40"] as const;
 
 const PERFIS = [
   { valor: "nunca-joguei", rotulo: "Nunca joguei" },
@@ -48,27 +49,7 @@ export default function FormularioContato() {
   });
   const [estado, setEstado] = useState<Estado>("parado");
 
-  const arco = useRef<SVGPathElement>(null);
-  const [bola, setBola] = useState({ x: 40, y: 168 });
-  const [comprimento, setComprimento] = useState(0);
-
-  const respondidos = CAMPOS_DO_RALI.filter((c) => dados[c].trim() !== "").length;
-  // No envio a bola completa o arco, independente do que faltou preencher.
-  const progresso =
-    estado === "enviado" ? 1 : respondidos / CAMPOS_DO_RALI.length;
-
-  useEffect(() => {
-    const path = arco.current;
-    if (!path) return;
-    setComprimento(path.getTotalLength());
-  }, []);
-
-  useEffect(() => {
-    const path = arco.current;
-    if (!path || comprimento === 0) return;
-    const ponto = path.getPointAtLength(comprimento * progresso);
-    setBola({ x: ponto.x, y: ponto.y });
-  }, [progresso, comprimento]);
+  const pontos = CAMPOS_DO_PLACAR.filter((c) => dados[c].trim() !== "").length;
 
   function alterar(campo: keyof typeof dados, valor: string) {
     setDados((atual) => ({ ...atual, [campo]: valor }));
@@ -101,20 +82,14 @@ export default function FormularioContato() {
 
   if (estado === "enviado") {
     return (
-      <div className="rali rali--ponto">
-        <QuadraDoRali
-          refArco={arco}
-          bola={bola}
-          comprimento={comprimento}
-          progresso={progresso}
-          ponto
-        />
-        <p className="rali__ponto-rotulo">Ponto</p>
-        <h3 className="display rali__ponto-titulo">
+      <div className="jogo jogo--game">
+        <Placar pontos={4} game />
+        <h2 className="display jogo__game-titulo">
           Recebemos, {dados.nome.split(" ")[0] || "atleta"}.
-        </h3>
-        <p className="rali__ponto-texto">
-          A resposta vem pelo WhatsApp. Se quiser adiantar a conversa, é só chamar.
+        </h2>
+        <p className="jogo__game-texto">
+          O retorno vem pelo WhatsApp. Se quiser adiantar a conversa, é só
+          chamar.
         </p>
         <a
           className="btn btn--linha"
@@ -133,24 +108,19 @@ export default function FormularioContato() {
   }
 
   return (
-    <form className="rali" onSubmit={enviar} noValidate={false}>
-      <QuadraDoRali
-        refArco={arco}
-        bola={bola}
-        comprimento={comprimento}
-        progresso={progresso}
-      />
+    <form className="jogo" onSubmit={enviar}>
+      <Placar pontos={pontos} />
 
-      <div className="rali__campos">
+      <div className="jogo__campos">
         <label className="campo">
-          <span className="campo__rotulo">Seu nome</span>
+          <span className="campo__rotulo">Nome</span>
           <input
             className="campo__entrada"
             type="text"
             name="nome"
             required
             autoComplete="name"
-            placeholder="Como te chamamos"
+            placeholder="Seu nome"
             value={dados.nome}
             onChange={(e) => alterar("nome", e.target.value)}
           />
@@ -165,7 +135,7 @@ export default function FormularioContato() {
             required
             autoComplete="tel"
             inputMode="tel"
-            placeholder="(51) 90000-0000"
+            placeholder="(51) 99999-9999"
             value={dados.whatsapp}
             onChange={(e) => alterar("whatsapp", e.target.value)}
           />
@@ -194,7 +164,7 @@ export default function FormularioContato() {
           <textarea
             className="campo__entrada campo__area"
             name="mensagem"
-            rows={2}
+            rows={3}
             placeholder="Turma ou particular, dias que funcionam, o que você busca…"
             value={dados.mensagem}
             onChange={(e) => alterar("mensagem", e.target.value)}
@@ -202,46 +172,79 @@ export default function FormularioContato() {
         </label>
       </div>
 
-      <div className="rali__rodape">
-        <button
-          className="btn btn--primario rali__enviar"
-          type="submit"
-          disabled={estado === "enviando"}
-        >
-          {estado === "enviando" ? "Sacando…" : "Sacar"}
-        </button>
-        <p className="rali__nota" role={estado === "erro" ? "alert" : undefined}>
-          {estado === "erro" ? (
-            <>
-              Não conseguimos enviar agora.{" "}
-              <a
-                href={site.whatsapp.link(
-                  "Olá! Tentei o formulário do site e não foi. Quero falar sobre os treinos."
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Chama no WhatsApp
-              </a>{" "}
-              que a gente resolve por lá.
-            </>
-          ) : (
-            <>
-              Preferir conversa direta?{" "}
-              <a
-                href={site.whatsapp.link(
-                  "Olá! Vim pelo site do CT Guto Bopp e quero saber mais sobre os treinos."
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp {site.whatsapp.numero}
-              </a>
-            </>
-          )}
-        </p>
-      </div>
+      <button
+        className="btn btn--primario jogo__enviar"
+        type="submit"
+        disabled={estado === "enviando"}
+      >
+        {estado === "enviando" ? "Enviando…" : "Enviar contato →"}
+      </button>
+
+      <p className="jogo__nota" role={estado === "erro" ? "alert" : undefined}>
+        {estado === "erro" ? (
+          <>
+            Não conseguimos enviar agora.{" "}
+            <a
+              href={site.whatsapp.link(
+                "Olá! Tentei o formulário do site e não foi. Quero falar sobre os treinos."
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Chama no WhatsApp
+            </a>{" "}
+            que a gente resolve por lá.
+          </>
+        ) : (
+          <>
+            Prefere conversa direta?{" "}
+            <a
+              href={site.whatsapp.link(
+                "Olá! Vim pelo site do CT Guto Bopp e quero saber mais sobre os treinos."
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp {site.whatsapp.numero}
+            </a>
+          </>
+        )}
+      </p>
     </form>
+  );
+}
+
+/**
+ * O placar. O número troca a cada campo respondido e salta ao entrar — a `key`
+ * remonta o elemento, então a animação roda de novo a cada ponto marcado.
+ * O traço embaixo mede o game inteiro, para o salto não ser o único sinal.
+ */
+function Placar({ pontos, game = false }: { pontos: number; game?: boolean }) {
+  const valor = game ? "GAME" : PLACAR[Math.min(pontos, 3)];
+
+  return (
+    <div className="placar" data-game={game || undefined}>
+      <span className="placar__rotulo">
+        {game
+          ? "Fechou"
+          : pontos === 4
+            ? "Pronto para sacar"
+            : `Ponto ${pontos + 1} de 4`}
+      </span>
+      <strong
+        key={valor}
+        className="placar__valor"
+        data-longo={valor.length > 2 || undefined}
+      >
+        {valor}
+      </strong>
+      <span className="placar__trilho" aria-hidden="true">
+        <span
+          className="placar__avanco"
+          style={{ transform: `scaleX(${(game ? 4 : pontos) / 4})` }}
+        />
+      </span>
+    </div>
   );
 }
 
@@ -277,83 +280,5 @@ function Escolhas({
         ))}
       </div>
     </fieldset>
-  );
-}
-
-/**
- * A quadra vista de lado: areia, rede e o arco do golpe.
- * O traçado só existe até onde o rali chegou — o resto fica pontilhado, à espera.
- */
-function QuadraDoRali({
-  refArco,
-  bola,
-  comprimento,
-  progresso,
-  ponto = false,
-}: {
-  refArco: React.RefObject<SVGPathElement | null>;
-  bola: { x: number; y: number };
-  comprimento: number;
-  progresso: number;
-  ponto?: boolean;
-}) {
-  return (
-    <svg
-      className="rali__quadra"
-      viewBox="0 0 600 200"
-      fill="none"
-      aria-hidden="true"
-    >
-      <line x1="0" y1="176" x2="600" y2="176" stroke="currentColor" opacity="0.28" />
-      <line x1="300" y1="176" x2="300" y2="96" stroke="currentColor" opacity="0.5" />
-      <line
-        x1="286"
-        y1="96"
-        x2="314"
-        y2="96"
-        stroke="currentColor"
-        strokeWidth="2"
-        opacity="0.5"
-      />
-
-      {/* O arco inteiro, à espera. */}
-      <path
-        ref={refArco}
-        className="rali__arco"
-        d="M40 168C40 168 150 24 300 24s260 144 260 144"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeDasharray="4 8"
-        opacity="0.28"
-      />
-      {/* O trecho já percorrido, sólido. */}
-      {comprimento > 0 && (
-        <path
-          className="rali__arco-feito"
-          d="M40 168C40 168 150 24 300 24s260 144 260 144"
-          stroke="var(--color-lime-ct)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          style={{
-            strokeDasharray: comprimento,
-            strokeDashoffset: comprimento * (1 - progresso),
-          }}
-        />
-      )}
-
-      <g
-        className="rali__bola"
-        style={{ transform: `translate(${bola.x}px, ${bola.y}px)` }}
-      >
-        {ponto && <circle className="rali__poeira" r="9" fill="var(--color-sand)" />}
-        <circle r="7" fill="var(--color-lime-ct)" />
-        <path
-          d="M-7 0a7 7 0 0 1 14 0"
-          stroke="var(--color-navy-900)"
-          strokeWidth="1.5"
-          opacity="0.55"
-        />
-      </g>
-    </svg>
   );
 }

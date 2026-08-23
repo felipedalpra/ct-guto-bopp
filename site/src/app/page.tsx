@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Caminhos from "@/components/Caminhos";
-import Fatos from "@/components/Fatos";
 import ResumoGuto from "@/components/ResumoGuto";
 import ResumoCt from "@/components/ResumoCt";
 import ResumoMetodo from "@/components/ResumoMetodo";
@@ -20,9 +19,7 @@ import ChamadaContato from "@/components/ChamadaContato";
  *   Hero        — o que é isto aqui
  *   Caminhos    — eu venho treinar ou eu dou aula (o tráfego vem do Instagram,
  *                 sem contexto, e os dois públicos querem coisas diferentes)
- *   Fatos       — atende meu nível? fica onde? que horas abre?
  *   Guto        — por que eu confiaria neste método
- *   Método      — o que cada pilar muda para mim
  *   Aulas       — como isso parece na quadra (o texto afirma, o vídeo mostra)
  *   CT          — como o centro se organiza
  *   Professores — com quem eu vou treinar
@@ -43,7 +40,6 @@ export default function Home() {
     <>
       <Hero />
       <Caminhos />
-      <Fatos />
       <ResumoGuto />
       <ResumoMetodo />
       <Aulas />

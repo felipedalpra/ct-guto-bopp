@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { pilares } from "@/data/pilares";
 import Revela from "./Revela";
 
 /**
- * Os cinco pilares na home.
+ * Chamada para o método na home.
  *
- * Divisão de conteúdo com /metodo, para nada ser dito duas vezes: aqui cada pilar
- * aparece pelo que ele MUDA para o aluno (o resultado), e a página do método
- * explica o que ele é e como aparece na aula (o funcionamento). Antes a home
- * trazia só o resumo de uma linha, que dizia o nome do pilar com outras palavras
- * e não informava nada.
+ * A home apresenta a existência do método, mas deixa a explicação dos cinco
+ * pilares para a página própria. O convite funciona como uma porta de entrada,
+ * sem entregar o conteúdo antes do clique.
  */
 export default function ResumoMetodo() {
   return (
@@ -26,21 +23,12 @@ export default function ResumoMetodo() {
             O Método dos <span className="metodo__cinco">5</span> Pilares
           </h2>
           <p className="resumo-metodo__intro">
-            A ordem em que o CT ensina. O que cada pilar entrega:
+            A estrutura por trás de cada treino do CT. Conheça o método completo
+            antes de escolher como quer evoluir.
           </p>
           <Link className="btn btn--linha" href="/metodo">
-            Ver como cada pilar funciona na aula
+            Entrar no Método
           </Link>
-        </Revela>
-
-        <Revela como="ol" className="resumo-metodo__lista" atraso={100}>
-          {pilares.map((pilar) => (
-            <li key={pilar.numero}>
-              <span className="resumo-metodo__numero">{pilar.numero}</span>
-              <span className="resumo-metodo__nome">{pilar.nome}</span>
-              <span className="resumo-metodo__resumo">{pilar.ganho}</span>
-            </li>
-          ))}
         </Revela>
       </div>
     </section>

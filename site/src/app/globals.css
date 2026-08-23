@@ -1593,88 +1593,167 @@ body {
   border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
-.contato__chamada {
-  max-inline-size: 46rem;
-}
-
-.contato__titulo {
-  font-size: clamp(2.75rem, 10vw, 6.5rem);
-  margin-block: 1.5rem 1.5rem;
-}
-
-.contato__texto {
-  font-size: 1.0625rem;
-  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
-  max-inline-size: 42ch;
-  margin-block-end: 2rem;
-}
-
-
-/* ------------------------------------------------------------ o rali (form) */
+/* --------------------------------------------------- cartão do contato */
 
 /*
- * O formulário é um rali: cada campo respondido devolve a bola por cima da rede.
- * A quadra fica atrás dos campos, em traço fino — presente sem competir com eles.
+ * O cartão é a seção inteira: sem título e sem texto em volta, ele precisa se
+ * sustentar sozinho no escuro — daí a moldura, o fundo próprio e o vídeo ao lado,
+ * que devolve o assunto que o título carregava.
  */
 
-.rali {
-  position: relative;
+.contato {
+  padding-block: clamp(4rem, 10vw, 7rem);
+}
+
+.cartao {
+  max-inline-size: 64rem;
+  margin-inline: auto;
   display: grid;
-  gap: 2rem;
-  margin-block-start: 2.5rem;
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 22%, transparent);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--color-navy-800) 82%, #000);
+  overflow: hidden;
+  box-shadow: 0 32px 80px -40px #000;
 }
 
-.rali__quadra {
+@media (min-width: 56rem) {
+  .cartao {
+    grid-template-columns: minmax(0, 0.66fr) minmax(0, 1fr);
+  }
+}
+
+.cartao__midia {
+  position: relative;
+  /* A gravação é vertical: no celular um recorte 16:9 pega só o tronco de quem
+     está em quadra. Mais alto e ancorado acima, entra a cena inteira. */
+  aspect-ratio: 4 / 3;
+  background: var(--color-navy-900);
+  overflow: hidden;
+}
+
+@media (min-width: 56rem) {
+  .cartao__midia {
+    aspect-ratio: auto;
+  }
+}
+
+.cartao__video {
+  position: absolute;
+  inset: 0;
   inline-size: 100%;
-  block-size: auto;
-  color: color-mix(in oklab, var(--color-sand) 32%, transparent);
-  overflow: visible;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
 }
 
-.rali__arco-feito {
-  transition: stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+/* Escurece o vídeo em direção ao formulário, para a moldura não brigar com ele. */
+.cartao__tinta {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--color-navy-900) 45%, transparent),
+    color-mix(in oklab, var(--color-navy-900) 88%, transparent)
+  );
 }
 
-.rali__bola {
-  transition: transform 0.7s cubic-bezier(0.34, 1.4, 0.5, 1);
-  filter: drop-shadow(0 0 10px color-mix(in oklab, var(--color-lime-ct) 55%, transparent));
+.cartao__corpo {
+  padding: clamp(1.75rem, 5vw, 3rem);
 }
 
-.rali__poeira {
-  animation: poeira 0.9s ease-out forwards;
-  transform-origin: center;
+/* -------------------------------------------------------------- o placar */
+
+/*
+ * A contagem do tênis como progresso: 0, 15, 30, 40, game. Cada campo respondido
+ * marca um ponto, e o número salta ao entrar — a key remonta o elemento, então a
+ * animação roda de novo a cada troca.
+ */
+
+.jogo {
+  display: grid;
+  gap: 1.75rem;
 }
 
-@keyframes poeira {
+.placar {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding-block-end: 0.5rem;
+}
+
+.placar__rotulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 50%, transparent);
+}
+
+.placar__valor {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 4.5rem);
+  line-height: 0.9;
+  color: var(--color-lime-ct);
+  font-variant-numeric: tabular-nums;
+  animation: marca-ponto 0.55s cubic-bezier(0.22, 1.4, 0.4, 1);
+}
+
+.placar__valor[data-longo] {
+  font-size: clamp(2.25rem, 7vw, 3.25rem);
+  letter-spacing: 0.04em;
+}
+
+@keyframes marca-ponto {
   from {
-    opacity: 0.5;
-    transform: scale(0.4);
+    opacity: 0;
+    transform: translateY(-0.35em) scale(0.72);
   }
   to {
-    opacity: 0;
-    transform: scale(3.4);
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
+}
+
+.placar__trilho {
+  inline-size: min(100%, 16rem);
+  block-size: 2px;
+  background: color-mix(in oklab, var(--color-sand) 16%, transparent);
+  overflow: hidden;
+}
+
+.placar__avanco {
+  display: block;
+  block-size: 100%;
+  background: var(--color-lime-ct);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.placar[data-game] .placar__valor {
+  color: var(--color-gold-ct);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rali__arco-feito,
-  .rali__bola {
-    transition: none;
+  .placar__valor {
+    animation: none;
   }
 
-  .rali__poeira {
-    animation: none;
-    opacity: 0;
+  .placar__avanco {
+    transition: none;
   }
 }
 
-.rali__campos {
+/* ------------------------------------------------------------- os campos */
+
+.jogo__campos {
   display: grid;
-  gap: 1.75rem 2rem;
+  gap: 1.25rem 1.25rem;
 }
 
 @media (min-width: 34rem) {
-  .rali__campos {
+  .jogo__campos {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1683,8 +1762,6 @@ body {
     grid-column: 1 / -1;
   }
 }
-
-/* Campos sem caixa: só a linha de base, como a marcação da quadra. */
 
 .campo {
   display: grid;
@@ -1700,24 +1777,24 @@ body {
   font-size: 0.6875rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-lime-ct);
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
   padding: 0;
 }
 
 .campo__rotulo em {
   font-style: normal;
-  color: color-mix(in oklab, var(--color-sand) 45%, transparent);
+  color: color-mix(in oklab, var(--color-sand) 40%, transparent);
 }
 
 .campo__entrada {
   inline-size: 100%;
-  background: color-mix(in oklab, var(--color-navy-900) 55%, #000);
-  border: 1px solid color-mix(in oklab, var(--color-sand) 22%, transparent);
+  background: color-mix(in oklab, var(--color-navy-900) 60%, #000);
+  border: 1px solid color-mix(in oklab, var(--color-sand) 20%, transparent);
   border-radius: 4px;
-  padding: 0.9375rem 1rem;
+  padding: 0.875rem 1rem;
   color: var(--color-sand);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
@@ -1726,17 +1803,16 @@ body {
 }
 
 .campo__entrada:hover {
-  border-color: color-mix(in oklab, var(--color-sand) 38%, transparent);
+  border-color: color-mix(in oklab, var(--color-sand) 36%, transparent);
 }
 
 .campo__entrada:focus {
   outline: none;
   border-color: var(--color-lime-ct);
-  background: color-mix(in oklab, var(--color-navy-900) 30%, #000);
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lime-ct) 20%, transparent);
 }
 
-/* O campo preenchido fica marcado, para dar a conferida final de relance. */
+/* O campo preenchido fica marcado, para a conferida final de relance. */
 .campo__entrada:not(:placeholder-shown) {
   border-color: color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
 }
@@ -1755,7 +1831,7 @@ body {
   padding: 0.5rem;
   border: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
   border-radius: 4px;
-  background: color-mix(in oklab, var(--color-navy-900) 55%, #000);
+  background: color-mix(in oklab, var(--color-navy-900) 60%, #000);
 }
 
 .campo--escolhas:has(input:checked) .pastilhas {
@@ -1775,8 +1851,8 @@ body {
 
 .pastilha span {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid color-mix(in oklab, var(--color-sand) 24%, transparent);
+  padding: 0.4375rem 0.9375rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 22%, transparent);
   border-radius: 999px;
   font-size: 0.875rem;
   color: color-mix(in oklab, var(--color-sand) 82%, transparent);
@@ -1800,61 +1876,49 @@ body {
   font-weight: 600;
 }
 
-.rali__rodape {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.75rem;
+.jogo__enviar {
+  inline-size: 100%;
+  padding-block: 1.0625rem;
+  font-size: 0.9375rem;
 }
 
-.rali__enviar {
-  font-size: 1rem;
-  padding: 1.125rem 2.75rem;
-}
-
-.rali__enviar:disabled {
+.jogo__enviar:disabled {
   opacity: 0.6;
   cursor: progress;
 }
 
-.rali__nota {
-  font-size: 0.875rem;
-  color: color-mix(in oklab, var(--color-sand) 62%, transparent);
-  max-inline-size: 30ch;
+.jogo__nota {
+  font-size: 0.8125rem;
+  text-align: center;
+  color: color-mix(in oklab, var(--color-sand) 55%, transparent);
 }
 
-.rali__nota a {
+.jogo__nota a {
   color: var(--color-lime-ct);
   border-block-end: 1px solid transparent;
   transition: border-color 0.25s;
 }
 
-.rali__nota a:hover {
+.jogo__nota a:hover {
   border-block-end-color: currentColor;
 }
 
-/* O ponto: o que substitui o formulário depois do envio. */
+/* O game: o que substitui o formulário depois do envio. */
 
-.rali--ponto {
+.jogo--game {
+  justify-items: center;
+  text-align: center;
   gap: 1rem;
-  justify-items: start;
+  padding-block: clamp(1rem, 4vw, 2.5rem);
 }
 
-.rali__ponto-rotulo {
-  font-family: var(--font-mono-ct);
-  font-size: 0.6875rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-lime-ct);
+.jogo__game-titulo {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
 }
 
-.rali__ponto-titulo {
-  font-size: clamp(1.75rem, 5vw, 2.75rem);
-}
-
-.rali__ponto-texto {
-  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
-  max-inline-size: 38ch;
+.jogo__game-texto {
+  color: color-mix(in oklab, var(--color-sand) 76%, transparent);
+  max-inline-size: 36ch;
 }
 
 /* ==================================================================== rodapé */
@@ -2385,15 +2449,11 @@ body {
 /* =========================================================== resumo do método */
 
 .resumo-metodo__grade {
-  display: grid;
-  gap: clamp(2rem, 5vw, 3.5rem);
+  display: block;
 }
 
-@media (min-width: 60rem) {
-  .resumo-metodo__grade {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-    align-items: start;
-  }
+.resumo-metodo__cabecalho {
+  max-inline-size: 48rem;
 }
 
 .resumo-metodo__titulo {
@@ -4359,6 +4419,7 @@ body {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
+  object-position: 50% 35%;
 }
 
 /* O botão cobre o quadro inteiro: no celular, alvo de toque generoso. */

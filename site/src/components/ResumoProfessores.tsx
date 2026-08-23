@@ -8,10 +8,9 @@ import { Ondas } from "./motivos";
 /**
  * O time em faixa — o teaser de /professores na home.
  *
- * Cada rosto leva direto à ficha da pessoa. Além do nome e do papel, o cartão
- * traz onde a pessoa dá aula e o que ela atende: é a informação que decide se
- * vale clicar, e vem direto das fichas de cadastro. A ficha completa —
- * formação, tempo de casa, frase e contato — fica em /professores.
+ * Cada rosto leva direto à ficha da pessoa. A home mostra apenas as fotos; a
+ * ficha completa — formação, experiência, frase e contato — fica em
+ * /professores.
  */
 export default function ResumoProfessores() {
   return (
@@ -42,7 +41,11 @@ export default function ResumoProfessores() {
         <Revela como="ul" className="resumo-time__fila" atraso={100}>
           {time.map((pessoa) => (
             <li key={pessoa.slug}>
-              <Link className="rosto" href={hrefProfessor(pessoa)}>
+              <Link
+                className="rosto"
+                href={hrefProfessor(pessoa)}
+                aria-label={`Ver o perfil de ${pessoa.nome}`}
+              >
                 <span className="rosto__foto">
                   {pessoa.foto ? (
                     <Image
@@ -58,20 +61,11 @@ export default function ResumoProfessores() {
                     </span>
                   )}
                 </span>
-                <span className="rosto__nome">{pessoa.nome}</span>
-                <span className="rosto__papel">{pessoa.papel}</span>
-                <span className="rosto__local">{pessoa.local}</span>
-                <span className="rosto__atende">{pessoa.atende.join(" · ")}</span>
               </Link>
             </li>
           ))}
         </Revela>
 
-        <Revela className="resumo-time__rodape" atraso={160}>
-          <Link className="btn btn--linha" href="/professores">
-            Ver o time inteiro
-          </Link>
-        </Revela>
       </div>
     </section>
   );
