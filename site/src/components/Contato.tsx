@@ -1,33 +1,33 @@
-import { site, whatsappMensagens } from "@/data/site";
+import { site } from "@/data/site";
+import FormularioContato from "./FormularioContato";
 import Mapa from "./Mapa";
 import Revela from "./Revela";
 
+/**
+ * O fecho do site: um formulário curto e os dados essenciais, nada mais.
+ *
+ * A versão anterior explicava por escrito o que dizer no WhatsApp — três
+ * instruções que o visitante tinha de ler, guardar e repetir por conta própria.
+ * O formulário faz as mesmas perguntas e já entrega a resposta pronta, então o
+ * texto saiu inteiro: quem chega aqui não veio ler, veio marcar aula.
+ */
 export default function Contato() {
   return (
-    <section className="secao contato grao">
+    <section className="secao contato grao" id="contato">
       <div className="quadra-linhas" aria-hidden="true" />
 
       <div className="shell contato__grade">
         <Revela className="contato__chamada">
-          <h2 className="display contato__titulo">Como falar com o CT</h2>
+          <p className="eyebrow">Primeiro saque</p>
+          <h2 className="display contato__titulo">Bora treinar</h2>
           <p className="contato__texto">
-            O atendimento é direto no WhatsApp, sem formulário e sem intermediário.
-            Para a primeira resposta já vir útil, diga três coisas: há quanto tempo
-            você joga (ou se nunca jogou), que dias e horários funcionam para você, e
-            se prefere turma ou aula particular. Se for professor procurando o
-            Conexão BT, diga há quanto tempo dá aula e onde.
+            Quatro respostas rápidas e o Guto te chama no WhatsApp com horário
+            e turma já na mão.
           </p>
-          <a
-            className="btn btn--primario contato__cta"
-            href={site.whatsapp.link(whatsappMensagens.geral)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Falar no WhatsApp
-          </a>
+          <FormularioContato />
         </Revela>
 
-        <Revela como="dl" className="contato__dados" atraso={100}>
+        <Revela como="dl" className="contato__dados" atraso={120}>
           <div>
             <dt>Onde</dt>
             <dd>
@@ -49,18 +49,6 @@ export default function Contato() {
             <dd>{site.horario.texto}</dd>
           </div>
           <div>
-            <dt>WhatsApp</dt>
-            <dd>
-              <a
-                href={site.whatsapp.link(whatsappMensagens.geral)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {site.whatsapp.numero}
-              </a>
-            </dd>
-          </div>
-          <div>
             <dt>Instagram</dt>
             <dd>
               <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">
@@ -75,7 +63,7 @@ export default function Contato() {
         </Revela>
       </div>
 
-    <Mapa />
+      <Mapa />
     </section>
   );
 }

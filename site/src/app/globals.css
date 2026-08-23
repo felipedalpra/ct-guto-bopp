@@ -1617,10 +1617,6 @@ body {
   margin-block-end: 2rem;
 }
 
-.contato__cta {
-  font-size: 1rem;
-  padding: 1.125rem 2.25rem;
-}
 
 .contato__dados {
   display: grid;
@@ -1660,6 +1656,237 @@ body {
 .contato__dados a:hover {
   color: var(--color-lime-ct);
   border-block-end-color: currentColor;
+}
+
+
+/* ------------------------------------------------------------ o rali (form) */
+
+/*
+ * O formulário é um rali: cada campo respondido devolve a bola por cima da rede.
+ * A quadra fica atrás dos campos, em traço fino — presente sem competir com eles.
+ */
+
+.rali {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  margin-block-start: 2.5rem;
+}
+
+.rali__quadra {
+  inline-size: 100%;
+  block-size: auto;
+  color: color-mix(in oklab, var(--color-sand) 32%, transparent);
+  overflow: visible;
+}
+
+.rali__arco-feito {
+  transition: stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rali__bola {
+  transition: transform 0.7s cubic-bezier(0.34, 1.4, 0.5, 1);
+  filter: drop-shadow(0 0 10px color-mix(in oklab, var(--color-lime-ct) 55%, transparent));
+}
+
+.rali__poeira {
+  animation: poeira 0.9s ease-out forwards;
+  transform-origin: center;
+}
+
+@keyframes poeira {
+  from {
+    opacity: 0.5;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rali__arco-feito,
+  .rali__bola {
+    transition: none;
+  }
+
+  .rali__poeira {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.rali__campos {
+  display: grid;
+  gap: 1.75rem 2rem;
+}
+
+@media (min-width: 34rem) {
+  .rali__campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campo--largo,
+  .campo--escolhas {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Campos sem caixa: só a linha de base, como a marcação da quadra. */
+
+.campo {
+  display: grid;
+  gap: 0.5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.campo__rotulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+  padding: 0;
+}
+
+.campo__rotulo em {
+  font-style: normal;
+  color: color-mix(in oklab, var(--color-sand) 45%, transparent);
+}
+
+.campo__entrada {
+  inline-size: 100%;
+  background: transparent;
+  border: 0;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 26%, transparent);
+  border-radius: 0;
+  padding-block: 0.625rem;
+  color: var(--color-sand);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.campo__entrada::placeholder {
+  color: color-mix(in oklab, var(--color-sand) 34%, transparent);
+}
+
+.campo__entrada:focus {
+  outline: none;
+  border-block-end-color: var(--color-lime-ct);
+  box-shadow: 0 1px 0 0 var(--color-lime-ct);
+}
+
+.campo__area {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Pastilhas de escolha única: um toque no celular, sem abrir menu nativo. */
+
+.pastilhas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pastilha {
+  cursor: pointer;
+}
+
+.pastilha input {
+  position: absolute;
+  opacity: 0;
+  inline-size: 1px;
+  block-size: 1px;
+}
+
+.pastilha span {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 24%, transparent);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.pastilha:hover span {
+  border-color: var(--color-lime-ct);
+  color: var(--color-sand);
+}
+
+.pastilha input:focus-visible + span {
+  outline: 2px solid var(--color-lime-bright);
+  outline-offset: 3px;
+}
+
+.pastilha input:checked + span {
+  background: var(--color-lime-ct);
+  border-color: var(--color-lime-ct);
+  color: var(--color-navy-900);
+  font-weight: 600;
+}
+
+.rali__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+
+.rali__enviar {
+  font-size: 1rem;
+  padding: 1.125rem 2.75rem;
+}
+
+.rali__enviar:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.rali__nota {
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--color-sand) 62%, transparent);
+  max-inline-size: 30ch;
+}
+
+.rali__nota a {
+  color: var(--color-lime-ct);
+  border-block-end: 1px solid transparent;
+  transition: border-color 0.25s;
+}
+
+.rali__nota a:hover {
+  border-block-end-color: currentColor;
+}
+
+/* O ponto: o que substitui o formulário depois do envio. */
+
+.rali--ponto {
+  gap: 1rem;
+  justify-items: start;
+}
+
+.rali__ponto-rotulo {
+  font-family: var(--font-mono-ct);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.rali__ponto-titulo {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+}
+
+.rali__ponto-texto {
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+  max-inline-size: 38ch;
 }
 
 /* ==================================================================== rodapé */

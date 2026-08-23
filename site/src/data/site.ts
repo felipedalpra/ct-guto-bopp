@@ -53,6 +53,18 @@ export const site = {
   },
 } as const;
 
+/**
+ * Formulário de contato.
+ *
+ * `endpoint` é o destino do POST (JSON) com os campos do formulário. Enquanto
+ * estiver vazio, a interface funciona por inteiro mas nada é salvo — é só plugar
+ * a URL de um serviço de formulário (Formspree, Basin, Getform) ou de uma rota
+ * própria, sem mexer no componente.
+ */
+export const formulario = {
+  endpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
+} as const;
+
 /** Mensagens pré-preenchidas do WhatsApp, por origem do clique. */
 export const whatsappMensagens = {
   geral: "Olá! Vim pelo site do CT Guto Bopp e quero saber mais sobre os treinos.",
