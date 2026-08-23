@@ -25,7 +25,8 @@
 
   --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
   --font-body: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
-  --font-mono-ct: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono-ct:
+    var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
 
   --breakpoint-xs: 30rem;
 }
@@ -164,13 +165,19 @@ body {
   parecendo defeito. O recuo abaixo é o respiro entre a marcação e o conteúdo.
 */
 .quadra-linhas::before {
-  left: max(0.375rem, calc(var(--gutter) - var(--recuo-linha)),
-    calc(50% - var(--shell) / 2 - var(--recuo-linha)));
+  left: max(
+    0.375rem,
+    calc(var(--gutter) - var(--recuo-linha)),
+    calc(50% - var(--shell) / 2 - var(--recuo-linha))
+  );
 }
 
 .quadra-linhas::after {
-  right: max(0.375rem, calc(var(--gutter) - var(--recuo-linha)),
-    calc(50% - var(--shell) / 2 - var(--recuo-linha)));
+  right: max(
+    0.375rem,
+    calc(var(--gutter) - var(--recuo-linha)),
+    calc(50% - var(--shell) / 2 - var(--recuo-linha))
+  );
 }
 
 .superficie-clara {
@@ -210,7 +217,10 @@ body {
   border: 1px solid transparent;
   border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.25s, color 0.25s, border-color 0.25s,
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    border-color 0.25s,
     transform 0.25s;
   text-align: center;
 }
@@ -249,7 +259,8 @@ body {
 .revela {
   opacity: 0;
   transform: translateY(1.75rem);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--atraso, 0ms);
 }
@@ -322,14 +333,21 @@ body {
   inset-block-start: 0;
   inset-inline: 0;
   z-index: 100;
-  transition: background-color 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+  transition:
+    background-color 0.4s,
+    backdrop-filter 0.4s,
+    border-color 0.4s;
   border-block-end: 1px solid transparent;
 }
 
 .cabecalho--solido {
   background: color-mix(in oklab, var(--color-navy-900) 88%, transparent);
   backdrop-filter: blur(14px) saturate(140%);
-  border-block-end-color: color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-block-end-color: color-mix(
+    in oklab,
+    var(--color-lime-ct) 18%,
+    transparent
+  );
 }
 
 .cabecalho__linha {
@@ -415,7 +433,9 @@ body {
   inset-inline: 0;
   block-size: 2px;
   background: currentColor;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), top 0.3s;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.3s;
 }
 
 .hamburguer i:first-child {
@@ -483,7 +503,8 @@ body {
   align-items: baseline;
   gap: 1rem;
   padding-block: 0.5rem;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 15%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 15%, transparent);
   opacity: 0;
   animation: entra-menu 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: calc(var(--i) * 60ms + 80ms);
@@ -566,7 +587,12 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10, 21, 36, 0.82) 0%, rgba(10, 21, 36, 0.42) 38%, rgba(7, 15, 27, 0.94) 100%),
+    linear-gradient(
+      180deg,
+      rgba(10, 21, 36, 0.82) 0%,
+      rgba(10, 21, 36, 0.42) 38%,
+      rgba(7, 15, 27, 0.94) 100%
+    ),
     linear-gradient(90deg, rgba(10, 21, 36, 0.75) 0%, transparent 65%);
 }
 
@@ -695,7 +721,8 @@ body {
 }
 
 .hero__regua {
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 22%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 22%, transparent);
   background: color-mix(in oklab, var(--color-navy-900) 55%, transparent);
   backdrop-filter: blur(6px);
 }
@@ -812,7 +839,8 @@ body {
 .autoridade__lista {
   display: grid;
   gap: 0;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
 @media (min-width: 40rem) {
@@ -824,7 +852,8 @@ body {
 
 .autoridade__lista li {
   padding-block: 0.875rem;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
   font-size: 0.9375rem;
   display: flex;
   align-items: baseline;
@@ -918,7 +947,9 @@ body {
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  transition: opacity 0.4s, scale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.4s,
+    scale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   scale: 0.6;
 }
 
@@ -931,7 +962,9 @@ body {
   fill: var(--color-sand);
   stroke: var(--color-navy-900);
   stroke-width: 2;
-  transition: fill 0.3s, stroke 0.3s;
+  transition:
+    fill 0.3s,
+    stroke 0.3s;
 }
 
 .quadra__no[data-ativo="true"] .quadra__disco {
@@ -969,11 +1002,13 @@ body {
 }
 
 .metodo__lista {
-  border-block-start: 1px solid color-mix(in oklab, var(--color-navy-900) 18%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-navy-900) 18%, transparent);
 }
 
 .pilar {
-  border-block-end: 1px solid color-mix(in oklab, var(--color-navy-900) 18%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-navy-900) 18%, transparent);
 }
 
 .pilar__botao {
@@ -1042,7 +1077,9 @@ body {
   padding-inline-start: calc(0.75rem + 1.25rem + 1ch);
   max-inline-size: 60ch;
   opacity: 0;
-  transition: opacity 0.4s 0.1s, padding-block 0.4s;
+  transition:
+    opacity 0.4s 0.1s,
+    padding-block 0.4s;
 }
 
 .pilar[data-aberto="true"] .pilar__miolo {
@@ -1149,7 +1186,8 @@ body {
    da grade — senão a sexta célula, sem item, acendia como um bloco verde. */
 .conexao__mudanca li {
   background: var(--color-navy-800);
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
+  box-shadow: 0 0 0 1px
+    color-mix(in oklab, var(--color-lime-ct) 16%, transparent);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
@@ -1161,7 +1199,11 @@ body {
   font-size: 0.8125rem;
   color: color-mix(in oklab, var(--color-sand) 45%, transparent);
   text-decoration: line-through;
-  text-decoration-color: color-mix(in oklab, var(--color-sand) 30%, transparent);
+  text-decoration-color: color-mix(
+    in oklab,
+    var(--color-sand) 30%,
+    transparent
+  );
 }
 
 .conexao__seta {
@@ -1205,6 +1247,19 @@ body {
 
 /* =============================================================== professores */
 
+/*
+  Seção que abre a página no lugar da capa (/professores). Precisa do mesmo
+  respiro que a capa dava abaixo do cabeçalho fixo, e a trilha ganha um espaço
+  antes do rótulo da seção.
+*/
+.bloco--abertura {
+  padding-block-start: clamp(7.5rem, 13vw, 9.25rem);
+}
+
+.bloco--abertura .trilha {
+  margin-block-end: 1.5rem;
+}
+
 .professores__grade {
   display: grid;
   gap: 1.5rem;
@@ -1219,7 +1274,9 @@ body {
   border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
   border-radius: 2px;
   overflow: hidden;
-  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.35s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover,
@@ -1440,7 +1497,11 @@ body {
   block-size: 100%;
   margin: 0;
   padding: 2rem 1.75rem 1.75rem;
-  background: color-mix(in oklab, var(--color-sand-deep) 40%, var(--color-sand));
+  background: color-mix(
+    in oklab,
+    var(--color-sand-deep) 40%,
+    var(--color-sand)
+  );
   border-block-start: 2px solid var(--color-navy-700);
   border-radius: 2px;
   display: flex;
@@ -1473,7 +1534,8 @@ body {
 .depoimento figcaption {
   margin-block-start: auto;
   padding-block-start: 1rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-navy-900) 15%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-navy-900) 15%, transparent);
   display: flex;
   flex-direction: column;
   gap: 0.1875rem;
@@ -1525,11 +1587,13 @@ body {
 }
 
 .faq__lista {
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
 .faq__item {
-  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
 .faq__item summary {
@@ -1621,7 +1685,8 @@ body {
   background:
     radial-gradient(80% 70% at 15% 100%, #16334f 0%, transparent 62%),
     var(--color-navy-900);
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
 /* --------------------------------------------------- cartão do contato */
@@ -1826,7 +1891,10 @@ body {
   color: var(--color-sand);
   font-family: var(--font-body);
   font-size: 1rem;
-  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .campo__entrada::placeholder {
@@ -1840,7 +1908,8 @@ body {
 .campo__entrada:focus {
   outline: none;
   border-color: var(--color-lime-ct);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lime-ct) 20%, transparent);
+  box-shadow: 0 0 0 3px
+    color-mix(in oklab, var(--color-lime-ct) 20%, transparent);
 }
 
 /* O campo preenchido fica marcado, para a conferida final de relance. */
@@ -1909,7 +1978,10 @@ body {
   border-radius: 999px;
   font-size: 0.875rem;
   color: color-mix(in oklab, var(--color-sand) 82%, transparent);
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
 }
 
 .pastilha:hover span {
@@ -1977,7 +2049,8 @@ body {
 /* ==================================================================== rodapé */
 
 .rodape {
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
   background: #070f1b;
   padding-block: clamp(2.5rem, 6vw, 4rem) 0;
 }
@@ -2062,7 +2135,8 @@ body {
 .rodape__creditos {
   margin-block-start: clamp(2rem, 5vw, 3rem);
   padding-block: 1.25rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 10%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-sand) 10%, transparent);
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem 2rem;
@@ -2097,8 +2171,11 @@ body {
   opacity: 0;
   visibility: hidden;
   transform: translateY(1rem) scale(0.94);
-  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0.35s, background-color 0.25s;
+  transition:
+    opacity 0.35s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.35s,
+    background-color 0.25s;
 }
 
 .zap[data-visivel="true"] {
@@ -2139,7 +2216,9 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .zap {
-    transition: opacity 0.2s, visibility 0.2s;
+    transition:
+      opacity 0.2s,
+      visibility 0.2s;
     transform: none;
   }
 }
@@ -2250,9 +2329,12 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-sand);
-  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 60%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 60%, transparent);
   padding-block-end: 0.125rem;
-  transition: color 0.25s, border-color 0.25s;
+  transition:
+    color 0.25s,
+    border-color 0.25s;
 }
 
 .mapa__link:hover {
@@ -2288,9 +2370,14 @@ body {
   position: relative;
   padding-block: clamp(7.5rem, 13vw, 9.25rem) clamp(2rem, 4vw, 2.75rem);
   background:
-    radial-gradient(120% 80% at 50% 0%, var(--color-navy-800) 0%, transparent 65%),
+    radial-gradient(
+      120% 80% at 50% 0%,
+      var(--color-navy-800) 0%,
+      transparent 65%
+    ),
     var(--color-navy-900);
-  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 12%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 12%, transparent);
   overflow: hidden;
 }
 
@@ -2403,7 +2490,9 @@ body {
   background: var(--color-navy-800);
   border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
   border-radius: 2px;
-  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.35s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .caminho:hover,
@@ -2548,11 +2637,13 @@ body {
   align-items: baseline;
   gap: 0 0.75rem;
   padding-block: 1rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-navy-700) 20%, transparent);
 }
 
 .resumo-metodo__lista li:last-child {
-  border-block-end: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-navy-700) 20%, transparent);
 }
 
 .resumo-metodo__numero {
@@ -2859,7 +2950,8 @@ body {
 .ficha__frase {
   margin-block-start: 1.75rem;
   padding-inline-start: 1rem;
-  border-inline-start: 2px solid color-mix(in oklab, var(--color-gold-ct) 60%, transparent);
+  border-inline-start: 2px solid
+    color-mix(in oklab, var(--color-gold-ct) 60%, transparent);
   font-style: italic;
   font-size: 1rem;
   line-height: 1.6;
@@ -2871,7 +2963,8 @@ body {
   margin-block-start: 2rem;
   display: grid;
   gap: 1.25rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-sand) 12%, transparent);
   padding-block-start: 1.5rem;
 }
 
@@ -2940,7 +3033,8 @@ body {
 .card__perfil {
   margin-block-start: auto;
   padding-block-start: 1rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-sand) 12%, transparent);
   font-family: var(--font-mono-ct);
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
@@ -3228,19 +3322,29 @@ body {
   grid-template-columns: minmax(5.5rem, 8rem) minmax(0, 1fr);
   gap: 1rem 1.5rem;
   padding-block: clamp(1.5rem, 3.5vw, 2.25rem);
-  border-block-start: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-sand) 14%, transparent);
 }
 
 .passo:last-child {
-  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-sand) 14%, transparent);
 }
 
 .superficie-clara .passo {
-  border-block-start-color: color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+  border-block-start-color: color-mix(
+    in oklab,
+    var(--color-navy-700) 20%,
+    transparent
+  );
 }
 
 .superficie-clara .passo:last-child {
-  border-block-end-color: color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+  border-block-end-color: color-mix(
+    in oklab,
+    var(--color-navy-700) 20%,
+    transparent
+  );
 }
 
 @media (max-width: 40rem) {
@@ -3336,7 +3440,11 @@ body {
 
 .resumo-guto {
   background:
-    radial-gradient(100% 70% at 15% 0%, var(--color-navy-800) 0%, transparent 60%),
+    radial-gradient(
+      100% 70% at 15% 0%,
+      var(--color-navy-800) 0%,
+      transparent 60%
+    ),
     var(--color-navy-900);
   overflow: hidden;
 }
@@ -3377,7 +3485,8 @@ body {
 
 .resumo-guto__fases li {
   padding-block-start: 0.75rem;
-  border-block-start: 2px solid color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
+  border-block-start: 2px solid
+    color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
 }
 
 .resumo-guto__papel {
@@ -3410,7 +3519,8 @@ body {
   align-items: baseline;
   gap: 0.75rem;
   padding-block: 0.75rem;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-sand) 12%, transparent);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.9375rem;
@@ -3449,7 +3559,10 @@ body {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: color-mix(in oklab, var(--color-navy-900) 70%, transparent);
-  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    border-color 0.25s;
 }
 
 .niveis__aba:hover {
@@ -3468,7 +3581,8 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   padding-block-end: 1.5rem;
   margin-block-end: 1.5rem;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--color-navy-700) 20%, transparent);
 }
 
 .niveis__legenda {
@@ -3708,7 +3822,9 @@ body {
   overflow: hidden;
   background: color-mix(in oklab, var(--color-navy-700) 70%, transparent);
   border: 1px solid color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
-  transition: border-color 0.3s, transform 0.3s;
+  transition:
+    border-color 0.3s,
+    transform 0.3s;
 }
 
 .rosto__foto img {
@@ -3778,7 +3894,9 @@ body {
   background: var(--color-sand);
   border: 1px solid color-mix(in oklab, var(--color-navy-700) 20%, transparent);
   border-radius: 2px;
-  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.3s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .publico:hover,
@@ -3953,7 +4071,9 @@ body {
   background: var(--color-navy-800);
   border: 1px solid color-mix(in oklab, var(--color-lime-ct) 14%, transparent);
   border-radius: 2px;
-  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.35s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .frente:hover,
@@ -4159,22 +4279,17 @@ body {
       color-mix(in oklab, var(--color-navy-900) 45%, transparent) 78%,
       color-mix(in oklab, var(--color-navy-900) 62%, transparent) 100%
     ),
-    linear-gradient(
-      to top,
-      var(--color-navy-900) 2%,
-      transparent 30%
-    );
+    linear-gradient(to top, var(--color-navy-900) 2%, transparent 30%);
 }
 
 @media (max-width: 60rem) {
   .retrato-fundo__veu {
-    background:
-      linear-gradient(
-        to bottom,
-        color-mix(in oklab, var(--color-navy-900) 55%, transparent) 0%,
-        color-mix(in oklab, var(--color-navy-900) 92%, transparent) 45%,
-        var(--color-navy-900) 72%
-      );
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-navy-900) 55%, transparent) 0%,
+      color-mix(in oklab, var(--color-navy-900) 92%, transparent) 45%,
+      var(--color-navy-900) 72%
+    );
   }
 }
 
@@ -4225,7 +4340,8 @@ body {
   gap: 1px;
   margin-block: clamp(2rem, 4.5vw, 2.75rem);
   background: color-mix(in oklab, var(--color-sand) 18%, transparent);
-  border-block: 1px solid color-mix(in oklab, var(--color-sand) 18%, transparent);
+  border-block: 1px solid
+    color-mix(in oklab, var(--color-sand) 18%, transparent);
   counter-reset: fase;
 }
 
@@ -4794,7 +4910,6 @@ body {
   .assinatura {
     min-block-size: clamp(22rem, 72vh, 30rem);
   }
-
 }
 
 /* ================================================== turma do Conexão BT =======
@@ -4873,7 +4988,8 @@ body {
   0%,
   100% {
     opacity: 1;
-    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+    box-shadow: 0 0 0 0
+      color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
   }
   50% {
     opacity: 0.55;
@@ -4996,12 +5112,14 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   padding-block-start: 1.25rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 25%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 25%, transparent);
 }
 
 .cartaz__dados li + li {
   padding-inline-start: 1rem;
-  border-inline-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
+  border-inline-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
 .cartaz__dado-valor {
@@ -5028,7 +5146,8 @@ body {
 .cartaz__lema {
   margin-block-start: 1.75rem;
   padding-block-start: 1rem;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 25%, transparent);
+  border-block-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 25%, transparent);
   font-family: var(--font-mono-ct);
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
@@ -5053,7 +5172,8 @@ body {
 
 .cartaz__dados--linha li + li {
   padding-inline-start: 0.875rem;
-  border-inline-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
+  border-inline-start: 1px solid
+    color-mix(in oklab, var(--color-lime-ct) 30%, transparent);
 }
 
 /* Versão do aviso flutuante: mesma peça, sem o lema e com tudo mais apertado. */
@@ -5086,7 +5206,8 @@ body {
   background: color-mix(in oklab, var(--color-navy-800) 96%, transparent);
   border: 1px solid color-mix(in oklab, var(--color-lime-ct) 28%, transparent);
   border-radius: 4px;
-  box-shadow: 0 1.5rem 3rem color-mix(in oklab, var(--color-ink) 55%, transparent);
+  box-shadow: 0 1.5rem 3rem
+    color-mix(in oklab, var(--color-ink) 55%, transparent);
   backdrop-filter: blur(6px);
   animation: aviso-entra 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) both;
 }

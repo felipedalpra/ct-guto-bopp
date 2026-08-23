@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import CapaPagina from "@/components/CapaPagina";
 import JsonLd from "@/components/JsonLd";
 import Professores from "@/components/Professores";
 import { time, hrefProfessor } from "@/data/professores";
@@ -17,13 +16,7 @@ export const metadata: Metadata = {
 export default function PaginaProfessores() {
   return (
     <>
-      <CapaPagina
-        sobretitulo="Nosso time"
-        titulo="Quem está na areia com você"
-        trilha={trilha}
-      />
-
-      <Professores />
+      <Professores abertura trilha={trilha} />
 
       <JsonLd
         nodos={[

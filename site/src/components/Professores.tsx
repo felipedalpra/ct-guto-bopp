@@ -7,6 +7,7 @@ import {
   type Professor,
 } from "@/data/professores";
 import { site, whatsappMensagens } from "@/data/site";
+import { Trilha, type ItemTrilha } from "./CapaPagina";
 import Revela from "./Revela";
 
 /**
@@ -20,18 +21,36 @@ import Revela from "./Revela";
  * diferentes. Todas ficam em cor; o que costura a grade é o recorte 4:5 igual para
  * todas e um ajuste leve e idêntico de contraste e saturação (ver .card__foto).
  */
-export default function Professores() {
+/**
+ * `abertura` é o uso em /professores, onde a grade é a primeira coisa da página:
+ * a seção recebe o respiro do cabeçalho fixo, a trilha vem antes do rótulo e o
+ * título vira o <h1> — a página não tem mais capa, e um <h1> ela precisa ter.
+ */
+export default function Professores({
+  abertura = false,
+  trilha,
+}: {
+  abertura?: boolean;
+  trilha?: ItemTrilha[];
+}) {
+  const Titulo = abertura ? "h1" : "h2";
+
   return (
-    <section className="secao bloco professores">
+    <section
+      className={`secao bloco professores${abertura ? " bloco--abertura" : ""}`}
+    >
       <div className="quadra-linhas" aria-hidden="true" />
 
       <div className="shell">
         <Revela como="header" className="bloco__cabecalho">
+          {abertura && <Trilha itens={trilha} />}
           <p className="bloco__rotulo">
             <span className="bloco__numero">01</span>
             <span className="bloco__risco" aria-hidden="true" />O time
           </p>
-          <h2 className="display bloco__titulo">Conheça nossos professores</h2>
+          <Titulo className="display bloco__titulo">
+            Conheça nossos professores
+          </Titulo>
           <p className="bloco__intro">
             Todos formados pela Metodologia Guto Bopp. Toque em um nome para ver
             a ficha e falar direto com a pessoa.

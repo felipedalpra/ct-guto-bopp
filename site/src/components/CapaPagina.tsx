@@ -31,25 +31,7 @@ export default function CapaPagina({
       <div className="quadra-linhas" aria-hidden="true" />
 
       <div className="shell capa-pagina__conteudo">
-        <nav className="trilha" aria-label="Trilha de navegação">
-          <ol>
-            <li>
-              <Link href="/">Início</Link>
-            </li>
-            {trilha.map((item, i) => {
-              const ultimo = i === trilha.length - 1;
-              return (
-                <li key={item.href}>
-                  {ultimo ? (
-                    <span aria-current="page">{item.titulo}</span>
-                  ) : (
-                    <Link href={item.href}>{item.titulo}</Link>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
-        </nav>
+        <Trilha itens={trilha} />
 
         <p className="eyebrow capa-pagina__sobretitulo">{sobretitulo}</p>
         <h1 className="display capa-pagina__titulo">{titulo}</h1>
@@ -57,5 +39,36 @@ export default function CapaPagina({
         {children}
       </div>
     </section>
+  );
+}
+
+/**
+ * Trilha de volta ao início.
+ *
+ * Mora aqui porque nasceu dentro da capa, mas é exportada à parte: /professores
+ * abre direto na grade do time, sem capa, e continua precisando da trilha para
+ * quem cai na página vindo do Google.
+ */
+export function Trilha({ itens = [] }: { itens?: ItemTrilha[] }) {
+  return (
+    <nav className="trilha" aria-label="Trilha de navegação">
+      <ol>
+        <li>
+          <Link href="/">Início</Link>
+        </li>
+        {itens.map((item, i) => {
+          const ultimo = i === itens.length - 1;
+          return (
+            <li key={item.href}>
+              {ultimo ? (
+                <span aria-current="page">{item.titulo}</span>
+              ) : (
+                <Link href={item.href}>{item.titulo}</Link>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
   );
 }
