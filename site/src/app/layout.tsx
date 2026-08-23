@@ -51,8 +51,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Guto Bopp" }],
   creator: "CT Guto Bopp",
   icons: {
-    icon: "/img/logo-ct-guto-bopp-escuro.png",
-    shortcut: "/img/logo-ct-guto-bopp-escuro.png",
+    icon: {
+      url: "/img/favicon.png",
+      type: "image/png",
+      sizes: "64x64",
+    },
+    shortcut: {
+      url: "/img/favicon.png",
+      type: "image/png",
+    },
   },
   alternates: { canonical: "/" },
   openGraph: {
