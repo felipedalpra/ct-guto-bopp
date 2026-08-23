@@ -1593,16 +1593,8 @@ body {
   border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
 }
 
-.contato__grade {
-  display: grid;
-  gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
-}
-
-@media (min-width: 58rem) {
-  .contato__grade {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  }
+.contato__chamada {
+  max-inline-size: 46rem;
 }
 
 .contato__titulo {
@@ -1615,47 +1607,6 @@ body {
   color: color-mix(in oklab, var(--color-sand) 78%, transparent);
   max-inline-size: 42ch;
   margin-block-end: 2rem;
-}
-
-
-.contato__dados {
-  display: grid;
-  gap: 0;
-  border-block-start: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
-}
-
-.contato__dados > div {
-  display: grid;
-  grid-template-columns: minmax(7.5rem, auto) 1fr;
-  gap: 1.5rem;
-  padding-block: 1.125rem;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-lime-ct) 18%, transparent);
-}
-
-.contato__dados dt {
-  font-family: var(--font-mono-ct);
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-lime-ct);
-  padding-block-start: 0.2rem;
-}
-
-.contato__dados dd {
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: color-mix(in oklab, var(--color-sand) 88%, transparent);
-}
-
-.contato__dados a {
-  border-block-end: 1px solid transparent;
-  transition: color 0.25s, border-color 0.25s;
-}
-
-.contato__dados a:hover {
-  color: var(--color-lime-ct);
-  border-block-end-color: currentColor;
 }
 
 
@@ -1746,7 +1697,7 @@ body {
 
 .campo__rotulo {
   font-family: var(--font-mono-ct);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-lime-ct);
@@ -1760,25 +1711,34 @@ body {
 
 .campo__entrada {
   inline-size: 100%;
-  background: transparent;
-  border: 0;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 26%, transparent);
-  border-radius: 0;
-  padding-block: 0.625rem;
+  background: color-mix(in oklab, var(--color-navy-900) 55%, #000);
+  border: 1px solid color-mix(in oklab, var(--color-sand) 22%, transparent);
+  border-radius: 4px;
+  padding: 0.9375rem 1rem;
   color: var(--color-sand);
   font-family: var(--font-body);
   font-size: 1.0625rem;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
 .campo__entrada::placeholder {
-  color: color-mix(in oklab, var(--color-sand) 34%, transparent);
+  color: color-mix(in oklab, var(--color-sand) 30%, transparent);
+}
+
+.campo__entrada:hover {
+  border-color: color-mix(in oklab, var(--color-sand) 38%, transparent);
 }
 
 .campo__entrada:focus {
   outline: none;
-  border-block-end-color: var(--color-lime-ct);
-  box-shadow: 0 1px 0 0 var(--color-lime-ct);
+  border-color: var(--color-lime-ct);
+  background: color-mix(in oklab, var(--color-navy-900) 30%, #000);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lime-ct) 20%, transparent);
+}
+
+/* O campo preenchido fica marcado, para dar a conferida final de relance. */
+.campo__entrada:not(:placeholder-shown) {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
 }
 
 .campo__area {
@@ -1792,6 +1752,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 14%, transparent);
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--color-navy-900) 55%, #000);
+}
+
+.campo--escolhas:has(input:checked) .pastilhas {
+  border-color: color-mix(in oklab, var(--color-lime-ct) 45%, transparent);
 }
 
 .pastilha {
