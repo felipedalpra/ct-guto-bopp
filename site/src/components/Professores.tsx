@@ -28,13 +28,13 @@ export default function Professores() {
       <div className="shell">
         <Revela como="header" className="bloco__cabecalho">
           <p className="bloco__rotulo">
-            <span className="bloco__numero">02</span>
-            <span className="bloco__risco" aria-hidden="true" />
-            O time
+            <span className="bloco__numero">01</span>
+            <span className="bloco__risco" aria-hidden="true" />O time
           </p>
-          <h2 className="display bloco__titulo">Conheça os professores do CT</h2>
+          <h2 className="display bloco__titulo">Conheça nossos professores</h2>
           <p className="bloco__intro">
-            Toque em um nome para ver a ficha e falar direto com a pessoa.
+            Todos formados pela Metodologia Guto Bopp. Toque em um nome para ver
+            a ficha e falar direto com a pessoa.
           </p>
         </Revela>
 

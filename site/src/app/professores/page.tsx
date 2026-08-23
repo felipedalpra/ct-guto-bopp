@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import CapaPagina from "@/components/CapaPagina";
 import JsonLd from "@/components/JsonLd";
 import Professores from "@/components/Professores";
-import Secao, { Prosa } from "@/components/Secao";
 import { time, hrefProfessor } from "@/data/professores";
 import { idProfessor, nodoTrilha, urlDe } from "@/data/schema";
 
@@ -23,19 +22,6 @@ export default function PaginaProfessores() {
         titulo="Quem está na areia com você"
         trilha={trilha}
       />
-
-      <Secao
-        numero="01"
-        rotulo="Como o time se forma"
-        titulo="Ninguém entra sem a metodologia"
-        estreita
-      >
-        <Prosa
-          paragrafos={[
-            "O CT não contrata professor pronto e o deixa dar aula do jeito dele. Todo mundo que está na areia com o nome do CT passou pelo Conexão BT e ensina pelos mesmos cinco pilares.",
-            "O que muda de um para o outro é o perfil — quem tem mais traquejo com criança, quem trabalha melhor a parte tática, quem prefere alto rendimento. Por isso vale ler as fichas antes de escolher.",
-          ]}        />
-      </Secao>
 
       <Professores />
 

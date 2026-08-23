@@ -336,7 +336,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding-block: 1.3125rem;
+  padding-block: 1rem;
 }
 
 .cabecalho__logo {
@@ -348,7 +348,7 @@ body {
 .cabecalho__logo img {
   inline-size: auto;
   /* A logo manda na altura da barra: a barra é a logo mais o respiro dela. */
-  block-size: clamp(2.6rem, 5.6vw, 3.75rem);
+  block-size: clamp(2.9rem, 6.4vw, 5rem);
 }
 
 .cabecalho__nav {
@@ -730,7 +730,7 @@ body {
   }
   .autoridade__retrato {
     position: sticky;
-    top: 6rem;
+    top: 7.25rem;
   }
 }
 
@@ -859,7 +859,7 @@ body {
   }
   .metodo__quadra {
     position: sticky;
-    top: 6.5rem;
+    top: 7.25rem;
   }
 }
 
@@ -1515,7 +1515,7 @@ body {
   }
   .faq__cabecalho {
     position: sticky;
-    top: 6.5rem;
+    top: 7.25rem;
   }
 }
 
@@ -3046,8 +3046,21 @@ body {
 .bloco__duas-colunas {
   display: grid;
   gap: clamp(1rem, 3vw, 3rem);
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
   align-items: start;
+}
+
+/*
+  O cabeçalho é curto (rótulo + título) e a prosa ao lado é bem mais alta: parado,
+  ele deixava meia tela de vazio embaixo de si até o fim do texto. Grudado — mesmo
+  recurso do cabeçalho do FAQ — ele acompanha a leitura e o vazio deixa de existir.
+*/
+@media (min-width: 62.001rem) {
+  .bloco__duas-colunas .bloco__cabecalho {
+    position: sticky;
+    /* Abaixo do cabeçalho fixo do site. */
+    inset-block-start: 7.25rem;
+  }
 }
 
 /*
@@ -4657,7 +4670,7 @@ body {
 .cena[data-encaixe="acompanha"] .cena__peca {
   position: sticky;
   /* Abaixo do cabeçalho fixo. */
-  inset-block-start: 6.5rem;
+  inset-block-start: 7.25rem;
   align-self: start;
 }
 
