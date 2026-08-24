@@ -4375,7 +4375,13 @@ body {
 */
 .fases {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /*
+    Colunas `auto`, não `1fr`: com colunas iguais a palavra mais longa
+    (PROFESSOR) quase encostava no separador enquanto ATLETA nadava em espaço.
+    Com `auto` cada coluna vale a largura da própria palavra + uma fatia igual
+    da sobra, então o respiro depois de cada rótulo é o mesmo nas quatro.
+  */
+  grid-template-columns: repeat(2, minmax(0, auto));
   gap: 1px;
   margin-block: clamp(2rem, 4.5vw, 2.75rem);
   background: color-mix(in oklab, var(--color-sand) 18%, transparent);
@@ -4391,7 +4397,7 @@ body {
 
 @media (min-width: 42rem) {
   .fases {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, auto));
   }
 }
 
