@@ -2148,6 +2148,19 @@ body {
   margin-inline-start: auto;
 }
 
+/* No celular o botão flutuante do WhatsApp fica por cima do canto inferior
+   direito; a folga abaixo dos créditos garante que a assinatura nunca some
+   atrás dele. */
+@media (max-width: 61.9375rem) {
+  .rodape__creditos {
+    padding-block-end: 5.5rem;
+  }
+
+  .rodape__creditos p:last-child {
+    margin-inline-start: 0;
+  }
+}
+
 /* Assinatura de quem fez o site: discreta, mas com a marca clicável em destaque
    sobre o resto da linha de créditos. */
 .rodape__assinatura a {
@@ -2163,6 +2176,18 @@ body {
 }
 
 /* ================================================================= whatsapp */
+
+/*
+  O botão flutuante existe para quem NÃO tem o CTA à mão: no desktop o
+  "Falar no WhatsApp" fica fixo no cabeçalho o tempo todo, então o botão
+  flutuante só repetia o mesmo atalho — e ainda tapava a assinatura no rodapé.
+  A partir de 62rem (onde o CTA do cabeçalho aparece) ele sai de cena.
+*/
+@media (min-width: 62rem) {
+  .zap {
+    display: none;
+  }
+}
 
 .zap {
   position: fixed;

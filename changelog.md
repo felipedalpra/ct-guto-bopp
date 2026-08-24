@@ -27,6 +27,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - 2026-08-19 — Rascunho da copy do site em `copy-site.md` (hero, apresentação, método, quem somos, Conexão BT, professores, rodapé)
 
 ### Corrigido
+- 2026-08-23 — Botão flutuante do WhatsApp sai do desktop (a partir de 62rem, onde o CTA fixo do cabeçalho aparece): era o mesmo atalho duplicado e tapava a assinatura da Zentri.tech no rodapé. No celular ele continua, e os créditos ganharam folga embaixo para nunca ficarem atrás dele
 - 2026-08-23 — Faixa das quatro funções ("Quem escreveu o método passou por 4 funções", na home) parecia torta: o quadro só tinha linha em cima e embaixo, então as células do meio ficavam emolduradas pelos separadores e as das pontas soltas. Agora a borda fecha nos quatro lados, o padding é igual em volta de cada rótulo e o texto alinha pelo topo, com a escala da fonte descendo o suficiente para os nomes longos caberem sem estourar a coluna
 - 2026-08-23 — Marcação de quadra da capa cruzando os botões: a linha de fundo do retângulo caía na mesma altura de "Começar a treinar" e passava por dentro dele. A marcação agora se dissolve na metade de baixo da capa — o quadro fica aberto embaixo, como a quadra sumindo na areia
 - 2026-08-23 — Célula verde vazia no fim da grade "Cinco trocas na sua aula" (/conexao-bt): são cinco itens em três colunas, e o fundo que desenhava as linhas divisórias aparecia inteiro na sexta célula, que não tem item. As linhas agora vêm de um contorno em cada item
