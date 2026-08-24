@@ -3474,8 +3474,19 @@ body {
 }
 
 @media (min-width: 60rem) {
+  /*
+    O retrato é 4:5. Solto numa coluna de ~0.8fr do shell ele passava de 850px
+    de altura, e ao lado dele havia só dois parágrafos — sobrava mais de meia
+    tela de vazio à direita. A coluna do retrato ganhou um teto em rem (a foto
+    continua nítida: o arquivo é 1000px de largura) e o texto passou a ficar
+    centrado na altura dela.
+  */
   .perfil {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  }
+
+  .perfil__texto {
+    align-self: center;
   }
 }
 

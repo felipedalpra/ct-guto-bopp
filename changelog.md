@@ -27,6 +27,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - 2026-08-19 — Rascunho da copy do site em `copy-site.md` (hero, apresentação, método, quem somos, Conexão BT, professores, rodapé)
 
 ### Corrigido
+- 2026-08-23 — Vazio à direita do retrato em /guto-bopp: a foto 4:5 passava de 850px de altura enquanto ao lado dela havia só dois parágrafos. A coluna do retrato ganhou teto de 24rem e o texto ficou centrado na altura dela, com o `sizes` da imagem acompanhando
 - 2026-08-23 — Vazio embaixo do cabeçalho de "Como é uma aula aqui" no desktop: o texto ficava colado no topo enquanto a coluna dos três vídeos 9:16 seguia por quase mil pixels. O cabeçalho agora fica centrado na altura da coluna dos vídeos
 - 2026-08-23 — Espaçamento desigual na faixa das quatro funções: com colunas de largura idêntica, PROFESSOR quase encostava no separador enquanto ATLETA sobrava espaço. As colunas passam a ser `auto` — largura da palavra mais uma fatia igual da sobra —, então o respiro depois de cada rótulo é o mesmo
 - 2026-08-23 — Botão flutuante do WhatsApp sai do desktop (a partir de 62rem, onde o CTA fixo do cabeçalho aparece): era o mesmo atalho duplicado e tapava a assinatura da Zentri.tech no rodapé. A regra de esconder estava antes da declaração base do botão, que traz `display: inline-flex`, e por isso não valia — agora vem depois e cobre também o estado visível. No celular ele continua, e os créditos ganharam folga embaixo

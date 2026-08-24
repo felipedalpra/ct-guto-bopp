@@ -40,7 +40,7 @@ export default function PaginaGuto() {
                 alt="Guto Bopp, fundador do CT Guto Bopp"
                 width={1000}
                 height={1250}
-                sizes="(max-width: 60rem) 88vw, 32vw"
+                sizes="(max-width: 60rem) 88vw, 24rem"
                 priority
               />
             </div>
