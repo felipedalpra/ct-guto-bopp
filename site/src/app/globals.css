@@ -2177,18 +2177,6 @@ body {
 
 /* ================================================================= whatsapp */
 
-/*
-  O botão flutuante existe para quem NÃO tem o CTA à mão: no desktop o
-  "Falar no WhatsApp" fica fixo no cabeçalho o tempo todo, então o botão
-  flutuante só repetia o mesmo atalho — e ainda tapava a assinatura no rodapé.
-  A partir de 62rem (onde o CTA do cabeçalho aparece) ele sai de cena.
-*/
-@media (min-width: 62rem) {
-  .zap {
-    display: none;
-  }
-}
-
 .zap {
   position: fixed;
   z-index: 90;
@@ -2231,6 +2219,20 @@ body {
   inline-size: 1.25rem;
   block-size: 1.25rem;
   flex: none;
+}
+
+/*
+  O botão flutuante existe para quem NÃO tem o CTA à mão: no desktop o
+  "Falar no WhatsApp" fica fixo no cabeçalho o tempo todo, então o botão
+  flutuante só repetia o mesmo atalho — e ainda tapava a assinatura no rodapé.
+  A partir de 62rem (onde o CTA do cabeçalho aparece) ele sai de cena.
+  Precisa vir DEPOIS da regra base, que declara `display: inline-flex`.
+*/
+@media (min-width: 62rem) {
+  .zap,
+  .zap[data-visivel="true"] {
+    display: none;
+  }
 }
 
 @media (max-width: 30rem) {
