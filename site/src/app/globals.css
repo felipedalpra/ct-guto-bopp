@@ -2148,6 +2148,20 @@ body {
   margin-inline-start: auto;
 }
 
+/* Assinatura de quem fez o site: discreta, mas com a marca clicável em destaque
+   sobre o resto da linha de créditos. */
+.rodape__assinatura a {
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-lime-ct) 55%, transparent);
+  text-underline-offset: 0.2em;
+  transition: color 0.25s;
+}
+
+.rodape__assinatura a:hover {
+  color: var(--color-lime-ct);
+}
+
 /* ================================================================= whatsapp */
 
 .zap {

@@ -95,6 +95,12 @@ export default function Rodape() {
           © {ano} {site.nome}. Todos os direitos reservados.
         </p>
         <p>{site.nomeCompleto}</p>
+        <p className="rodape__assinatura">
+          Site desenvolvido por{" "}
+          <a href="https://www.zentritechoficial.com.br/" target="_blank" rel="noopener">
+            Zentri.tech
+          </a>
+        </p>
       </div>
     </footer>
   );
