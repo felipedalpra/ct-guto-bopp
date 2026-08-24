@@ -4607,6 +4607,12 @@ body {
 @media (min-width: 62.0625rem) {
   .aulas__cabecalho {
     max-inline-size: 24rem;
+    /*
+      Centrado na altura da coluna dos vídeos. Encostado no topo, o cabeçalho
+      ocupava um terço da coluna e deixava um vazio enorme embaixo — três peças
+      9:16 são altas, e o texto ao lado é curto de propósito.
+    */
+    align-self: center;
   }
 }
 

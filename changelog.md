@@ -27,6 +27,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - 2026-08-19 — Rascunho da copy do site em `copy-site.md` (hero, apresentação, método, quem somos, Conexão BT, professores, rodapé)
 
 ### Corrigido
+- 2026-08-23 — Vazio embaixo do cabeçalho de "Como é uma aula aqui" no desktop: o texto ficava colado no topo enquanto a coluna dos três vídeos 9:16 seguia por quase mil pixels. O cabeçalho agora fica centrado na altura da coluna dos vídeos
 - 2026-08-23 — Espaçamento desigual na faixa das quatro funções: com colunas de largura idêntica, PROFESSOR quase encostava no separador enquanto ATLETA sobrava espaço. As colunas passam a ser `auto` — largura da palavra mais uma fatia igual da sobra —, então o respiro depois de cada rótulo é o mesmo
 - 2026-08-23 — Botão flutuante do WhatsApp sai do desktop (a partir de 62rem, onde o CTA fixo do cabeçalho aparece): era o mesmo atalho duplicado e tapava a assinatura da Zentri.tech no rodapé. No celular ele continua, e os créditos ganharam folga embaixo para nunca ficarem atrás dele
 - 2026-08-23 — Faixa das quatro funções ("Quem escreveu o método passou por 4 funções", na home) parecia torta: o quadro só tinha linha em cima e embaixo, então as células do meio ficavam emolduradas pelos separadores e as das pontas soltas. Agora a borda fecha nos quatro lados, o padding é igual em volta de cada rótulo e o texto alinha pelo topo, com a escala da fonte descendo o suficiente para os nomes longos caberem sem estourar a coluna
