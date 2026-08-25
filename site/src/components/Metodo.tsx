@@ -17,19 +17,28 @@ import Revela from "./Revela";
  * seleção; a lista é a versão acessível e é ela que carrega o texto lido por buscador
  * e leitor de tela. O diagrama é decorativo e espelha a escolha feita na lista.
  */
+/** Um segundo em cada pilar enquanto a seção passa sozinha. */
+const PASSO = 1000;
+
 export default function Metodo() {
   const [ativo, setAtivo] = useState(0);
   const [visivel, setVisivel] = useState(false);
   const [pausado, setPausado] = useState(false);
+  /* Escolher um pilar encerra o passeio: depois de um toque, ninguém quer o
+     painel sendo trocado por baixo da leitura um segundo depois. */
+  const [sozinho, setSozinho] = useState(true);
   const secaoRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const secao = secaoRef.current;
     if (!secao) return;
 
+    /* A seção é mais alta que a tela (quadra + cinco pilares), então exigir uma
+       fração dela visível nunca dava verdadeiro e o passeio não começava —
+       principalmente no celular. O que vale é a seção cruzar o miolo da tela. */
     const observador = new IntersectionObserver(
       ([entrada]) => setVisivel(entrada.isIntersecting),
-      { threshold: 0.35 }
+      { threshold: 0, rootMargin: "-20% 0px -20% 0px" }
     );
     observador.observe(secao);
 
@@ -37,17 +46,18 @@ export default function Metodo() {
   }, []);
 
   useEffect(() => {
-    if (!visivel || pausado) return;
+    if (!sozinho || !visivel || pausado) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ciclo = window.setInterval(() => {
       setAtivo((atual) => (atual + 1) % pilares.length);
-    }, 3000);
+    }, PASSO);
 
     return () => window.clearInterval(ciclo);
-  }, [pausado, visivel]);
+  }, [pausado, sozinho, visivel]);
 
   const escolher = (i: number) => {
+    setSozinho(false);
     setAtivo(i);
   };
 
@@ -55,14 +65,6 @@ export default function Metodo() {
     <section
       ref={secaoRef}
       className="secao bloco superficie-clara grao metodo"
-      onMouseEnter={() => setPausado(true)}
-      onMouseLeave={() => setPausado(false)}
-      onFocus={() => setPausado(true)}
-      onBlur={(evento) => {
-        if (!(evento.relatedTarget instanceof Node) || !evento.currentTarget.contains(evento.relatedTarget)) {
-          setPausado(false);
-        }
-      }}
     >
       <div className="quadra-linhas" aria-hidden="true" />
 
@@ -82,7 +84,23 @@ export default function Metodo() {
           </p>
         </Revela>
 
-        <div className="metodo__grade">
+        {/* O ponteiro só segura o passeio em cima do diagrama e da lista — era a
+            seção inteira, então um cursor parado em qualquer canto (título, botão,
+            margem) travava tudo no primeiro pilar. */}
+        <div
+          className="metodo__grade"
+          onMouseEnter={() => setPausado(true)}
+          onMouseLeave={() => setPausado(false)}
+          onFocus={() => setPausado(true)}
+          onBlur={(evento) => {
+            if (
+              !(evento.relatedTarget instanceof Node) ||
+              !evento.currentTarget.contains(evento.relatedTarget)
+            ) {
+              setPausado(false);
+            }
+          }}
+        >
           <Revela className="metodo__quadra">
             <Quadra ativo={ativo} aoEscolher={escolher} />
           </Revela>
@@ -97,7 +115,7 @@ export default function Metodo() {
                     className="pilar__botao"
                     aria-expanded={aberto}
                     aria-controls={`pilar-${pilar.numero}`}
-                    onClick={() => setAtivo(i)}
+                    onClick={() => escolher(i)}
                   >
                     <span className="pilar__numero">{pilar.numero}</span>
                     <span className="pilar__nome">{pilar.nome}</span>
@@ -159,10 +177,25 @@ function Quadra({
   const px = (x: number) => margem + x * (L - margem * 2);
   const py = (y: number) => margem + y * (A - margem * 2);
   const pontos = pilares.map((pilar) => [px(pilar.zona.x), py(pilar.zona.y)]);
+
+  /* O risco é um traço só, desenhado uma vez e revelado por partes: o `d` cobre
+     os cinco pilares e o que muda a cada passo é quanto dele está visível.
+     Antes o traço inteiro era remontado a cada troca (`key={ativo}`) e voltava a
+     ser desenhado do pilar 1 — de longe parecia piscar, não avançar.
+     Por isso o comprimento acumulado é medido aqui, e não com getTotalLength():
+     o valor precisa existir na primeira renderização, sem depender do DOM. */
   const rastro = pontos
-    .slice(0, ativo + 1)
     .map(([x, y], i) => `${i === 0 ? "M" : "L"}${x} ${y}`)
     .join(" ");
+
+  const trechos = pontos.slice(1).map(([x, y], i) => {
+    const [xa, ya] = pontos[i];
+    return Math.hypot(x - xa, y - ya);
+  });
+  const total = trechos.reduce((soma, t) => soma + t, 0);
+  const percorrido = trechos
+    .slice(0, ativo)
+    .reduce((soma, t) => soma + t, 0);
 
   return (
     <svg
@@ -192,14 +225,15 @@ function Quadra({
       <circle cx={margem - 22} cy={A / 2} r="4" className="quadra__poste" />
       <circle cx={L - margem + 22} cy={A / 2} r="4" className="quadra__poste" />
 
-      {ativo > 0 && (
-        <path
-          key={ativo}
-          d={rastro}
-          className="quadra__rastro"
-          aria-hidden="true"
-        />
-      )}
+      {/* No pilar 1 o traço volta a zero sem transição: animar a volta faria o
+          risco desandar de trás para a frente, como se estivesse apagando. */}
+      <path
+        d={rastro}
+        className="quadra__rastro"
+        data-reinicio={ativo === 0}
+        style={{ strokeDasharray: total, strokeDashoffset: total - percorrido }}
+        aria-hidden="true"
+      />
 
       {/* pilares */}
       {pilares.map((pilar, i) => {

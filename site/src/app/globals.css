@@ -926,16 +926,15 @@ body {
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: quadra-rastro 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* `stroke-dasharray` e `stroke-dashoffset` vêm do componente, em unidades do
+     viewBox: o traço existe inteiro e a transição solta mais um trecho a cada
+     pilar, acompanhando o passo de 1s do passeio. */
+  transition: stroke-dashoffset 700ms cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
-@keyframes quadra-rastro {
-  to {
-    stroke-dashoffset: 0;
-  }
+.quadra__rastro[data-reinicio="true"] {
+  transition: none;
 }
 
 .quadra__no {
@@ -1063,7 +1062,7 @@ body {
 .pilar__corpo {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pilar[data-aberto="true"] .pilar__corpo {
@@ -1078,8 +1077,8 @@ body {
   max-inline-size: 60ch;
   opacity: 0;
   transition:
-    opacity 0.4s 0.1s,
-    padding-block 0.4s;
+    opacity 0.3s 0.05s,
+    padding-block 0.3s;
 }
 
 .pilar[data-aberto="true"] .pilar__miolo {
@@ -1145,8 +1144,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .quadra__rastro {
-    animation: none;
-    stroke-dashoffset: 0;
+    transition: none;
   }
 
   .pilar__corpo,
@@ -4889,6 +4887,7 @@ body {
     order: initial;
     position: static;
     inline-size: min(17rem, 72vw);
+    margin-inline: auto;
   }
 
   .cena[data-encaixe="estica"] .mapa__moldura {
