@@ -1,54 +1,50 @@
 /**
  * Conteúdo da página /conexao-bt — a capacitação de professores.
  *
- * ⚠️ RASCUNHO — VALIDAR COM O GUTO.
- * Este é o arquivo mais dependente de informação que ainda não temos: o briefing
- * cita o Conexão BT sem formato, duração, conteúdo, preço ou próxima turma. Os
- * módulos abaixo foram derivados dos 5 pilares (é a estrutura natural do curso, mas
- * é dedução minha) e o restante veio do que o briefing diz sobre o que o CT oferece
- * a professores. Nenhuma carga horária, valor ou data foi inventada.
+ * Conteúdo alinhado à apostila do Conexão BT e à apresentação da Licença Oficial.
+ * Informações de turma, investimento e datas ficam na seção específica da página.
  *
  * O que É fato do briefing, e por isso aparece como prova social na página: os quatro
  * professores do time passaram pelo Conexão BT, e Guilherme é certificado e auxiliar
  * do curso (ver data/professores.ts).
  */
 
-export const RASCUNHO = true;
+export const RASCUNHO = false;
 
 /** Por que o curso existe. Abre a página. */
 export const porQueExiste = {
   titulo: "Saber jogar não ensina a dar aula",
   paragrafos: [
-    "Quase todo professor de Beach Tennis entrou na profissão pelo mesmo caminho: jogava bem, alguém pediu uma aula, e a coisa cresceu. É um começo legítimo — e é o motivo de tanta aula boa de energia e pobre de estrutura.",
-    "Enxergar por que o aluno erra, escolher a palavra que ele consegue usar e montar uma sequência que leve a algum lugar: nada disso vem junto com o talento de jogador. O Conexão BT ensina o professor a aplicar os cinco pilares na própria aula, com o próprio aluno.",
+    "O Conexão BT existe para profissionalizar a atuação de professores de Beach Tennis e elevar o padrão das aulas. A formação combina aula teórica e prática para ampliar o repertório do professor e tornar suas aulas mais organizadas, dinâmicas e eficientes.",
+    "O curso apresenta a Metodologia Guto Bopp e seus cinco pilares, trabalhando fundamentos técnicos, táticos e didáticos, além da organização e do planejamento das aulas. O objetivo é substituir o improviso por excelência didática, com resultados mais sólidos para os alunos e uma carreira mais estruturada para o professor.",
   ],
 };
 
 /** O que muda na prática — o antes e depois. */
 export const oQueMuda = [
   {
-    antes: "Aula improvisada na hora",
-    depois: "Aula planejada, com objetivo definido antes de entrar em quadra",
+    antes: "Professor como mero lançador de bolas",
+    depois: "Professor que observa, intervém e conduz a evolução",
   },
   {
-    antes: "“Solta mais o braço”",
-    depois: "Correção específica, na causa do erro e no tempo do jogo",
+    antes: "Correção genérica, no sintoma do erro",
+    depois: "Correção precisa, em tempo real e com feedback direto",
   },
   {
-    antes: "Aluno que evolui por acaso",
-    depois: "Progressão por camadas, cada uma consolidada antes da próxima",
+    antes: "Drills repetidos sem progressão",
+    depois: "Exercícios fechados, semiabertos e abertos, na hora certa",
   },
   {
-    antes: "Turma que se esvazia sem explicação",
-    depois: "Aluno que percebe a evolução e por isso volta na semana seguinte",
+    antes: "Aula igual para todos",
+    depois: "Estímulo individual dentro de um grupo nivelado",
   },
   {
-    antes: "Cada aula recomeçando do zero",
-    depois: "Um plano que liga uma semana à outra e permite cobrar resultado",
+    antes: "Professor que entrega apenas uma aula avulsa",
+    depois: "Profissional que organiza a carreira e fideliza pela evolução",
   },
 ];
 
-/** O conteúdo do curso, módulo a módulo — derivado dos 5 pilares. */
+/** O conteúdo do curso, módulo a módulo — conforme os 5 pilares oficiais. */
 export type Modulo = {
   numero: string;
   titulo: string;
@@ -59,57 +55,57 @@ export type Modulo = {
 export const modulos: Modulo[] = [
   {
     numero: "01",
-    titulo: "Planejar a aula",
+    titulo: "Técnica e repetição",
     texto:
-      "Como sair do improviso: definir o objetivo, montar a sequência e encaixar a aula de hoje num plano maior.",
+      "Construção do movimento e eficiência biomecânica por meio de repetição qualificada.",
     itens: [
-      "Objetivo de aula e objetivo de ciclo",
-      "Sequência de exercícios encadeada",
-      "Como planejar turma com níveis diferentes",
+      "Preparação, ponto de contato e terminação",
+      "Ativação, execução e reorganização",
+      "Construção técnica antes dos golpes avançados",
     ],
   },
   {
     numero: "02",
-    titulo: "Enxergar e corrigir o erro",
+    titulo: "Correção e intensidade",
     texto:
-      "O módulo que mais muda a aula do professor: separar sintoma de causa e devolver a correção de um jeito aplicável.",
+      "Como identificar a causa do erro, corrigir no ato e aproximar o treino da realidade do jogo.",
     itens: [
-      "Cadeia de causas: da bola que saiu até a empunhadura",
-      "Uma correção por vez, e como escolher qual",
-      "A frase que o aluno consegue usar no ponto seguinte",
+      "Diagnóstico técnico, de posicionamento e de tempo de bola",
+      "Lançamento de bola: segurança, posição, trajetória, velocidade e peso",
+      "Intensidade progressiva com deslocamento real",
     ],
   },
   {
     numero: "03",
-    titulo: "Construir a técnica",
+    titulo: "Tática, estratégia e disciplina",
     texto:
-      "Em que ordem se ensina, quanto volume cada camada exige e como saber que uma camada está pronta.",
+      "Leitura de jogo, sistema de dupla, controle de bola e tomada de decisão.",
     itens: [
-      "Progressão por camadas: base, deslocamento, golpe, finalização",
-      "Critérios para avançar de camada",
-      "Adaptações para infantil e para quem vem de outro esporte",
+      "Movimentação horizontal e transição frente-fundo",
+      "Bolas de segurança e bolas de risco",
+      "Padrão de jogo e antecipação",
     ],
   },
   {
     numero: "04",
-    titulo: "Ensinar a decidir",
+    titulo: "Criatividade didática",
     texto:
-      "Como levar o aluno de reagir à bola para escolher o que fazer com ela.",
+      "Como elaborar exercícios variados, objetivos e conectados à realidade do jogo.",
     itens: [
-      "Exercícios com mais de uma resposta possível",
-      "Posicionamento e função dentro da dupla",
-      "Como treinar decisão sem virar só jogo solto",
+      "Drills fechados, semiabertos e abertos",
+      "Planejamento semanal de evolução",
+      "Sistemas de pontuação e alvos visuais",
     ],
   },
   {
     numero: "05",
-    titulo: "Sustentar a qualidade",
+    titulo: "Gestão e fidelização",
     texto:
-      "O pilar que segura o aluno na turma: intensidade, clima e clareza do que foi trabalhado.",
+      "Como organizar a carreira, posicionar a metodologia e manter os alunos conectados.",
     itens: [
-      "Calibrar intensidade por nível",
-      "Conduzir o clima da turma",
-      "Fechar a aula deixando a evolução explícita",
+      "Grupos fixos e nivelamento técnico",
+      "Aulas fixas, recorrência e volume de treinos",
+      "Acompanhamento, avaliação e entrega de resultados visíveis",
     ],
   },
 ];

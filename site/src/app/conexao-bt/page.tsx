@@ -19,7 +19,7 @@ const trilha = [{ titulo: "Conexão BT", href: "/conexao-bt" }];
 export const metadata: Metadata = {
   title: "Conexão BT — capacitação de professores",
   description:
-    "O curso de capacitação do CT Guto Bopp para professores de Beach Tennis: planejar a aula, corrigir na causa do erro e aplicar os 5 pilares, com acompanhamento, mentoria e reciclagens depois da formação.",
+    "Curso teórico e prático de capacitação para professores iniciantes e intermediários de Beach Tennis. Apresenta a Metodologia Guto Bopp e seus 5 pilares, dos fundamentos técnicos à gestão e fidelização.",
   alternates: { canonical: "/conexao-bt" },
 };
 
@@ -33,7 +33,7 @@ export default function PaginaConexaoBt() {
             Conexão <span className="display-italic">BT</span>
           </>
         }
-        intro="A capacitação do CT para quem já dá aula e quer estruturar o que hoje sai por instinto."
+        intro="Curso teórico e prático para professores iniciantes e intermediários que querem ensinar com mais organização, repertório e eficiência."
         trilha={trilha}
       />
 
@@ -50,8 +50,8 @@ export default function PaginaConexaoBt() {
       <Secao
         numero="03"
         rotulo="Conteúdo"
-        titulo="Os cinco módulos"
-        intro="Um módulo por pilar, na ordem em que eles se sustentam."
+        titulo="Os cinco pilares"
+        intro="O curso apresenta os cinco pilares da Metodologia Guto Bopp e sua aplicação na prática."
         clara
       >
         <Passos

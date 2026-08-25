@@ -9,7 +9,7 @@ export const site = {
   nomeCompleto: "CT Guto Bopp — Centro de Treinamento de Beach Tennis",
   lema: "Disciplina. Método. Resultado.",
   descricao:
-    "Centro de Treinamento de Beach Tennis em Porto Alegre. Mais de 13 anos de quadra transformados na Metodologia Guto Bopp — o Método dos 5 Pilares — para desenvolver atletas e capacitar professores.",
+    "Centro de Treinamento de Beach Tennis em Porto Alegre. Mais de 13 anos de experiência de Guto Bopp transformados na Metodologia Guto Bopp — o Método dos 5 Pilares — para desenvolver atletas e capacitar professores.",
   // TODO: trocar quando o domínio for definido.
   url: "https://ctgutobopp.com.br",
   fundador: "Guto Bopp",

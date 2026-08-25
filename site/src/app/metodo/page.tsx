@@ -18,7 +18,7 @@ const trilha = [{ titulo: "Método", href: "/metodo" }];
 export const metadata: Metadata = {
   title: "Método dos 5 Pilares",
   description:
-    "A Metodologia Guto Bopp, o método de ensino do CT: organização, correção, desenvolvimento técnico, desenvolvimento tático e qualidade da aula — os cinco pilares que sustentam cada treino, do iniciante ao competitivo.",
+    "A Metodologia Guto Bopp, organizada no Método dos 5 Pilares: técnica e repetição, correção e intensidade, tática, estratégia e disciplina, criatividade didática, gestão e fidelização.",
   alternates: { canonical: "/metodo" },
 };
 
@@ -32,7 +32,7 @@ export default function PaginaMetodo() {
             O Método dos <span className="metodo__cinco">5</span> Pilares
           </>
         }
-        intro="Cinco frentes que sustentam cada aula. Uma depende da anterior."
+        intro="Cinco pilares que organizam o trabalho do professor, da técnica à gestão da carreira."
         trilha={trilha}
       />
 

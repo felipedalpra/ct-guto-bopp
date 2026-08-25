@@ -23,8 +23,8 @@ export default function ResumoMetodo() {
             O Método dos <span className="metodo__cinco">5</span> Pilares
           </h2>
           <p className="resumo-metodo__intro">
-            A estrutura por trás de cada treino do CT. Conheça o método completo
-            antes de escolher como quer evoluir.
+            Técnica, correção, jogo, didática e gestão: os cinco pilares que organizam
+            o ensino do CT e orientam cada etapa da evolução.
           </p>
           <Link className="btn btn--linha" href="/metodo">
             Entrar no Método

@@ -149,7 +149,7 @@ export const nodoCurso = {
   "@id": `${urlDe("/conexao-bt")}#curso`,
   name: "Conexão BT",
   description:
-    "Curso de capacitação do CT Guto Bopp para professores de Beach Tennis, voltado a estruturar aulas, corrigir com clareza e aplicar a Metodologia Guto Bopp em quadra.",
+    "Curso teórico e prático de capacitação do CT Guto Bopp para professores iniciantes e intermediários de Beach Tennis, com fundamentos técnicos, táticos e didáticos e aplicação do Método dos 5 Pilares.",
   url: urlDe("/conexao-bt"),
   inLanguage: "pt-BR",
   teaches: pilares.map((p) => p.nome),

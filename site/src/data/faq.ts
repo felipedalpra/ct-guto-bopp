@@ -31,7 +31,7 @@ export const faqAlunos: Pergunta[] = [
   {
     pergunta: "O que é a Metodologia Guto Bopp?",
     resposta:
-      "A Metodologia Guto Bopp é o método de ensino do CT, organizado em cinco pilares: organização, correção, desenvolvimento técnico, desenvolvimento tático e qualidade da aula. Ela nasceu de mais de 13 anos de Guto Bopp dentro do Beach Tennis como atleta, professor e treinador.",
+      "A Metodologia Guto Bopp é o método de ensino do CT, organizado em cinco pilares: técnica e repetição; correção e intensidade; tática, estratégia e disciplina; criatividade didática; e gestão e fidelização. Ela reúne a experiência de mais de 13 anos de Guto Bopp no Beach Tennis.",
   },
   {
     pergunta: "Como faço para começar a treinar no CT Guto Bopp?",
@@ -45,7 +45,7 @@ export const faqProfessores: Pergunta[] = [
   {
     pergunta: "O que é o Conexão BT?",
     resposta:
-      "O Conexão BT é o curso de capacitação do CT Guto Bopp voltado a professores de Beach Tennis. Ele ensina o professor a estruturar suas aulas, corrigir com clareza e aplicar a Metodologia Guto Bopp, com acompanhamento, mentoria e reciclagens depois da formação.",
+      "O Conexão BT é um curso teórico e prático de capacitação para professores iniciantes e intermediários de Beach Tennis. Ele apresenta a Metodologia Guto Bopp e seus cinco pilares, trabalhando fundamentos técnicos, táticos e didáticos, além da organização, do planejamento e da gestão das aulas.",
   },
   {
     pergunta: "Sou professor de Beach Tennis. O CT atende quem já dá aula?",

@@ -1,10 +1,7 @@
 /**
  * Guto Bopp — trajetória, filosofia e o que ele faz hoje.
  *
- * ⚠️ RASCUNHO — VALIDAR COM O GUTO.
- * O briefing traz uma linha só sobre ele ("mais de 13 anos no Beach Tennis como atleta,
- * professor e treinador"). Todo o texto abaixo foi escrito a partir dessa linha e do
- * resto do briefing, e precisa do aval dele antes de publicar.
+ * Conteúdo alinhado à apresentação oficial do CT e à apostila do Conexão BT.
  *
  * Os "cinco princípios de ensino" que existiam aqui saíram: eram os cinco pilares
  * do método reescritos com outro nome, e o método tem uma página só dele.
@@ -15,12 +12,13 @@
  * O que falta pedir a ele está listado no fim do arquivo.
  */
 
-export const RASCUNHO = true;
+export const RASCUNHO = false;
 
 /** Abertura da página: quem ele é, em três parágrafos. */
 export const apresentacao = [
-  "Guto Bopp está há mais de 13 anos dentro do Beach Tennis — e não em uma função só: jogou, deu aula, treinou atleta e hoje forma professores.",
-  "É essa soma que sustenta o método. A Metodologia Guto Bopp não veio de um curso nem de um livro: veio de mais de uma década corrigindo gente na areia e reparando no que funcionava.",
+  "Guto Bopp constrói sua trajetória no Beach Tennis há mais de 13 anos, como treinador, gestor esportivo e incentivador da modalidade. Nesse caminho, contribuiu para o crescimento do esporte no Rio Grande do Sul e no Brasil.",
+  "Foi fundador do Point Sul, o primeiro clube indoor de Beach Tennis do país, liderou a Seleção Gaúcha em conquistas como o tetracampeonato da Copa das Federações e somou quatro títulos no Interclubes FGT. Também atuou como Coordenador Técnico da Federação Gaúcha de Tênis e hoje coordena projetos e acompanha atletas e profissionais na Arena Dom Pedro.",
+  "A Metodologia Guto Bopp transforma essa experiência em uma forma estruturada de ensinar: técnica e repetição, correção e intensidade, tática, estratégia e disciplina, criatividade didática, gestão e fidelização. Guto possui capacitação nível Azul pela CBT e segue atuando na formação de professores e no desenvolvimento do Beach Tennis.",
 ];
 
 /** A trajetória em fases. Sem anos: o briefing não trouxe as datas. */
@@ -37,28 +35,28 @@ export const trajetoria: Fase[] = [
     papel: "Atleta",
     titulo: "Primeiro, aprender a competir",
     texto:
-      "Guto entrou pela quadra, jogando. Competir ensina o que cobrar de um treino — e o que é perda de tempo.",
+      "A experiência como atleta trouxe a visão de jogo e o critério para reconhecer o que realmente contribui para a evolução.",
   },
   {
     chave: "professor",
     papel: "Professor",
     titulo: "Depois, aprender a ensinar",
     texto:
-      "Milhares de horas olhando outra pessoa errar. Saber que a bola foi na rede é fácil; saber que foi por causa do pé de trás exige ter visto o mesmo erro em muita gente diferente.",
+      "Como treinador, Guto desenvolveu o olhar para identificar a causa do erro e transformar a correção em uma orientação aplicável.",
   },
   {
     chave: "treinador",
     papel: "Treinador",
     titulo: "Então, estruturar o que funcionava",
     texto:
-      "Como treinador a conta muda: não é uma aula, é a evolução de alguém ao longo de meses. Isso obrigou a organizar o que era intuição.",
+      "Na coordenação técnica e na gestão esportiva, organizou processos para acompanhar a evolução de atletas, equipes e profissionais.",
   },
   {
     chave: "formador",
     papel: "Formador",
     titulo: "Hoje, formar quem ensina",
     texto:
-      "Um método que só o autor aplica não é método, é jeito de dar aula. Torná-lo transmissível é o que o Conexão BT faz.",
+      "Hoje, o Conexão BT torna essa experiência transmissível: forma professores para aplicar oficialmente a metodologia com mais organização, repertório e eficiência.",
   },
 ];
 

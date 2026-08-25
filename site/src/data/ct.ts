@@ -79,7 +79,7 @@ export const entregas: Entrega[] = [
   {
     titulo: "Metodologia própria de ensino",
     texto:
-      "O Método dos 5 Pilares define a ordem em que se ensina e o que se cobra em cada estágio. Está escrito, então qualquer professor do time aplica igual.",
+      "O Método dos 5 Pilares organiza o trabalho do professor: técnica e repetição, correção e intensidade, tática, estratégia e disciplina, criatividade didática, gestão e fidelização.",
   },
   {
     titulo: "Treinamento técnico e tático",

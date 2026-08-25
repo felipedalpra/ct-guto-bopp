@@ -2,10 +2,8 @@
  * Método dos 5 Pilares — Metodologia Guto Bopp.
  *
  * ⚠️ RASCUNHO — VALIDAR COM O GUTO.
- * O briefing cita os cinco temas em texto corrido ("organização, correção,
- * desenvolvimento técnico e tático, qualidade das aulas"), mas não trouxe o nome
- * oficial nem a descrição de cada pilar. Os nomes e todos os textos abaixo foram
- * redigidos a partir do briefing e precisam do aval do cliente antes de publicar.
+ * Nomes e conceitos conforme a apostila do Conexão BT e a apresentação da
+ * Licença Oficial do CT Guto Bopp.
  *
  * Cada pilar tem quatro camadas de texto, na ordem em que o leitor as encontra:
  *   resumo     — uma linha, subtítulo do pilar em /metodo
@@ -34,87 +32,87 @@ export type Pilar = {
 export const pilares: Pilar[] = [
   {
     numero: "01",
-    nome: "Organização",
-    resumo: "Toda aula tem começo, meio e objetivo.",
+    nome: "Técnica e repetição",
+    resumo: "Construir o movimento e repetir com eficiência.",
     ganho:
-      "Cada aula continua a anterior, em vez de recomeçar do zero.",
+      "O gesto deixa de depender do acaso e ganha consistência.",
     descricao:
-      "Aula planejada antes de a bola entrar em quadra: objetivo definido, exercícios encadeados e tempo aproveitado. É o pilar que separa treino de bate-bola.",
+      "Construção do movimento e eficiência biomecânica: ativar, executar e reorganizar. A técnica sólida evita que o aluno encontre um teto e pare de evoluir.",
     naAula: [
-      "O professor chega com o objetivo definido, não escolhe na hora",
-      "Cada exercício prepara o seguinte",
-      "O que foi treinado hoje conversa com a próxima aula",
+      "Preparação, ponto de contato e terminação do movimento",
+      "Repetições com foco na qualidade do gesto",
+      "Reorganização para preparar a próxima bola",
     ],
     oQueMuda:
-      "O aluno para de sentir que cada aula recomeça do zero e passa a perceber uma linha entre uma semana e a outra.",
+      "O aluno constrói um padrão técnico mais eficiente e consistente.",
     zona: { x: 0.22, y: 0.2 },
   },
   {
     numero: "02",
-    nome: "Correção",
-    resumo: "Apontar o erro certo, na hora certa, com a palavra certa.",
+    nome: "Correção e intensidade",
+    resumo: "Intervir com precisão e aproximar o treino do jogo.",
     ganho:
-      "O erro para de voltar com outro nome.",
+      "O professor deixa de ser apenas lançador e se torna interventor.",
     descricao:
-      "Enxergar a causa do erro em vez do sintoma, e devolver a correção de forma que o aluno aplique no próximo ponto.",
+      "Identificar a causa do erro, corrigir em tempo real e aumentar progressivamente a intensidade para simular situações reais de jogo.",
     naAula: [
-      "A correção mira a causa — empunhadura, pés, decisão — e não a bola que saiu",
-      "Uma coisa por vez: duas correções simultâneas anulam as duas",
-      "Frase curta, no intervalo do ponto, no vocabulário do aluno",
+      "Diferenciação entre erro técnico, de posicionamento e de tempo de bola",
+      "Feedback curto e direto, com apoio visual quando necessário",
+      "Velocidade, peso e deslocamento ajustados progressivamente",
     ],
     oQueMuda:
-      "O erro para de voltar com outro nome. O aluno entende o que causou a bola errada e arruma sozinho.",
+      "O aluno entende o que precisa ajustar e aprende a responder sob uma intensidade próxima à do jogo.",
     zona: { x: 0.75, y: 0.28 },
   },
   {
     numero: "03",
-    nome: "Desenvolvimento técnico",
-    resumo: "O gesto construído na base, repetido até virar padrão.",
+    nome: "Tática, estratégia e disciplina",
+    resumo: "Ler o jogo, controlar a bola e decidir melhor.",
     ganho:
-      "O golpe deixa de depender do dia.",
+      "O aluno joga com controle e propósito.",
     descricao:
-      "Empunhadura, posição de espera, deslocamento e finalização na ordem certa. A técnica é construída por camadas.",
+      "Leitura de jogo, antecipação, posicionamento da dupla e tomada de decisão. A consistência nasce do controle de bola e da disciplina para escolher a jogada certa.",
     naAula: [
-      "A base vem antes do golpe: empunhadura e posição não se pulam",
-      "O deslocamento é treinado como parte do golpe",
-      "Camada nova só entra quando a anterior aguenta pressão de jogo",
+      "Movimentação horizontal em conjunto e transição entre frente e fundo",
+      "Bolas de segurança para manter o controle do ponto",
+      "Bolas de risco usadas quando há oportunidade clara de acelerar",
     ],
     oQueMuda:
-      "O golpe deixa de depender do dia. O aluno repete o mesmo gesto sob pressão.",
+      "O aluno passa a antecipar, escolher padrões e jogar com inteligência e segurança.",
     zona: { x: 0.5, y: 0.5 },
   },
   {
     numero: "04",
-    nome: "Desenvolvimento tático",
-    resumo: "Saber o que fazer com a bola antes de ela chegar.",
+    nome: "Criatividade didática",
+    resumo: "Criar exercícios que desafiam e fazem evoluir.",
     ganho:
-      "O aluno joga com intenção, não no reflexo.",
+      "A aula mantém o aluno motivado e em evolução.",
     descricao:
-      "Leitura de jogo, posicionamento de dupla e construção do ponto. É onde o aluno para de reagir à bola e passa a decidir.",
+      "Planejar exercícios variados, com foco único e progressão semanal, transformando a repetição técnica em situações próximas da pressão do jogo.",
     naAula: [
-      "Posicionamento de dupla treinado junto, não cada um no seu lado",
-      "Exercícios com mais de uma resposta possível para a mesma bola",
-      "A bola que prepara vale tanto quanto a que finaliza",
+      "Drills fechados, semiabertos e abertos",
+      "Um foco por exercício, sem misturar situações desnecessariamente",
+      "Pontuação e alvos visuais para aproximar o treino do jogo",
     ],
     oQueMuda:
-      "O aluno passa a jogar com intenção. Ganha ponto de quem bate mais forte, porque sabe onde colocar a bola.",
+      "O aluno entende o objetivo de cada exercício, enfrenta desafios progressivos e percebe evolução real.",
     zona: { x: 0.24, y: 0.74 },
   },
   {
     numero: "05",
-    nome: "Qualidade da aula",
-    resumo: "O aluno sai da quadra sabendo o que evoluiu.",
+    nome: "Gestão e fidelização",
+    resumo: "Organizar a carreira e manter o aluno conectado.",
     ganho:
-      "A evolução vira algo que o aluno consegue nomear.",
+      "A metodologia vira uma carreira sustentável e uma relação contínua com o aluno.",
     descricao:
-      "Intensidade, clima e clareza do que foi trabalhado. É o que faz o aluno voltar na semana seguinte.",
+      "Gestão da carreira, posicionamento profissional, grupos fixos, nivelamento e modelos de recorrência que favorecem a evolução do aluno e a organização do professor.",
     naAula: [
-      "Intensidade compatível com o nível: nem parado, nem afogado",
-      "Clima que deixa o aluno tentar e errar sem travar",
-      "O objetivo é dito no começo e retomado no fim",
+      "Turmas separadas por nível técnico",
+      "Aulas fixas e pacotes que favorecem continuidade",
+      "Acompanhamento extra-quadra e avaliações periódicas",
     ],
     oQueMuda:
-      "A evolução deixa de ser sensação e vira algo que o aluno consegue nomear.",
+      "O aluno enxerga resultados, permanece conectado ao processo e evolui com acompanhamento contínuo.",
     zona: { x: 0.77, y: 0.8 },
   },
 ];

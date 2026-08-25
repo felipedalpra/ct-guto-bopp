@@ -37,7 +37,7 @@ export const fatos: Fato[] = [
     valor: String(pilares.length),
     rotulo: "pilares",
     detalhe:
-      "Organização, correção, técnica, tática e qualidade da aula.",
+      "Técnica e repetição, correção e intensidade, tática, estratégia e disciplina, criatividade didática, gestão e fidelização.",
   },
   {
     valor: String(time.length),

@@ -26,10 +26,10 @@ export default function ConexaoBT() {
             <span className="bloco__risco" aria-hidden="true" />
             O que muda
           </p>
-          <h2 className="display bloco__titulo">Cinco trocas na sua aula</h2>
+          <h2 className="display bloco__titulo">Cinco pilares na sua aula</h2>
           <p className="bloco__intro">
-            Cinco trocas concretas. Se você reconhecer a coluna da esquerda na sua
-            aula, é exatamente esse o trabalho.
+            A formação transforma os cinco pilares em prática: da construção técnica
+            e da correção à didática, à gestão e à fidelização.
           </p>
         </Revela>
 

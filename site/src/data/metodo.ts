@@ -2,20 +2,17 @@
  * Conteúdo de apoio da página /metodo: o que o método resolve, como ele chega
  * na quadra em cada nível, como é uma aula e em que formatos o CT trabalha.
  *
- * ⚠️ RASCUNHO — VALIDAR COM O GUTO.
- * Escrito a partir do briefing (5 pilares, públicos atendidos, formatos citados nas
- * fichas dos professores). Nenhuma duração, preço, frequência ou tamanho de turma
- * foi inventado — o que falta está listado no fim do arquivo.
+ * Conteúdo alinhado à apostila do Conexão BT e à apresentação da Licença Oficial.
  */
 
-export const RASCUNHO = true;
+export const RASCUNHO = false;
 
 /** O problema que o método resolve. Abre a página, antes dos pilares. */
 export const oProblema = {
   titulo: "A diferença entre treinar e bater bola",
   paragrafos: [
-    "Quase todo mundo que joga já teve uma aula que era, na prática, uma hora de bola cruzada. Rende suor e rende pouca evolução: sem objetivo, sem correção na causa do erro e sem ordem entre uma semana e a outra, o aluno melhora até onde o talento dele alcança sozinho — e para ali.",
-    "A Metodologia Guto Bopp organiza o ensino em cinco pilares que dependem um do outro, na ordem. Sem organização não há correção útil; sem base técnica não há tática que se sustente.",
+    "Uma aula de Beach Tennis precisa fazer mais do que colocar a bola em movimento. Sem técnica construída por repetição, correção precisa, intensidade progressiva e situações que desenvolvam a decisão, o aluno pode até jogar — mas não entende como evoluir.",
+    "A Metodologia Guto Bopp organiza o trabalho do professor em cinco pilares: técnica e repetição; correção e intensidade; tática, estratégia e disciplina; criatividade didática; e gestão e fidelização. A proposta vai da qualidade do movimento ao acompanhamento do aluno e à organização da carreira.",
   ],
 };
 
