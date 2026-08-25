@@ -610,62 +610,7 @@ body {
     linear-gradient(90deg, rgba(10, 21, 36, 0.75) 0%, transparent 65%);
 }
 
-/* Marcação da quadra, desenhada uma vez no carregamento. */
-.hero__marcacao {
-  position: absolute;
-  inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  opacity: 0.5;
-  /* A linha de fundo da quadra caía justo na altura dos botões e cortava
-     "Começar a treinar" ao meio — duas linhas horizontais disputando o mesmo
-     lugar. A marcação agora se dissolve antes de chegar lá; o quadro fica
-     aberto embaixo, o que combina com a quadra sumindo na areia. */
-  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 80%);
-}
-
-.hero__marcacao .traco {
-  stroke: var(--color-lime-ct);
-  stroke-width: 1.5;
-  stroke-dasharray: 4000;
-  stroke-dashoffset: 4000;
-  animation: desenha 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
-  opacity: 0.5;
-}
-
-.hero__marcacao .traco--rede {
-  stroke-dasharray: 6 10;
-  stroke-dashoffset: 0;
-  opacity: 0;
-  animation: aparece 1.2s ease 1.8s forwards;
-}
-
-.hero__marcacao .traco--eixo {
-  stroke: var(--color-gold-ct);
-  opacity: 0;
-  stroke-dasharray: 2 14;
-  stroke-dashoffset: 0;
-  animation: aparece 1.2s ease 2.2s forwards;
-}
-
-@keyframes desenha {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes aparece {
-  to {
-    opacity: 0.35;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .hero__marcacao .traco {
-    animation: none;
-    stroke-dashoffset: 0;
-    opacity: 0.35;
-  }
   .hero__video {
     display: none;
   }

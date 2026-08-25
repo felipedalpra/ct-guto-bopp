@@ -36,5 +36,5 @@ aponta para `public/img/capa-poster.jpg` — hoje é o primeiro quadro do própr
 `hero.mp4`, para a capa não piscar outra imagem antes do vídeo entrar. Se trocar o
 vídeo, gere o poster de novo a partir do mesmo quadro inicial.
 
-Vídeo atual: recorte 16:9 de `Videos/aula6.mp4` (capacitação de professores —
-Guto conduzindo com a turma em quadra), 16s mudos a partir de 0:14.
+Vídeo atual: recorte 16:9 de `Videos/aula5.mp4` (Guto conduzindo a turma em
+quadra), 16s mudos a partir de 0:06.

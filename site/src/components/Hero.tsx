@@ -57,7 +57,6 @@ export default function Hero() {
           <source src="/video/hero.mp4" type="video/mp4" />
         </video>
         <div className="hero__veu" />
-        <MarcacaoQuadra />
       </div>
 
       <div className="shell hero__conteudo">
@@ -102,21 +101,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
-}
-
-/** Marcação de quadra que se desenha no carregamento da página. */
-function MarcacaoQuadra() {
-  return (
-    <svg
-      className="hero__marcacao"
-      viewBox="0 0 1600 800"
-      preserveAspectRatio="xMidYMid slice"
-      fill="none"
-    >
-      <rect x="200" y="120" width="1200" height="560" className="traco" />
-      <line x1="800" y1="60" x2="800" y2="740" className="traco traco--rede" />
-      <line x1="200" y1="400" x2="1400" y2="400" className="traco traco--eixo" />
-    </svg>
   );
 }
