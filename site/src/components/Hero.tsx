@@ -25,6 +25,12 @@ export default function Hero() {
     ).matches;
     if (menosMovimento) return;
 
+    // Safari/iOS só considera o autoplay não-interativo quando o vídeo está
+    // explicitamente mudo também como propriedade (e não apenas como atributo).
+    el.muted = true;
+    el.defaultMuted = true;
+    el.setAttribute("muted", "");
+
     const mostrar = () => el.setAttribute("data-tocando", "true");
     el.addEventListener("playing", mostrar);
     void el.play().catch(() => {
@@ -40,6 +46,7 @@ export default function Hero() {
         <video
           ref={video}
           className="hero__video"
+          autoPlay
           muted
           loop
           playsInline
