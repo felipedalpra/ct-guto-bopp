@@ -47,8 +47,13 @@ export default function Metodo() {
 
   useEffect(() => {
     if (!sozinho || !visivel || pausado) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    /* Com "reduzir movimento" ligado o passeio continua andando: trocar o pilar
+       aberto é mudança de conteúdo, não movimento na tela. O que o sistema
+       desliga são as transições — o risco e o painel aparecem prontos, sem
+       deslizar (ver o bloco `prefers-reduced-motion` no globals.css). Antes o
+       passeio era cancelado aqui, e quem tem a opção ligada no macOS ou no iOS
+       via a quadra parada no pilar 1 para sempre. */
     const ciclo = window.setInterval(() => {
       setAtivo((atual) => (atual + 1) % pilares.length);
     }, PASSO);
@@ -84,13 +89,13 @@ export default function Metodo() {
           </p>
         </Revela>
 
-        {/* O ponteiro só segura o passeio em cima do diagrama e da lista — era a
-            seção inteira, então um cursor parado em qualquer canto (título, botão,
-            margem) travava tudo no primeiro pilar. */}
+        {/* O ponteiro não segura mais o passeio: um cursor parado em cima da
+            seção depois de rolar é o caso comum no desktop, e travava tudo no
+            primeiro pilar. Quem quer ler um pilar clica nele, e o clique encerra
+            o passeio. Só o foco do teclado ainda pausa: navegando por Tab, o
+            conteúdo não pode mudar debaixo de quem está lendo. */}
         <div
           className="metodo__grade"
-          onMouseEnter={() => setPausado(true)}
-          onMouseLeave={() => setPausado(false)}
           onFocus={() => setPausado(true)}
           onBlur={(evento) => {
             if (
