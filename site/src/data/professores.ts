@@ -3,7 +3,7 @@
  * Fonte: fichas de cadastro em `Cadastro professores/` (ver ../../../memory.md).
  *
  * Previsão do cliente: 7 professores. Recebidos até agora: 6 fichas.
- * Pendências: 1 ficha + a foto do Mateus Kunzler.
+ * Pendências: 1 ficha.
  */
 
 export type Professor = {
@@ -112,7 +112,7 @@ export const professores: Professor[] = [
     frase: "A bolinha já está vindo, se desesperar é pior.",
     instagram: "mateuskunzler",
     whatsappE164: "+5551981585243",
-    // ⚠️ Foto pendente — a ficha veio sem imagem. O card cai no fallback com as iniciais.
+    foto: "/img/professores/mateus.jpg",
   },
   {
     slug: "rafael-cunha",

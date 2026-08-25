@@ -50,8 +50,8 @@ export default function Contato() {
           <div className="cartao__midia" ref={ref}>
             <video
               className="cartao__video"
-              src={carregar ? "/video/aulas/aula-1.mp4" : undefined}
-              poster="/video/aulas/aula-1.jpg"
+              src={carregar ? "/video/contato/turma.mp4" : undefined}
+              poster="/video/contato/turma.jpg"
               autoPlay
               muted
               loop

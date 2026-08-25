@@ -168,7 +168,7 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
 - [ ] Confirmar a paleta com o cliente (logo já recebida)
 - [ ] Receber foto de capa (horizontal), fotos do espaço e fotos gerais
 - [ ] Receber a ficha de professor que falta (1 de 7)
-- [ ] Receber a foto do Mateus Kunzler (ficha veio sem foto)
+- [x] Receber a foto do Mateus Kunzler (recebida em 2026-08-24, já no site)
 - [ ] Briefing diz "itens 1 a 7" mas o documento entregue só traz 1 a 5 —
       **faltam os itens 6 e 7** (pedir ao cliente)
 - [ ] Definir stack, hospedagem e domínio

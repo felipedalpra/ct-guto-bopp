@@ -26,6 +26,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - 2026-08-19 — Briefing respondido pelo cliente (docx) adicionado à pasta; conteúdo extraído e consolidado no `memory.md` (posicionamento, contato, identidade visual, pendências)
 - 2026-08-19 — Rascunho da copy do site em `copy-site.md` (hero, apresentação, método, quem somos, Conexão BT, professores, rodapé)
 
+
 ### Corrigido
 - 2026-08-23 — Vazio à direita do retrato em /guto-bopp: a foto 4:5 passava de 850px de altura enquanto ao lado dela havia só dois parágrafos. A coluna do retrato ganhou teto de 24rem e o texto ficou centrado na altura dela, com o `sizes` da imagem acompanhando
 - 2026-08-23 — Vazio embaixo do cabeçalho de "Como é uma aula aqui" no desktop: o texto ficava colado no topo enquanto a coluna dos três vídeos 9:16 seguia por quase mil pixels. O cabeçalho agora fica centrado na altura da coluna dos vídeos
@@ -48,6 +49,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 - 2026-08-20 — Ponto final de "Resultado." era cortado em telas de 320–390px; escala do título da capa ajustada para caber a palavra mais longa
 
 ### Alterado
+- 2026-08-24 — Material novo do cliente entrou no site, em três frentes. (1) Foto do Rafael Cunha trocada pela nova e foto do Mateus Kunzler enfim recebida — as duas recortadas no 4:5 padrão do time, e o card do Mateus deixa de cair no fallback de iniciais. (2) Vídeo da capa: saiu o trecho de areia com bolinhas (era o único recorte horizontal que os vídeos antigos permitiam sem cortar cabeça) e entrou um recorte 16:9 da capacitação, com o Guto conduzindo e a turma em quadra — `hero.mp4` (3,4 MB) e `hero.webm` (2,8 MB), mudos e em loop, com `capa-poster.jpg` regerado do primeiro quadro. (3) Os quatro vídeos novos desfizeram as repetições: "Como é uma aula aqui" tinha três trechos quase idênticos da mesma sessão e agora traz momentos distintos (demonstração, briefing com a turma, correção individual), e a seção de contato ganhou vídeo próprio (`/video/contato/turma.mp4`) em vez de repetir o primeiro card de aula
 - 2026-08-23 — "Quadra 8 × 16 m" saiu da régua da capa: a medida oficial da quadra não diz nada a quem está decidindo onde treinar. Sobraram na régua o local e o horário, que são o que a pessoa procura ali
 - 2026-08-23 — /professores perdeu a capa ("Nosso time / Quem está na areia com você") e abre direto na grade do time: era mais um título grande dizendo o mesmo que o cabeçalho da grade logo abaixo. A trilha de navegação virou componente próprio (`Trilha`, exportado de `CapaPagina`) e agora abre a grade, que recebe o respiro do cabeçalho fixo e cujo título passou a ser o `<h1>` da página
 - 2026-08-23 — Logo do cabeçalho maior (de no máximo 3,75rem para 5rem de altura, com o respiro vertical da barra reduzido para compensar): na tela larga a marca ficava menor que o botão de WhatsApp ao lado e perdia destaque. Os pontos grudados abaixo do cabeçalho (FAQ, retrato do Guto, cena que acompanha e cabeçalho das seções de prosa) subiram de 6/6,5rem para 7,25rem para acompanhar a barra mais alta

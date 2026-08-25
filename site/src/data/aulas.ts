@@ -1,9 +1,10 @@
 /**
  * Vídeos de aula gravados na quadra do CT.
  *
- * Fonte: os três vídeos que o cliente mandou, todos da mesma sessão de
- * capacitação (Guto conduzindo, professores sentados assistindo). Cortados em
- * 15s cada e guardados em `public/video/aulas/`.
+ * Fonte: os vídeos de capacitação que o cliente mandou (Guto conduzindo,
+ * professores assistindo). Cortados em 15s cada e guardados em
+ * `public/video/aulas/`. Os três são de momentos diferentes da aula — antes eram
+ * três trechos quase iguais da mesma sessão.
  *
  * ⚠️ VALIDAR COM O GUTO: as legendas abaixo descrevem o que se vê na imagem, que
  * é seguro, mas ninguém confirmou qual conteúdo estava sendo dado em cada uma.
@@ -35,14 +36,14 @@ export const aulas: Aula[] = [
     id: "aula-2",
     arquivo: "/video/aulas/aula-2.mp4",
     poster: "/video/aulas/aula-2.jpg",
-    titulo: "Explicação em quadra",
-    legenda: "Correção falada com a turma parada — uma coisa por vez.",
+    titulo: "Briefing antes do exercício",
+    legenda: "Guto explica a tarefa para a turma antes de mandar todo mundo para a quadra.",
   },
   {
     id: "aula-3",
     arquivo: "/video/aulas/aula-3.mp4",
     poster: "/video/aulas/aula-3.jpg",
-    titulo: "Sequência de exercício",
-    legenda: "A cesta de bolas e o exercício encadeado que vem depois.",
+    titulo: "Correção individual",
+    legenda: "No meio do exercício, o ajuste vai um a um — com a cesta de bolas ao lado.",
   },
 ];
