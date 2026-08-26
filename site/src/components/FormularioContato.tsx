@@ -58,6 +58,63 @@ const TEMPOS_DE_AULA = [
 
 type Estado = "parado" | "enviando" | "enviado" | "erro";
 
+/**
+ * Webhook do Zentri Pulse — o lead cai direto na lista do Guto lá dentro.
+ * Dispara em paralelo ao envio normal do formulário e nunca o bloqueia: se
+ * falhar, só registra no console, porque o contato principal já foi feito.
+ */
+const ZENTRI_WEBHOOK =
+  "https://nqnznxfqbbisfdyakdeu.supabase.co/functions/v1/gestor-waitlist-webhook?id=LSVXHP";
+
+function rotuloDe(
+  opcoes: readonly { valor: string; rotulo: string }[],
+  valor: string
+) {
+  return opcoes.find((o) => o.valor === valor)?.rotulo ?? valor;
+}
+
+function avisarZentri(dados: {
+  nome: string;
+  whatsapp: string;
+  objetivo: string;
+  nivel: string;
+  horario: string;
+  tempoDeAula: string;
+  ondeDaAula: string;
+  mensagem: string;
+}) {
+  const professor = dados.objetivo === "conexao-bt";
+
+  const observacao = [
+    dados.objetivo ? rotuloDe(OBJETIVOS, dados.objetivo) : "",
+    dados.ondeDaAula ? `Dá aula em: ${dados.ondeDaAula}` : "",
+    dados.mensagem,
+  ]
+    .filter(Boolean)
+    .join(" — ");
+
+  return fetch(ZENTRI_WEBHOOK, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nome: dados.nome,
+      whatsapp: dados.whatsapp,
+      modalidade: "Beach Tennis",
+      nivel: professor
+        ? dados.tempoDeAula
+          ? rotuloDe(TEMPOS_DE_AULA, dados.tempoDeAula)
+          : ""
+        : dados.nivel
+          ? rotuloDe(NIVEIS, dados.nivel)
+          : "",
+      horario: dados.horario ? rotuloDe(HORARIOS, dados.horario) : "",
+      observacao,
+    }),
+  }).catch((erro) => {
+    console.error("[contato] webhook Zentri falhou:", erro);
+  });
+}
+
 export default function FormularioContato() {
   const [dados, setDados] = useState({
     nome: "",
@@ -93,6 +150,7 @@ export default function FormularioContato() {
       console.warn(
         "[contato] formulario.endpoint não configurado — nenhum dado foi enviado."
       );
+      void avisarZentri(dados);
       setEstado("enviado");
       return;
     }
@@ -103,7 +161,12 @@ export default function FormularioContato() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ ...dados, origem: "site/contato" }),
       });
-      setEstado(resposta.ok ? "enviado" : "erro");
+      if (resposta.ok) {
+        void avisarZentri(dados);
+        setEstado("enviado");
+      } else {
+        setEstado("erro");
+      }
     } catch {
       setEstado("erro");
     }
