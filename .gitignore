@@ -21,3 +21,9 @@ build/
 # Vídeos brutos do cliente — arquivos de 140MB+ cada, acima do limite de 100MB
 # do GitHub. Ficam só na máquina; o que for pro site entra otimizado em site/public/
 Videos/
+
+# Material de origem do cliente — apostila do Conexão BT, apresentação comercial
+# e as gravações brutas da capa. É conteúdo do negócio, não do site: fica só na
+# máquina, e o que for publicado entra tratado em site/public/.
+apostillas e apresentacoes/
+Videoscapa/
