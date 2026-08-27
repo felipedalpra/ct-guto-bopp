@@ -59,9 +59,14 @@ const TEMPOS_DE_AULA = [
 type Estado = "parado" | "enviando" | "enviado" | "erro";
 
 /**
- * Webhook do Zentri Pulse — o lead cai direto na lista do Guto lá dentro.
- * Dispara em paralelo ao envio normal do formulário e nunca o bloqueia: se
- * falhar, só registra no console, porque o contato principal já foi feito.
+ * Webhook do Zentri Pulse — o lead cai direto na lista de espera do Guto lá
+ * dentro. Dispara em paralelo ao envio normal do formulário e nunca o bloqueia:
+ * se falhar, só registra no console, porque o contato principal já foi feito.
+ *
+ * A função só entende estes campos: name/nome, phone/telefone/whatsapp,
+ * message/mensagem/notes, sport/modalidade, level/nivel. Qualquer outro nome é
+ * descartado em silêncio — por isso o horário e o resto da conversa vão
+ * costurados dentro de `mensagem`, e não em campos próprios.
  */
 const ZENTRI_WEBHOOK =
   "https://nqnznxfqbbisfdyakdeu.supabase.co/functions/v1/gestor-waitlist-webhook?id=LSVXHP";
@@ -85,8 +90,10 @@ function avisarZentri(dados: {
 }) {
   const professor = dados.objetivo === "conexao-bt";
 
-  const observacao = [
+  // Tudo que o webhook não tem campo para receber vira uma linha só de texto.
+  const mensagem = [
     dados.objetivo ? rotuloDe(OBJETIVOS, dados.objetivo) : "",
+    dados.horario ? `Horário: ${rotuloDe(HORARIOS, dados.horario)}` : "",
     dados.ondeDaAula ? `Dá aula em: ${dados.ondeDaAula}` : "",
     dados.mensagem,
   ]
@@ -102,17 +109,32 @@ function avisarZentri(dados: {
       modalidade: "Beach Tennis",
       nivel: professor
         ? dados.tempoDeAula
-          ? rotuloDe(TEMPOS_DE_AULA, dados.tempoDeAula)
-          : ""
+          ? `Professor(a) — dá aula há ${rotuloDe(
+              TEMPOS_DE_AULA,
+              dados.tempoDeAula
+            ).toLowerCase()}`
+          : "Professor(a)"
         : dados.nivel
           ? rotuloDe(NIVEIS, dados.nivel)
           : "",
-      horario: dados.horario ? rotuloDe(HORARIOS, dados.horario) : "",
-      observacao,
+      mensagem,
     }),
-  }).catch((erro) => {
-    console.error("[contato] webhook Zentri falhou:", erro);
-  });
+  })
+    .then(async (resposta) => {
+      // Um 401 ou um erro de gravação chegam como resposta resolvida, não como
+      // exceção: sem checar o status, o formulário comemora um lead que se
+      // perdeu no caminho.
+      if (!resposta.ok) {
+        console.error(
+          "[contato] webhook Zentri respondeu %d: %s",
+          resposta.status,
+          await resposta.text().catch(() => "(sem corpo)")
+        );
+      }
+    })
+    .catch((erro) => {
+      console.error("[contato] webhook Zentri falhou:", erro);
+    });
 }
 
 export default function FormularioContato() {
