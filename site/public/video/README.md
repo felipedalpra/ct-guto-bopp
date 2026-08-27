@@ -36,5 +36,37 @@ aponta para `public/img/capa-poster.jpg` — hoje é o primeiro quadro do própr
 `hero.mp4`, para a capa não piscar outra imagem antes do vídeo entrar. Se trocar o
 vídeo, gere o poster de novo a partir do mesmo quadro inicial.
 
-Vídeo atual: recorte 16:9 de `Videos/aula5.mp4` (Guto conduzindo a turma em
-quadra), 16s mudos a partir de 0:06.
+Vídeo atual: `Videoscapa/materiais/WhatsApp Video 2026-08-27 at 09.27.15.mp4`
+— Guto conduzindo a turma, câmera parada, 17s mudos a partir de 0:02.
+
+Foi escolhido entre os cinco materiais horizontais enviados porque é o único com
+câmera estável, ação contínua do começo ao fim e sem faixa de patrocinador legível
+atravessando o quadro (os outros trazem `#VEMPRAPLAY` / `IMPROPLAY` em destaque, um
+tem só 5s e um é vertical).
+
+Como foi gerado (corte de cor + loop sem emenda, ambos no comando):
+
+```bash
+GRADE="crop=964:542:60:34,hqdn3d=3:2:6:6,scale=1280:720:flags=lanczos,\
+eq=contrast=1.14:brightness=-0.02:saturation=1.06:gamma=0.98,\
+colorbalance=rs=-0.05:gs=-0.02:bs=0.10:rm=0.03:gm=0.01:bm=-0.02:rh=0.05:gh=0.03:bh=-0.03,\
+unsharp=5:5:0.6,vignette=PI/5,fps=30,format=yuv420p"
+
+# o split/xfade abaixo cruza o fim com o começo: o loop não dá salto visível
+FC="[0:v]trim=2:20,setpts=PTS-STARTPTS,${GRADE},split=3[a][b][c];\
+[a]trim=1:17,setpts=PTS-STARTPTS[main];[b]trim=17:18,setpts=PTS-STARTPTS[tail];\
+[c]trim=0:1,setpts=PTS-STARTPTS[head];[tail][head]xfade=transition=fade:duration=1:offset=0[seam];\
+[main][seam]concat=n=2:v=1:a=0[out]"
+
+ffmpeg -i original.mp4 -filter_complex "$FC" -map "[out]" -an \
+  -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p -movflags +faststart hero.mp4
+ffmpeg -i original.mp4 -filter_complex "$FC" -map "[out]" -an \
+  -c:v libvpx-vp9 -crf 38 -b:v 0 -row-mt 1 -deadline good -cpu-used 2 hero.webm
+ffmpeg -i hero.mp4 -frames:v 1 -q:v 3 ../img/capa-poster.jpg
+```
+
+O que cada parte do corte de cor resolve, já que o material sai do celular achatado
+e frio: `crop` tira a coluna escura da esquerda e a sobra de telhado; `hqdn3d` limpa
+o ruído (e derruba o tamanho do arquivo); `eq` + `colorbalance` puxam sombra para o
+azul da marca e a areia para o quente; `vignette` fecha as bordas para o texto da
+capa ganhar contraste sem precisar de mais véu por cima.

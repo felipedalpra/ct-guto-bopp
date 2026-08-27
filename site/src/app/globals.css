@@ -587,32 +587,94 @@ body {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
+  /* Puxa o enquadramento para baixo: mais areia e jogada atrás do texto,
+     menos telhado e menos a faixa da rede cortando o título. */
+  object-position: 52% 64%;
   /* O poster precisa continuar visível se o autoplay for bloqueado pelo
      Safari, pelo modo de economia de energia ou por uma rede lenta. */
-  opacity: 0.55;
-  transition: opacity 1.4s ease;
+  /* Opacidade alta de propósito: vídeo semitransparente sobre o navy do fundo
+     vira névoa — o quadro perde preto e a areia fica leitosa. Quem escurece
+     para o texto ler é o véu, que é gradiente e só pesa onde precisa. */
+  opacity: 0.95;
+  transition: opacity 1.6s ease;
 }
 
+/* Deriva lenta: dá vida à capa sem virar movimento perceptível — o quadro
+   nunca sai do lugar de forma que o visitante consiga acompanhar. */
 .hero__video[data-tocando="true"] {
-  opacity: 0.55;
+  opacity: 0.95;
+  animation: hero-deriva 32s ease-in-out infinite alternate;
+}
+
+@keyframes hero-deriva {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.4%, -1%, 0);
+  }
 }
 
 .hero__veu {
   position: absolute;
   inset: 0;
   background:
+    /* leitura do texto: sombra forte à esquerda, areia limpa à direita */
+    linear-gradient(
+      100deg,
+      rgba(5, 12, 22, 0.92) 0%,
+      rgba(6, 14, 25, 0.74) 34%,
+      rgba(8, 17, 30, 0.34) 62%,
+      rgba(8, 17, 30, 0.1) 82%,
+      transparent 100%
+    ),
     linear-gradient(
       180deg,
-      rgba(10, 21, 36, 0.82) 0%,
-      rgba(10, 21, 36, 0.42) 38%,
-      rgba(7, 15, 27, 0.94) 100%
-    ),
-    linear-gradient(90deg, rgba(10, 21, 36, 0.75) 0%, transparent 65%);
+      rgba(5, 12, 22, 0.72) 0%,
+      transparent 26%,
+      transparent 62%,
+      rgba(4, 10, 19, 0.92) 100%
+    );
+}
+
+/* Tela estreita: a sombra lateral cobriria a capa inteira e apagaria a
+   quadra. Aqui o véu é só vertical — escuro em cima e embaixo, areia limpa
+   no meio, atrás do título. */
+@media (max-width: 47.99rem) {
+  .hero__veu {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 12, 22, 0.9) 0%,
+        rgba(6, 14, 25, 0.22) 26%,
+        rgba(5, 12, 22, 0.78) 54%,
+        rgba(4, 10, 19, 0.96) 100%
+      );
+  }
+}
+
+/* Fio lima rente à régua: fecha a capa com a cor da marca, sem ruído. */
+.hero__veu::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--color-lime-ct) 55%, transparent) 22%,
+    color-mix(in oklab, var(--color-lime-ct) 55%, transparent) 78%,
+    transparent 100%
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero__video {
     display: none;
+  }
+  .hero__video[data-tocando="true"] {
+    animation: none;
   }
 }
 
@@ -622,6 +684,7 @@ body {
 
 .hero__local {
   margin-block-end: 1.75rem;
+  text-shadow: 0 1px 6px rgba(4, 10, 19, 0.7);
   animation: sobe 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
@@ -631,6 +694,9 @@ body {
   font-size: clamp(2.3rem, 11.2vw, 8.5rem);
   margin-block-end: 1.75rem;
   max-inline-size: 16ch;
+  /* O fim de "RESULTADO." cai sobre a areia clara. Escurecer o véu até lá
+     apagaria a quadra inteira; a sombra resolve só onde o problema existe. */
+  text-shadow: 0 0.06em 0.5em rgba(4, 10, 19, 0.5);
 }
 
 .hero__titulo span {
@@ -648,6 +714,7 @@ body {
   max-inline-size: 46ch;
   font-size: clamp(1rem, 2.2vw, 1.1875rem);
   color: color-mix(in oklab, var(--color-sand) 82%, transparent);
+  text-shadow: 0 1px 8px rgba(4, 10, 19, 0.7);
   margin-block-end: 2.25rem;
   animation: sobe 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
 }
