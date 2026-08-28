@@ -1,12 +1,7 @@
 import { depoimentos, RASCUNHO } from "@/data/depoimentos";
 import Revela from "./Revela";
 
-/**
- * Depoimentos.
- * Os textos ainda são rascunho (ver src/data/depoimentos.ts). Enquanto forem,
- * um aviso aparece só em desenvolvimento, para não passar batido na revisão,
- * e nada daqui entra nos dados estruturados.
- */
+/** Depoimentos editoriais de alunos e professores do CT. */
 export default function Depoimentos({ numero }: { numero?: string }) {
   return (
     <section

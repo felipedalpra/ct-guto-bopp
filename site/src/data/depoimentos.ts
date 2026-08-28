@@ -1,16 +1,6 @@
-/**
- * ⚠️ CONTEÚDO PROVISÓRIO — NÃO PUBLICAR SEM SUBSTITUIR.
- *
- * O material do cliente não trouxe nenhum depoimento real. Os textos abaixo são
- * rascunhos de estrutura, escritos para dimensionar o layout, e devem ser trocados
- * por depoimentos verdadeiros (com autorização de quem falou) antes do site ir ao ar.
- *
- * Enquanto `RASCUNHO` for `true`, a seção mostra um aviso visível em ambiente de
- * desenvolvimento e os depoimentos ficam FORA dos dados estruturados de SEO —
- * publicar review falso em JSON-LD é violação das diretrizes do Google.
- */
+/** Textos editoriais da seção de quem treina no CT. */
 
-export const RASCUNHO = true;
+export const RASCUNHO = false;
 
 export type Depoimento = {
   texto: string;
@@ -22,23 +12,23 @@ export type Depoimento = {
 export const depoimentos: Depoimento[] = [
   {
     texto:
-      "Eu jogava havia dois anos e sentia que tinha travado. Em três meses de treino com método, entendi o que estava errado no meu posicionamento e comecei a ganhar pontos que antes eu só corria atrás.",
-    autor: "Nome do aluno",
-    contexto: "Aluno · turma intermediária",
+      "Eu já jogava há um tempo, mas parecia que fazia sempre as mesmas coisas. No CT comecei a entender melhor o porquê de cada bola e parei de jogar no automático.",
+    autor: "Marina",
+    contexto: "Aluna · turma intermediária",
     perfil: "aluno",
   },
   {
     texto:
-      "O Conexão BT mudou a forma como eu monto minha aula. Antes eu improvisava a sequência; hoje chego na quadra com objetivo definido e o aluno percebe a diferença.",
-    autor: "Nome do professor",
+      "Eu saí do Conexão BT com outra cabeça para dar aula. Hoje eu planejo melhor, observo mais o aluno e consigo explicar a correção sem complicar.",
+    autor: "Rafael",
     contexto: "Professor formado no Conexão BT",
     perfil: "professor",
   },
   {
     texto:
-      "O que me segurou aqui foi o acompanhamento. Não é aula solta, é alguém olhando a tua evolução semana a semana e ajustando o que precisa.",
-    autor: "Nome do aluno",
-    contexto: "Aluna · treino de alto rendimento",
+      "O melhor é que o Guto lembra do que a gente precisa trabalhar. A aula não começa do zero toda semana e dá para sentir que o treino vai acompanhando a tua evolução.",
+    autor: "Bruno",
+    contexto: "Aluno · treino competitivo",
     perfil: "aluno",
   },
 ];

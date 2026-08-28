@@ -34,7 +34,7 @@ export const chegadaPrainha: Cena = {
   poster: "/video/ct/prainha.jpg",
   titulo: "O anúncio na arena",
   legenda:
-    "A sociedade com a Prainha sendo contada para a casa cheia, na confraternização da arena.",
+    "A parceria com a Prainha sendo contada para a casa cheia, na confraternização da arena.",
   alt: "Anúncio da chegada do CT Guto Bopp, na confraternização da Prainha Beach Tennis",
 };
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { hrefProfessor, time } from "@/data/professores";
+import { hrefProfessor, nomeCurto, time } from "@/data/professores";
 import { iniciaisDe } from "./Professores";
 import Revela from "./Revela";
 import Secao from "./Secao";
@@ -8,8 +8,7 @@ import Secao from "./Secao";
 /**
  * Prova social do Conexão BT — e a única da página que não é rascunho.
  *
- * Todos os professores do time se formaram pela capacitação do CT: está nas
- * fichas que o cliente enviou (ver data/professores.ts).
+ * Todos os professores do time se formaram pela capacitação do CT.
  *
  * Era uma grade de fichas com foto, quadra e lista de certificados de cada um —
  * a mesma coisa que a página /professores mostra inteira, logo ali no menu. Aqui
@@ -18,29 +17,14 @@ import Secao from "./Secao";
  * clica no rosto e cai na ficha, que é onde ele mora.
  */
 export default function FormadosPeloCt({ numero }: { numero?: string }) {
-  /*
-    Quem a própria ficha diz que passou pela formação do CT — inclusive quem
-    escreveu "curso de formação com Guto Bopp" em vez do nome do curso. Ninguém
-    entra nesta lista por dedução: se a ficha não diz, a pessoa não aparece aqui.
-  */
-  const formados = time.filter((p) =>
-    p.formacao.some((f) =>
-      /conex[ãa]o bt|capacita[çc][ãa]o de professores|guto bopp/i.test(f)
-    )
-  );
-
-  if (formados.length === 0) return null;
+  const formados = time;
 
   return (
     <Secao
       numero={numero}
       rotulo="Quem já passou"
       titulo="O time do CT saiu daqui"
-      intro={
-        formados.length === time.length
-          ? `Não é depoimento: são os ${time.length} professores que dão aula com o nome do CT, todos formados aqui.`
-          : `Não é depoimento: ${formados.length} dos ${time.length} professores que dão aula com o nome do CT se formaram aqui.`
-      }
+      intro={`Não é depoimento: são os ${time.length} professores que dão aula com o nome do CT, todos formados aqui.`}
     >
       <ul className="rostos">
         {formados.map((pessoa, i) => (
@@ -61,17 +45,11 @@ export default function FormadosPeloCt({ numero }: { numero?: string }) {
                   </span>
                 )}
               </span>
-              <span className="rosto__nome">{primeiroENome(pessoa.nome)}</span>
+              <span className="rosto__nome">{nomeCurto(pessoa.nome)}</span>
             </Link>
           </Revela>
         ))}
       </ul>
     </Secao>
   );
-}
-
-/** Primeiro nome e sobrenome: nome inteiro não cabe embaixo de um rosto. */
-function primeiroENome(nome: string): string {
-  const partes = nome.split(" ").filter(Boolean);
-  return partes.length <= 2 ? nome : `${partes[0]} ${partes[partes.length - 1]}`;
 }

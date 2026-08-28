@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { rotas } from "@/data/rotas";
-import { time, hrefProfessor } from "@/data/professores";
+import { time, hrefProfessor, nomeCurto } from "@/data/professores";
 import { site, whatsappMensagens } from "@/data/site";
 
 /**
@@ -52,7 +52,7 @@ export default function Rodape() {
             <ul>
               {time.map((pessoa) => (
                 <li key={pessoa.slug}>
-                  <Link href={hrefProfessor(pessoa)}>{pessoa.nome}</Link>
+                  <Link href={hrefProfessor(pessoa)}>{nomeCurto(pessoa.nome)}</Link>
                 </li>
               ))}
             </ul>

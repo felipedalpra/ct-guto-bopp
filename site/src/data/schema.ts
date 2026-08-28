@@ -10,9 +10,9 @@
  * curso — senão o Google descarta a marcação. Por isso aqui ficam as *peças*:
  * `grafoBase` vai no layout (todas as páginas) e cada página acrescenta as suas.
  *
- * Regra do arquivo: só descreve fato confirmado pelo cliente. Não há
- * `aggregateRating` nem `review` aqui — os depoimentos do site ainda são rascunho,
- * e marcar avaliação não verificada é violação das diretrizes de spam do Google.
+ * Regra do arquivo: só descreve fato confirmado pelo cliente. Depoimentos
+ * editoriais não entram como `review` ou `aggregateRating` sem avaliações reais
+ * verificadas, para não transformar copy do site em prova social estruturada.
  */
 
 import { site } from "./site";

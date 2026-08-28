@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CapaPagina from "@/components/CapaPagina";
-import ConexaoBT from "@/components/ConexaoBT";
 import Faq from "@/components/Faq";
 import FormadosPeloCt from "@/components/FormadosPeloCt";
 import JsonLd from "@/components/JsonLd";
@@ -45,10 +44,8 @@ export default function PaginaConexaoBt() {
         <Prosa paragrafos={porQueExiste.paragrafos} />
       </Secao>
 
-      <ConexaoBT />
-
       <Secao
-        numero="03"
+        numero="02"
         rotulo="Conteúdo"
         titulo="Os cinco pilares"
         intro="O curso apresenta os cinco pilares da Metodologia Guto Bopp e sua aplicação na prática."
@@ -65,7 +62,7 @@ export default function PaginaConexaoBt() {
         />
       </Secao>
 
-      <Secao numero="04" rotulo="Para quem é" titulo="Para quem serve, e para quem não">
+      <Secao numero="03" rotulo="Para quem é" titulo="Para quem serve, e para quem não">
         <div className="serve">
           <Revela className="serve__coluna" >
             <h3 className="serve__titulo serve__titulo--sim">O curso é para</h3>
@@ -88,7 +85,7 @@ export default function PaginaConexaoBt() {
       </Secao>
 
       <Secao
-        numero="05"
+        numero="04"
         rotulo="Depois da formação"
         titulo="Depois da formatura"
         intro="O que distingue isto de um workshop de fim de semana."
@@ -97,10 +94,10 @@ export default function PaginaConexaoBt() {
         <Blocos itens={depoisDoCurso} forma="linhas" />
       </Secao>
 
-      <FormadosPeloCt numero="06" />
+      <FormadosPeloCt numero="05" />
 
       <Secao
-        numero="07"
+        numero="06"
         rotulo="Próxima turma"
         titulo="Formato e valor"
         estreita

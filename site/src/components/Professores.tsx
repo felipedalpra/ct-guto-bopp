@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   time,
   hrefProfessor,
+  nomeCurto,
   professoresPendentes,
   type Professor,
 } from "@/data/professores";
@@ -143,7 +144,7 @@ function Card({ pessoa, destaque }: { pessoa: Professor; destaque?: boolean }) {
             de clique fica do tamanho do card sem aninhar links, e o leitor de
             tela continua anunciando um único link, com o nome da pessoa.
           */}
-          <Link href={href}>{pessoa.nome}</Link>
+          <Link href={href}>{nomeCurto(pessoa.nome)}</Link>
         </h3>
         <p className="card__local">{pessoa.local}</p>
 

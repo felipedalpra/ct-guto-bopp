@@ -66,7 +66,7 @@ export default function PaginaCt() {
         rotulo="Onde funciona"
         solto
         titulo="A sede"
-        intro={`${site.endereco.local} — ${site.endereco.rua}, ${site.endereco.bairro}, ${site.endereco.cidade}/${site.endereco.estado}. ${site.horario.texto}. O CT também atua em outras cidades: um dos professores do time dá aula no Porto Sports, em Palmares do Sul.`}
+        intro={`${site.endereco.local} — ${site.endereco.rua}, ${site.endereco.bairro}, ${site.endereco.cidade}/${site.endereco.estado}. ${site.horario.texto}.`}
       >
         {/* A chegada do CT à Prainha fica exatamente aqui: é a seção que fala de
             onde o CT funciona, e é a única com um companheiro de altura livre —

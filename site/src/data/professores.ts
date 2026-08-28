@@ -21,6 +21,12 @@ export type Professor = {
   foto?: string;
 };
 
+/** Nome curto para espaços de interface: primeiro nome e último sobrenome. */
+export function nomeCurto(nome: string): string {
+  const partes = nome.split(" ").filter(Boolean);
+  return partes.length <= 2 ? nome : `${partes[0]} ${partes[partes.length - 1]}`;
+}
+
 /** Guto abre a seção — é o fundador e a origem do método. */
 export const fundador: Professor = {
   slug: "guto-bopp",

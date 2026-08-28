@@ -74,8 +74,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero__texto">
-          Treina do infantil ao competitivo e forma professores pelo Conexão BT
-          — tudo sobre o mesmo Método dos 5 Pilares.
+          No CT Guto Bopp, mais de 13 anos de experiência do Guto viram método,
+          treino e evolução — do primeiro contato ao competitivo.
         </p>
 
         <div className="hero__acoes">
