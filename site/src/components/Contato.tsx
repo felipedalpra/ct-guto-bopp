@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { site } from "@/data/site";
 import FormularioContato from "./FormularioContato";
+import { IconeInstagram } from "./icones";
 import Revela from "./Revela";
 
 /**
@@ -65,6 +67,15 @@ export default function Contato() {
 
           <div className="cartao__corpo">
             <FormularioContato />
+            <a
+              className="contato__instagram"
+              href={site.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IconeInstagram />
+              Acompanhe o CT no Instagram · {site.instagram.handle}
+            </a>
           </div>
         </div>
       </Revela>

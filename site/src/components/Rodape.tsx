@@ -3,6 +3,7 @@ import Link from "next/link";
 import { rotas } from "@/data/rotas";
 import { time, hrefProfessor, nomeCurto } from "@/data/professores";
 import { site, whatsappMensagens } from "@/data/site";
+import { IconeInstagram } from "./icones";
 
 /**
  * Rodapé.
@@ -81,7 +82,14 @@ export default function Rodape() {
                 </a>
               </li>
               <li>
-                <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  className="rodape__instagram"
+                  href={site.instagram.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Instagram ${site.instagram.handle}`}
+                >
+                  <IconeInstagram />
                   {site.instagram.handle}
                 </a>
               </li>

@@ -1782,6 +1782,29 @@ body {
   padding: clamp(1.75rem, 5vw, 3rem);
 }
 
+.contato__instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 1.5rem;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+
+.contato__instagram:hover {
+  color: var(--color-lime-ct);
+}
+
+.contato__instagram svg,
+.rodape__instagram svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex: none;
+}
+
 /* -------------------------------------------------------------- o placar */
 
 /*
@@ -2137,6 +2160,12 @@ body {
 
 .rodape__coluna a:hover {
   color: var(--color-lime-ct);
+}
+
+.rodape__instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
 }
 
 .rodape__nota {
