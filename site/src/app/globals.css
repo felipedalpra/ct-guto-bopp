@@ -587,10 +587,9 @@ body {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
-  /* O quadro é a rede em contraluz: o triângulo dela ocupa a metade de cima
-     e a areia a de baixo. Centralizado, o título cai sobre o céu aberto à
-     esquerda e a rede fica de moldura — puxar para baixo cortaria o poste. */
-  object-position: 50% 52%;
+  /* Puxa o enquadramento para baixo: mais areia e jogada atrás do texto,
+     menos telhado e menos a faixa da rede cortando o título. */
+  object-position: 52% 64%;
   /* O poster precisa continuar visível se o autoplay for bloqueado pelo
      Safari, pelo modo de economia de energia ou por uma rede lenta. */
   /* Opacidade alta de propósito: vídeo semitransparente sobre o navy do fundo
