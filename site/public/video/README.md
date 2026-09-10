@@ -36,37 +36,40 @@ aponta para `public/img/capa-poster.jpg` — hoje é o primeiro quadro do própr
 `hero.mp4`, para a capa não piscar outra imagem antes do vídeo entrar. Se trocar o
 vídeo, gere o poster de novo a partir do mesmo quadro inicial.
 
-Vídeo atual: `Videoscapa/materiais/WhatsApp Video 2026-08-27 at 09.27.15.mp4`
-— Guto conduzindo a turma, câmera parada, 17s mudos a partir de 0:02.
+Vídeo atual: `Videoscapa/material_novo/usar.MOV` — 4K 60fps, de trás da quadra:
+Guto na rede alimentando bola, turma no treino de deslocamento. Janela de 2s a 15s
+do original, loop de 12s.
 
-Foi escolhido entre os cinco materiais horizontais enviados porque é o único com
-câmera estável, ação contínua do começo ao fim e sem faixa de patrocinador legível
-atravessando o quadro (os outros trazem `#VEMPRAPLAY` / `IMPROPLAY` em destaque, um
-tem só 5s e um é vertical).
+Escolhido pela qualidade de origem (4K contra os 720p do material anterior de
+WhatsApp). Traz uma faixa rosa de patrocinador (`#VEMPROPLAY`) presa à rede, do
+lado direito do Guto — não sai do quadro sem cortar o Guto junto; o corte de cor
+e a vinheta a deixam menos evidente, e o zoom + véu da capa cobrem o resto.
 
 Como foi gerado (corte de cor + loop sem emenda, ambos no comando):
 
 ```bash
-GRADE="crop=964:542:60:34,hqdn3d=3:2:6:6,scale=1280:720:flags=lanczos,\
-eq=contrast=1.14:brightness=-0.02:saturation=1.06:gamma=0.98,\
-colorbalance=rs=-0.05:gs=-0.02:bs=0.10:rm=0.03:gm=0.01:bm=-0.02:rh=0.05:gh=0.03:bh=-0.03,\
-unsharp=5:5:0.6,vignette=PI/5,fps=30,format=yuv420p"
+GRADE="crop=2550:1435:400:220,hqdn3d=3:2:6:6,scale=1280:720:flags=lanczos,\
+eq=contrast=1.06:brightness=0.012:saturation=1.04:gamma=1.02,\
+colorbalance=rs=-0.03:gs=-0.01:bs=0.07:rm=0.02:bm=-0.02:rh=0.03:gh=0.01:bh=-0.03,\
+unsharp=5:5:0.4,vignette=PI/5,fps=30,format=yuv420p"
 
 # o split/xfade abaixo cruza o fim com o começo: o loop não dá salto visível
-FC="[0:v]trim=2:20,setpts=PTS-STARTPTS,${GRADE},split=3[a][b][c];\
-[a]trim=1:17,setpts=PTS-STARTPTS[main];[b]trim=17:18,setpts=PTS-STARTPTS[tail];\
+FC="[0:v]trim=2:15,setpts=PTS-STARTPTS,${GRADE},split=3[a][b][c];\
+[a]trim=1:12,setpts=PTS-STARTPTS[main];[b]trim=12:13,setpts=PTS-STARTPTS[tail];\
 [c]trim=0:1,setpts=PTS-STARTPTS[head];[tail][head]xfade=transition=fade:duration=1:offset=0[seam];\
 [main][seam]concat=n=2:v=1:a=0[out]"
 
-ffmpeg -i original.mp4 -filter_complex "$FC" -map "[out]" -an \
-  -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p -movflags +faststart hero.mp4
-ffmpeg -i original.mp4 -filter_complex "$FC" -map "[out]" -an \
-  -c:v libvpx-vp9 -crf 38 -b:v 0 -row-mt 1 -deadline good -cpu-used 2 hero.webm
+ffmpeg -i usar.MOV -filter_complex "$FC" -map "[out]" -an \
+  -c:v libx264 -crf 26 -preset slow -pix_fmt yuv420p -movflags +faststart hero.mp4
+ffmpeg -i usar.MOV -filter_complex "$FC" -map "[out]" -an \
+  -c:v libvpx-vp9 -crf 40 -b:v 0 -row-mt 1 -tile-columns 2 -threads 4 \
+  -deadline good -cpu-used 3 hero.webm
 ffmpeg -i hero.mp4 -frames:v 1 -q:v 3 ../img/capa-poster.jpg
 ```
 
 O que cada parte do corte de cor resolve, já que o material sai do celular achatado
-e frio: `crop` tira a coluna escura da esquerda e a sobra de telhado; `hqdn3d` limpa
-o ruído (e derruba o tamanho do arquivo); `eq` + `colorbalance` puxam sombra para o
-azul da marca e a areia para o quente; `vignette` fecha as bordas para o texto da
-capa ganhar contraste sem precisar de mais véu por cima.
+e frio: `crop` fecha o quadro (menos telhado, menos rodapé, empurra a faixa rosa e
+o aluno parado da direita para fora); `hqdn3d` limpa o ruído (e derruba o tamanho
+do arquivo); `eq` + `colorbalance` abrem um pouco a luz, puxam a sombra para o navy
+da marca e a areia para o quente; `vignette` fecha as bordas para o texto da capa
+ganhar contraste sem precisar de mais véu por cima.
