@@ -46,7 +46,7 @@ Fonte principal: `Briefing_Site_CT_Guto_Bopp_Itens_1_a_7 (1).docx` (respondido p
 
 ## Professores
 
-Previsão: **7 professores**. Fichas recebidas até agora: **6** (pasta `Cadastro professores/`).
+Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro professores/`).
 
 ### 1. Guilherme Basso Niedersberg
 - WhatsApp (51) 99292-1014 · Instagram `@Gui_NiedersbergBT`
@@ -118,7 +118,20 @@ Previsão: **7 professores**. Fichas recebidas até agora: **6** (pasta `Cadastr
 - Sem frase pessoal — a ficha veio com esse campo em branco
 - Foto: `WhatsApp Image 2026-08-20 at 18.40.57.jpeg` (quadra coberta, fundo cinza)
 
-**Falta 1 ficha** (7 previstos − 6 recebidos).
+### 7. Iosemar Oliveira Bittencourt
+- WhatsApp (51) 99946-9372 · Instagram `@prof.iosemar.beach.tennis`
+- Dá aula na Play Sand Sportes
+- Todas as categorias amadoras
+- Professor de Educação Física desde 2004; no Beach Tennis desde 2021
+- Capacitação Conexão BT (Guto Bopp); Curso Azul, TOSS e CRAB; biomecânica com Callbucci;
+  capacitações com Adriano Camargo BT, Jair Amintas, Vitor Sianga e Gui Lima Pro
+- Diferencial: vontade de aprender
+- Frase (ficha original: "Aprender nunca termina"; complementada no site a pedido do
+  cliente): "Aprender nunca termina — é essa vontade que me faz buscar uma capacitação
+  nova a cada temporada."
+- Foto: `Ficha_Cadastro_Iosemar_com_foto.docx` (extraída da ficha)
+
+**As 7 fichas foram recebidas.**
 
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento

@@ -2,8 +2,7 @@
  * Time de professores do CT Guto Bopp.
  * Fonte: fichas de cadastro em `Cadastro professores/` (ver ../../../memory.md).
  *
- * Previsão do cliente: 7 professores. Recebidos até agora: 6 fichas.
- * Pendências: 1 ficha.
+ * Previsão do cliente: 7 professores. Todas as 7 fichas recebidas.
  */
 
 export type Professor = {
@@ -62,6 +61,26 @@ export const professores: Professor[] = [
     instagram: "Gui_NiedersbergBT",
     whatsappE164: "+5551992921014",
     foto: "/img/professores/guilherme.jpg",
+  },
+  {
+    slug: "iosemar-bittencourt",
+    nome: "Iosemar Oliveira Bittencourt",
+    papel: "Professor",
+    local: "Play Sand Sportes",
+    desde: "Professor de Educação Física desde 2004; no Beach Tennis desde 2021",
+    atende: ["Todas as categorias amadoras"],
+    formacao: [
+      "Capacitação Conexão BT (Guto Bopp)",
+      "Curso Azul, TOSS e CRAB",
+      "Biomecânica com Callbucci",
+      "Capacitações com Adriano Camargo BT, Jair Amintas, Vitor Sianga e Gui Lima Pro",
+    ],
+    diferencial: "Vontade de aprender.",
+    frase:
+      "Aprender nunca termina — é essa vontade que me faz buscar uma capacitação nova a cada temporada.",
+    instagram: "prof.iosemar.beach.tennis",
+    whatsappE164: "+5551999469372",
+    foto: "/img/professores/iosemar.jpg",
   },
   {
     slug: "lucas-constant",
@@ -165,8 +184,8 @@ export const professores: Professor[] = [
   },
 ];
 
-/** Vagas ainda não preenchidas (7 previstos − 6 fichas recebidas). */
-export const professoresPendentes = 1;
+/** Vagas ainda não preenchidas (7 previstos − 7 fichas recebidas). */
+export const professoresPendentes: number = 0;
 
 /** O time inteiro na ordem em que aparece no site: fundador primeiro. */
 export const time: Professor[] = [fundador, ...professores];
