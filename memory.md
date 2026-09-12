@@ -125,9 +125,12 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 - Professor de Educação Física desde 2004; no Beach Tennis desde 2021
 - Capacitação Conexão BT (Guto Bopp); Curso Azul, TOSS e CRAB; biomecânica com Callbucci;
   capacitações com Adriano Camargo BT, Jair Amintas, Vitor Sianga e Gui Lima Pro
-- Diferencial: vontade de aprender
-- Frase (ficha original: "Aprender nunca termina"; complementada no site a pedido do
-  cliente): "Aprender nunca termina — é essa vontade que me faz buscar uma capacitação
+- Diferencial (ficha original: "Vontade de aprender."; complementado no site — ficava
+  curto demais ao lado do card dos outros professores): "Vontade de aprender que não
+  para: mesmo depois de duas décadas como professor de Educação Física, segue buscando
+  capacitação nova em Beach Tennis."
+- Frase (ficha original: "Aprender nunca termina"; complementada no site pelo mesmo
+  motivo): "Aprender nunca termina — é essa vontade que me faz buscar uma capacitação
   nova a cada temporada."
 - Foto: `Ficha_Cadastro_Iosemar_com_foto.docx` (extraída da ficha)
 

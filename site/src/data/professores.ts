@@ -75,7 +75,8 @@ export const professores: Professor[] = [
       "Biomecânica com Callbucci",
       "Capacitações com Adriano Camargo BT, Jair Amintas, Vitor Sianga e Gui Lima Pro",
     ],
-    diferencial: "Vontade de aprender.",
+    diferencial:
+      "Vontade de aprender que não para: mesmo depois de duas décadas como professor de Educação Física, segue buscando capacitação nova em Beach Tennis.",
     frase:
       "Aprender nunca termina — é essa vontade que me faz buscar uma capacitação nova a cada temporada.",
     instagram: "prof.iosemar.beach.tennis",
