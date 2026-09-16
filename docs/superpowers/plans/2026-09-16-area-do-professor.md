@@ -381,7 +381,7 @@ git commit -m "Adiciona helpers de perfil e checagem de líder"
 
 **Files:**
 - Create: `site/src/lib/supabase/proxy.ts`
-- Create: `site/proxy.ts`
+- Create: `site/src/proxy.ts`
 
 Esta é a peça mais sensível do plano — é o único ponto que decide quem entra em
 `/area-do-professor/**`. `getClaims()` (em vez de `getUser()`) é o que a doc atual do
@@ -478,8 +478,15 @@ arquivo e nome de função diferentes (`export function proxy` em vez de
 O `matcher` cobre só `/area-do-professor/**`: o resto do site é estático e não deve
 pagar o custo de uma consulta ao Supabase por requisição.
 
+**O arquivo vai em `site/src/proxy.ts`, não em `site/proxy.ts`.** A doc do Next
+pede o arquivo "no mesmo nível de `pages` ou `app`" — e o App Router deste projeto
+vive em `site/src/app`, não em `site/app`. Isto foi descoberto (e confirmado
+empiricamente: build com o arquivo na raiz de `site/` não gera nenhuma entrada
+`Proxy (Middleware)` no output, build em `site/src/` gera) durante a execução da
+Task 7 — corrigido aqui para quem for reler o plano depois.
+
 ```ts
-// site/proxy.ts
+// site/src/proxy.ts
 import type { NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/proxy";
 
@@ -504,7 +511,7 @@ Expected: sem erros. `/area-do-professor/**` ainda não existe como rota, então
 - [ ] **Step 4: Commit**
 
 ```bash
-git add site/src/lib/supabase/proxy.ts site/proxy.ts
+git add site/src/lib/supabase/proxy.ts site/src/proxy.ts
 git commit -m "Adiciona o proxy que protege a Área do Professor"
 ```
 
