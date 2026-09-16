@@ -168,7 +168,48 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
   O Conexão BT, que o cliente havia definido como seção, virou página dentro do site do
   CT — segue sem site separado, como ele pediu.
 
-## Pendências
+## Área do Professor (login/convites/conteúdo)
+
+Feature nova pedida pelo cliente (peça "4 Área do Professor" do material de divulgação):
+espaço autenticado, só por convite, para os Professores Licenciados acessarem materiais
+da Metodologia Guto Bopp. Design completo aprovado e commitado em
+`docs/superpowers/specs/2026-09-15-area-do-professor-design.md` (Supabase dedicado,
+convite nativo do Supabase Auth, papéis líder/professor com RLS, um modelo de conteúdo
+cobrindo arquivo/vídeo/link).
+
+**Onde parou (2026-09-15):** ao tentar criar o projeto Supabase dedicado
+(`ct-guto-bopp`), esbarrou no limite de 2 projetos free **por conta** (não só por
+organização) do Felipe (`felipedalpra5@gmail.com`, org `projetosFDP`, que já tem
+`prospect-gold` e `crm-mobiplus` ocupando as duas vagas). Decisão do Felipe: usar uma
+conta/organização Supabase separada para esse cliente, em vez de pausar os outros dois
+projetos ou fazer upgrade de plano — mas essa conta/organização ainda não existe, e
+criar organização não é algo que dá pra fazer pela ferramenta (só pelo dashboard).
+
+### Pendências da Área do Professor
+
+- [ ] Criar (ou indicar) uma conta/organização Supabase separada para o ct-guto-bopp e
+      passar o `organization_id` — só depois disso dá pra criar o projeto Supabase
+      (`create_project`, já com custo confirmado em $0/mês no plano free)
+- [ ] Depois do projeto criado: rodar as migrations (tabelas `profiles`/`materiais`,
+      funções `is_lider_ativo()`/`usuario_ativo()`, políticas de RLS, trigger de novo
+      usuário, bucket de storage `materiais`) — SQL já desenhado, falta só aplicar
+- [ ] Escrever o plano de implementação (`docs/superpowers/plans/`) com a skill
+      `superpowers:writing-plans` — já mapeado o essencial durante o brainstorming
+      (estrutura de arquivos, Server Actions vs Route Handler, clientes Supabase) mas o
+      plano formal ainda não foi salvo
+- [ ] **Importante (achado durante a pesquisa):** o projeto está no Next.js 16, que
+      **descontinuou `middleware.ts` em favor de `proxy.ts`** (mesma API, arquivo e
+      função com nome diferente — `export function proxy(...)` em vez de `middleware`).
+      A proteção de rota da Área do Professor tem que usar esse novo arquivo, não o
+      antigo. Ver `node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md`
+- [ ] Lembrar: o convite (`inviteUserByEmail`) usa a service role key, que bypassa RLS —
+      então a Server Action de convite precisa checar `role = lider` manualmente antes de
+      chamar o client admin (RLS sozinho não protege essa chamada)
+- [ ] A service role key **não deve ser colada no chat** — o Felipe pega direto no
+      dashboard do Supabase (Project Settings → API) e coloca em `.env.local` /
+      variáveis de ambiente da Vercel
+
+## Pendências gerais
 
 - [ ] Confirmar as coordenadas exatas da quadra (as do `site.ts` são aproximadas, tiradas do endereço)
 
