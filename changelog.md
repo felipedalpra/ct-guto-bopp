@@ -5,6 +5,9 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ## [Não publicado]
 
+### Adicionado
+- 2026-09-15 — Design da Área do Professor (`docs/superpowers/specs/2026-09-15-area-do-professor-design.md`): espaço autenticado, só por convite, para os Professores Licenciados acessarem materiais da Metodologia Guto Bopp — pedido do cliente na peça "4 Área do Professor". Decidido com o Felipe: Supabase (Auth + Postgres + Storage) num projeto novo e dedicado (`ct-guto-bopp`, org `projetosFDP`), isolado dos outros projetos Supabase por ter dado pessoal de terceiro (telefone/e-mail dos professores); convite via `inviteUserByEmail` nativo do Supabase, sem serviço de e-mail à parte; RLS distinguindo `lider` (só o Guto) de `professor`, com `status` ativo/revogado cobrindo a exigência de "licença ativa" sem precisar apagar conta; um único modelo de conteúdo (`materiais`) cobrindo arquivo, vídeo (link do YouTube/Vimeo, sem hospedagem própria) e link/texto
+
 ### Removido
 - 2026-08-27 — Apostila do Conexão BT e apresentação comercial de licença saíram do versionamento e do histórico da branch antes do merge para a main: entravam como binários e a apostila sozinha rendia 88 mil linhas de diff. São material do negócio, não do site — o que é publicado já está tratado em `site/public/`. Os arquivos seguem na máquina, agora no `.gitignore` junto das gravações brutas da capa em `Videoscapa/`
 
