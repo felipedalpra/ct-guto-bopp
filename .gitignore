@@ -18,6 +18,9 @@ build/
 # Build info do TypeScript
 *.tsbuildinfo
 
+# Worktrees isolados de desenvolvimento (superpowers:using-git-worktrees)
+.worktrees/
+
 # Vídeos brutos do cliente — arquivos de 140MB+ cada, acima do limite de 100MB
 # do GitHub. Ficam só na máquina; o que for pro site entra otimizado em site/public/
 Videos/
