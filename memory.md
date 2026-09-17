@@ -186,11 +186,15 @@ seguindo `docs/superpowers/plans/2026-09-16-area-do-professor.md`. `npm run buil
 passa mesmo sem projeto Supabase, porque toda página autenticada usa `cookies()`.
 
 O bloqueio de 2026-09-15 (2 projetos free ocupados na conta/org `projetosFDP`) **foi
-contornado pelo Felipe**, que criou o projeto Supabase do `ct-guto-bopp` por fora desta
-sessão — falta só confirmar com ele qual é o `project_id`/ref e a organização usados,
-para seguir com a Fase 2 (Tasks 18-25 do plano: extensões/funções, tabelas + RLS +
-trigger, template de e-mail de convite, variáveis de ambiente reais, bootstrap do
-primeiro líder — o Guto —, teste ponta a ponta).
+contornado pelo Felipe**, que criou o projeto Supabase do `ct-guto-bopp` numa conta
+separada nova (fora de `projetosFDP`): `https://ccahyuswdfwzmprtbhsd.supabase.co`
+(ref `ccahyuswdfwzmprtbhsd`). **O conector Supabase MCP desta sessão só alcança a
+conta `projetosFDP`** (`list_projects` só devolve `prospect-gold`/`crm-mobiplus`) —
+não vê esse projeto novo, então a Fase 2 (Tasks 19-25 do plano: extensões/funções,
+tabelas + RLS + trigger, template de e-mail de convite, variáveis de ambiente reais,
+bootstrap do primeiro líder — o Guto —, teste ponta a ponta) precisa ser executada
+manualmente pelo Felipe no painel do Supabase (SQL Editor + Authentication), com o
+Claude fornecendo o SQL/roteiro pronto em vez de rodar via MCP.
 
 Nota de nomenclatura: o Supabase renomeou `anon key`/`service_role key` para
 `publishable key`/`secret key` em projetos novos — o plano já usa os nomes novos
