@@ -156,7 +156,9 @@ uniformizar, ou (b) pedir um ensaio de retratos no mesmo padrão.
   fora do monorepo Zentri.tech (é material de cliente, com telefones e fotos).
   Pasta movida de `Downloads/Zentri.tech/projetos + base/landing-pages/Lp-Gutobop`
   para `~/Documents/GitHub/ct-guto-bopp`.
-- **Domínio:** ainda a definir.
+- **Domínio:** `ctgutobopp.com.br`, comprado e já apontado para a Vercel (confirmado
+  2026-09-16, durante a Fase 2 da Área do Professor). `site.url` em `site/src/data/site.ts`
+  já usa esse valor.
 - **Nada foi construído ainda** — decisão do cliente: só definir a stack, sem gerar código
   até o material (logo, fotos, fichas dos professores, 5 pilares, Conexão BT) chegar.
 - **2026-08-20 — O site é institucional, não landing page.** Decisão do cliente ao ver a
