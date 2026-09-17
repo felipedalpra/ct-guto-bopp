@@ -5678,3 +5678,44 @@ body {
 .subnav-professor a[aria-current="page"]::after {
   transform: scaleX(1);
 }
+
+.trilha-detalhe {
+  padding-inline: 1rem;
+  padding-block: 2.5rem;
+  max-inline-size: var(--shell);
+  margin-inline: auto;
+}
+
+@media (min-width: 40rem) {
+  .trilha-detalhe {
+    padding-inline: 2rem;
+  }
+}
+
+.trilha-detalhe__voltar {
+  display: inline-block;
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 65%, transparent);
+  margin-block-end: 1.5rem;
+}
+
+.trilha-detalhe__voltar:hover {
+  color: var(--color-lime-ct);
+}
+
+.trilha-detalhe__titulo {
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+}
+
+.trilha-detalhe__descricao {
+  margin-block-start: 0.5rem;
+  max-inline-size: 60ch;
+  color: color-mix(in oklab, var(--color-sand) 78%, transparent);
+}
+
+.trilha-detalhe__grade {
+  margin-block-start: 2rem;
+}
