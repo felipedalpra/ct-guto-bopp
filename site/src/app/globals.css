@@ -5628,3 +5628,53 @@ body {
   font-size: 0.75rem;
   color: color-mix(in oklab, var(--color-sand) 65%, transparent);
 }
+
+.subnav-professor {
+  display: flex;
+  gap: 1.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.75rem;
+  overflow-x: auto;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-sand) 10%, transparent);
+}
+
+@media (min-width: 40rem) {
+  .subnav-professor {
+    padding-inline: 2rem;
+  }
+}
+
+.subnav-professor a {
+  flex: none;
+  font-family: var(--font-mono-ct);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-sand) 65%, transparent);
+  padding-block: 0.25rem;
+  position: relative;
+  transition: color 0.25s;
+}
+
+.subnav-professor a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -0.75rem;
+  block-size: 2px;
+  background: var(--color-lime-ct);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+
+.subnav-professor a:hover {
+  color: var(--color-sand);
+}
+
+.subnav-professor a[aria-current="page"] {
+  color: var(--color-lime-ct);
+}
+
+.subnav-professor a[aria-current="page"]::after {
+  transform: scaleX(1);
+}

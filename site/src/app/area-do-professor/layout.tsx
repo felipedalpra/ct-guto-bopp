@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SubNav from "@/components/area-do-professor/SubNav";
 import { obterPerfilAtual } from "@/lib/supabase/perfil";
 import { sair } from "./actions";
 
@@ -38,6 +39,7 @@ export default async function LayoutAreaDoProfessor({
           </div>
         </header>
       ) : null}
+      {perfil ? <SubNav role={perfil.role} /> : null}
       <main className="px-4 py-8 sm:px-8">{children}</main>
     </div>
   );
