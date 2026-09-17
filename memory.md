@@ -212,32 +212,29 @@ Claude fornecendo o SQL/roteiro pronto em vez de rodar via MCP.
   sem precisar verificar domínio — trocar para um domínio verificado quando fizer sentido).
   Nota: o Supabase trava a edição do corpo/link dos templates de e-mail até existir SMTP
   customizado configurado (banner "Set up custom SMTP to edit templates").
-- 🔴 **Bloqueado (retomar daqui amanhã):** o template "Invite user" ainda não está
-  aceitando o link customizado. Duas tentativas de convite (pelo painel, testando com o
-  e-mail do próprio Felipe antes de convidar o Guto de verdade) falharam com o mesmo erro
-  nos Auth Logs do Supabase: `error_code: unexpected_failure`, mensagem
-  `html/template:.../templates/invite: ends in a non-text context: {stateURL
-  delimDoubleQuote urlPartQueryOrFrag jsCtxRegexp [] attrURL elementNone <nil>}` — o
-  parser Go do Supabase nunca "fecha" o contexto de URL do `href="..."`, o que indica que
-  a aspa de fechamento não está batendo (suspeita forte: substituição de aspas retas `"`
-  por aspas curvas `"..."` no copiar/colar do editor do navegador). Passo seguinte
-  combinado com o Felipe: clicar **Reset template**, colar o HTML completo abaixo usando
-  "colar sem formatação" (`Cmd+Shift+V` no Mac) pra preservar as aspas retas, salvar e
-  tentar convidar de novo:
-  ```html
-  <h2>You've been invited</h2>
-
-  <p>You've been invited to create an account. Follow the link below to accept.</p>
-  <p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next={{ .RedirectTo }}">Accept invitation</a></p>
-  ```
-  URL Configuration já conferida: `Site URL` = `https://ctgutobopp.com.br`, com
-  `https://ctgutobopp.com.br/**` na lista de Redirect URLs.
-- Ainda pendente depois do template funcionar: convidar o e-mail de teste
-  (`felipeodriosolladalpra@gmail.com`) → aceitar → virar líder via SQL
-  (`update public.profiles set role = 'lider' where email = '...'`) → só então convidar
-  o Guto de verdade, rodar `get_advisors` (tipo security, manualmente — MCP não alcança
-  esse projeto) e o teste ponta a ponta completo (Task 24), e fechar a Task 25
-  (changelog/memória).
+- 🟢 **Resolvido (2026-09-17), mudando de estratégia em vez de insistir no editor:**
+  o template "Invite user" do painel travava com o mesmo erro mesmo depois de
+  **Reset template** + colar sem formatação (`Cmd+Shift+V`) — então o problema não
+  era só aspas curvas no clipboard; o editor do painel parecia reescrever o HTML no
+  próprio *save*, e não dava pra confirmar sem token de acesso da conta separada.
+  Em vez de continuar depurando o editor, a Server Action de convite
+  (`convidarProfessor`, Task 15) passou a usar `generateLink({ type: "invite" })` —
+  que cria o usuário e devolve `hashed_token` sem mandar e-mail — e o e-mail em si
+  passou a ser nosso, mandado direto pela API do Resend (`site/src/lib/email/`), em
+  português, sem tocar mais no editor de templates do Supabase. Detalhe registrado
+  no `changelog.md` de 2026-09-17. `error_code: unexpected_failure` /
+  `html/template:.../templates/invite: ends in a non-text context` do Supabase Auth
+  Logs deixou de ser relevante — não usamos mais o template dele.
+  URL Configuration já conferida (útil se algum dia voltar a usar o template nativo):
+  `Site URL` = `https://ctgutobopp.com.br`, com `https://ctgutobopp.com.br/**` na
+  lista de Redirect URLs.
+- Ainda pendente: o Felipe pegar uma API key em resend.com/api-keys (mesma conta do
+  SMTP já configurado) e preencher `RESEND_API_KEY` em `site/.env.local` e na Vercel
+  → convidar o e-mail de teste (`felipeodriosolladalpra@gmail.com`) → aceitar → virar
+  líder via SQL (`update public.profiles set role = 'lider' where email = '...'`) →
+  só então convidar o Guto de verdade, rodar `get_advisors` (tipo security,
+  manualmente — MCP não alcança esse projeto) e o teste ponta a ponta completo
+  (Task 24), e fechar a Task 25 (changelog/memória).
 
 Nota de nomenclatura: o Supabase renomeou `anon key`/`service_role key` para
 `publishable key`/`secret key` em projetos novos — o plano já usa os nomes novos
