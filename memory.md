@@ -198,6 +198,47 @@ bootstrap do primeiro líder — o Guto —, teste ponta a ponta) precisa ser ex
 manualmente pelo Felipe no painel do Supabase (SQL Editor + Authentication), com o
 Claude fornecendo o SQL/roteiro pronto em vez de rodar via MCP.
 
+**Progresso da Fase 2 (2026-09-16, sessão de execução manual):**
+- ✅ Migrations rodadas com sucesso (extensão `pgcrypto`, tabelas `profiles`/`materiais`,
+  funções `is_lider_ativo()`/`usuario_ativo()`, RLS, trigger `ao_criar_usuario`, bucket
+  `materiais`). **Achado/bug real no plano:** a ordem original do plano (Task 19 antes da
+  Task 20 — funções antes das tabelas) quebra, porque funções `language sql` são validadas
+  contra o catálogo já na criação; a ordem certa é extensão → tabelas (sem RLS ainda) →
+  funções → RLS/policies/trigger. Corrigir isso no plano quando a Fase 2 fechar.
+- ✅ `site/.env.local` preenchido pelo Felipe (URL + publishable key + secret key, esta
+  última nunca colada no chat) e as mesmas 3 variáveis já cadastradas na Vercel
+  (Production + Preview) pelo Felipe também.
+- ✅ SMTP configurado no Supabase via **Resend** (sender `onboarding@resend.dev`, sandbox,
+  sem precisar verificar domínio — trocar para um domínio verificado quando fizer sentido).
+  Nota: o Supabase trava a edição do corpo/link dos templates de e-mail até existir SMTP
+  customizado configurado (banner "Set up custom SMTP to edit templates").
+- 🔴 **Bloqueado (retomar daqui amanhã):** o template "Invite user" ainda não está
+  aceitando o link customizado. Duas tentativas de convite (pelo painel, testando com o
+  e-mail do próprio Felipe antes de convidar o Guto de verdade) falharam com o mesmo erro
+  nos Auth Logs do Supabase: `error_code: unexpected_failure`, mensagem
+  `html/template:.../templates/invite: ends in a non-text context: {stateURL
+  delimDoubleQuote urlPartQueryOrFrag jsCtxRegexp [] attrURL elementNone <nil>}` — o
+  parser Go do Supabase nunca "fecha" o contexto de URL do `href="..."`, o que indica que
+  a aspa de fechamento não está batendo (suspeita forte: substituição de aspas retas `"`
+  por aspas curvas `"..."` no copiar/colar do editor do navegador). Passo seguinte
+  combinado com o Felipe: clicar **Reset template**, colar o HTML completo abaixo usando
+  "colar sem formatação" (`Cmd+Shift+V` no Mac) pra preservar as aspas retas, salvar e
+  tentar convidar de novo:
+  ```html
+  <h2>You've been invited</h2>
+
+  <p>You've been invited to create an account. Follow the link below to accept.</p>
+  <p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next={{ .RedirectTo }}">Accept invitation</a></p>
+  ```
+  URL Configuration já conferida: `Site URL` = `https://ctgutobopp.com.br`, com
+  `https://ctgutobopp.com.br/**` na lista de Redirect URLs.
+- Ainda pendente depois do template funcionar: convidar o e-mail de teste
+  (`felipeodriosolladalpra@gmail.com`) → aceitar → virar líder via SQL
+  (`update public.profiles set role = 'lider' where email = '...'`) → só então convidar
+  o Guto de verdade, rodar `get_advisors` (tipo security, manualmente — MCP não alcança
+  esse projeto) e o teste ponta a ponta completo (Task 24), e fechar a Task 25
+  (changelog/memória).
+
 Nota de nomenclatura: o Supabase renomeou `anon key`/`service_role key` para
 `publishable key`/`secret key` em projetos novos — o plano já usa os nomes novos
 (`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`).
