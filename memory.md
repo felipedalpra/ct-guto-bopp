@@ -267,6 +267,26 @@ ou trocar por outra ferramenta como Biome).
       dashboard do Supabase (Project Settings → API) e coloca em `.env.local` /
       variáveis de ambiente da Vercel
 
+### Redesign visual + trilhas (2026-09-17, em brainstorming)
+
+A Fase 1 (código) só entregou o MVP funcional, sem nenhum trabalho visual — o design
+spec de 2026-09-15 nunca teve seção de UI/UX. Ao testar em produção (bootstrap do
+primeiro líder), o Felipe achou o resultado "feio": cabeçalho fora do padrão do site,
+sem seções/hierarquia, sem clareza de onde ver/gerenciar materiais. Decisão: fazer um
+segundo brainstorming (`superpowers:brainstorming`) focado só em UI/UX + a ideia nova
+de **trilhas** (materiais organizados tipo curso, com opção de materiais soltos fora
+de trilha também) — escopo A. Direções já validadas nessa conversa: cabeçalho reaproveita
+o do site público (logo, menu, WhatsApp) em vez de um cabeçalho próprio; navegação
+interna por sub-menu de abas fixo (Materiais / Professores / Gerenciar Materiais,
+últimas duas só pro líder).
+
+**Backlog, fora do escopo desta leva (ideia do Felipe, não veio do briefing do cliente):**
+curtir material, compartilhar, comentar, e interações entre professores pra incentivar
+networking dentro da plataforma. Fica pra um brainstorming próprio, mais à frente —
+envolve decisão de produto maior (moderação de comentário, o que vira visível pra
+outros professores, possível perfil público) que vale validar com o Guto antes de
+desenhar.
+
 ## Pendências gerais
 
 - [ ] Confirmar as coordenadas exatas da quadra (as do `site.ts` são aproximadas, tiradas do endereço)
