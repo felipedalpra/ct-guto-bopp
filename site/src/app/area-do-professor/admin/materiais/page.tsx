@@ -20,13 +20,21 @@ export default async function PaginaAdminMateriais() {
 
   return (
     <div className="flex flex-col gap-10">
-      <div>
-        <h1 className="font-display text-2xl">Materiais</h1>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="font-display text-2xl">Materiais</h1>
+          <a
+            href="/area-do-professor/admin"
+            className="text-sm text-sand/60 hover:underline"
+          >
+            ← Voltar ao painel
+          </a>
+        </div>
         <a
-          href="/area-do-professor/admin"
-          className="text-sm text-sand/60 hover:underline"
+          href="/area-do-professor/admin/trilhas"
+          className="text-lime-ct hover:underline"
         >
-          ← Voltar ao painel
+          Gerenciar trilhas →
         </a>
       </div>
 
