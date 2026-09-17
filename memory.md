@@ -177,26 +177,40 @@ da Metodologia Guto Bopp. Design completo aprovado e commitado em
 convite nativo do Supabase Auth, papéis líder/professor com RLS, um modelo de conteúdo
 cobrindo arquivo/vídeo/link).
 
-**Onde parou (2026-09-15):** ao tentar criar o projeto Supabase dedicado
-(`ct-guto-bopp`), esbarrou no limite de 2 projetos free **por conta** (não só por
-organização) do Felipe (`felipedalpra5@gmail.com`, org `projetosFDP`, que já tem
-`prospect-gold` e `crm-mobiplus` ocupando as duas vagas). Decisão do Felipe: usar uma
-conta/organização Supabase separada para esse cliente, em vez de pausar os outros dois
-projetos ou fazer upgrade de plano — mas essa conta/organização ainda não existe, e
-criar organização não é algo que dá pra fazer pela ferramenta (só pelo dashboard).
+**Onde parou (2026-09-16):** a Fase 1 (todo o código Next.js — dependências, tipos,
+clientes Supabase, `proxy.ts`, rota de confirmação de convite, layout, login,
+completar cadastro, acesso desativado, lista de materiais, download por signed URL,
+painel do líder com convite/revogação e CRUD de materiais) está implementada,
+revisada (spec + qualidade, task a task) e commitada na branch `area-do-professor`,
+seguindo `docs/superpowers/plans/2026-09-16-area-do-professor.md`. `npm run build`
+passa mesmo sem projeto Supabase, porque toda página autenticada usa `cookies()`.
+
+O bloqueio de 2026-09-15 (2 projetos free ocupados na conta/org `projetosFDP`) **foi
+contornado pelo Felipe**, que criou o projeto Supabase do `ct-guto-bopp` por fora desta
+sessão — falta só confirmar com ele qual é o `project_id`/ref e a organização usados,
+para seguir com a Fase 2 (Tasks 18-25 do plano: extensões/funções, tabelas + RLS +
+trigger, template de e-mail de convite, variáveis de ambiente reais, bootstrap do
+primeiro líder — o Guto —, teste ponta a ponta).
+
+Nota de nomenclatura: o Supabase renomeou `anon key`/`service_role key` para
+`publishable key`/`secret key` em projetos novos — o plano já usa os nomes novos
+(`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`).
+
+Achado à parte, fora do escopo desta feature: `site/package.json` tem um script
+`"lint": "next lint"` que não funciona mais — o Next 16.3.1 removeu o subcomando
+`next lint` e o projeto nunca teve ESLint configurado (nem dependência, nem config).
+Pré-existente, afeta o repositório inteiro, não é algo que a Área do Professor
+quebrou. Precisa de uma decisão em algum momento (reinstalar lint via ESLint direto,
+ou trocar por outra ferramenta como Biome).
 
 ### Pendências da Área do Professor
 
-- [ ] Criar (ou indicar) uma conta/organização Supabase separada para o ct-guto-bopp e
-      passar o `organization_id` — só depois disso dá pra criar o projeto Supabase
-      (`create_project`, já com custo confirmado em $0/mês no plano free)
-- [ ] Depois do projeto criado: rodar as migrations (tabelas `profiles`/`materiais`,
-      funções `is_lider_ativo()`/`usuario_ativo()`, políticas de RLS, trigger de novo
-      usuário, bucket de storage `materiais`) — SQL já desenhado, falta só aplicar
-- [ ] Escrever o plano de implementação (`docs/superpowers/plans/`) com a skill
-      `superpowers:writing-plans` — já mapeado o essencial durante o brainstorming
-      (estrutura de arquivos, Server Actions vs Route Handler, clientes Supabase) mas o
-      plano formal ainda não foi salvo
+- [ ] Confirmar com o Felipe o `project_id`/ref e a organização do projeto Supabase
+      já criado, para rodar a Fase 2 (Tasks 18-25 do plano)
+- [ ] Rodar as migrations (tabelas `profiles`/`materiais`, funções
+      `is_lider_ativo()`/`usuario_ativo()`, políticas de RLS, trigger de novo
+      usuário, bucket de storage `materiais`) — SQL já desenhado no plano, falta só
+      aplicar via `mcp__claude_ai_Supabase__apply_migration`
 - [ ] **Importante (achado durante a pesquisa):** o projeto está no Next.js 16, que
       **descontinuou `middleware.ts` em favor de `proxy.ts`** (mesma API, arquivo e
       função com nome diferente — `export function proxy(...)` em vez de `middleware`).
