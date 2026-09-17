@@ -24,3 +24,17 @@ export type Material = {
   publicado: boolean;
   criado_em: string;
 };
+
+export type Trilha = {
+  id: string;
+  titulo: string;
+  descricao: string | null;
+  publicado: boolean;
+  criado_em: string;
+};
+
+export type TrilhaMaterial = {
+  trilha_id: string;
+  material_id: string;
+  ordem: number;
+};
