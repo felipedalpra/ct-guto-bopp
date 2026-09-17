@@ -267,18 +267,32 @@ ou trocar por outra ferramenta como Biome).
       dashboard do Supabase (Project Settings → API) e coloca em `.env.local` /
       variáveis de ambiente da Vercel
 
-### Redesign visual + trilhas (2026-09-17, em brainstorming)
+### Redesign visual + trilhas (2026-09-17)
 
-A Fase 1 (código) só entregou o MVP funcional, sem nenhum trabalho visual — o design
-spec de 2026-09-15 nunca teve seção de UI/UX. Ao testar em produção (bootstrap do
-primeiro líder), o Felipe achou o resultado "feio": cabeçalho fora do padrão do site,
-sem seções/hierarquia, sem clareza de onde ver/gerenciar materiais. Decisão: fazer um
-segundo brainstorming (`superpowers:brainstorming`) focado só em UI/UX + a ideia nova
-de **trilhas** (materiais organizados tipo curso, com opção de materiais soltos fora
-de trilha também) — escopo A. Direções já validadas nessa conversa: cabeçalho reaproveita
-o do site público (logo, menu, WhatsApp) em vez de um cabeçalho próprio; navegação
-interna por sub-menu de abas fixo (Materiais / Professores / Gerenciar Materiais,
-últimas duas só pro líder).
+A Fase 1 (código) só tinha entregue o MVP funcional, sem nenhum trabalho visual — o
+design spec de 2026-09-15 nunca teve seção de UI/UX. Ao testar em produção (bootstrap
+do primeiro líder), o Felipe achou o resultado "feio": cabeçalho fora do padrão do
+site, sem seções/hierarquia, sem clareza de onde ver/gerenciar materiais. Um segundo
+brainstorming (`superpowers:brainstorming`) desenhou o redesign de UI/UX + a feature
+nova de **trilhas**, documentado em
+`docs/superpowers/specs/2026-09-17-area-do-professor-redesign-trilhas-design.md` e
+implementado via `superpowers:subagent-driven-development` em
+`docs/superpowers/plans/2026-09-17-area-do-professor-redesign-trilhas.md` (10 tasks
+de código, cada uma revisada individualmente + revisão final do diff inteiro,
+aprovada sem críticos nem importantes). Branch/worktree
+`.claude/worktrees/area-do-professor-redesign`, commits `5eaf5b9`..`946ca4b`.
+
+**Onde parou (2026-09-17):** todo o código está pronto, `npx tsc --noEmit` e
+`npm run build` passam limpos. Falta:
+- [ ] Rodar as migrations da Task 1 do plano (tabelas `trilhas`, `trilha_materiais`,
+      `progresso_material` + RLS) no SQL Editor do projeto `ct-guto-bopp` — SQL já
+      entregue pronto, só falta o Felipe colar e rodar
+- [ ] Fazer o merge do worktree pra `main` e dar push (dispara o deploy de produção
+      na Vercel) — mesmo fluxo já usado pra Fase 2 do convite (ver acima)
+- [ ] Teste manual ponta a ponta (Task 12 do plano): criar e publicar uma trilha de
+      teste, marcar material como visto, conferir RLS pelo SQL Editor (professor não
+      vê trilha `publicado = false`, não escreve `progresso_material` de outro
+      `professor_id`)
 
 **Backlog, fora do escopo desta leva (ideia do Felipe, não veio do briefing do cliente):**
 curtir material, compartilhar, comentar, e interações entre professores pra incentivar
