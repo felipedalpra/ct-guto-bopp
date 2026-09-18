@@ -282,17 +282,15 @@ de código, cada uma revisada individualmente + revisão final do diff inteiro,
 aprovada sem críticos nem importantes). Branch/worktree
 `.claude/worktrees/area-do-professor-redesign`, commits `5eaf5b9`..`946ca4b`.
 
-**Onde parou (2026-09-17):** todo o código está pronto, `npx tsc --noEmit` e
-`npm run build` passam limpos. Falta:
-- [ ] Rodar as migrations da Task 1 do plano (tabelas `trilhas`, `trilha_materiais`,
-      `progresso_material` + RLS) no SQL Editor do projeto `ct-guto-bopp` — SQL já
-      entregue pronto, só falta o Felipe colar e rodar
-- [ ] Fazer o merge do worktree pra `main` e dar push (dispara o deploy de produção
-      na Vercel) — mesmo fluxo já usado pra Fase 2 do convite (ver acima)
+**2026-09-17 — Concluído:** merge do worktree pra `main` + deploy de produção feitos,
+e as migrations da Task 1 (tabelas `trilhas`, `trilha_materiais`, `progresso_material`
++ RLS) rodadas com sucesso pelo Felipe no SQL Editor do projeto `ct-guto-bopp`.
+
+**Falta só:**
 - [ ] Teste manual ponta a ponta (Task 12 do plano): criar e publicar uma trilha de
-      teste, marcar material como visto, conferir RLS pelo SQL Editor (professor não
-      vê trilha `publicado = false`, não escreve `progresso_material` de outro
-      `professor_id`)
+      teste, marcar material como visto, conferir que o card de progresso atualiza
+      certo, e checar RLS pelo SQL Editor (professor não vê trilha
+      `publicado = false`, não escreve `progresso_material` de outro `professor_id`)
 
 **Backlog, fora do escopo desta leva (ideia do Felipe, não veio do briefing do cliente):**
 curtir material, compartilhar, comentar, e interações entre professores pra incentivar
