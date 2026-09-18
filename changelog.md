@@ -5,6 +5,9 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ## [Não publicado]
 
+### Adicionado
+- 2026-09-17 — "Área do Professor" entrou no menu do cabeçalho do site público (`site/src/components/Cabecalho.tsx`), como último item antes do botão "Falar no WhatsApp", tanto no menu de desktop quanto no de celular — sem essa entrada, o único jeito de um professor chegar no login era digitando a URL de cor. Fica fora de `data/rotas.ts` de propósito (não é conteúdo institucional, é o ponto de entrada de uma área autenticada e invite-only): entrar em `rotas` também alimentaria automaticamente o rodapé e o `sitemap.xml`, e uma tela de login não deveria aparecer no mapa do site público nem ser oferecida a rastreadores de busca
+
 ### Corrigido
 - 2026-09-17 — Cabeçalho da Área do Professor sobreposto pelo cabeçalho fixo do site público: a barra "Área do Professor" e a sub-navegação por abas nasciam em y=0 (sem respiro reservado), então ficavam por baixo do `<Cabecalho />`, que é `position: fixed`. `site/src/app/area-do-professor/layout.tsx` ganhou a classe `area-do-professor-shell`, com o mesmo `padding-block-start: clamp(7.5rem, 13vw, 9.25rem)` que `.bloco--abertura` já usa para o mesmo problema nas páginas internas do site público
 

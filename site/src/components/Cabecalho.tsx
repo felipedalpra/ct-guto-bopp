@@ -81,6 +81,13 @@ export default function Cabecalho() {
                 {item.rotulo}
               </Link>
             ))}
+            <Link
+              href="/area-do-professor"
+              data-atual={atual("/area-do-professor") || undefined}
+              aria-current={atual("/area-do-professor") ? "page" : undefined}
+            >
+              Área do Professor
+            </Link>
           </nav>
 
           <a
@@ -153,6 +160,17 @@ export default function Cabecalho() {
               {item.rotulo}
             </Link>
           ))}
+          <Link
+            href="/area-do-professor"
+            aria-current={atual("/area-do-professor") ? "page" : undefined}
+            onClick={() => setAberto(false)}
+            style={{ "--i": rotas.length } as React.CSSProperties}
+          >
+            <span className="menu-celular__num">
+              {String(rotas.length + 1).padStart(2, "0")}
+            </span>
+            Área do Professor
+          </Link>
         </nav>
 
         <a
