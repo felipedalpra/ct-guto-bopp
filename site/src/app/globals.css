@@ -5719,3 +5719,13 @@ body {
 .trilha-detalhe__grade {
   margin-block-start: 2rem;
 }
+
+/*
+  O cabeçalho do site público (.cabecalho) é `position: fixed` e some da altura
+  do documento — sem isso, a barra "Área do Professor" e a sub-navegação nascem
+  em y=0 e ficam por baixo dele. Mesmo respiro que `.bloco--abertura` já usa para
+  o mesmo problema nas páginas internas do site público.
+*/
+.area-do-professor-shell {
+  padding-block-start: clamp(7.5rem, 13vw, 9.25rem);
+}

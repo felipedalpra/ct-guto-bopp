@@ -15,7 +15,7 @@ export default async function LayoutAreaDoProfessor({
   const perfil = await obterPerfilAtual();
 
   return (
-    <div className="min-h-screen bg-navy-900 text-sand">
+    <div className="area-do-professor-shell min-h-screen bg-navy-900 text-sand">
       {perfil ? (
         <header className="flex items-center justify-between border-b border-sand/10 px-4 py-3 sm:px-8">
           <span className="font-display text-sm uppercase tracking-wide text-sand/70">
