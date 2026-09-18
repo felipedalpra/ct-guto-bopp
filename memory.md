@@ -228,13 +228,27 @@ Claude fornecendo o SQL/roteiro pronto em vez de rodar via MCP.
   URL Configuration já conferida (útil se algum dia voltar a usar o template nativo):
   `Site URL` = `https://ctgutobopp.com.br`, com `https://ctgutobopp.com.br/**` na
   lista de Redirect URLs.
-- Ainda pendente: o Felipe pegar uma API key em resend.com/api-keys (mesma conta do
-  SMTP já configurado) e preencher `RESEND_API_KEY` em `site/.env.local` e na Vercel
-  → convidar o e-mail de teste (`felipeodriosolladalpra@gmail.com`) → aceitar → virar
-  líder via SQL (`update public.profiles set role = 'lider' where email = '...'`) →
-  só então convidar o Guto de verdade, rodar `get_advisors` (tipo security,
-  manualmente — MCP não alcança esse projeto) e o teste ponta a ponta completo
-  (Task 24), e fechar a Task 25 (changelog/memória).
+- ✅ API key do Resend obtida e preenchida (`RESEND_API_KEY` em `.env.local` e na
+  Vercel), e-mail de teste convidado e aceito, Felipe virou líder via SQL — o fluxo
+  de convite passou a funcionar via `generateLink()` + Resend.
+- 🔴 **Bug real, achado 2026-09-17 ao convidar um professor de verdade:** o link do
+  e-mail de convite vinha reescrito por `awstrack.me` (click-tracking da Amazon SES
+  — o Resend roda em cima da AWS SES, e o domínio sandbox `onboarding@resend.dev`
+  vem com esse rastreamento ligado por padrão, fora do nosso controle porque não é
+  domínio nosso). O professor clicou e caiu em erro de rede
+  (`ERR_NETWORK_CHANGED`) em vez de chegar em `/auth/confirm`. Risco duplo: (1) o
+  `token_hash` (uso único) passa por um redirecionador de terceiro antes de chegar
+  no nosso site, e (2) esse hop extra é ponto clássico de falha com scanners de
+  segurança de e-mail corporativos, que "clicam" o link antes do usuário e
+  consomem o token de uso único.
+  **Decisão:** sair do domínio sandbox, verificar `mail.ctgutobopp.com.br` como
+  domínio próprio no Resend (DNS do `ctgutobopp.com.br` fica no **Registro.br**) e
+  desligar Click Tracking (e Open Tracking) nas configurações desse domínio depois
+  de verificado. Só depois disso trocar `RESEND_FROM` para o remetente novo, em
+  `.env.local` e na Vercel, e testar convite de novo.
+  **Onde parou:** aguardando o Felipe criar o domínio em resend.com/domains e me
+  passar os registros DNS que o Resend pedir, pra eu conferir antes de ele colar
+  no Registro.br.
 
 Nota de nomenclatura: o Supabase renomeou `anon key`/`service_role key` para
 `publishable key`/`secret key` em projetos novos — o plano já usa os nomes novos
