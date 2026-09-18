@@ -4,6 +4,8 @@ import { NextResponse, type NextRequest } from "next/server";
 const ROTAS_PUBLICAS = [
   "/area-do-professor/login",
   "/area-do-professor/completar-cadastro",
+  "/area-do-professor/esqueci-senha",
+  "/area-do-professor/redefinir-senha",
   "/area-do-professor/acesso-desativado",
 ];
 
