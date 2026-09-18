@@ -246,9 +246,12 @@ Claude fornecendo o SQL/roteiro pronto em vez de rodar via MCP.
   desligar Click Tracking (e Open Tracking) nas configurações desse domínio depois
   de verificado. Só depois disso trocar `RESEND_FROM` para o remetente novo, em
   `.env.local` e na Vercel, e testar convite de novo.
-  **Onde parou:** aguardando o Felipe criar o domínio em resend.com/domains e me
-  passar os registros DNS que o Resend pedir, pra eu conferir antes de ele colar
-  no Registro.br.
+  **Onde parou (pausado a pedido do Felipe, retomar depois):** domínio
+  `mail.ctgutobopp.com.br` já criado no Resend. Falta: (1) pegar os registros DNS
+  que o Resend pediu na tela do domínio, (2) colar no gerenciador de DNS do
+  Registro.br, (3) voltar no Resend e clicar em Verify, (4) desligar Click
+  Tracking e Open Tracking depois de verificado, (5) trocar `RESEND_FROM` em
+  `.env.local`/Vercel pro remetente novo, (6) testar o convite de novo.
 
 Nota de nomenclatura: o Supabase renomeou `anon key`/`service_role key` para
 `publishable key`/`secret key` em projetos novos — o plano já usa os nomes novos
