@@ -6,6 +6,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 ## [Não publicado]
 
 ### Adicionado
+- 2026-09-17 — Preview embutido de material tipo arquivo na Área do Professor (`CartaoMaterial.tsx`): PDF entra num `<iframe>` e imagem (PNG/JPG) num `<img>`, os dois apontando pra rota de download existente (que resolve a signed URL na hora, então funciona tanto pro preview quanto clicado direto) — o link "Baixar arquivo" continua do lado, pra quem quiser salvar. DOCX e XLSX seguem só com o link: navegador não renderiza Office nativamente, e um visualizador externo (Google/Office online) exigiria um link público, incompatível com a signed URL de 60s que protege os arquivos hoje
 - 2026-09-17 — "Área do Professor" entrou no menu do cabeçalho do site público (`site/src/components/Cabecalho.tsx`), como último item antes do botão "Falar no WhatsApp", tanto no menu de desktop quanto no de celular — sem essa entrada, o único jeito de um professor chegar no login era digitando a URL de cor. Fica fora de `data/rotas.ts` de propósito (não é conteúdo institucional, é o ponto de entrada de uma área autenticada e invite-only): entrar em `rotas` também alimentaria automaticamente o rodapé e o `sitemap.xml`, e uma tela de login não deveria aparecer no mapa do site público nem ser oferecida a rastreadores de busca
 
 ### Corrigido

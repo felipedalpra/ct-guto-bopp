@@ -30,6 +30,53 @@ function paraUrlEmbutida(url: string): string | null {
   }
 }
 
+const EXTENSOES_IMAGEM = ["png", "jpg", "jpeg"];
+
+function extensaoArquivo(caminho: string): string {
+  return caminho.split(".").pop()?.toLowerCase() ?? "";
+}
+
+/**
+ * PDF e imagem o navegador já sabe exibir sozinho, então entram embutidos —
+ * o link de baixar continua ali do lado, pra quem quiser salvar. DOCX e XLSX
+ * não têm visualizador nativo; exigiria um serviço externo (link público, o
+ * que não combina com a signed URL de 60s) ou uma lib de conversão no site,
+ * então esses continuam só com o link de download.
+ */
+function ArquivoPreview({ material }: { material: Material }) {
+  const url = `/area-do-professor/materiais/${material.id}/download`;
+  const extensao = material.arquivo_path ? extensaoArquivo(material.arquivo_path) : "";
+
+  if (extensao === "pdf") {
+    return (
+      <div className="material-cartao__arquivo-preview">
+        <iframe src={url} title={material.titulo} />
+        <Link href={url} className="material-cartao__acao">
+          Baixar arquivo
+        </Link>
+      </div>
+    );
+  }
+
+  if (EXTENSOES_IMAGEM.includes(extensao)) {
+    return (
+      <div className="material-cartao__arquivo-preview">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={url} alt={material.titulo} />
+        <Link href={url} className="material-cartao__acao">
+          Baixar arquivo
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <Link href={url} className="material-cartao__acao">
+      Baixar arquivo
+    </Link>
+  );
+}
+
 function VideoEmbutido({ url, titulo }: { url: string; titulo: string }) {
   const embed = paraUrlEmbutida(url);
 
@@ -73,14 +120,7 @@ export default function CartaoMaterial({
         <p className="material-cartao__descricao">{material.descricao}</p>
       ) : null}
 
-      {material.tipo === "arquivo" ? (
-        <Link
-          href={`/area-do-professor/materiais/${material.id}/download`}
-          className="material-cartao__acao"
-        >
-          Baixar arquivo
-        </Link>
-      ) : null}
+      {material.tipo === "arquivo" ? <ArquivoPreview material={material} /> : null}
       {material.tipo === "video" && material.video_url ? (
         <VideoEmbutido url={material.video_url} titulo={material.titulo} />
       ) : null}
