@@ -38,3 +38,18 @@ export type TrilhaMaterial = {
   material_id: string;
   ordem: number;
 };
+
+export type ComentarioMaterial = {
+  id: string;
+  material_id: string;
+  professor_id: string;
+  autor_nome: string;
+  conteudo: string;
+  criado_em: string;
+};
+
+export type InteracoesDoMaterial = {
+  curtidas: number;
+  curtiu: boolean;
+  comentarios: ComentarioMaterial[];
+};

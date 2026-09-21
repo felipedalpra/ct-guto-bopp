@@ -1,10 +1,13 @@
 // site/src/app/area-do-professor/page.tsx
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
+import { obterPerfilAtual } from "@/lib/supabase/perfil";
 import Secao from "@/components/Secao";
 import CartaoTrilha from "@/components/area-do-professor/CartaoTrilha";
 import CartaoMaterial from "@/components/area-do-professor/CartaoMaterial";
 import type {
+  ComentarioMaterial,
+  InteracoesDoMaterial,
   Material,
   Trilha,
   TrilhaMaterial,
@@ -29,12 +32,15 @@ export default async function PaginaAreaDoProfessor() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const perfil = await obterPerfilAtual();
 
   const [
     { data: trilhas },
     { data: trilhaMateriais },
     { data: materiais },
     { data: progresso },
+    { data: curtidas },
+    { data: comentarios },
   ] = await Promise.all([
     supabase.from("trilhas").select("*").order("criado_em", { ascending: false }),
     supabase.from("trilha_materiais").select("trilha_id, material_id, ordem"),
@@ -45,12 +51,39 @@ export default async function PaginaAreaDoProfessor() {
           .select("material_id")
           .eq("professor_id", user.id)
       : Promise.resolve({ data: [] as { material_id: string }[] }),
+    supabase.from("material_curtidas").select("material_id, professor_id"),
+    supabase
+      .from("material_comentarios")
+      .select("*")
+      .order("criado_em", { ascending: true }),
   ]);
 
   const listaTrilhas = (trilhas ?? []) as Trilha[];
   const listaTrilhaMateriais = (trilhaMateriais ?? []) as TrilhaMaterial[];
   const listaMateriais = (materiais ?? []) as Material[];
   const vistos = new Set((progresso ?? []).map((linha) => linha.material_id));
+  const curtidasPorMaterial = new Map<string, { professor_id: string }[]>();
+  for (const curtida of curtidas ?? []) {
+    const lista = curtidasPorMaterial.get(curtida.material_id) ?? [];
+    lista.push(curtida);
+    curtidasPorMaterial.set(curtida.material_id, lista);
+  }
+  const comentariosPorMaterial = new Map<string, ComentarioMaterial[]>();
+  for (const comentario of (comentarios ?? []) as ComentarioMaterial[]) {
+    const lista = comentariosPorMaterial.get(comentario.material_id) ?? [];
+    lista.push(comentario);
+    comentariosPorMaterial.set(comentario.material_id, lista);
+  }
+  const interacoes = (materialId: string): InteracoesDoMaterial => {
+    const curtidasDoMaterial = curtidasPorMaterial.get(materialId) ?? [];
+    return {
+      curtidas: curtidasDoMaterial.length,
+      curtiu: Boolean(
+        user && curtidasDoMaterial.some((item) => item.professor_id === user.id)
+      ),
+      comentarios: comentariosPorMaterial.get(materialId) ?? [],
+    };
+  };
 
   const idsEmTrilha = new Set(listaTrilhaMateriais.map((linha) => linha.material_id));
   const materiaisSoltos = listaMateriais.filter(
@@ -113,6 +146,9 @@ export default async function PaginaAreaDoProfessor() {
                       key={material.id}
                       material={material}
                       visto={vistos.has(material.id)}
+                      interacoes={interacoes(material.id)}
+                      usuarioId={user?.id ?? null}
+                      podeModerar={perfil?.role === "lider"}
                     />
                   ))}
                 </ul>

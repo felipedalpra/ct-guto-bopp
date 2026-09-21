@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { alternarVisto } from "@/app/area-do-professor/progresso-actions";
-import type { Material } from "@/types/area-do-professor";
+import InteracoesMaterial from "./InteracoesMaterial";
+import type { InteracoesDoMaterial, Material } from "@/types/area-do-professor";
 
 const ROTULOS_TIPO: Record<Material["tipo"], string> = {
   arquivo: "Arquivo",
@@ -108,9 +109,15 @@ function VideoEmbutido({ url, titulo }: { url: string; titulo: string }) {
 export default function CartaoMaterial({
   material,
   visto,
+  interacoes,
+  usuarioId,
+  podeModerar,
 }: {
   material: Material;
   visto: boolean;
+  interacoes?: InteracoesDoMaterial;
+  usuarioId?: string | null;
+  podeModerar?: boolean;
 }) {
   return (
     <li className={`material-cartao${visto ? " material-cartao--visto" : ""}`}>
@@ -147,6 +154,15 @@ export default function CartaoMaterial({
           {visto ? "✓ Visto" : "Marcar como visto"}
         </button>
       </form>
+      {interacoes ? (
+        <InteracoesMaterial
+          materialId={material.id}
+          titulo={material.titulo}
+          interacoes={interacoes}
+          usuarioId={usuarioId ?? null}
+          podeModerar={podeModerar ?? false}
+        />
+      ) : null}
     </li>
   );
 }
