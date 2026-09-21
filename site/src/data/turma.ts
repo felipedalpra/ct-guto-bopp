@@ -6,7 +6,7 @@
  * arquivo, e por isso existe `turmaAberta()` — passada a data, a seção e o aviso
  * somem sem ninguém precisar lembrar de apagar nada.
  *
- * Fonte: post do CT no Instagram (23/08/2026) anunciando a turma de setembro.
+ * Fonte: atualização do CT para a turma de novembro de 2026.
  *
  * Para trocar de turma: mude as datas e o nível aqui. Para desligar tudo (turma
  * encerrada e a próxima ainda sem data), ponha `ativa: false`.
@@ -17,12 +17,12 @@ export const proximaTurma = {
   nivel: "Iniciante / Intermediário",
 
   /** Primeiro e último dia, em horário local. Mês é 0-based no Date do JS. */
-  inicio: new Date(2026, 8, 25),
-  fim: new Date(2026, 8, 27),
+  inicio: new Date(2026, 10, 6),
+  fim: new Date(2026, 10, 8),
 
   /** Como as datas aparecem escritas. */
-  dias: "25, 26 e 27",
-  mes: "de setembro",
+  dias: "6, 7 e 8",
+  mes: "de novembro",
   ano: "2026",
 
   local: "Prainha Beach Tennis",
@@ -41,7 +41,7 @@ export const proximaTurma = {
   foto: null as string | null,
 
   mensagem:
-    "Olá! Vi o Conexão BT de 25, 26 e 27 de setembro no site e quero garantir minha vaga.",
+    "Olá! Vi o Conexão BT de 6, 7 e 8 de novembro no site e quero garantir minha vaga.",
 } as const;
 
 /**

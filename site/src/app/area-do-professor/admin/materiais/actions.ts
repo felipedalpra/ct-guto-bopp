@@ -6,6 +6,7 @@ import { exigirLider } from "@/lib/supabase/perfil";
 import type { TipoMaterial } from "@/types/area-do-professor";
 
 export type EstadoMaterial = { erro: string } | { sucesso: true } | null;
+export type EstadoAcaoMaterial = { erro: string } | { sucesso: true };
 
 const EXTENSOES_PERMITIDAS = ["pdf", "docx", "xlsx", "png", "jpg", "jpeg"];
 
@@ -74,29 +75,35 @@ export async function criarMaterial(
 export async function alternarPublicado(
   materialId: string,
   publicadoAtual: boolean
-) {
+): Promise<EstadoAcaoMaterial> {
   await exigirLider();
   const supabase = await createClient();
-  await supabase
+  const { error } = await supabase
     .from("materiais")
     .update({ publicado: !publicadoAtual })
     .eq("id", materialId);
+  if (error) return { erro: `Não deu para atualizar o material: ${error.message}` };
+
   revalidatePath("/area-do-professor/admin/materiais");
   revalidatePath("/area-do-professor");
+  return { sucesso: true };
 }
 
 export async function excluirMaterial(
   materialId: string,
   arquivoPath: string | null
-) {
+): Promise<EstadoAcaoMaterial> {
   await exigirLider();
   const supabase = await createClient();
 
   if (arquivoPath) {
-    await supabase.storage.from("materiais").remove([arquivoPath]);
+    const { error } = await supabase.storage.from("materiais").remove([arquivoPath]);
+    if (error) return { erro: `Não deu para remover o arquivo: ${error.message}` };
   }
-  await supabase.from("materiais").delete().eq("id", materialId);
+  const { error } = await supabase.from("materiais").delete().eq("id", materialId);
+  if (error) return { erro: `Não deu para excluir o material: ${error.message}` };
 
   revalidatePath("/area-do-professor/admin/materiais");
   revalidatePath("/area-do-professor");
+  return { sucesso: true };
 }

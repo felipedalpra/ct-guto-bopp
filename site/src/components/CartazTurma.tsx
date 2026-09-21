@@ -44,7 +44,7 @@ export default function CartazTurma({ compacto = false }: { compacto?: boolean }
             aviso, os mesmos três dados viram uma linha só, abreviados. */}
         {compacto ? (
           <ul className="cartaz__dados cartaz__dados--linha">
-            <li>25–27 set</li>
+            <li>6–8 nov</li>
             <li>Prainha</li>
             <li>{t.carga}</li>
           </ul>

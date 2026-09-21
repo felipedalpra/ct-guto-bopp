@@ -137,6 +137,9 @@ export default function FormularioMaterial() {
           <span className="text-xs text-sand/60">
             ou toque para escolher — PDF, DOCX, XLSX ou imagem, até 50 MB
           </span>
+          <span className="rounded-md border border-lime-ct/50 px-3 py-1.5 text-xs font-medium text-lime-ct">
+            Escolher arquivo
+          </span>
           {arquivoSelecionado ? (
             <span className="text-xs text-lime-ct">{arquivoSelecionado.name}</span>
           ) : null}

@@ -25,7 +25,7 @@ import { site } from "@/data/site";
  * Não aparece na /conexao-bt: quem está lendo a página do curso já viu o anúncio
  * inteiro no topo dela.
  */
-const CHAVE = "ct.aviso-turma.2026-09";
+const CHAVE = "ct.aviso-turma.2026-11";
 const ESPERA_MS = 7000;
 const ROLAGEM = 0.35;
 

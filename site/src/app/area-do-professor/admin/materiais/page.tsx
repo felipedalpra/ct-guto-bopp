@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import type { Material } from "@/types/area-do-professor";
 import FormularioMaterial from "./FormularioMaterial";
-import { alternarPublicado, excluirMaterial } from "./actions";
+import AcoesMaterial from "./AcoesMaterial";
 
 export const metadata: Metadata = {
   title: "Materiais — Painel do CT",
@@ -52,36 +52,12 @@ export default async function PaginaAdminMateriais() {
                 {material.tipo} · {material.publicado ? "Publicado" : "Rascunho"}
               </p>
             </div>
-            <div className="flex gap-2">
-              <form
-                action={alternarPublicado.bind(
-                  null,
-                  material.id,
-                  material.publicado
-                )}
-              >
-                <button
-                  type="submit"
-                  className="rounded-md border border-lime-ct/40 px-3 py-1 text-sm text-lime-ct hover:bg-lime-ct/10"
-                >
-                  {material.publicado ? "Despublicar" : "Publicar"}
-                </button>
-              </form>
-              <form
-                action={excluirMaterial.bind(
-                  null,
-                  material.id,
-                  material.arquivo_path
-                )}
-              >
-                <button
-                  type="submit"
-                  className="rounded-md border border-red-400/40 px-3 py-1 text-sm text-red-300 hover:bg-red-400/10"
-                >
-                  Excluir
-                </button>
-              </form>
-            </div>
+            <AcoesMaterial
+              id={material.id}
+              titulo={material.titulo}
+              publicado={material.publicado}
+              arquivoPath={material.arquivo_path}
+            />
           </li>
         ))}
       </ul>
