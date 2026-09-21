@@ -7,13 +7,6 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
-  experimental: {
-    serverActions: {
-      // Upload de material vai até 20MB (ver design spec); a margem cobre a
-      // sobrecarga do multipart/form-data.
-      bodySizeLimit: "21mb",
-    },
-  },
 };
 
 export default nextConfig;

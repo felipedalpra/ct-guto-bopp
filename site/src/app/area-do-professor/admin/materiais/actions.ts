@@ -1,16 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { randomUUID } from "node:crypto";
 import { createClient } from "@/lib/supabase/server";
 import { exigirLider } from "@/lib/supabase/perfil";
 import type { TipoMaterial } from "@/types/area-do-professor";
 
 export type EstadoMaterial = { erro: string } | { sucesso: true } | null;
 
-// 20MB é o teto definido no design spec; o next.config.ts (Task 1) já libera
-// o corpo da Server Action até 21MB para caber a sobrecarga do multipart.
-const TAMANHO_MAXIMO_ARQUIVO = 20 * 1024 * 1024;
 const EXTENSOES_PERMITIDAS = ["pdf", "docx", "xlsx", "png", "jpg", "jpeg"];
 
 export async function criarMaterial(
@@ -34,25 +30,14 @@ export async function criarMaterial(
   let corpoTexto: string | null = null;
 
   if (tipo === "arquivo") {
-    const arquivo = formData.get("arquivo");
-    if (!(arquivo instanceof File) || arquivo.size === 0) {
-      return { erro: "Selecione um arquivo." };
+    // O binário é enviado diretamente do navegador ao Supabase Storage. Assim
+    // ele não passa pelo limite de 4,5 MB das Server Actions da Vercel.
+    const pathEnviado = String(formData.get("arquivo_path") ?? "");
+    const extensao = pathEnviado.split(".").pop()?.toLowerCase() ?? "";
+    if (!pathEnviado || !EXTENSOES_PERMITIDAS.includes(extensao)) {
+      return { erro: "Não deu para enviar o arquivo. Tente novamente." };
     }
-    if (arquivo.size > TAMANHO_MAXIMO_ARQUIVO) {
-      return { erro: "O arquivo passa de 20MB." };
-    }
-    const extensao = arquivo.name.split(".").pop()?.toLowerCase() ?? "";
-    if (!EXTENSOES_PERMITIDAS.includes(extensao)) {
-      return { erro: "Formato não aceito. Envie PDF, DOCX, XLSX ou imagem." };
-    }
-
-    arquivoPath = `${randomUUID()}.${extensao}`;
-    const { error: erroUpload } = await supabase.storage
-      .from("materiais")
-      .upload(arquivoPath, arquivo);
-    if (erroUpload) {
-      return { erro: `Não deu para enviar o arquivo: ${erroUpload.message}` };
-    }
+    arquivoPath = pathEnviado;
   } else if (tipo === "video") {
     videoUrl = String(formData.get("video_url") ?? "").trim();
     if (!videoUrl) return { erro: "Cole o link do vídeo." };
@@ -76,6 +61,9 @@ export async function criarMaterial(
   });
 
   if (error) {
+    if (arquivoPath) {
+      await supabase.storage.from("materiais").remove([arquivoPath]);
+    }
     return { erro: `Não deu para salvar: ${error.message}` };
   }
 
