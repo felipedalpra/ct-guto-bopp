@@ -5667,6 +5667,9 @@ body {
 }
 
 .subnav-professor a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   flex: none;
   font-family: var(--font-mono-ct);
   font-size: 0.75rem;
@@ -5676,6 +5679,18 @@ body {
   padding-block: 0.25rem;
   position: relative;
   transition: color 0.25s;
+}
+
+.subnav-professor__carregando {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 999px;
+  background: currentColor;
+  animation: pulso-subnav 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes pulso-subnav {
+  to { opacity: 0.25; transform: scale(0.65); }
 }
 
 .subnav-professor a::after {

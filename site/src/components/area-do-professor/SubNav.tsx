@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import type { PapelUsuario } from "@/types/area-do-professor";
 
 const ABAS = [
@@ -16,6 +17,10 @@ const ABAS = [
 
 export default function SubNav({ role }: { role: PapelUsuario }) {
   const caminho = usePathname();
+  const router = useRouter();
+  const [destino, setDestino] = useState<string | null>(null);
+
+  useEffect(() => setDestino(null), [caminho]);
 
   const abas = ABAS.filter((aba) => !aba.soLider || role === "lider");
 
@@ -40,8 +45,22 @@ export default function SubNav({ role }: { role: PapelUsuario }) {
         <Link
           key={aba.href}
           href={aba.href}
+          prefetch
           aria-current={aba.href === abaAtivaHref ? "page" : undefined}
+          aria-busy={destino === aba.href || undefined}
+          onMouseEnter={() => router.prefetch(aba.href)}
+          onFocus={() => router.prefetch(aba.href)}
+          onTouchStart={() => router.prefetch(aba.href)}
+          onClick={() => {
+            if (aba.href !== caminho) setDestino(aba.href);
+          }}
         >
+          {destino === aba.href ? (
+            <>
+              <span className="subnav-professor__carregando" aria-hidden="true" />
+              <span className="sr-only">Abrindo </span>
+            </>
+          ) : null}
           {aba.rotulo}
         </Link>
       ))}

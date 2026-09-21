@@ -1,8 +1,11 @@
 import { redirect } from "next/navigation";
+import { cache } from "react";
 import { createClient } from "./server";
 import type { Perfil } from "@/types/area-do-professor";
 
-export async function obterPerfilAtual(): Promise<Perfil | null> {
+// Layout e páginas protegidas pedem o perfil na mesma renderização. O cache do
+// React evita consultas idênticas ao Supabase ao trocar de aba.
+export const obterPerfilAtual = cache(async (): Promise<Perfil | null> => {
   const supabase = await createClient();
   const {
     data: { user },
@@ -16,7 +19,7 @@ export async function obterPerfilAtual(): Promise<Perfil | null> {
     .single();
 
   return data;
-}
+});
 
 export async function exigirLider(): Promise<Perfil> {
   const perfil = await obterPerfilAtual();
