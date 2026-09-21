@@ -23,6 +23,13 @@ export default function FormularioMaterial() {
   const [tipo, setTipo] = useState<TipoMaterial>("arquivo");
   const [erroUpload, setErroUpload] = useState<string | null>(null);
   const [enviandoArquivo, setEnviandoArquivo] = useState(false);
+  const [arquivoSelecionado, setArquivoSelecionado] = useState<File | null>(null);
+  const [arrastandoArquivo, setArrastandoArquivo] = useState(false);
+
+  function selecionarArquivo(arquivo: File | null) {
+    setArquivoSelecionado(arquivo);
+    setErroUpload(null);
+  }
 
   async function enviarArquivo(evento: React.FormEvent<HTMLFormElement>) {
     if (tipo !== "arquivo") return;
@@ -31,8 +38,8 @@ export default function FormularioMaterial() {
     setErroUpload(null);
 
     const dados = new FormData(evento.currentTarget);
-    const arquivo = dados.get("arquivo");
-    if (!(arquivo instanceof File) || arquivo.size === 0) {
+    const arquivo = arquivoSelecionado;
+    if (!arquivo || arquivo.size === 0) {
       setErroUpload("Selecione um arquivo.");
       return;
     }
@@ -61,6 +68,7 @@ export default function FormularioMaterial() {
     }
 
     dados.delete("arquivo");
+    dados.set("arquivo", arquivo);
     dados.set("arquivo_path", arquivoPath);
     startTransition(() => formAction(dados));
   }
@@ -103,9 +111,42 @@ export default function FormularioMaterial() {
       </label>
 
       {tipo === "arquivo" ? (
-        <label className="flex flex-col gap-1 text-sm text-sand/80">
-          Arquivo (PDF, DOCX, XLSX ou imagem, até 50MB)
-          <input name="arquivo" type="file" required className="text-sand" />
+        <label
+          className={`flex cursor-pointer flex-col items-center gap-2 rounded-md border border-dashed p-5 text-center text-sm transition ${
+            arrastandoArquivo
+              ? "border-lime-ct bg-lime-ct/10 text-lime-ct"
+              : "border-sand/30 bg-navy-900 text-sand/80 hover:border-lime-ct hover:text-sand"
+          }`}
+          onDragEnter={(evento) => {
+            evento.preventDefault();
+            setArrastandoArquivo(true);
+          }}
+          onDragOver={(evento) => evento.preventDefault()}
+          onDragLeave={(evento) => {
+            if (!evento.currentTarget.contains(evento.relatedTarget as Node)) {
+              setArrastandoArquivo(false);
+            }
+          }}
+          onDrop={(evento) => {
+            evento.preventDefault();
+            setArrastandoArquivo(false);
+            selecionarArquivo(evento.dataTransfer.files.item(0));
+          }}
+        >
+          <span className="font-medium">Arraste o arquivo aqui</span>
+          <span className="text-xs text-sand/60">
+            ou toque para escolher — PDF, DOCX, XLSX ou imagem, até 50 MB
+          </span>
+          {arquivoSelecionado ? (
+            <span className="text-xs text-lime-ct">{arquivoSelecionado.name}</span>
+          ) : null}
+          <input
+            name="arquivo"
+            type="file"
+            accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg"
+            className="sr-only"
+            onChange={(evento) => selecionarArquivo(evento.target.files?.item(0) ?? null)}
+          />
         </label>
       ) : null}
       {tipo === "video" ? (
