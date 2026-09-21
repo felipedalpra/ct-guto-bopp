@@ -68,7 +68,6 @@ export default function FormularioMaterial() {
     }
 
     dados.delete("arquivo");
-    dados.set("arquivo", arquivo);
     dados.set("arquivo_path", arquivoPath);
     startTransition(() => formAction(dados));
   }
