@@ -52,9 +52,14 @@ function ArquivoPreview({ material }: { material: Material }) {
     return (
       <div className="material-cartao__arquivo-preview">
         <iframe src={url} title={material.titulo} />
-        <Link href={url} className="material-cartao__acao">
-          Baixar arquivo
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link href={url} target="_blank" className="material-cartao__acao">
+            Abrir em tela cheia
+          </Link>
+          <Link href={url} className="material-cartao__acao">
+            Baixar arquivo
+          </Link>
+        </div>
       </div>
     );
   }
@@ -64,9 +69,14 @@ function ArquivoPreview({ material }: { material: Material }) {
       <div className="material-cartao__arquivo-preview">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={url} alt={material.titulo} />
-        <Link href={url} className="material-cartao__acao">
-          Baixar arquivo
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link href={url} target="_blank" className="material-cartao__acao">
+            Abrir em tela cheia
+          </Link>
+          <Link href={url} className="material-cartao__acao">
+            Baixar arquivo
+          </Link>
+        </div>
       </div>
     );
   }
