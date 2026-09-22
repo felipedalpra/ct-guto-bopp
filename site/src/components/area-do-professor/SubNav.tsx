@@ -13,6 +13,7 @@ const ABAS_LIDER = [
   { href: "/area-do-professor", rotulo: "Visão geral" },
   { href: "/area-do-professor/admin/materiais", rotulo: "Conteúdos" },
   { href: "/area-do-professor/admin/trilhas", rotulo: "Trilhas" },
+  { href: "/area-do-professor/admin/interacoes", rotulo: "Interações" },
   { href: "/area-do-professor/admin", rotulo: "Professores" },
 ] as const;
 

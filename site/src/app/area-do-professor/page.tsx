@@ -74,6 +74,9 @@ export default async function PaginaAreaDoProfessor() {
           <Link href="/area-do-professor/admin">
             <span>03</span><strong>Professores</strong><small>Convidar e gerenciar acessos →</small>
           </Link>
+          <Link href="/area-do-professor/admin/interacoes">
+            <span>04</span><strong>Interações</strong><small>Ver quem viu, curtiu e comentou →</small>
+          </Link>
         </section>
 
         <section className="painel-lider__recentes">
