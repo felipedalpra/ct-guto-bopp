@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// O projeto Supabase está em São Paulo. Mantendo estas páginas na mesma região
+// evitamos uma travessia internacional a cada troca de aba autenticada.
+export const preferredRegion = "gru1";
+
 export default async function LayoutAreaDoProfessor({
   children,
 }: {

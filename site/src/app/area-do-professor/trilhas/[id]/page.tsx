@@ -39,10 +39,8 @@ export default async function PaginaTrilha({
 }) {
   const { id } = await params;
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
   const perfil = await obterPerfilAtual();
+  const usuarioId = perfil?.id ?? null;
 
   const { data: trilha } = await supabase
     .from("trilhas")
@@ -65,11 +63,11 @@ export default async function PaginaTrilha({
       .select("trilha_id, material_id, ordem, materiais(*)")
       .eq("trilha_id", id)
       .order("ordem", { ascending: true }),
-    user
+    usuarioId
       ? supabase
           .from("progresso_material")
           .select("material_id")
-          .eq("professor_id", user.id)
+          .eq("professor_id", usuarioId)
       : Promise.resolve({ data: [] as { material_id: string }[] }),
     supabase.from("material_curtidas").select("material_id, professor_id"),
     supabase
@@ -96,7 +94,7 @@ export default async function PaginaTrilha({
     return {
       curtidas: curtidasDoMaterial.length,
       curtiu: Boolean(
-        user && curtidasDoMaterial.some((item) => item.professor_id === user.id)
+        usuarioId && curtidasDoMaterial.some((item) => item.professor_id === usuarioId)
       ),
       comentarios: comentariosPorMaterial.get(materialId) ?? [],
     };
@@ -129,7 +127,7 @@ export default async function PaginaTrilha({
               material={material}
               visto={vistos.has(material.id)}
               interacoes={interacoes(material.id)}
-              usuarioId={user?.id ?? null}
+              usuarioId={usuarioId}
               podeModerar={perfil?.role === "lider"}
             />
           ))}

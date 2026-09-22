@@ -21,10 +21,8 @@ export const metadata: Metadata = {
 
 export default async function PaginaAreaDoProfessor() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
   const perfil = await obterPerfilAtual();
+  const usuarioId = perfil?.id ?? null;
 
   const [
     { data: trilhas, error: erroTrilhas },
@@ -37,11 +35,11 @@ export default async function PaginaAreaDoProfessor() {
     supabase.from("trilhas").select("*").order("criado_em", { ascending: false }),
     supabase.from("trilha_materiais").select("trilha_id, material_id, ordem"),
     supabase.from("materiais").select("*").order("criado_em", { ascending: false }),
-    user
+    usuarioId
       ? supabase
           .from("progresso_material")
           .select("material_id")
-          .eq("professor_id", user.id)
+          .eq("professor_id", usuarioId)
       : Promise.resolve({ data: [] as { material_id: string }[] }),
     supabase.from("material_curtidas").select("material_id, professor_id"),
     supabase
@@ -71,7 +69,7 @@ export default async function PaginaAreaDoProfessor() {
     return {
       curtidas: curtidasDoMaterial.length,
       curtiu: Boolean(
-        user && curtidasDoMaterial.some((item) => item.professor_id === user.id)
+        usuarioId && curtidasDoMaterial.some((item) => item.professor_id === usuarioId)
       ),
       comentarios: comentariosPorMaterial.get(materialId) ?? [],
     };
@@ -174,7 +172,7 @@ export default async function PaginaAreaDoProfessor() {
           ) : (
             <ExploradorMateriais
               materiais={materiaisParaExplorar}
-              usuarioId={user?.id ?? null}
+              usuarioId={usuarioId}
               podeModerar={perfil?.role === "lider"}
             />
           )}
