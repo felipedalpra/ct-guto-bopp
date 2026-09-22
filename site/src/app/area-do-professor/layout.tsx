@@ -32,7 +32,7 @@ export default async function LayoutAreaDoProfessor({
                 href="/area-do-professor/admin"
                 className="text-lime-ct hover:underline"
               >
-                Painel
+                Professores
               </a>
             ) : null}
             <form action={sair}>

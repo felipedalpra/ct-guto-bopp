@@ -5,14 +5,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { PapelUsuario } from "@/types/area-do-professor";
 
-const ABAS = [
-  { href: "/area-do-professor", rotulo: "Materiais", soLider: false },
-  { href: "/area-do-professor/admin", rotulo: "Professores", soLider: true },
-  {
-    href: "/area-do-professor/admin/materiais",
-    rotulo: "Gerenciar Materiais",
-    soLider: true,
-  },
+const ABAS_PROFESSOR = [
+  { href: "/area-do-professor", rotulo: "Início" },
+] as const;
+
+const ABAS_LIDER = [
+  { href: "/area-do-professor", rotulo: "Visão geral" },
+  { href: "/area-do-professor/admin/materiais", rotulo: "Conteúdos" },
+  { href: "/area-do-professor/admin/trilhas", rotulo: "Trilhas" },
+  { href: "/area-do-professor/admin", rotulo: "Professores" },
 ] as const;
 
 export default function SubNav({ role }: { role: PapelUsuario }) {
@@ -22,7 +23,7 @@ export default function SubNav({ role }: { role: PapelUsuario }) {
 
   useEffect(() => setDestino(null), [caminho]);
 
-  const abas = ABAS.filter((aba) => !aba.soLider || role === "lider");
+  const abas = role === "lider" ? ABAS_LIDER : ABAS_PROFESSOR;
 
   const bate = (href: string) =>
     href === "/area-do-professor"

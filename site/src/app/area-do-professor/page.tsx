@@ -10,6 +10,7 @@ import type {
   ComentarioMaterial,
   InteracoesDoMaterial,
   Material,
+  Perfil,
   Trilha,
   TrilhaMaterial,
 } from "@/types/area-do-professor";
@@ -23,6 +24,79 @@ export default async function PaginaAreaDoProfessor() {
   const supabase = await createClient();
   const perfil = await obterPerfilAtual();
   const usuarioId = perfil?.id ?? null;
+
+  // O líder não precisa esperar as consultas de progresso, comentários e
+  // curtidas da experiência de estudo. A entrada dele é operacional.
+  if (perfil?.role === "lider") {
+    const [
+      { data: materiais },
+      { data: trilhas },
+      { data: professores },
+    ] = await Promise.all([
+      supabase.from("materiais").select("*").order("criado_em", { ascending: false }),
+      supabase.from("trilhas").select("*").order("criado_em", { ascending: false }),
+      supabase.from("profiles").select("*").eq("role", "professor"),
+    ]);
+    const listaMateriais = (materiais ?? []) as Material[];
+    const listaTrilhas = (trilhas ?? []) as Trilha[];
+    const listaProfessores = (professores ?? []) as Perfil[];
+    const ativos = listaProfessores.filter((professor) => professor.status === "ativo").length;
+    const publicados = listaMateriais.filter((material) => material.publicado).length;
+    const trilhasPublicadas = listaTrilhas.filter((trilha) => trilha.publicado).length;
+
+    return (
+      <div className="painel-lider">
+        <section className="painel-lider__abertura">
+          <div>
+            <p>PAINEL DO CT</p>
+            <h1>Olá, {perfil.nome.split(" ")[0]}.</h1>
+            <span>Gerencie conteúdos e acompanhe sua rede de professores.</span>
+          </div>
+          <Link href="/area-do-professor/admin/materiais" className="painel-lider__acao-principal">
+            + Publicar material
+          </Link>
+        </section>
+
+        <section className="painel-lider__metricas" aria-label="Resumo do CT">
+          <div><b>{ativos}</b><span>professores ativos</span></div>
+          <div><b>{publicados}</b><span>materiais publicados</span></div>
+          <div><b>{listaMateriais.length - publicados}</b><span>rascunhos</span></div>
+          <div><b>{trilhasPublicadas}</b><span>trilhas no ar</span></div>
+        </section>
+
+        <section className="painel-lider__atalhos">
+          <Link href="/area-do-professor/admin/materiais">
+            <span>01</span><strong>Conteúdos</strong><small>Publicar, revisar e organizar materiais →</small>
+          </Link>
+          <Link href="/area-do-professor/admin/trilhas">
+            <span>02</span><strong>Trilhas</strong><small>Montar jornadas de aprendizagem →</small>
+          </Link>
+          <Link href="/area-do-professor/admin">
+            <span>03</span><strong>Professores</strong><small>Convidar e gerenciar acessos →</small>
+          </Link>
+        </section>
+
+        <section className="painel-lider__recentes">
+          <div className="painel-lider__secao-cabecalho">
+            <div><p>ATUALIZAÇÕES</p><h2>Materiais recentes</h2></div>
+            <Link href="/area-do-professor/admin/materiais">Ver todos</Link>
+          </div>
+          {listaMateriais.length === 0 ? (
+            <p className="text-sand/60">Nenhum material criado ainda.</p>
+          ) : (
+            <ul>
+              {listaMateriais.slice(0, 4).map((material) => (
+                <li key={material.id}>
+                  <div><strong>{material.titulo}</strong><span>{material.tipo}</span></div>
+                  <em data-publicado={material.publicado}>{material.publicado ? "Publicado" : "Rascunho"}</em>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      </div>
+    );
+  }
 
   const [
     { data: trilhas, error: erroTrilhas },
@@ -173,7 +247,7 @@ export default async function PaginaAreaDoProfessor() {
             <ExploradorMateriais
               materiais={materiaisParaExplorar}
               usuarioId={usuarioId}
-              podeModerar={perfil?.role === "lider"}
+              podeModerar={false}
             />
           )}
         </Secao>
