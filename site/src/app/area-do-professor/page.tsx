@@ -1,10 +1,11 @@
 // site/src/app/area-do-professor/page.tsx
 import type { Metadata } from "next";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { obterPerfilAtual } from "@/lib/supabase/perfil";
 import Secao from "@/components/Secao";
 import CartaoTrilha from "@/components/area-do-professor/CartaoTrilha";
-import CartaoMaterial from "@/components/area-do-professor/CartaoMaterial";
+import ExploradorMateriais from "@/components/area-do-professor/ExploradorMateriais";
 import type {
   ComentarioMaterial,
   InteracoesDoMaterial,
@@ -17,15 +18,6 @@ export const metadata: Metadata = {
   title: "Materiais",
   robots: { index: false, follow: false },
 };
-
-const ROTULOS_TIPO: Record<Material["tipo"], string> = {
-  arquivo: "Arquivos",
-  video: "Vídeos",
-  link: "Links",
-  texto: "Avisos",
-};
-
-const ORDEM_TIPOS = ["arquivo", "video", "link", "texto"] as const;
 
 export default async function PaginaAreaDoProfessor() {
   const supabase = await createClient();
@@ -95,6 +87,20 @@ export default async function PaginaAreaDoProfessor() {
   // materiais, por outro lado, precisa ser explícita para não parecer uma lista vazia.
   const erroDeConteudo = erroMateriais;
   const erroDeTrilhas = erroTrilhas || erroTrilhaMateriais;
+  const trilhasComProgresso = listaTrilhas.map((trilha) => {
+    const itens = listaTrilhaMateriais.filter((item) => item.trilha_id === trilha.id);
+    return {
+      trilha,
+      total: itens.length,
+      concluidos: itens.filter((item) => vistos.has(item.material_id)).length,
+    };
+  });
+  const proximaTrilha = trilhasComProgresso.find(({ total, concluidos }) => total > concluidos);
+  const materiaisParaExplorar = materiaisSoltos.map((material) => ({
+    material,
+    visto: vistos.has(material.id),
+    interacoes: interacoes(material.id),
+  }));
 
   return (
     <>
@@ -112,6 +118,27 @@ export default async function PaginaAreaDoProfessor() {
         </p>
       ) : null}
 
+      {!erroDeConteudo ? (
+        <section className="painel-aprendizado">
+          <div>
+            <p className="painel-aprendizado__sobretitulo">Área do Professor</p>
+            <h1>Olá, {perfil?.nome?.split(" ")[0] ?? "professor"}.</h1>
+            <p>Seu espaço para estudar a metodologia, acompanhar seu avanço e descobrir o que há de novo no CT.</p>
+          </div>
+          <div className="painel-aprendizado__numeros">
+            <span><b>{vistos.size}</b> materiais vistos</span>
+            <span><b>{listaTrilhas.length}</b> trilhas disponíveis</span>
+          </div>
+          {proximaTrilha ? (
+            <Link href={`/area-do-professor/trilhas/${proximaTrilha.trilha.id}`} className="painel-aprendizado__continuar">
+              <span>Continue aprendendo</span>
+              <strong>{proximaTrilha.trilha.titulo}</strong>
+              <small>{proximaTrilha.concluidos} de {proximaTrilha.total} concluídos →</small>
+            </Link>
+          ) : null}
+        </section>
+      ) : null}
+
       {!erroDeConteudo && listaTrilhas.length > 0 ? (
         <Secao
           numero="01"
@@ -120,18 +147,12 @@ export default async function PaginaAreaDoProfessor() {
           intro="Sequências de materiais organizadas pelo CT — acompanhe seu progresso em cada uma."
         >
           <ul className="trilhas-grade">
-            {listaTrilhas.map((trilha) => {
-              const materiaisDaTrilha = listaTrilhaMateriais.filter(
-                (linha) => linha.trilha_id === trilha.id
-              );
-              const concluidos = materiaisDaTrilha.filter((linha) =>
-                vistos.has(linha.material_id)
-              ).length;
+            {trilhasComProgresso.map(({ trilha, total, concluidos }) => {
               return (
                 <li key={trilha.id}>
                   <CartaoTrilha
                     trilha={trilha}
-                    total={materiaisDaTrilha.length}
+                    total={total}
                     concluidos={concluidos}
                   />
                 </li>
@@ -145,35 +166,17 @@ export default async function PaginaAreaDoProfessor() {
         <Secao
           numero={numeroSoltos}
           rotulo="Materiais"
-          titulo="Materiais soltos"
-          intro="Conteúdos avulsos, fora de qualquer trilha."
+          titulo="Encontre o que precisa"
+          intro="Busque por assunto ou filtre por tipo de conteúdo."
         >
           {materiaisSoltos.length === 0 ? (
             <p className="text-sand/60">Nenhum material publicado ainda.</p>
           ) : (
-            ORDEM_TIPOS.map((tipo) => {
-              const doTipo = materiaisSoltos.filter(
-                (material) => material.tipo === tipo
-              );
-              if (doTipo.length === 0) return null;
-              return (
-                <div key={tipo} className="materiais-tipo">
-                  <h3 className="materiais-tipo__titulo">{ROTULOS_TIPO[tipo]}</h3>
-                  <ul className="materiais-tipo-grade">
-                    {doTipo.map((material) => (
-                      <CartaoMaterial
-                        key={material.id}
-                        material={material}
-                        visto={vistos.has(material.id)}
-                        interacoes={interacoes(material.id)}
-                        usuarioId={user?.id ?? null}
-                        podeModerar={perfil?.role === "lider"}
-                      />
-                    ))}
-                  </ul>
-                </div>
-              );
-            })
+            <ExploradorMateriais
+              materiais={materiaisParaExplorar}
+              usuarioId={user?.id ?? null}
+              podeModerar={perfil?.role === "lider"}
+            />
           )}
         </Secao>
       ) : null}

@@ -5470,6 +5470,129 @@ body {
 
 /* ============================================== área do professor: cartões */
 
+.painel-aprendizado {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(12rem, 0.8fr) minmax(15rem, 0.85fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  max-inline-size: var(--shell);
+  margin: 0 auto 3rem;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 1px solid color-mix(in oklab, var(--color-lime-ct) 28%, transparent);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 88% 15%, color-mix(in oklab, var(--color-lime-ct) 18%, transparent), transparent 34%),
+    linear-gradient(125deg, var(--color-navy-700), var(--color-navy-900));
+}
+
+.painel-aprendizado__sobretitulo {
+  margin-block-end: 0.6rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.painel-aprendizado h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-stretch: 112%;
+}
+
+.painel-aprendizado p:not(.painel-aprendizado__sobretitulo) {
+  max-inline-size: 36rem;
+  margin-block-start: 0.5rem;
+  color: color-mix(in oklab, var(--color-sand) 75%, transparent);
+}
+
+.painel-aprendizado__numeros {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono-ct);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--color-sand) 67%, transparent);
+}
+
+.painel-aprendizado__numeros b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-sand);
+}
+
+.painel-aprendizado__continuar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  min-block-size: 100%;
+  padding: 1.25rem;
+  border-radius: 9px;
+  background: color-mix(in oklab, var(--color-navy-900) 72%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.painel-aprendizado__continuar:hover,
+.painel-aprendizado__continuar:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--color-lime-ct);
+}
+
+.painel-aprendizado__continuar span,
+.painel-aprendizado__continuar small {
+  font-family: var(--font-mono-ct);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-lime-ct);
+}
+
+.painel-aprendizado__continuar strong { font-size: 1.1rem; }
+.painel-aprendizado__continuar small { color: color-mix(in oklab, var(--color-sand) 66%, transparent); }
+
+.explorador-materiais__controles { margin-block-end: 1.5rem; }
+.explorador-materiais__busca input {
+  inline-size: min(100%, 28rem);
+  min-block-size: 2.8rem;
+  padding-inline: 1rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 20%, transparent);
+  border-radius: 999px;
+  background: var(--color-navy-800);
+  color: var(--color-sand);
+  outline: none;
+}
+.explorador-materiais__busca input:focus { border-color: var(--color-lime-ct); }
+.explorador-materiais__filtros { display: flex; gap: 0.5rem; margin-block-start: 0.85rem; overflow-x: auto; padding-block-end: 0.15rem; }
+.explorador-materiais__filtros button {
+  flex: none;
+  min-block-size: 2.5rem;
+  padding-inline: 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--color-sand) 18%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: color-mix(in oklab, var(--color-sand) 72%, transparent);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.explorador-materiais__filtros button[aria-pressed="true"] { border-color: var(--color-lime-ct); background: color-mix(in oklab, var(--color-lime-ct) 14%, transparent); color: var(--color-lime-ct); }
+.explorador-materiais__vazio { padding: 2rem; border: 1px dashed color-mix(in oklab, var(--color-sand) 20%, transparent); border-radius: 8px; color: color-mix(in oklab, var(--color-sand) 65%, transparent); }
+
+@media (max-width: 59.99rem) {
+  .painel-aprendizado { grid-template-columns: 1fr 1fr; }
+  .painel-aprendizado__continuar { grid-column: 1 / -1; }
+}
+
+@media (max-width: 39.99rem) {
+  .painel-aprendizado { grid-template-columns: 1fr; gap: 1.25rem; margin-block-end: 2rem; }
+  .painel-aprendizado__continuar { grid-column: auto; }
+}
+
 .material-cartao {
   display: flex;
   flex-direction: column;
@@ -5736,6 +5859,37 @@ body {
 
 .subnav-professor a[aria-current="page"]::after {
   transform: scaleX(1);
+}
+
+@media (max-width: 39.99rem) {
+  .area-do-professor-shell > main {
+    padding-block-end: 6.5rem;
+  }
+
+  .subnav-professor {
+    position: fixed;
+    z-index: 40;
+    inset-inline: 0;
+    inset-block-end: 0;
+    justify-content: space-around;
+    gap: 0;
+    padding: 0.55rem 0.5rem max(0.55rem, env(safe-area-inset-bottom));
+    border-block: 1px solid color-mix(in oklab, var(--color-sand) 12%, transparent);
+    background: color-mix(in oklab, var(--color-navy-900) 94%, transparent);
+    backdrop-filter: blur(14px);
+  }
+
+  .subnav-professor a {
+    justify-content: center;
+    min-block-size: 2.75rem;
+    padding-inline: 0.6rem;
+    font-size: 0.62rem;
+    text-align: center;
+  }
+
+  .subnav-professor a::after {
+    inset-block-end: -0.55rem;
+  }
 }
 
 .trilha-detalhe {
