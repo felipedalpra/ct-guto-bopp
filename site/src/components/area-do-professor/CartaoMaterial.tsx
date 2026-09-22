@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { alternarVisto } from "@/app/area-do-professor/progresso-actions";
 import InteracoesMaterial from "./InteracoesMaterial";
+import BotaoVisto from "./BotaoVisto";
 import type { InteracoesDoMaterial, Material } from "@/types/area-do-professor";
 
 const ROTULOS_TIPO: Record<Material["tipo"], string> = {
@@ -155,15 +155,7 @@ export default function CartaoMaterial({
         <p className="material-cartao__texto">{material.corpo_texto}</p>
       ) : null}
 
-      <form action={alternarVisto.bind(null, material.id, visto)}>
-        <button
-          type="submit"
-          className="material-cartao__visto"
-          aria-pressed={visto}
-        >
-          {visto ? "✓ Visto" : "Marcar como visto"}
-        </button>
-      </form>
+      <BotaoVisto materialId={material.id} visto={visto} />
       {interacoes ? (
         <InteracoesMaterial
           materialId={material.id}

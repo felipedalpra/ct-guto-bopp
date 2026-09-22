@@ -102,9 +102,9 @@ export default async function PaginaAreaDoProfessor() {
     { data: trilhas, error: erroTrilhas },
     { data: trilhaMateriais, error: erroTrilhaMateriais },
     { data: materiais, error: erroMateriais },
-    { data: progresso },
-    { data: curtidas },
-    { data: comentarios },
+    { data: progresso, error: erroProgresso },
+    { data: curtidas, error: erroCurtidas },
+    { data: comentarios, error: erroComentarios },
   ] = await Promise.all([
     supabase.from("trilhas").select("*").order("criado_em", { ascending: false }),
     supabase.from("trilha_materiais").select("trilha_id, material_id, ordem"),
@@ -114,7 +114,7 @@ export default async function PaginaAreaDoProfessor() {
           .from("progresso_material")
           .select("material_id")
           .eq("professor_id", usuarioId)
-      : Promise.resolve({ data: [] as { material_id: string }[] }),
+      : Promise.resolve({ data: [] as { material_id: string }[], error: null }),
     supabase.from("material_curtidas").select("material_id, professor_id"),
     supabase
       .from("material_comentarios")
@@ -159,6 +159,7 @@ export default async function PaginaAreaDoProfessor() {
   // materiais, por outro lado, precisa ser explícita para não parecer uma lista vazia.
   const erroDeConteudo = erroMateriais;
   const erroDeTrilhas = erroTrilhas || erroTrilhaMateriais;
+  const erroDeInteracoes = erroProgresso || erroCurtidas || erroComentarios;
   const trilhasComProgresso = listaTrilhas.map((trilha) => {
     const itens = listaTrilhaMateriais.filter((item) => item.trilha_id === trilha.id);
     return {
@@ -187,6 +188,12 @@ export default async function PaginaAreaDoProfessor() {
       {!erroDeConteudo && erroDeTrilhas ? (
         <p className="mx-auto max-w-6xl px-6 py-4 text-sm text-sand/70" role="alert">
           As trilhas não puderam ser carregadas agora; os materiais disponíveis continuam abaixo.
+        </p>
+      ) : null}
+
+      {!erroDeConteudo && erroDeInteracoes ? (
+        <p className="mx-auto max-w-6xl px-6 py-4 text-sm text-red-200" role="alert">
+          Não foi possível carregar o progresso, as curtidas ou os comentários agora. Nada foi apagado; atualize a página ou avise o CT se o aviso continuar.
         </p>
       ) : null}
 

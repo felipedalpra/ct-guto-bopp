@@ -54,9 +54,9 @@ export default async function PaginaTrilha({
 
   const [
     { data: trilhaMateriais },
-    { data: progresso },
-    { data: curtidas },
-    { data: comentarios },
+    { data: progresso, error: erroProgresso },
+    { data: curtidas, error: erroCurtidas },
+    { data: comentarios, error: erroComentarios },
   ] = await Promise.all([
     supabase
       .from("trilha_materiais")
@@ -68,7 +68,7 @@ export default async function PaginaTrilha({
           .from("progresso_material")
           .select("material_id")
           .eq("professor_id", usuarioId)
-      : Promise.resolve({ data: [] as { material_id: string }[] }),
+      : Promise.resolve({ data: [] as { material_id: string }[], error: null }),
     supabase.from("material_curtidas").select("material_id, professor_id"),
     supabase
       .from("material_comentarios")
@@ -77,6 +77,7 @@ export default async function PaginaTrilha({
   ]);
 
   const vistos = new Set((progresso ?? []).map((linha) => linha.material_id));
+  const erroDeInteracoes = erroProgresso || erroCurtidas || erroComentarios;
   const curtidasPorMaterial = new Map<string, { professor_id: string }[]>();
   for (const curtida of curtidas ?? []) {
     const lista = curtidasPorMaterial.get(curtida.material_id) ?? [];
@@ -112,6 +113,11 @@ export default async function PaginaTrilha({
       <Link href="/area-do-professor" className="trilha-detalhe__voltar">
         ← Voltar para Materiais
       </Link>
+      {erroDeInteracoes ? (
+        <p className="mt-4 text-sm text-red-200" role="alert">
+          Não foi possível carregar o progresso, as curtidas ou os comentários agora. Nada foi apagado; atualize a página ou avise o CT se o aviso continuar.
+        </p>
+      ) : null}
       <h1 className="display trilha-detalhe__titulo">{(trilha as Trilha).titulo}</h1>
       {(trilha as Trilha).descricao ? (
         <p className="trilha-detalhe__descricao">{(trilha as Trilha).descricao}</p>
