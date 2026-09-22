@@ -6,7 +6,7 @@ import { exigirLider } from "@/lib/supabase/perfil";
 import type { TipoMaterial } from "@/types/area-do-professor";
 
 export type EstadoMaterial = { erro: string } | { sucesso: true } | null;
-export type EstadoAcaoMaterial = { erro: string } | { sucesso: true };
+export type EstadoAcaoMaterial = { erro: string } | { sucesso: true; publicado?: boolean };
 
 const EXTENSOES_PERMITIDAS = ["pdf", "docx", "xlsx", "png", "jpg", "jpeg"];
 
@@ -78,15 +78,23 @@ export async function alternarPublicado(
 ): Promise<EstadoAcaoMaterial> {
   await exigirLider();
   const supabase = await createClient();
-  const { error } = await supabase
+  const proximoPublicado = !publicadoAtual;
+  const { data, error } = await supabase
     .from("materiais")
-    .update({ publicado: !publicadoAtual })
-    .eq("id", materialId);
+    .update({ publicado: proximoPublicado })
+    .eq("id", materialId)
+    .select("id, publicado")
+    .maybeSingle();
   if (error) return { erro: `Não deu para atualizar o material: ${error.message}` };
+  if (!data || data.publicado !== proximoPublicado) {
+    return {
+      erro: "O material não foi atualizado. Verifique as permissões do Supabase e tente novamente.",
+    };
+  }
 
   revalidatePath("/area-do-professor/admin/materiais");
   revalidatePath("/area-do-professor");
-  return { sucesso: true };
+  return { sucesso: true, publicado: data.publicado };
 }
 
 export async function excluirMaterial(
