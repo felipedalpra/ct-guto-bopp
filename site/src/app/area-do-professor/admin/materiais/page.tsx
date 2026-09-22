@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default async function PaginaAdminMateriais() {
   const supabase = await createClient();
-  const { data: materiais } = await supabase
+  const { data: materiais, error } = await supabase
     .from("materiais")
     .select("*")
     .order("criado_em", { ascending: false });
@@ -20,7 +20,7 @@ export default async function PaginaAdminMateriais() {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-display text-2xl">Materiais</h1>
           <a
@@ -40,11 +40,17 @@ export default async function PaginaAdminMateriais() {
 
       <FormularioMaterial />
 
+      {error ? (
+        <p className="rounded-lg border border-red-400/40 bg-red-400/10 p-4 text-sm text-red-200" role="alert">
+          Não foi possível carregar os materiais agora. Atualize a página ou tente novamente em alguns instantes.
+        </p>
+      ) : null}
+
       <ul className="flex flex-col gap-2">
         {lista.map((material) => (
           <li
             key={material.id}
-            className="flex items-center justify-between gap-4 rounded-lg border border-sand/10 bg-navy-800 p-4"
+            className="flex flex-col gap-4 rounded-lg border border-sand/10 bg-navy-800 p-4 sm:flex-row sm:items-center sm:justify-between"
           >
             <div>
               <p className="font-medium">{material.titulo}</p>

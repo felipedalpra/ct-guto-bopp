@@ -35,9 +35,9 @@ export default async function PaginaAreaDoProfessor() {
   const perfil = await obterPerfilAtual();
 
   const [
-    { data: trilhas },
-    { data: trilhaMateriais },
-    { data: materiais },
+    { data: trilhas, error: erroTrilhas },
+    { data: trilhaMateriais, error: erroTrilhaMateriais },
+    { data: materiais, error: erroMateriais },
     { data: progresso },
     { data: curtidas },
     { data: comentarios },
@@ -91,10 +91,28 @@ export default async function PaginaAreaDoProfessor() {
   );
 
   const numeroSoltos = listaTrilhas.length > 0 ? "02" : "01";
+  // Falhas de trilhas não devem esconder os materiais avulsos. A consulta de
+  // materiais, por outro lado, precisa ser explícita para não parecer uma lista vazia.
+  const erroDeConteudo = erroMateriais;
+  const erroDeTrilhas = erroTrilhas || erroTrilhaMateriais;
 
   return (
     <>
-      {listaTrilhas.length > 0 ? (
+      {erroDeConteudo ? (
+        <Secao numero="01" rotulo="Materiais" titulo="Não foi possível carregar os materiais">
+          <p className="text-sand/70">
+            Atualize a página ou tente novamente em alguns instantes. Se o problema continuar, avise o CT.
+          </p>
+        </Secao>
+      ) : null}
+
+      {!erroDeConteudo && erroDeTrilhas ? (
+        <p className="mx-auto max-w-6xl px-6 py-4 text-sm text-sand/70" role="alert">
+          As trilhas não puderam ser carregadas agora; os materiais disponíveis continuam abaixo.
+        </p>
+      ) : null}
+
+      {!erroDeConteudo && listaTrilhas.length > 0 ? (
         <Secao
           numero="01"
           rotulo="Trilhas"
@@ -123,40 +141,42 @@ export default async function PaginaAreaDoProfessor() {
         </Secao>
       ) : null}
 
-      <Secao
-        numero={numeroSoltos}
-        rotulo="Materiais"
-        titulo="Materiais soltos"
-        intro="Conteúdos avulsos, fora de qualquer trilha."
-      >
-        {materiaisSoltos.length === 0 ? (
-          <p className="text-sand/60">Nenhum material publicado ainda.</p>
-        ) : (
-          ORDEM_TIPOS.map((tipo) => {
-            const doTipo = materiaisSoltos.filter(
-              (material) => material.tipo === tipo
-            );
-            if (doTipo.length === 0) return null;
-            return (
-              <div key={tipo} className="materiais-tipo">
-                <h3 className="materiais-tipo__titulo">{ROTULOS_TIPO[tipo]}</h3>
-                <ul className="materiais-tipo-grade">
-                  {doTipo.map((material) => (
-                    <CartaoMaterial
-                      key={material.id}
-                      material={material}
-                      visto={vistos.has(material.id)}
-                      interacoes={interacoes(material.id)}
-                      usuarioId={user?.id ?? null}
-                      podeModerar={perfil?.role === "lider"}
-                    />
-                  ))}
-                </ul>
-              </div>
-            );
-          })
-        )}
-      </Secao>
+      {!erroDeConteudo ? (
+        <Secao
+          numero={numeroSoltos}
+          rotulo="Materiais"
+          titulo="Materiais soltos"
+          intro="Conteúdos avulsos, fora de qualquer trilha."
+        >
+          {materiaisSoltos.length === 0 ? (
+            <p className="text-sand/60">Nenhum material publicado ainda.</p>
+          ) : (
+            ORDEM_TIPOS.map((tipo) => {
+              const doTipo = materiaisSoltos.filter(
+                (material) => material.tipo === tipo
+              );
+              if (doTipo.length === 0) return null;
+              return (
+                <div key={tipo} className="materiais-tipo">
+                  <h3 className="materiais-tipo__titulo">{ROTULOS_TIPO[tipo]}</h3>
+                  <ul className="materiais-tipo-grade">
+                    {doTipo.map((material) => (
+                      <CartaoMaterial
+                        key={material.id}
+                        material={material}
+                        visto={vistos.has(material.id)}
+                        interacoes={interacoes(material.id)}
+                        usuarioId={user?.id ?? null}
+                        podeModerar={perfil?.role === "lider"}
+                      />
+                    ))}
+                  </ul>
+                </div>
+              );
+            })
+          )}
+        </Secao>
+      ) : null}
     </>
   );
 }

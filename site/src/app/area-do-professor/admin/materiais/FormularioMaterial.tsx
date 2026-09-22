@@ -15,6 +15,13 @@ const TIPOS: { valor: TipoMaterial; rotulo: string }[] = [
 const TAMANHO_MAXIMO_ARQUIVO = 50 * 1024 * 1024;
 const EXTENSOES_PERMITIDAS = ["pdf", "docx", "xlsx", "png", "jpg", "jpeg"];
 
+function criarNomeDeArquivo(extensao: string) {
+  // Alguns navegadores móveis mais antigos não oferecem randomUUID. O fallback
+  // mantém o envio funcionando sem depender de uma API recente do navegador.
+  const id = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return `${id}.${extensao}`;
+}
+
 export default function FormularioMaterial() {
   const [estado, formAction, pendente] = useActionState<
     EstadoMaterial,
@@ -55,7 +62,7 @@ export default function FormularioMaterial() {
     }
 
     setEnviandoArquivo(true);
-    const arquivoPath = `${crypto.randomUUID()}.${extensao}`;
+    const arquivoPath = criarNomeDeArquivo(extensao);
     const supabase = createClient();
     const { error } = await supabase.storage
       .from("materiais")
