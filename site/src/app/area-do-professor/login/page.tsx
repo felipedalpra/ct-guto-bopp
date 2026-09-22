@@ -21,26 +21,46 @@ export default async function PaginaLogin({
   const linkInvalido = erro !== undefined && ERROS_DE_LINK.includes(erro);
 
   return (
-    <div className="mx-auto flex min-h-[70vh] max-w-sm flex-col justify-center gap-6 px-4">
-      <div>
-        <h1 className="font-display text-2xl text-sand">Área do Professor</h1>
-        <p className="text-sm text-sand/70">
-          Entre com o e-mail e a senha que você definiu no convite.
-        </p>
+    <div className="login-professor relative isolate -mx-4 -my-8 flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden px-4 py-10 sm:-mx-8 sm:px-8">
+      <div className="absolute inset-0 -z-20 bg-navy-900" aria-hidden="true">
+        <video
+          className="login-professor__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/ct/prainha.jpg"
+        >
+          <source src="/video/ct/prainha.mp4" type="video/mp4" />
+        </video>
       </div>
-      {linkInvalido ? (
-        <p className="text-sm text-red-400" role="alert">
-          Esse link é inválido ou já foi usado. Peça um novo em “Esqueci minha
-          senha”.
-        </p>
-      ) : null}
-      <FormularioLogin />
-      <Link
-        href="/area-do-professor/esqueci-senha"
-        className="text-sm text-sand/70 underline-offset-2 hover:text-sand hover:underline"
-      >
-        Esqueci minha senha
-      </Link>
+      <div className="login-professor__veu absolute inset-0 -z-10" aria-hidden="true" />
+
+      <div className="flex w-full max-w-sm flex-col gap-6 rounded-2xl border border-sand/15 bg-navy-900/80 p-6 shadow-2xl backdrop-blur-sm sm:p-8">
+        <div>
+          <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-lime-ct">
+            CT Guto Bopp
+          </p>
+          <h1 className="font-display text-3xl text-sand">Área do Professor</h1>
+          <p className="mt-2 text-sm leading-6 text-sand/75">
+            Entre com o e-mail e a senha que você definiu no convite.
+          </p>
+        </div>
+        {linkInvalido ? (
+          <p className="rounded-lg border border-red-400/30 bg-red-400/10 p-3 text-sm text-red-200" role="alert">
+            Esse link é inválido ou já foi usado. Peça um novo em “Esqueci minha
+            senha”.
+          </p>
+        ) : null}
+        <FormularioLogin />
+        <Link
+          href="/area-do-professor/esqueci-senha"
+          className="text-sm text-sand/75 underline-offset-2 hover:text-sand hover:underline"
+        >
+          Esqueci minha senha
+        </Link>
+      </div>
     </div>
   );
 }

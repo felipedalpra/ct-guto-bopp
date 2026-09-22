@@ -560,6 +560,28 @@ body {
 
 /* ====================================================================== capa */
 
+/* ===================================================================== login */
+
+.login-professor__video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.78;
+}
+
+.login-professor__veu {
+  background:
+    linear-gradient(90deg, rgba(4, 12, 22, 0.88), rgba(4, 12, 22, 0.5)),
+    linear-gradient(180deg, rgba(4, 12, 22, 0.56), rgba(4, 12, 22, 0.86));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-professor__video {
+    display: none;
+  }
+}
+
 .hero {
   position: relative;
   min-block-size: 100svh;
