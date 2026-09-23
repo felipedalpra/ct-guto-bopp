@@ -2,7 +2,8 @@
  * Time de professores do CT Guto Bopp.
  * Fonte: fichas de cadastro em `Cadastro professores/` (ver ../../../memory.md).
  *
- * Previsão do cliente: 7 professores. Todas as 7 fichas recebidas.
+ * Previsão inicial do cliente: 7 professores (todas as 7 fichas recebidas). Em
+ * 2026-09-23 entrou um 8º, David Moura e Sá, professor em Porto (Portugal).
  */
 
 export type Professor = {
@@ -182,6 +183,24 @@ export const professores: Professor[] = [
     instagram: "raphaelds",
     whatsappE164: "+5551997293371",
     foto: "/img/professores/raphael.jpg",
+  },
+  {
+    slug: "david-moura-e-sa",
+    nome: "David Moura e Sá",
+    papel: "Professor",
+    local: "Porto, Portugal",
+    desde: "Joga Beach Tennis há 3 anos",
+    atende: ["Iniciante", "Intermediário"],
+    formacao: [
+      "6 meses de capacitação no Brasil com o Guto Bopp — Metodologia GB (Conexão BT)",
+    ],
+    diferencial:
+      "Metodologia GB aprendida diretamente na fonte, no Brasil, e trazida para Portugal.",
+    frase:
+      "Fui aprender a metodologia GB diretamente na fonte, no Brasil — e hoje trago esse mesmo rigor e essa mesma paixão para os treinos aqui em Portugal.",
+    instagram: "davidm_sa",
+    whatsappE164: "+351969520828",
+    foto: "/img/professores/david.jpg",
   },
 ];
 

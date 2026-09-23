@@ -136,6 +136,20 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 
 **As 7 fichas foram recebidas.**
 
+### 8. David Moura e Sá (adicionado em 2026-09-23, fora da previsão original de 7)
+- WhatsApp +351 969 520 828 (Portugal) · Instagram `@davidm_sa`
+- Dá aula no Porto, Portugal — primeiro professor fora do Brasil
+- Iniciante e intermediário
+- Joga Beach Tennis há 3 anos; começou a dar aula depois de 6 meses de capacitação
+  direta com o Guto Bopp, no Brasil (Metodologia GB / Conexão BT)
+- Diferencial: metodologia GB aprendida diretamente na fonte, no Brasil, e trazida
+  para Portugal
+- Frase: "Fui aprender a metodologia GB diretamente na fonte, no Brasil — e hoje
+  trago esse mesmo rigor e essa mesma paixão para os treinos aqui em Portugal."
+- Ficha: `Cadastro professores/novo professor/Ficha_Cadastro_Professor_CT_Guto_Bopp_preenchida.docx`
+- Foto: 5 fotos de ação recebidas; escolhida `WhatsApp Image 2026-09-23 at 15.03.02.jpeg`
+  (rosto bem visível, bom enquadramento) → `site/public/img/professores/david.jpg`
+
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
 diferentes (areia clara, fundo preto de quadra coberta). Não são retratos padronizados.
