@@ -3,7 +3,7 @@ import InteracoesMaterial from "./InteracoesMaterial";
 import BotaoVisto from "./BotaoVisto";
 import type { InteracoesDoMaterial, Material } from "@/types/area-do-professor";
 
-const ROTULOS_TIPO: Record<Material["tipo"], string> = {
+export const ROTULOS_TIPO: Record<Material["tipo"], string> = {
   arquivo: "Arquivo",
   video: "Vídeo",
   link: "Link",
@@ -44,7 +44,7 @@ function extensaoArquivo(caminho: string): string {
  * que não combina com a signed URL de 60s) ou uma lib de conversão no site,
  * então esses continuam só com o link de download.
  */
-function ArquivoPreview({ material }: { material: Material }) {
+export function ArquivoPreview({ material }: { material: Material }) {
   const url = `/area-do-professor/materiais/${material.id}/download`;
   const extensao = material.arquivo_path ? extensaoArquivo(material.arquivo_path) : "";
 
@@ -88,7 +88,7 @@ function ArquivoPreview({ material }: { material: Material }) {
   );
 }
 
-function VideoEmbutido({ url, titulo }: { url: string; titulo: string }) {
+export function VideoEmbutido({ url, titulo }: { url: string; titulo: string }) {
   const embed = paraUrlEmbutida(url);
 
   if (!embed) {
