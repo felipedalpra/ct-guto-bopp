@@ -150,6 +150,18 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 - Foto: 5 fotos de ação recebidas; escolhida `WhatsApp Image 2026-09-23 at 15.03.02.jpeg`
   (rosto bem visível, bom enquadramento) → `site/public/img/professores/david.jpg`
 
+### 9. Eduardo Vieira de Sá (adicionado em 2026-10-02)
+- WhatsApp +55 55 99970-9974 · Instagram `@eduardovds` · Uruguaiana/RS
+- Educação Física (Unipampa); 2 anos de Beach Tennis; Conexão BT (Guto Bopp); CBT amarelo
+- Aulas Kids e adultos iniciantes/intermediários, turmas; precursor do Beach Kids na fronteira oeste
+- Sem frase (campo em branco na ficha) · Foto: `IMG_4867.JPG.jpeg` → `eduardo.jpg`
+
+### 10. Leonardo de Almeida Leal (adicionado em 2026-10-02)
+- WhatsApp (51) 99734-9017 · Instagram `@leoalmeida_bt` · Point Sul (Porto Alegre)
+- 6 anos como professor, 10 de Beach Tennis; CBT amarelo + Conexão BT
+- Iniciante a avançado, particular, infantil a partir de 10 anos
+- Diferencial: "Disciplina, método e resultado" · Foto: `leonardo.jpeg` → `leonardo.jpg`
+
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
 diferentes (areia clara, fundo preto de quadra coberta). Não são retratos padronizados.

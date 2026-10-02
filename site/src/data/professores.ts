@@ -3,7 +3,8 @@
  * Fonte: fichas de cadastro em `Cadastro professores/` (ver ../../../memory.md).
  *
  * Previsão inicial do cliente: 7 professores (todas as 7 fichas recebidas). Em
- * 2026-09-23 entrou um 8º, David Moura e Sá, professor em Porto (Portugal).
+ * 2026-09-23 entrou um 8º, David Moura e Sá, professor em Porto (Portugal). Em
+ * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal.
  */
 
 export type Professor = {
@@ -201,6 +202,45 @@ export const professores: Professor[] = [
     instagram: "davidm_sa",
     whatsappE164: "+351969520828",
     foto: "/img/professores/david.jpg",
+  },
+  {
+    slug: "eduardo-vieira-de-sa",
+    nome: "Eduardo Vieira de Sá",
+    papel: "Professor",
+    local: "Uruguaiana · Rio Grande do Sul",
+    desde: "2 anos como professor de Beach Tennis",
+    atende: ["Kids", "Adulto iniciante", "Adulto intermediário", "Turmas"],
+    formacao: [
+      "Educação Física — Unipampa",
+      "Capacitação com o Guto Bopp — Metodologia GB (Conexão BT)",
+      "CBT nível amarelo",
+    ],
+    diferencial:
+      "Trabalho com crianças e adolescentes: foi precursor do Beach Kids na fronteira oeste. Gosta de introduzir adultos iniciantes no esporte e de acompanhar a evolução dos alunos em turma.",
+    instagram: "eduardovds",
+    whatsappE164: "+5555999709974",
+    foto: "/img/professores/eduardo.jpg",
+  },
+  {
+    slug: "leonardo-leal",
+    nome: "Leonardo de Almeida Leal",
+    papel: "Professor",
+    local: "Point Sul · Porto Alegre",
+    desde: "6 anos como professor; no Beach Tennis há 10",
+    atende: [
+      "Iniciante",
+      "Intermediário",
+      "Avançado",
+      "Infantil a partir de 10 anos",
+      "Particular",
+    ],
+    formacao: ["CBT nível amarelo", "Conexão BT com Guto Bopp"],
+    diferencial: "Disciplina, método e resultado.",
+    frase:
+      "Há 10 anos, o Beach Tennis faz parte da minha vida. Há 6, tenho a oportunidade de transformar essa paixão em profissão, compartilhando conhecimento e ajudando outras pessoas a evoluírem dentro e fora da quadra.",
+    instagram: "leoalmeida_bt",
+    whatsappE164: "+5551997349017",
+    foto: "/img/professores/leonardo.jpg",
   },
 ];
 
