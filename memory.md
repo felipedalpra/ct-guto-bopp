@@ -162,6 +162,14 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 - Iniciante a avançado, particular, infantil a partir de 10 anos
 - Diferencial: "Disciplina, método e resultado" · Foto: `leonardo.jpeg` → `leonardo.jpg`
 
+### 11. Arthur Gallarreta (adicionado em 2026-10-03)
+- WhatsApp +55 55 98465-9361 · Uruguaiana/RS · **sem Instagram**: o campo da ficha veio
+  com um e-mail (`arthurgallarretas@gmail.com`), então ficou de fora — pedir o @ se quiser
+- Educação Física (Unipampa); 5 anos de Beach Tennis, 4 como professor; CBT verde/amarelo/azul;
+  Conexão BT módulo 1
+- Do iniciante ao infantil; cofundador da Next Gen (escola de Beach Tennis de 5 a 17 anos)
+- Ficha e foto em `Cadastro professores/Arthur/` → `site/public/img/professores/arthur.jpg`
+
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
 diferentes (areia clara, fundo preto de quadra coberta). Não são retratos padronizados.

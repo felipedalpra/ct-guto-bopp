@@ -4,7 +4,8 @@
  *
  * Previsão inicial do cliente: 7 professores (todas as 7 fichas recebidas). Em
  * 2026-09-23 entrou um 8º, David Moura e Sá, professor em Porto (Portugal). Em
- * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal.
+ * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal. Em
+ * 2026-10-03 entrou o 11º, Arthur Gallarreta (Uruguaiana).
  */
 
 export type Professor = {
@@ -241,6 +242,25 @@ export const professores: Professor[] = [
     instagram: "leoalmeida_bt",
     whatsappE164: "+5551997349017",
     foto: "/img/professores/leonardo.jpg",
+  },
+  {
+    slug: "arthur-gallarreta",
+    nome: "Arthur Gallarreta",
+    papel: "Professor",
+    local: "Uruguaiana · Rio Grande do Sul",
+    desde: "4 anos como professor; no Beach Tennis há 5",
+    atende: ["Iniciante", "Infantil"],
+    formacao: [
+      "Educação Física — Universidade Federal do Pampa",
+      "Capacitação com o Guto Bopp — Metodologia GB (Conexão BT, módulo 1)",
+      "CBT níveis verde, amarelo e azul",
+    ],
+    diferencial:
+      "Metodologia GB aprendida diretamente na fonte. Um dos fundadores da Next Gen, a primeira escola de Beach Tennis do interior do estado, para jovens dos 5 aos 17 anos.",
+    frase:
+      "O Beach Tennis mudou minha vida, não apenas por me manter ainda mais próximo do esporte, mas por me proporcionar a oportunidade de transformar uma paixão em profissão. Através do Beach, conheci pessoas, vivi experiências incríveis e encontrei no esporte uma forma de trabalhar com o que realmente gosto. Hoje, tenho muito orgulho de poder compartilhar essa paixão e ajudar outras pessoas a também se apaixonarem pelo Beach tennis.",
+    whatsappE164: "+5555984659361",
+    foto: "/img/professores/arthur.jpg",
   },
 ];
 
