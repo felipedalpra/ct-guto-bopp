@@ -170,6 +170,13 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 - Do iniciante ao infantil; cofundador da Next Gen (escola de Beach Tennis de 5 a 17 anos)
 - Ficha e foto em `Cadastro professores/Arthur/` → `site/public/img/professores/arthur.jpg`
 
+### 12. Fábio de Figueiredo Martins Júnior (adicionado em 2026-10-26)
+- WhatsApp +55 55 99601-2178 · Instagram `@fabiomartins.bt` · Arena Beach Lounge, São Gabriel/RS
+- Professor de Educação Física desde 2022; 18 meses dando aula de Beach Tennis; Instrutor PRO TOSS
+  (Imersão Guto Bopp)
+- Iniciante, intermediário, infantil; aulas individuais ou em dupla
+- Ficha e foto em `Cadastro professores/Fabio_Martins/` → `site/public/img/professores/fabio.jpg`
+
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
 diferentes (areia clara, fundo preto de quadra coberta). Não são retratos padronizados.

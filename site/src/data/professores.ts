@@ -5,7 +5,8 @@
  * Previsão inicial do cliente: 7 professores (todas as 7 fichas recebidas). Em
  * 2026-09-23 entrou um 8º, David Moura e Sá, professor em Porto (Portugal). Em
  * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal. Em
- * 2026-10-03 entrou o 11º, Arthur Gallarreta (Uruguaiana).
+ * 2026-10-03 entrou o 11º, Arthur Gallarreta (Uruguaiana). Em 2026-10-26 entrou o
+ * 12º, Fábio Martins (São Gabriel/RS).
  */
 
 export type Professor = {
@@ -261,6 +262,22 @@ export const professores: Professor[] = [
       "O Beach Tennis mudou minha vida, não apenas por me manter ainda mais próximo do esporte, mas por me proporcionar a oportunidade de transformar uma paixão em profissão. Através do Beach, conheci pessoas, vivi experiências incríveis e encontrei no esporte uma forma de trabalhar com o que realmente gosto. Hoje, tenho muito orgulho de poder compartilhar essa paixão e ajudar outras pessoas a também se apaixonarem pelo Beach tennis.",
     whatsappE164: "+5555984659361",
     foto: "/img/professores/arthur.jpg",
+  },
+  {
+    slug: "fabio-martins",
+    nome: "Fábio de Figueiredo Martins Júnior",
+    papel: "Professor",
+    local: "Arena Beach Lounge · São Gabriel · Rio Grande do Sul",
+    desde: "Professor de Educação Física desde 2022; 18 meses dando aula de Beach Tennis",
+    atende: ["Iniciante", "Intermediário", "Infantil", "Aulas individuais ou em dupla"],
+    formacao: ["Instrutor PRO TOSS — Imersão Guto Bopp"],
+    diferencial:
+      "Planejamento de aulas diversificadas e personalizadas, respeitando o nível, as necessidades e os objetivos de cada aluno — tanto para quem busca competir quanto para quem quer aprender Beach Tennis por lazer. Nas aulas infantis, integra o ensino do esporte a atividades lúdicas.",
+    frase:
+      "Minha essência é ensinar. Meu diferencial é entender que cada aluno tem seu próprio caminho para evoluir.",
+    instagram: "fabiomartins.bt",
+    whatsappE164: "+5555996012178",
+    foto: "/img/professores/fabio.jpg",
   },
 ];
 
