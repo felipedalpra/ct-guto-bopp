@@ -6,7 +6,8 @@
  * 2026-09-23 entrou um 8º, David Moura e Sá, professor em Porto (Portugal). Em
  * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal. Em
  * 2026-10-03 entrou o 11º, Arthur Gallarreta (Uruguaiana). Em 2026-10-26 entrou o
- * 12º, Fábio Martins (São Gabriel/RS).
+ * 12º, Fábio Martins (São Gabriel/RS). Em 2026-11-11 entrou o 13º, Pedro Holz
+ * (Vale do Sinos/RS).
  */
 
 export type Professor = {
@@ -278,6 +279,32 @@ export const professores: Professor[] = [
     instagram: "fabiomartins.bt",
     whatsappE164: "+5555996012178",
     foto: "/img/professores/fabio.jpg",
+  },
+  {
+    slug: "pedro-holz",
+    nome: "Pedro Holz",
+    papel: "Professor",
+    local:
+      "Dois Irmãos, Ivoti, Estância Velha e Novo Hamburgo · Rio Grande do Sul",
+    desde:
+      "Professor de Educação Física desde 2007; dá aula de Beach Tennis desde dezembro de 2022",
+    atende: ["Iniciante", "Intermediário", "Infantil", "Particular", "Turma"],
+    formacao: [
+      "Conexão BT — níveis iniciante e intermediário (2026)",
+      "Curso Buccelli Academy (2025)",
+      "Método Lucas Sousa Powered By Toss (2024)",
+      "Formação Vita para treinadores (2024)",
+      "Capacitação Escola Toss (2023)",
+      "CBT níveis verde, amarelo e azul",
+      "Crab Kids (2022)",
+    ],
+    diferencial:
+      "União entre a pedagogia formal da Educação Física e a imersão em métodos de ensino, facilitando uma atuação profissional técnica, capaz de estruturar desde a iniciação infantil até o refinamento tático de atletas amadores com embasamento científico e prático.",
+    frase:
+      "Acredito que o Beach Tennis vai muito além da batida na bola: exige leitura tática, técnica refinada e vivência pedagógica. Meu compromisso é desenvolver o potencial de cada aluno com planejamento, segurança e paixão pelo jogo.",
+    instagram: "pedro.holz",
+    whatsappE164: "+5551996412272",
+    foto: "/img/professores/pedro.jpg",
   },
 ];
 

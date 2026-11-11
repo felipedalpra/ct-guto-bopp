@@ -177,6 +177,19 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 - Iniciante, intermediário, infantil; aulas individuais ou em dupla
 - Ficha e foto em `Cadastro professores/Fabio_Martins/` → `site/public/img/professores/fabio.jpg`
 
+### 13. Pedro Holz (adicionado em 2026-11-11)
+- WhatsApp +55 51 99641-2272 · Instagram `@pedro.holz`
+- Dá aula em 4 cidades do Vale do Sinos/RS: Dois Irmãos (Arena 559, Complexo Beach House e
+  Farol Sports), Ivoti (Arena Flow), Estância Velha (Villa Paradero) e Novo Hamburgo
+  (Villa Beach). No site o campo `local` traz só as cidades — a lista de arenas não cabia
+  no card; se o cliente quiser os nomes das arenas à vista, dá para abrir um campo novo
+- Professor de Educação Física desde 2007; Beach Tennis desde dezembro de 2022
+- Formação: Crab Kids (2022), Escola Toss (2023), CBT verde/amarelo/azul, Método Lucas Sousa
+  Powered By Toss + Formação Vita (2024), Buccelli Academy (2025), Conexão BT iniciante e
+  intermediário (2026)
+- Iniciante, intermediário, infantil, particular e turma
+- Ficha (PDF) e foto em `Cadastro professores/Pedro Holz/` → `site/public/img/professores/pedro.jpg`
+
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
 diferentes (areia clara, fundo preto de quadra coberta). Não são retratos padronizados.
