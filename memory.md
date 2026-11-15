@@ -190,6 +190,17 @@ Previsão: **7 professores**. Todas as **7** fichas recebidas (pasta `Cadastro p
 - Iniciante, intermediário, infantil, particular e turma
 - Ficha (PDF) e foto em `Cadastro professores/Pedro Holz/` → `site/public/img/professores/pedro.jpg`
 
+### 14. Erick Fernandes (adicionado em 2026-11-15)
+- WhatsApp +55 53 98465-6823 · Instagram `@ericknunesfer` · Eleven Sports, Pelotas/RS
+- Formado em Educação Física na UFPEL; 2 anos e meio dando aula de Beach Tennis;
+  certificações: Metodologia Guto Bopp de treinamentos, Instrutor PRO da escola TOSS
+- Turmas do iniciante ao avançado, do lazer ao competitivo
+- O campo "Especialidade ou diferencial" da ficha veio cortado no meio da frase
+  ("...qual reação vai acontecer. Além de" e parava aí). A pedido do Felipe, usei só a
+  primeira frase completa como `diferencial` no site. Se o Erick reenviar o texto
+  completo, atualizar `site/src/data/professores.ts`
+- Ficha (docx) e foto em `Cadastro professores/Erick Fernandes/` → `site/public/img/professores/erick.jpg`
+
 ### ⚠️ Padrão das fotos dos professores
 As fotos recebidas são **fotos de ação**, cada uma com fundo, luz e enquadramento
 diferentes (areia clara, fundo preto de quadra coberta). Não são retratos padronizados.

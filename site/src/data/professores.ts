@@ -7,7 +7,7 @@
  * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal. Em
  * 2026-10-03 entrou o 11º, Arthur Gallarreta (Uruguaiana). Em 2026-10-26 entrou o
  * 12º, Fábio Martins (São Gabriel/RS). Em 2026-11-11 entrou o 13º, Pedro Holz
- * (Vale do Sinos/RS).
+ * (Vale do Sinos/RS). Em 2026-11-15 entrou o 14º, Erick Fernandes (Pelotas/RS).
  */
 
 export type Professor = {
@@ -305,6 +305,26 @@ export const professores: Professor[] = [
     instagram: "pedro.holz",
     whatsappE164: "+5551996412272",
     foto: "/img/professores/pedro.jpg",
+  },
+  {
+    slug: "erick-fernandes",
+    nome: "Erick Fernandes",
+    papel: "Professor",
+    local: "Eleven Sports · Pelotas · Rio Grande do Sul",
+    desde: "2 anos e meio como professor de Beach Tennis",
+    atende: ["Iniciante", "Intermediário", "Avançado", "Turma"],
+    formacao: [
+      "Educação Física — UFPEL",
+      "Metodologia Guto Bopp de treinamentos",
+      "Instrutor PRO da escola TOSS",
+    ],
+    diferencial:
+      "Gosto de ensinar sempre o porquê de cada movimento e qual reação vai acontecer.",
+    frase:
+      "Apaixonado por Beach Tennis, tento sempre passar essa paixão pros meus alunos. E a cada aula mostro como esse esporte pode ser inclusivo e desafiador ao mesmo tempo.",
+    instagram: "ericknunesfer",
+    whatsappE164: "+5553984656823",
+    foto: "/img/professores/erick.jpg",
   },
 ];
 
