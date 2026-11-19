@@ -7,7 +7,8 @@
  * 2026-10-02 entraram o 9º e o 10º: Eduardo Vieira de Sá (Uruguaiana) e Leonardo Leal. Em
  * 2026-10-03 entrou o 11º, Arthur Gallarreta (Uruguaiana). Em 2026-10-26 entrou o
  * 12º, Fábio Martins (São Gabriel/RS). Em 2026-11-11 entrou o 13º, Pedro Holz
- * (Vale do Sinos/RS). Em 2026-11-15 entrou o 14º, Erick Fernandes (Pelotas/RS).
+ * (Vale do Sinos/RS). Em 2026-11-15 entrou o 14º, Erick Fernandes (Pelotas/RS). Em
+ * 2026-11-19 entrou o 15º, Vinicius Dvoranoski (Viamão/RS).
  */
 
 export type Professor = {
@@ -325,6 +326,27 @@ export const professores: Professor[] = [
     instagram: "ericknunesfer",
     whatsappE164: "+5553984656823",
     foto: "/img/professores/erick.jpg",
+  },
+  {
+    slug: "vinicius-dvoranoski",
+    nome: "Vinicius Dvoranoski",
+    papel: "Professor",
+    local: "Cidade de Viamão / Quadra BV Arena",
+    desde: "3 anos como professor (outubro de 2023)",
+    atende: ["Iniciante", "Intermediário", "Avançado", "Infantil"],
+    formacao: [
+      "Mentoria BTM",
+      "Treino em Dupla Escola Vini Font",
+      "Escola Toss",
+      "Curso de Capacitação Conexão BT Guto Bopp",
+    ],
+    diferencial:
+      "Entender o propósito de cada aluno, trabalhar cada movimento, corrigindo e aperfeiçoando, explicando a parte técnica num primeiro momento e em seguida trazendo a parte tática.",
+    frase:
+      "Ser professor de Beach Tennis é muito mais do que ensinar técnicas e golpes. É compartilhar conhecimento, incentivar a evolução de cada aluno e transformar cada aula em momentos de aprendizado, amizade e superação. Ver meus alunos evoluindo é minha maior conquista!",
+    instagram: "vini_dvoranoski",
+    whatsappE164: "+5551981821476",
+    foto: "/img/professores/vinicius.jpg",
   },
 ];
 
