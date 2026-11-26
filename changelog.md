@@ -6,6 +6,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 ## [Não publicado]
 
 ### Alterado
+- 2026-11-26 — Seção "Com quem você vai treinar" da home (`site/src/components/ResumoProfessores.tsx` + `globals.css`): a grade de rostos, que empilhava em 3 linhas no desktop e escondia parte do time no celular, virou uma faixa única em movimento contínuo (marquee em CSS puro), igual em todas as larguras. A lista é renderizada duas vezes para o loop fechar sem emenda (a cópia fica `aria-hidden` e fora do Tab), pausa no hover/foco, bordas esfumadas e velocidade proporcional ao número de professores. Com "reduzir movimento" ativado no sistema, vira uma linha com rolagem manual
 - 2026-09-29 — "Gerenciar materiais" (`/area-do-professor/admin/materiais`) passou de uma lista de textos para uma grade de cartões com o conteúdo à vista: PDF e imagem aparecem embutidos, vídeo do YouTube/Vimeo toca no próprio cartão, link mostra o endereço e aviso mostra o texto. Cada cartão traz o tipo, um selo Publicado/Rascunho, data e hora do envio e os botões Publicar/Despublicar/Excluir. Materiais com o mesmo título ganham o selo "Título repetido", para achar duplicatas de relance (o líder publicou um material em duplicidade e não tinha como saber qual era qual sem ver o conteúdo). Para isso `ArquivoPreview`, `VideoEmbutido` e `ROTULOS_TIPO` de `CartaoMaterial.tsx` passaram a ser exportados e são reaproveitados no painel
 
 ### Adicionado
