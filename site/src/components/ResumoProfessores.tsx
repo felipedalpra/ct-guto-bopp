@@ -57,6 +57,12 @@ export default function ResumoProfessores() {
           <FilaDeRostos copia />
         </div>
       </Revela>
+
+      <div className="shell resumo-time__rodape">
+        <Link className="btn btn--linha resumo-time__btn" href="/professores">
+          Ver professores <span aria-hidden="true">→</span>
+        </Link>
+      </div>
     </section>
   );
 }
